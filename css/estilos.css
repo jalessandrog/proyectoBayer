@@ -1,0 +1,81 @@
+/* PALETA DE COLORES 
+Azul fuerte: #273C51
+Azul claro: #00BEFE
+Verde: #59D400
+*/
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{background: rgb(255, 255, 255);}
+
+/* ----------------------
+        HEADER
+    --------------------
+*/
+
+header{
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,207cca+35,207cca+35,2989d8+50,00befe+100 */
+    background: #00BEFE; /* Old browsers */
+    background: -moz-linear-gradient(top,  #1e5799 0%, #207cca 35%, #207cca 35%, #2989d8 50%, #00befe 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #1e5799 0%,#207cca 35%,#207cca 35%,#2989d8 50%,#00befe 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #1e5799 0%,#207cca 35%,#207cca 35%,#2989d8 50%,#00befe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#00befe',GradientType=0 ); /* IE6-9 */
+}
+
+header.container-fluid.bg-info.d-flex{
+    margin: 0;
+    padding: 0;
+}
+
+.contendor_curveado{
+    margin: 0;
+    padding: 0;
+    border-top-right-radius: 100px 250px;
+    border-bottom-right-radius: 100px 250px;
+    background-color: #273C51;
+}
+.logo{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo{
+    width: 250px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+}
+
+.container .col-4{
+    margin: auto;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.container a#configuration{
+    font-size: 1rem;
+    padding: 0 1rem;
+    color: rgb(255, 255, 255);
+    text-decoration:none;
+    border-bottom:3.5px dotted #59D400;
+}
+.container p#Tiempo{
+    margin: 1rem 0;
+    color: rgb(255, 255, 255);
+}
+
+.container p#Tiempo span{
+    padding: 1rem;
+}
+
+/* ----------------------
+        
+    --------------------
+*/

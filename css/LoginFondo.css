@@ -1,0 +1,39 @@
+body {
+    /* Aquí el origen de la imagen */
+    background-image: url(../Images/Campo.jpg);
+  
+    /* Fijar la imagen de fondo este vertical y
+      horizontalmente y centrado */
+    background-position: center center;
+  
+    /* Esta imagen no debe de repetirse */
+    background-repeat: no-repeat;
+  
+    /* COn esta regla fijamos la imagen en la pantalla. */
+    background-attachment: fixed;
+  
+    /* La imagen ocupa el 100% y se reescala */
+    background-size: cover;
+  
+    /* Damos un color de fondo mientras la imagen está cargando  */
+    background-color: #464646;
+  }
+
+
+
+  .container{
+    max-width:320px;
+    width:90%;
+    background-color: rgba(0,0,0,0.6) !important;
+    padding:40px;
+    border-radius:4px;
+    transform:translate(-50%, -50%);
+    position:absolute;
+    top:50%;
+    left:50%;
+    color:#fff;
+    box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+}
+
+
+  

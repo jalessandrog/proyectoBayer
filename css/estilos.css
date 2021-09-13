@@ -154,7 +154,16 @@ header.container-fluid.bg-info.d-flex{
 .Muestras thead.table#sin-color{
     background-color: white;
 }
-
+.boton2{
+    background-color: #59D400;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 25px;
+    width: 200px;
+    border: 3px solid #59D400;
+    border-radius: 12px;
+}
 .boton{
     background-color: transparent;
     color: white;

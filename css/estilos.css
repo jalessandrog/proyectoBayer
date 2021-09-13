@@ -107,7 +107,7 @@ header.container-fluid.bg-info.d-flex{
     text-align: center;
 }
 
-.container a#configuration{
+.container p#configuration{
     font-size: 1rem;
     padding: 0 1rem;
     color: rgb(255, 255, 255);
@@ -155,3 +155,26 @@ header.container-fluid.bg-info.d-flex{
     background-color: white;
 }
 
+.boton{
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 25px;
+    width: 200px;
+    border: 3px solid #59D400;
+    border-radius: 12px;
+
+
+}
+.boton:hover{
+    background-color: #59D400;
+    color: white;
+}
+
+#centro{
+    margin: 10px auto;
+}
+#centro2{
+    margin: 10px 500px;
+}

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/estilos.css">
   </head>
   
@@ -34,6 +35,70 @@
       </div>
     </div>
   </header>
+
+
+  <br>
+  <br>
+  <div class="container ">
+    <div class="row">
+      <div class="col-sm">
+        
+      </div>
+      <div class="col-md-4">
+        <form class="form-inline">
+          <div class="input-group">
+              <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+              <span><input class="form-control" type="search" placeholder="Search" aria-label="Search"></span>
+          </div>
+        </form>
+      </div>
+      <div class="col">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtrar por Ordenar
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Comerciales</a>
+            <a class="dropdown-item" href="#">Experimentales</a>
+            <a class="dropdown-item" href="#">Otros</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-bordered caption-top align-middle">
+        <thead class="table">
+            <tr align="center">
+              <th scope="col" >Nombre de usuario</th>
+              <th scope="col">Fecha de uso</th>
+              <th scope="col">Nombre muestra</th>
+              <th scope="col">SP de muestra</th>
+              <th scope="col">Cantidad retirada</th>
+              <th scope="col">Cantidad sobrante</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr align="center">
+              <td>Juan Pérez</td>
+              <td>13/09/2021</td>
+              <td>CLAVIS</td>
+              <td>102000012345</td>
+              <td>250</td>
+              <td>100</td>
+            </tr>
+            <tr align="center">
+              <td>Roberto Delgado</td>
+              <td>12/09/2021</td>
+              <td>HERBA</td>
+              <td>102000014516</td>
+              <td>100</td>
+              <td>50</td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>

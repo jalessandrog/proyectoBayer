@@ -21,22 +21,27 @@ body{background: rgb(255, 255, 255);}
 body.Login {
     /* Aquí el origen de la imagen */
     background-image: url(../Images/Campo.jpg);
+  
     /* Fijar la imagen de fondo este vertical y
       horizontalmente y centrado */
     background-position: center center;
+  
     /* Esta imagen no debe de repetirse */
     background-repeat: no-repeat;
+  
     /* COn esta regla fijamos la imagen en la pantalla. */
     background-attachment: fixed;
+  
     /* La imagen ocupa el 100% y se reescala */
     background-size: cover;
+  
     /* Damos un color de fondo mientras la imagen está cargando  */
     background-color: #464646;
-}
+  }
 
 
 
-body.Login .container{
+  body.Login .container{
     max-width:320px;
     width:90%;
     background-color: rgba(0,0,0,0.6) !important;
@@ -51,6 +56,7 @@ body.Login .container{
 }
 
 
+  
 
     
 /* ----------------------
@@ -169,26 +175,6 @@ header.container-fluid.bg-info.d-flex{
 
 .Muestras thead.table#sin-color{
     background-color: white;
-}
-.boton2{
-    background-color: #59D400;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    padding: 10px 25px;
-    width: 200px;
-    border: 3px solid #59D400;
-    border-radius: 12px;
-}
-.boton{
-    background-color: transparent;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    padding: 10px 25px;
-    width: 200px;
-    border: 3px solid #59D400;
-    border-radius: 12px;
 }
 
 @media (max-width: 815px) {

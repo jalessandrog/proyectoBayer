@@ -15,28 +15,71 @@
 <body>
 
   <header class="container-fluid bg-info d-flex">
+    
     <div class="contendor_curveado">
-      <div class="logo">
-        <section id="logo">
-          <img src="../Images/LogoBlanco.png" alt="Logo" width="150" height="150">
-        </section>
-      </div>
+        <div class="logo">
+            <section id="logo">
+                <img src="../Images/LogoBlanco.png" alt="Logo" width="150" height="150">
+            </section>
+        </div>
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-8">
-          <p class="text-white p-5  fs-3">Nombre usuario </p>
+        <div class="row">
+            <div class="col-9">
+                <p class="text-white p-5  fs-3">Nombre usuario </p>
+                <div id= "centro" >
+                    <button type= "button" class = "boton" onclick="window.open('http://127.0.0.1:5500/views/Muestras_Uadministrador.html')">Muestra</button>
+                    <button type= "button" class = "boton" onclick="window.open('http://127.0.0.1:5500/views/Movimientos.html')">Movimientos</button> 
+                    <button type= "button" class = "boton" onclick="window.open()">Usuarios</button>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type= "button" class="boton">Cerrar sesión</button>
+                <p id="configuration" href="">Configuración</p>
+                <p id="Tiempo"><span>Fecha</span> : <span>Hora</span></p>
+            </div>
         </div>
-        <div class="col-4">
-          <a id="configuration" href="">Configuración</a>
-          <p id="Tiempo"><span>Fecha</span> : <span>Hora</span></p>
-        </div>
-      </div>
     </div>
-  </header>
+</header>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-2"><br></div>
+          <div class="col-8">
+            <br><br><br>
+              <div class="table-responsive">
+                <table class="table table-bordered caption-top">
+                    <thead class="table-light">
+                      <tr style="text-align: center;">
+                        <th scope="col" colspan="3" style="background: #c0c1ce;">Alertas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row" style="background: #FF0000;">  </th>
+                        <td>Producto cercano a caducar</td>
+                        <td>Existencia del producto</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" style="background: #f0b81e;">  </th>
+                        <td>Producto nivel medio a caducar</td>
+                        <td>Existencia del producto</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" style="background: #f0ecec;">  </th>
+                        <td>Otro nivel de alerta</td>
+                        <td>Existencia del producto</td>
+                      </tr>
+                    </tbody>
+                </table>
+              </div>
+          </div>
+          <div class="col-2"><br></div>
+      </div>
+  </div>
 
   </body>
 </html>

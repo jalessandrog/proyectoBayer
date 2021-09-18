@@ -16,25 +16,32 @@
 <body class="Muestras">
 
   <header class="container-fluid bg-info d-flex">
+    
     <div class="contendor_curveado">
-      <div class="logo">
-        <section id="logo">
-          <img src="../Images/LogoBlanco.png" alt="Logo" width="150" height="150">
-        </section>
-      </div>
+        <div class="logo">
+            <section id="logo">
+                <img src="../Images/LogoBlanco.png" alt="Logo" width="150" height="150">
+            </section>
+        </div>
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-8">
-          <p class="text-white p-5  fs-3">Nombre usuario </p>
+        <div class="row">
+            <div class="col-9">
+                <p class="text-white p-5  fs-3">Nombre usuario </p>
+                <div id= "centro" >
+                    <button type= "button" class = "boton" onclick="window.open('http://127.0.0.1:5500/views/Muestras_Uadministrador.html')">Muestra</button>
+                    <button type= "button" class = "boton" onclick="window.open('http://127.0.0.1:5500/views/Movimientos.html')">Movimientos</button> 
+                    <button type= "button" class = "boton" onclick="window.open()">Usuarios</button>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type= "button" class="boton">Cerrar sesión</button>
+                <p id="configuration" href="">Configuración</p>
+                <p id="Tiempo"><span>Fecha</span> : <span>Hora</span></p>
+            </div>
         </div>
-        <div class="col-4">
-          <a id="configuration" href="">Configuración</a>
-          <p id="Tiempo"><span>Fecha</span> : <span>Hora</span></p>
-        </div>
-      </div>
     </div>
-  </header>
+</header>
   <br>
   <br>
   <div class="container ">
@@ -80,7 +87,7 @@
           <tbody>
             <tr align="center">
               <th scope="row">
-                <a class="btn green" href="#" role="button">PDF</a>
+                <a class="btn green" href="#" role="button">Ver más</a>
               </th>
               <td>CLAVIS</td>
               <td>480</td>
@@ -97,14 +104,14 @@
             </tr>
             <tr align="center">
               <th scope="row">
-                <a class="btn green" href="#" role="button">PDF</a>
+                <a class="btn green" href="#" role="button">Ver más</a>
               </th>
               <td>--</td>
               <td>--</td>
               <td>--</td>
               <td>--</td>
               <td>
-                <div class="input-group input-group-sm  ">
+                <div class="input-group input-group-sm ">
                   <input type="number" class="form-control" aria-label="Amount">
                   <div class="input-group-append">
                     <button class="btn green btn-outline-secondary" type="button">Retirar</button>

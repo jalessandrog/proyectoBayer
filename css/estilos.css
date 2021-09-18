@@ -100,14 +100,21 @@ header.container-fluid.bg-info.d-flex{
     margin-left: 80px;
     margin-bottom: 20px;
 }
-
-.container .col-4{
+.container .col-9 div#centro{
     margin: auto;
-    padding: 3rem 0;
+    padding: 1.3rem 0;
     text-align: center;
 }
-
-.container a#configuration{
+.container .col-2{
+    margin: auto;
+    padding: 2rem 0;
+    text-align: center;
+}
+.p-5 {
+    padding: 1rem!important;
+    margin: 1rem 0;
+}
+.container p#configuration{
     font-size: 1rem;
     padding: 0 1rem;
     color: rgb(255, 255, 255);
@@ -121,6 +128,21 @@ header.container-fluid.bg-info.d-flex{
 
 .container p#Tiempo span{
     padding: 1rem;
+}
+.boton{
+    background-color: #59D400;
+    color: white;
+    font-size: .8rem;
+    text-align: center;
+    padding: .3rem 1rem;
+    width: 8rem;
+    margin: 1rem 0;
+    border: 3px solid #59D400;
+    border-radius: 12px;
+}
+.boton:hover {
+    background-color: #273C51;
+    color: white;
 }
 
 /* ----------------------
@@ -155,3 +177,29 @@ header.container-fluid.bg-info.d-flex{
     background-color: white;
 }
 
+@media (max-width: 815px) {
+    .d-flex{
+        display: flex!important;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    .container .row{
+        display: flex!important;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    .container .row .col-2{
+        width: 70%;
+    }
+    .container .row .col-9{
+        width: 100%;
+    }
+}
+
+@media (min-width: 815px) {
+    
+    .container .row{
+        width: 95%;
+    }
+
+}

@@ -16,22 +16,58 @@
 <body>
 
   <header class="container-fluid bg-info d-flex">
+    
     <div class="contendor_curveado">
-      <div class="logo">
-        <section id="logo">
-          <img src="../Images/LogoBlanco.png" alt="Logo" width="150" height="150">
-        </section>
-      </div>
+        <div class="logo">
+            <section id="logo">
+                <img src="../Images/LogoBlanco.png" alt="Logo" width="150" height="150">
+            </section>
+        </div>
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-8">
-          <p class="text-white p-5  fs-3">Nombre usuario </p>
+        <div class="row">
+            <div class="col-9">
+                <p class="text-white p-5  fs-3">Nombre usuario </p>
+                <div id= "centro" >
+                    <button type= "button" class = "boton" onclick="window.open('http://127.0.0.1:5500/views/Muestras_Uadministrador.html')">Muestra</button>
+                    <button type= "button" class = "boton" onclick="window.open('http://127.0.0.1:5500/views/Movimientos.html')">Movimientos</button> 
+                    <button type= "button" class = "boton" onclick="window.open()">Usuarios</button>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type= "button" class="boton">Cerrar sesión</button>
+                <p id="configuration" href="">Configuración</p>
+                <p id="Tiempo"><span>Fecha</span> : <span>Hora</span></p>
+            </div>
         </div>
-        <div class="col-4">
-          <button type= "button" class = "boton2" onclick="window.open()">Cerrar sesión</button>
-          <p id="configuration" href="">Configuración</p>
-          <p id="Tiempo"><span>Fecha</span> : <span>Hora</span></p>
+    </div>
+</header>
+
+
+  <br>
+  <br>
+  <div class="container ">
+    <div class="row">
+      <div class="col-sm">
+        
+      </div>
+      <div class="col-md-4">
+        <form class="form-inline">
+          <div class="input-group">
+              <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+              <span><input class="form-control" type="search" placeholder="Search" aria-label="Search"></span>
+          </div>
+        </form>
+      </div>
+      <div class="col">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtrar por Ordenar
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Comerciales</a>
+            <a class="dropdown-item" href="#">Experimentales</a>
+            <a class="dropdown-item" href="#">Otros</a>
+          </div>
         </div>
         <div id= "centro" >
           <button type= "button" class = "boton" onclick="window.open('http://127.0.0.1:5500/views/Muestras_Uadministrador.html')">Muestra</button>
@@ -40,7 +76,41 @@
         </div>
       </div>
     </div>
-  </header>
+    <br>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-bordered caption-top align-middle">
+        <thead class="table">
+            <tr align="center">
+              <th scope="col" >Nombre de usuario</th>
+              <th scope="col">Fecha de uso</th>
+              <th scope="col">Nombre muestra</th>
+              <th scope="col">SP de muestra</th>
+              <th scope="col">Cantidad retirada</th>
+              <th scope="col">Cantidad sobrante</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr align="center">
+              <td>Juan Pérez</td>
+              <td>13/09/2021</td>
+              <td>CLAVIS</td>
+              <td>102000012345</td>
+              <td>250</td>
+              <td>100</td>
+            </tr>
+            <tr align="center">
+              <td>Roberto Delgado</td>
+              <td>12/09/2021</td>
+              <td>HERBA</td>
+              <td>102000014516</td>
+              <td>100</td>
+              <td>50</td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
 
 
   <br>

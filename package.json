@@ -1,0 +1,29 @@
+{
+  "name": "bayer",
+  "version": "1.0.0",
+  "description": "Aplicación Web Bayer",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootstrap": "^5.1.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jalessandrog/proyectoBayer.git"
+  },
+  "author": "Joseph Alessandro García, David Hernán Fernandez, Michell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jalessandrog/proyectoBayer/issues"
+  },
+  "homepage": "https://github.com/jalessandrog/proyectoBayer#readme"
+}

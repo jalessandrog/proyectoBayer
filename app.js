@@ -17,11 +17,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 const mainRouter = require('./routes/Main');
 const muestrasRouter = require('./routes/Muestras');
 const usuariosRouter = require('./routes/Usuarios');
+const alertasroles = require('./routes/AlertasRoles');
 
 
 app.use('/', mainRouter);
 app.use('/Muestras', muestrasRouter);
 app.use('/Usuarios', usuariosRouter);
+app.use('/AlertasRoles', alertasroles);
 
 //Activando el servidor desde express
 app.listen(PORT, () => console.log('Servidor corriendo en el puerto ' + PORT))

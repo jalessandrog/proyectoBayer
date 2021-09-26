@@ -12,54 +12,50 @@
       <div class="col">
         <a class="btn green" href="/Muestras/agregar" role="button">Agregar Muestra</a>
       </div>
-      <div class="col-5">
+      <div class="col-9">
         <form class="form-inline">
           <div class="input-group">
-              <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-              <span><input class="form-control" type="search" placeholder="Search" aria-label="Search"></span>
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Buscar por Tipo de Muestra
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Comerciales</a>
+              <a class="dropdown-item" href="#">Experimentales</a>
+              <a class="dropdown-item" href="#">Otros</a>
+            </div>
+            <span><input class="form-control" type="search" placeholder="Search" aria-label="Search"></span>
+            <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
           </div>
         </form>
-      </div>
-      <div class="col">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Filtrar por Tipo de Muestra
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Comerciales</a>
-            <a class="dropdown-item" href="#">Experimentales</a>
-            <a class="dropdown-item" href="#">Otros</a>
-          </div>
-        </div>
       </div>
     </div>
     <br>
     <br>
     <div class="table-responsive">
-      <table class="table table-bordered caption-top align-middle">
+      <table class="table .table-borderless caption-top align-middle">
         <thead class="table">
             <tr align="center">
-              <th scope="col" ></th>
+              <th scope="col" id="verMas"></th>
               <th scope="col">Nombre</th>
               <th scope="col">Concentración</th>
               <th scope="col">Conformación</th>
               <th scope="col">SP</th>
               <th scope="col" id="sin-color"></th>
-              <th scope="col" id="sin-color"></th>
-              <th scope="col" id="sin-color"></th>
+              <th scope="col" id="StatusMuestra"></th>
             </tr>
           </thead>
           <tbody>
-            <tr align="center">
+            <!-- Aplicar forEach o algo similar para mostrar todas las muestras registradas en la base de datos -->
+            <tr align="center"><!-- Inicia Una Muestra -->
               <th scope="row">
-                <a class="btn green" href="#" role="button">Ver más</a>
+                <a class="btn green" href="/Muestras/muestra" role="button">Ver más</a>
               </th>
               <td>CLAVIS</td>
               <td>480</td>
               <td>SC</td>
               <td>102000012345</td>
               <td>
-                <div class="input-group input-group-sm  ">
+                <div class="input-group input-group-sm ">
                   <input type="number" class="form-control" aria-label="Amount">
                   <div class="input-group-append">
                     <button class="btn green btn-outline-secondary" type="button">Retirar</button>
@@ -67,22 +63,24 @@
                 </div>
               </td>
               <td>
-                <button class="btn green btn-outline-secondary" type="button">Editar</button>
+                <div class="input-group input-group-sm">
+                  <input type="text" class="form-control" aria-label="Amount" value="Activa" disabled>
+                  <div class="input-group-append">
+                    <button class="btn green btn-outline-secondary" type="button">Modificar Status</button>
+                  </div>
+                </div>
               </td>
-              <td>
-                <button class="btn green btn-outline-secondary" type="button">Borrar</button>
-              </td>
-            </tr>
+            </tr><!-- Termina Una Muestra -->
             <tr align="center">
               <th scope="row">
-                <a class="btn green" href="#" role="button">Ver más</a>
+                <a class="btn green" href="/Muestras/muestra" role="button">Ver más</a>
               </th>
-              <td>--</td>
-              <td>--</td>
-              <td>--</td>
-              <td>--</td>
+              <td>CLAVIS</td>
+              <td>480</td>
+              <td>SC</td>
+              <td>102000012345</td>
               <td>
-                <div class="input-group input-group-sm  ">
+                <div class="input-group input-group-sm ">
                   <input type="number" class="form-control" aria-label="Amount">
                   <div class="input-group-append">
                     <button class="btn green btn-outline-secondary" type="button">Retirar</button>
@@ -90,10 +88,12 @@
                 </div>
               </td>
               <td>
-                <button class="btn green btn-outline-secondary" type="button">Editar</button>
-              </td>
-              <td>
-                <button class="btn green btn-outline-secondary" type="button">Borrar</button>
+                <div class="input-group input-group-sm">
+                  <input type="text" class="form-control" aria-label="Amount" value="Activa" disabled>
+                  <div class="input-group-append">
+                    <button class="btn green btn-outline-secondary" type="button">Modificar Status</button>
+                  </div>
+                </div>
               </td>
             </tr>
           </tbody>

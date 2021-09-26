@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2021 a las 21:01:32
+-- Tiempo de generación: 26-09-2021 a las 03:10:58
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.10
 
@@ -24,6 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contenedores`
+--
+
+CREATE TABLE `contenedores` (
+  `idContenedor` tinyint(3) NOT NULL,
+  `NoBodega` tinyint(3) NOT NULL,
+  `UsoMuestra` enum('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla') COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Clasificacion` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `estadomuestra`
 --
 
@@ -39,12 +52,47 @@ CREATE TABLE `estadomuestra` (
 --
 
 CREATE TABLE `manipulan` (
-  `idMuestra` int(5) NOT NULL,
+  `idMuestra` tinyint(3) NOT NULL,
   `idEmpleado` char(6) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `idMuestras_usuarios` int(5) NOT NULL,
+  `idMuestras_usuarios` tinyint(3) NOT NULL,
   `Sobrante` float NOT NULL,
   `Descarga` float NOT NULL,
   `FechaDeUso` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `muestras`
+--
+
+CREATE TABLE `muestras` (
+  `idMuestra` tinyint(3) NOT NULL,
+  `NombreMuestra` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `CodigoMuestra` int(8) NOT NULL,
+  `SP` bigint(12) NOT NULL,
+  `HojaSeguridad` varchar(800) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'url de donde estará guardado el archivo',
+  `Lote` mediumint(6) NOT NULL,
+  `Concentracion` tinyint(4) NOT NULL,
+  `Cantidad` float NOT NULL,
+  `FechaIngreso` date NOT NULL,
+  `FechaFabricacion` date NOT NULL,
+  `FechaCaducidad` date NOT NULL,
+  `idTipoDeMuestra` tinyint(3) NOT NULL,
+  `Codigo` char(2) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `muestras_contenedores`
+--
+
+CREATE TABLE `muestras_contenedores` (
+  `idMuestras_Contenedores` tinyint(3) NOT NULL,
+  `idMuestra` tinyint(3) NOT NULL,
+  `idContenedor` tinyint(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -67,6 +115,12 @@ CREATE TABLE `usuarios` (
 --
 
 --
+-- Indices de la tabla `contenedores`
+--
+ALTER TABLE `contenedores`
+  ADD PRIMARY KEY (`idContenedor`);
+
+--
 -- Indices de la tabla `estadomuestra`
 --
 ALTER TABLE `estadomuestra`
@@ -81,6 +135,23 @@ ALTER TABLE `manipulan`
   ADD KEY `index_idMuestra` (`idMuestra`);
 
 --
+-- Indices de la tabla `muestras`
+--
+ALTER TABLE `muestras`
+  ADD PRIMARY KEY (`idMuestra`),
+  ADD KEY `idTipoDeMuestra_index` (`idTipoDeMuestra`),
+  ADD KEY `Codigo_index` (`Codigo`),
+  ADD KEY `Status_index` (`Status`);
+
+--
+-- Indices de la tabla `muestras_contenedores`
+--
+ALTER TABLE `muestras_contenedores`
+  ADD PRIMARY KEY (`idMuestras_Contenedores`),
+  ADD KEY `idMuestra_index` (`idMuestra`),
+  ADD KEY `idContenedor_index` (`idContenedor`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -91,10 +162,28 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `contenedores`
+--
+ALTER TABLE `contenedores`
+  MODIFY `idContenedor` tinyint(3) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `manipulan`
 --
 ALTER TABLE `manipulan`
-  MODIFY `idMuestras_usuarios` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMuestras_usuarios` tinyint(3) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `muestras`
+--
+ALTER TABLE `muestras`
+  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `muestras_contenedores`
+--
+ALTER TABLE `muestras_contenedores`
+  MODIFY `idMuestras_Contenedores` tinyint(3) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -104,7 +193,21 @@ ALTER TABLE `manipulan`
 -- Filtros para la tabla `manipulan`
 --
 ALTER TABLE `manipulan`
-  ADD CONSTRAINT `manipulan_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `usuarios` (`idEmpleado`);
+  ADD CONSTRAINT `manipulan_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `usuarios` (`idEmpleado`),
+  ADD CONSTRAINT `manipulan_ibfk_2` FOREIGN KEY (`idMuestra`) REFERENCES `muestras` (`idMuestra`);
+
+--
+-- Filtros para la tabla `muestras`
+--
+ALTER TABLE `muestras`
+  ADD CONSTRAINT `muestras_ibfk_1` FOREIGN KEY (`Status`) REFERENCES `estadomuestra` (`Status`);
+
+--
+-- Filtros para la tabla `muestras_contenedores`
+--
+ALTER TABLE `muestras_contenedores`
+  ADD CONSTRAINT `muestras_contenedores_ibfk_1` FOREIGN KEY (`idMuestra`) REFERENCES `muestras` (`idMuestra`),
+  ADD CONSTRAINT `muestras_contenedores_ibfk_2` FOREIGN KEY (`idContenedor`) REFERENCES `contenedores` (`idContenedor`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

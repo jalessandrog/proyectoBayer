@@ -5,6 +5,8 @@
 <body>
 
     <%- include('partials/header.ejs') %>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+
 
     <br>
     <br>
@@ -28,7 +30,6 @@
                 <form>
                     <%- include('partials/Form.ejs') %>
 
-            
                     <div class="btn-toolbar justify-content-around" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group" role="group" aria-label="First group">
                             <button type="submit" class="boton" id="Registrar-Actualizar">Registrar Muestra</button>
@@ -39,5 +40,8 @@
         </div>
     </div>
     
+    <%- include('Modals/Modal_Contenedor.ejs') %>
+    <%- include('Modals/Modal_TipoDeFormulacion.ejs') %>
+    <%- include('Modals/Modal_TipoDeMuestra.ejs') %>
 </body>
 </html>

@@ -48,6 +48,7 @@
                             <!-- en el value debe estár idTipoDeMuestra -->
                         <option value="1">Comercial</option>
                         <option value="2">Experimental</option>
+                        <option value="3">Estándar Comercial</option>
                     </select>
                 </div>
                 <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
@@ -73,7 +74,6 @@
                         <option value="SL">SL</option>
                         <option value="SP">SP</option>
                         <option value="SG">SG</option>
-                        <option>idK</option>
                     </select>
                 </div>
                 <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
@@ -110,6 +110,7 @@
                         <!-- En el value deberá ir el Uso de Muestra dependiendo el idContenedor seleccionado Ejemplo: idTipoDeMuestra = 1 -> Comercial -->
                     </div>
                 </div>
+                
                 <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
                     <select class="form-control" id="select">
                         <option selected value="">Seleccionar Tipo de Contenedor</option>
@@ -118,9 +119,9 @@
                             <!-- en el value debe estár idContenedor -->
                         <option value="1">Estante</option>
                         <option value="2">Refrigerador</option>
-                        <option value="">Agregar nuevo contenedor</option>
                     </select>
                 </div>
+
                 <div class="col-lg-offset-0 col-lg-3 col-xs-12 col-sm-6">
                     <div class="form-floating small">
                         <input type="text" class="form-control" id="floatingInputGrid" value="Estante" disabled>
@@ -154,163 +155,18 @@
                         <label for="floatingInputGrid">Fecha de Caducidad</label>
                     </div>
                 </div>
-                <!-- <div class="col-lg-offset-0 col-xs-12 col-sm-6">
-                    <div class="form-floating">
-                        <input type="text" name="SP" class="form-control" id="floatingInputGrid" placeholder="SP de Muestra">
-                        <label for="floatingInputGrid">SP de Muestra</label>
-                    </div>
-                </div>
-            
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                    <div class="form-floating">
-                        <label for="exampleInputEmail1">Middle Name</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Middle Name">
-                    </div>
-                </div>
-
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                    <div class="form-floating">
-                        <label for="exampleInputEmail1">Last Name</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Last Name">
-                    </div>
-                </div>
-
-            <div class="col-lg-offset-0 col-lg-3 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="Gender" class="select">Gender</label>
-                    <select class="form-control">
-                        <option>Male</option>
-                        <option>Female</option> 
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-3 col-xs-12 col-sm-12">
-                <div class="form-floating">
-                    <label for="Gender" class="select">Relationship to victim</label>
-                    <select class="form-control">
-                        <option>Self</option>
-                        <option>Family Member that Witnessed the Crime</option> 
-                        <option>Other</option> 
-                    </select>
-                </div>
-            </div>
-            <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-12">
-                <div class="form-floating">
-                    <label for="Gender" class="select">Does the claimant have a Social Security Number?</label>
-                    <select class="form-control">
-                        <option>Yes</option>
-                        <option>No</option> 
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-3 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">Social Security #</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="SS#">
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-3 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">Date of Birth</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Date of Birth">
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-6 col-xs-12">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">Mailing Address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Street Number and Name or P.O. Box">
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-12">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">Address 2</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Apartment or Unit #">
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-4 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">City</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Sacramento">
-                </div>
-            </div>
-
-           
-
-            <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">Zip</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="95822">
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">Home Telephone</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="(916) 345-6783">
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">Work Telephone</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="(916) 345-0000 x123">
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">Cell Phone</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="(916) 345-2345">
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-4 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="exampleInputEmail1">E-Mail</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="andrey@mylife.com">
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-2 col-xs-12 col-sm-6">
-                <div class="form-floating">
-                    <label for="Gender" class="select">E-Mail Type</label>
-                    <select class="form-control">
-                        <option>Personal</option>
-                        <option>Work</option> 
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-12 col-xs-12">
-                <div class="checkbox">
-                    <label>
-                    <input type="checkbox" value="">
-                    From the date of the crime to now, has the claimant been in prison, on probation, on parole or post-release community supervision because of a felony? </label>
-                </div>
-            </div>
-
-            <div class="col-lg-offset-0 col-lg-12 col-xs-12">
-                <div class="checkbox">
-                    <label>
-                    <input type="checkbox" value="">
-                    Is the claimant required to register as a sex offender?
-                    </label>
-                </div>
-            </div>
-
-            <div class="bg-warning col-lg-offset-0 col-lg-12 col-xs-12">
-                <div class="checkbox">
-                    <label>
-                    <input type="checkbox" value="">
-                    Check This Box if You Are a Parent/Guardian Applying on Behalf of a Minor Witness to Violent Crime. Minor witnesses are eligible for mental health treatment only. Claimant is under age 18, a witness in close proximity to a violent crime, but is neither the crime victim nor related to the victim. Provide available victim, crime or other information in remaining sections. 
-                    </label>
-                </div>
-            </div> -->
         </div><!--/ Row-->
+        <hr>
+
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="First group">
+                <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-Contenedor">Agregar Nuevo Contenedor</button>
+            </div>
+            <div class="btn-group me-2" role="group" aria-label="Second group">
+                <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-Formulacion">Agregar Nuevo Tipo de Formulación</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="Third group">
+                <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-TipoMuestra">Agregar Nuevo Tipo de Muestra</button>
+            </div>
+        </div>
         <hr>

@@ -7,4 +7,4 @@ router.get('/', (req, res, next) => {
     res.render('ConsultarAlertasRoles')
 });
 
-module.exports = router;
+module.exports = router; 

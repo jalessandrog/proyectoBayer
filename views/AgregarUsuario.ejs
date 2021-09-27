@@ -3,10 +3,75 @@
     <%- include('partials/head.ejs') %>
 <body>
     <%- include('partials/header.ejs') %>
+    
+    <br><br>
+    <p style="text-align: center; font-size: 1.5em;"><strong>Agregar Usuario</strong></p>
+    <br>
+    <tr style="text-align: center;">
+        <th scope="col"><strong>Nombre Rol</strong> </th>
+    </tr>
+    <div class="row">
+        <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
+            <div class="form-floating">
+                <input type="text" name="CodigoMuestra" class="form-control" id="floatingInputGrid" placeholder="Código de Muestra">
+                <label for="floatingInputGrid">Nombre o nombres</label>
+            </div>
+        </div>
+
+        <br>
+        <div>
+            <th scope="col"><strong>Apellidos</strong></th>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
+                <div class="form-floating">
+                    <input type="text" name="CodigoMuestra" class="form-control" id="floatingInputGrid" placeholder="Código de Muestra">
+                    <label for="floatingInputGrid">Apellido paterno y Apellido materno</label>
+                </div>
+            </div>
+
+
+            <br>
+            <tr>
+                <th scope="col"><strong>Correo electrónico</strong></th>
+            </tr>
+            <div class="row">
+                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
+                    <div class="form-floating">
+                        <input type="text" name="CodigoMuestra" class="form-control" id="floatingInputGrid" placeholder="Código de Muestra">
+                        <label for="floatingInputGrid">...@bayer.com</label>
+                    </div>
+                </div>
   
-    <form>
-        <input type="text" value="">
-        <input type="text" value="">
-    </form>
+         <br>
+    <tr>
+        <th scope="col"><strong>Contraseña</strong></th>
+    </tr>
+    <div class="row">
+        <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
+            <div class="form-floating">
+                <input type="text" name="CodigoMuestra" class="form-control" id="floatingInputGrid" placeholder="Código de Muestra">
+                <label for="floatingInputGrid">********</label>
+            </div>
+        </div>
+
+        <br>
+        <tr>
+            <th scope="col"><strong>Rol</strong></th>
+        </tr>
+        <div class="row">
+            <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Administrador
+                  </button>
+                <br>
+         </div>
+            
+            <div style="text-align: center;">
+                <a class="btn green"  role="button">Guardar usuario</a>
+            </div>
+    
 </body>
 </html>
+
+

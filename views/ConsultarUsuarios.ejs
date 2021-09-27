@@ -3,63 +3,99 @@
     <%- include('partials/head.ejs') %>
 <body>
     <%- include('partials/header.ejs') %>
-    <a class="btn green" href="/Usuarios/Nuevo" role="button">Agregar</a>
+
+    <br>
+    <br>
+    <div class="container ">
+      <div class="row">
+        <div class="col-sm">
+
+        <a class="btn green" href="/Usuarios/Nuevo" role="button">Agregar Usuario</a>
+          
+        </div>
+        <div class="col-md-4">
+          <form class="form-inline">
+            <div class="input-group">
+                <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                <span><input class="form-control" type="search" placeholder="Search" aria-label="Search"></span>
+            </div>
+          </form>
+        </div>
+        <div class="col">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtrar por
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Nombre</a>
+              <a class="dropdown-item" href="#">Correo</a>
+              <a class="dropdown-item" href="#">Rol</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
 
     <div class="container">
         <div class="row border border-primary rounded">
           <div class="col-sm">
-            One of three columns
+            Miguel Reyes
           </div>
           <div class="col-sm">
-            One of three columns
+            miguelr@hotmail.com
           </div>
           <div class="col-sm">
-            One of three columns
+            Administrador
           </div>
           <div class="col-sm">
             <a class="btn green" href="/Usuarios/1" role="button">Detalle</a>
+            <a class="btn green" href="/Usuarios/1" role="button">Borrar</a>
         </div>
+
         </div>
-        <div class="row border border-primary rounded">
+        <div class="row border border-primary rounded mt-4">
             <div class="col-sm">
-              One of three columns
+              Nombre
             </div>
             <div class="col-sm">
-              One of three columns
+              Correo
             </div>
             <div class="col-sm">
-              One of three columns
+              Rol
             </div>
             <div class="col-sm">
-              One of three columns
+              <a class="btn green" href="/Usuarios/2" role="button">Detalle</a>
+              <a class="btn green" href="/Usuarios/2" role="button">Borrar</a>
             </div>
           </div>
           <div class="row border border-primary rounded mt-4">
             <div class="col-sm">
-              One of three columns
+                Nombre
             </div>
             <div class="col-sm">
-              One of three columns
+                Correo
             </div>
             <div class="col-sm">
-              One of three columns
+                Rol
             </div>
             <div class="col-sm">
-              One of three columns
+                <a class="btn green" href="/Usuarios/3" role="button">Detalle</a>
+                <a class="btn green" href="/Usuarios/3" role="button">Borrar</a>
             </div>
           </div>
-          <div class="row border border-primary rounded">
+          <div class="row border border-primary rounded mt-4">
             <div class="col-sm">
-              One of three columns
+                Nombre
             </div>
             <div class="col-sm">
-              One of three columns
+                Correo
             </div>
             <div class="col-sm">
-              One of three columns
+                Rol
             </div>
             <div class="col-sm">
-              One of three columns
+                <a class="btn green" href="/Usuarios/4" role="button">Detalle</a>
+                <a class="btn green" href="/Usuarios/4" role="button">Borrar</a>
             </div>
           </div>
       </div>

@@ -12,9 +12,9 @@ router.get('/agregarAlerta', (req, res, next) => {
     res.render('AgregarAlerta')
 });
 
-/*router.get('/modificarAlerta', (req, res, next) => {
+router.get('/modificarAlerta', (req, res, next) => {
     console.log("Ruta Modificar Alertas y Roles")
     res.render('ModificarAlerta')
-});*/
+});
 
 module.exports = router; 

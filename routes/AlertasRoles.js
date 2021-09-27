@@ -7,14 +7,14 @@ router.get('/', (req, res, next) => {
     res.render('ConsultarAlertasRoles')
 });
 
-/*router.get('/agregar', (req, res, next) => {
-    console.log("Ruta Consultar Alertas y Roles")
-    res.render('AgregarAlertasRoles')
-});*/
+router.get('/agregarAlerta', (req, res, next) => {
+    console.log("Ruta Agregar Alertas y Roles")
+    res.render('AgregarAlerta')
+});
 
-/*router.get('/modificar', (req, res, next) => {
-    console.log("Ruta Consultar Alertas y Roles")
-    res.render('ModificarAlertasRoles')
+/*router.get('/modificarAlerta', (req, res, next) => {
+    console.log("Ruta Modificar Alertas y Roles")
+    res.render('ModificarAlerta')
 });*/
 
 module.exports = router; 

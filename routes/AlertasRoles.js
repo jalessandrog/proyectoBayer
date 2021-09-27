@@ -7,4 +7,14 @@ router.get('/', (req, res, next) => {
     res.render('ConsultarAlertasRoles')
 });
 
+/*router.get('/agregar', (req, res, next) => {
+    console.log("Ruta Consultar Alertas y Roles")
+    res.render('AgregarAlertasRoles')
+});*/
+
+/*router.get('/modificar', (req, res, next) => {
+    console.log("Ruta Consultar Alertas y Roles")
+    res.render('ModificarAlertasRoles')
+});*/
+
 module.exports = router; 

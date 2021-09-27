@@ -2,69 +2,114 @@
 <html>
   <%- include('partials/head.ejs') %>
   
-<body>
+<body class="Muestras">
 
   <%- include('partials/header.ejs') %>
+  <br>
+  <br>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-4">
+          <a class="btn green" href="/AlertasRoles/agregar" role="button">Agregar Alarma</a>
+        </div>
+        <div class="col-2">
+            <p style="text-align: center; font-size: 1.5em;"><strong>Alertas</strong></p>
+        </div>
+        <div class="col-5"></div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="table-responsive">
+                <table class="table .table-borderless caption-top align-middle">
+                <thead class="table">
+                    <tr style="text-align: center;">
+                        <th scope="col"></th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Condición*</th>
+                        <th scope="col">Color</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Aplicar forEach o algo similar para mostrar todas las muestras registradas en la base de datos -->
+                    <tr style="text-align: center;"><!-- Inicia Una Muestra -->
+                        <th scope="row">
+                        <p>1</p>
+                        </th>
+                        <td>30 Días</td>
+                        <td>30</td>
+                        <td style="background-color: rgb(255, 255, 0);">Amarillo</td>
+                        <td>
+                        <a class="btn green btn green btn-outline-secondary" href="/AlertasRoles/modificar" role="button">Modificar</a>
+                        </td>
+                    </tr><!-- Termina Una Muestra -->
+                    <tr style="text-align: center;">
+                        <th scope="row">
+                        <p>2</p>
+                        </th>
+                        <td>60 Días</td>
+                        <td>60</td>
+                        <td style="background-color: rgb(255, 0, 0);">Rojo</td>
+                        <td>
+                        <a class="btn green btn green btn-outline-secondary" href="/AlertasRoles/modificar" role="button">Modificar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 0.7em;">*Días previos a la fecha de caducidad</p>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <!--Roles de usuario-->
+    <div class="row">
+        <div class="col-12">
+            <br><br>
+            <p style="text-align: center; font-size: 1.5em;"><strong>Roles de Usuario</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="table-responsive">
+                <table class="table .table-borderless caption-top align-middle">
+                <thead class="table">
+                    <tr style="text-align: center;">
+                        <th scope="col"></th>
+                        <th scope="col">Nombre del rol</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Aplicar forEach o algo similar para mostrar todas las muestras registradas en la base de datos -->
+                    <tr style="text-align: center;"><!-- Inicia Una Muestra -->
+                        <th scope="row">
+                            <p>1</p>
+                        </th>
+                        <td>Administrador</td>
+                    </tr><!-- Termina Una Muestra -->
+                    <tr style="text-align: center;">
+                        <th scope="row">
+                            <p>2</p>
+                        </th>
+                        <td>Usuario</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+  </div>
+  
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-    <div class="container-fluid">
-      <div class="row">
-          <div class="col-2"><br></div>
-          <div class="col-8">
-            <div class="table-responsive">
-                <table class="table table-bordered caption-top align-middle">
-                  <thead class="table">
-                      <tr style="text-align: center;">
-                        <th colspan="2"><h3>Roles</h3></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr style="text-align: center;">
-                        <td>Administrador</td>
-                        <td>Usuario</td>
-                      </tr>
-                    </tbody>
-                </table>
-              </div>
-
-          </div>
-          <div class="col-2"><br></div>
-
-
-          <div class="col-2"><br></div>
-          <div class="col-8">
-              <div class="table-responsive">
-                <table class="table table-bordered caption-top">
-                    <thead class="table-light">
-                      <tr style="text-align: center;">
-                        <th scope="col" colspan="3" style="background: #c0c1ce;">Alertas</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row" style="background: #FF0000;">  </th>
-                        <td>Producto cercano a caducar</td>
-                        <td>Existencia del producto</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" style="background: #f0b81e;">  </th>
-                        <td>Producto nivel medio a caducar</td>
-                        <td>Existencia del producto</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" style="background: #f0ecec;">  </th>
-                        <td>Otro nivel de alerta</td>
-                        <td>Existencia del producto</td>
-                      </tr>
-                    </tbody>
-                </table>
-              </div>
-          </div>
-          <div class="col-2"><br></div>
-      </div>
-  </div>
-
   </body>
 </html>
+
+

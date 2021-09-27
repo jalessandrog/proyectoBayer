@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <%- include('partials/head.ejs') %>
+<body>
+    <%- include('partials/header.ejs') %>
+    <%if (id) { %>
+    <form>
+        <input type="text" value="<%= nombre %>">
+        <input type="text" value="<%= id %>">
+    </form>
+    <% } %>
+</body>
+</html>

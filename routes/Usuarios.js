@@ -12,10 +12,10 @@ router.get('/Nuevo', (req, res, next) => {
     res.render('AgregarUsuario')
 });
 router.get('/:id', (req, res, next) => {
-    console.log("Detalle usuario:",req.params.id)
+    console.log("Modificar usuario:",req.params.id)
     //Logica de extraer info del backend
     let nombres = ["Jesus","Ivan","Arturo"]
-    res.render('DetalleUsuario',{id:req.params.id, nombre: nombres[req.params.id]})
+    res.render('ModificarUsuario',{id:req.params.id, nombre: nombres[req.params.id]})
 });
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-09-2021 a las 02:11:28
+-- Tiempo de generación: 29-09-2021 a las 07:27:29
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -50,10 +50,30 @@ INSERT INTO `alertas` (`idAlerta`, `Nombre`, `Color`, `Condición`) VALUES
 
 CREATE TABLE `contenedores` (
   `idContenedor` tinyint(3) NOT NULL,
-  `NoBodega` tinyint(3) NOT NULL,
-  `UsoMuestra` enum('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla') COLLATE utf8mb4_spanish_ci NOT NULL,
+  `NoContenedor` tinyint(3) DEFAULT NULL,
+  `UsoMuestra` enum('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') COLLATE utf8mb4_spanish_ci NOT NULL,
   `Clasificacion` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `contenedores`
+--
+
+INSERT INTO `contenedores` (`idContenedor`, `NoContenedor`, `UsoMuestra`, `Clasificacion`) VALUES
+(1, 1, 'Fungicida', 'Estante'),
+(2, 3, 'Fungicida', 'Estante'),
+(3, 5, 'Fungicida', 'Estante'),
+(4, 1, 'Herbicida', 'Estante'),
+(5, 4, 'Herbicida', 'Estante'),
+(6, 5, 'Herbicida', 'Estante'),
+(7, 1, 'Insecticida', 'Estante'),
+(8, 3, 'Insecticida', 'Estante'),
+(9, 5, 'Insecticida', 'Estante'),
+(10, 3, 'Nematicida', 'Estante'),
+(11, 1, 'Tratamiento de Semilla', 'Estante'),
+(12, 2, 'Tratamiento de Semilla', 'Estante'),
+(13, 2, 'Biológico', 'Estante'),
+(14, 0, 'Biológico', 'Refrigerador');
 
 -- --------------------------------------------------------
 
@@ -65,6 +85,13 @@ CREATE TABLE `estadomuestra` (
   `Status` tinyint(1) NOT NULL,
   `Descripción` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `estadomuestra`
+--
+
+INSERT INTO `estadomuestra` (`Status`, `Descripción`) VALUES
+(1, NULL);
 
 -- --------------------------------------------------------
 
@@ -89,10 +116,10 @@ CREATE TABLE `manipulan` (
 
 CREATE TABLE `muestras` (
   `idMuestra` tinyint(3) NOT NULL,
-  `NombreMuestra` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `CodigoMuestra` int(8) NOT NULL,
-  `SP` bigint(12) NOT NULL,
-  `HojaSeguridad` varchar(800) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'url de donde estará guardado el archivo',
+  `NombreMuestra` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `CodigoMuestra` int(8) DEFAULT NULL,
+  `SP` bigint(12) DEFAULT NULL,
+  `HojaSeguridad` varchar(800) COLLATE utf8mb4_spanish_ci DEFAULT NULL COMMENT 'url de donde estará guardado el archivo',
   `Lote` mediumint(6) NOT NULL,
   `Concentracion` tinyint(4) NOT NULL,
   `Cantidad` float NOT NULL,
@@ -133,7 +160,32 @@ CREATE TABLE `tipo de formulación` (
 --
 
 INSERT INTO `tipo de formulación` (`Código`, `Formulación`, `Descripción`) VALUES
-('SC', 'SUSPENSION CONCENTRADA', 'Líquido con el activo en suspensión estable, para aplicar diluido en agua.');
+('BR', 'BRIQUETAS', 'Bloques sólidos, diseñados para la liberación lenta del activo en el agua'),
+('CL', 'LIQUIDO O GEL DE CONTACTO', 'Formulación rodenticida o insecticida en la forma de un líquido/gel, para aplicación directa o después de dilución en caso de gel.'),
+('CS', 'SUSPENSION DE ENCAPSULADO', 'Suspensión estable de cápsulas conteniendo sustancia(s) activa(s), en \r\nlíquido, para aplicar diluida en agua.'),
+('DC', 'CONCENTRADO DISPERSABLE', 'Líquido homogéneo para ser aplicado como dispersión, luego de ser diluido en agua.'),
+('EC', 'CONCENTRADO EMULSIONABLE', 'Líquido homogéneo para ser aplicado como emulsión, luego de ser diluido \r\nen agua.'),
+('EG', 'GRANULOS EMULSIONABLES', 'Formulación granular para ser aplicada como emulsión aceite en agua del \r\ningrediente activo, después de la desintegración en agua, pudiendo \r\ncontener auxiliares de formulación insolubles.'),
+('EO', 'EMULSION AGUA EN ACEITE', 'Fluido heterogéneo por dispersión de finos glóbulos de agua con activo en \r\nfase continua en un líquido orgánico.\r\n'),
+('EW', 'EMULSION ACEITE EN AGUA', 'Fluido heterogéneo por dispersión de finos glóbulos de un líquido orgánico \r\ncon activo, en fase continua en agua.'),
+('GL', 'GEL EMULSIONABLE', 'Formulación gelatinizada para ser aplicada como una emulsión en agua.'),
+('GW', 'GEL SOLUBLE', 'Formulación gelatinizada para ser aplicada como solución acuosa.'),
+('KK', 'COMBI-PAK Sólido - Líquido', 'Una formulación sólida y una líquida, contenidas separadamente en un mismo envase exterior, para aplicación simultánea en una mezcla de tanque.'),
+('KL', 'COMBI-PAK Líquido - Líquido', 'Dos formulaciones líquidas contenidas separadamente en un mismo envase exterior, para aplicación simultánea en una mezcla de tanque.'),
+('ME', 'MICROEMULSION', 'Líquido claro a opalescente, conteniendo aceite y agua, para ser aplicado \r\ndirectamente o diluido en agua, pudiendo formar una microemulsión diluida \r\no una emulsión convencional.\r\n'),
+('PC', 'GEL O PASTA CONCENTRADA', 'Fórmula sólida para ser aplicada como gel o pasta luego de su dilución en agua.'),
+('SC', 'SUSPENSION CONCENTRADA', 'Líquido con el activo en suspensión estable, para aplicar diluido en agua.'),
+('SE', 'SUSPO-EMULSION', 'Formulación heterogénea fluida consistente de una dispersión estable de sustancias activas en la forma de partículas sólidas y glóbulos finos en una fase acuosa continua'),
+('SG', 'GRANULADO SOLUBLE', 'Gránulos para aplicación luego de la disolución de la(s) sustancia(s) \r\nactiva(s) en agua, en forma de solución verdadera, pudiendo, sin embargo, \r\ncontener auxiliares de formulación insolubles.\r\n'),
+('SL', 'CONCENTRADO SOLUBLE', 'Líquido homogéneo que, al ser diluido en agua, forma una emulsión \r\nverdadera del activo, pudiendo contener auxiliares de formulación \r\ninsolubles'),
+('SP', 'POLVO SOLUBLE', 'Polvo para aplicación luego de la dilución de la(s) sustancia(s) activa(s) en \r\nagua, en forma de solución verdadera, pudiendo contener auxiliares de \r\nformulación insolubles.'),
+('ST', 'TABLETAS SOLUBLES', 'Formulación en forma de tabletas para ser usadas individualmente para formar una solución del ingrediente activo después de su desintegración en agua. La formulación puede contener auxiliares de formulación insolubles'),
+('TB', 'TABLETAS', 'Producto sólido en forma de tabletas pequeñas, para aplicar en forma \r\ndirecta luego de su disolución o dispersión en agua.\r\n'),
+('TC', 'ACTIVO GRADO TECNICO ', 'Sustancia biológicamente activa obtenida directamente de las materias primas, \r\npor un proceso de manufactura (químico, físico o biológico), cuya composición \r\ncontiene porcentajes definidos de ingrediente activo puro, impurezas y \r\naditivos'),
+('TK', 'TECNICO CONCENTRADO', 'Pre-mezcla de sustancia activa grado técnico y auxiliares de formulación, \r\nutilizada únicamente para la preparación de productos formulados.'),
+('WG', 'GRANULADO DISPERSABLE', 'Gránulos para aplicación en forma de suspensión, luego de su desintegración y dispersión en agua.'),
+('WP', 'POLVO MOJABLE', 'Polvo para aplicar como suspensión, luego de ser dispersado en agua.'),
+('WT', 'TABLETAS DISPERSABLES', 'Formulación en forma de tabletas para ser usadas individualmente para formar una suspensión del ingrediente activo después de su desintegración en agua.');
 
 -- --------------------------------------------------------
 
@@ -169,6 +221,15 @@ CREATE TABLE `usuarios` (
   `CorreoElectronico` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Rol` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `Contraseña`, `CorreoElectronico`, `Rol`) VALUES
+('GKXOK', 'Vianey', 'Urias', 0x4e46dc0969e6621f2d61d2228e3cd91b75cd9edc, 'Vianey.Urias@bayer.mx', 'Empleado Normal'),
+('MEAIM', 'Miguel', 'Reyes', 0x4e46dc0969e6621f2d61d2228e3cd91b75cd9edc, 'Miguel.Reyes@bayer.mx', 'Empleado Normal'),
+('MEZJI', 'Eduwigis', 'Jimenez', 0x4e46dc0969e6621f2d61d2228e3cd91b75cd9edc, 'Eduwigis.Jimenez@bayer.mx', 'Administrador');
 
 --
 -- Índices para tablas volcadas
@@ -249,7 +310,7 @@ ALTER TABLE `alertas`
 -- AUTO_INCREMENT de la tabla `contenedores`
 --
 ALTER TABLE `contenedores`
-  MODIFY `idContenedor` tinyint(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `idContenedor` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `manipulan`

@@ -1,26 +1,37 @@
 <header class="container-fluid bg-info d-flex">
-    
-    <div class="contendor_curveado">
-        <div class="logo">
-            <section id="logo">
-                <img src="../Images/LogoBlanco.png" alt="Logo" width="150" height="150">
-            </section>
-        </div>
-    </div>
-    <div class="container">
+
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-9">
-                <p class="text-white p-5  fs-3">Nombre usuario </p>
-                <div id="centro">
-                    <a class="boton" href="/Muestras" role="button">Muestra</a>
-                    <a class="boton" href="/Muestras/Movimientos" role="button">Movimientos</a>
-                    <a class="boton" href="/Usuarios" role="button">Usuarios</a>
+            <div class="col-3 contendor_curveado">
+                <br>
+                <div class="logo"> 
+                    <img style="margin-left: auto;" class="mx-auto img-fluid" src="../Images/LogoBlanco.png" alt="Logo" width="150" height="150">
+                </div>
+                <br>
+            </div> 
+            <div class="col-6">
+                <br><br class="brinco_especial2">
+                <p style="text-align: center;" class="text-white esta2" id="NombreUsuario">Nombre de Usuario</p>
+                <br class="brinco_especial">
+                <div style="text-align: center;">
+                    <a class="boton2" href="/Muestras" role="button">Muestra</a>
+                    <a class="boton2" href="/Muestras/Movimientos" role="button">Movimientos</a>
+                    <a class="boton2" href="/Usuarios" role="button">Usuarios</a>
                 </div>
             </div>
-            <div class="col-2 small">
-                <button type= "button" class="boton">Cerrar sesión</button>
-                <p id="configuration"><a style="text-decoration:none; color:#FFFFFF" href="/AlertasRoles">Alertas y Roles</a></p>
-                <p id="Tiempo">Fecha   :   Hora</p>
+            <div class="col-3 small d-flex flex-row-reverse">
+                <table class="table-responsive">
+                    <tr>
+                        <!--<td><button type= "button3" class="boton">Cerrar sesión</button></td>-->
+                        <td><br><a class="boton3" href="" role="button">Cerrar sesión</a></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><p class="esta" id="Tiempo" >Fecha   :   Hora</p></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><p class="esta" id="configuration"><a style="text-decoration:none; color:#FFFFFF" href="/AlertasRoles">Alertas y Roles</a></p></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

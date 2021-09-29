@@ -149,6 +149,36 @@ div#centro .boton{
     border-radius: 12px;
     text-decoration: none;
 }
+.boton2{
+    background-color: #59D400;
+    color: white;
+    font-size: .8rem;
+    text-align: center;
+    padding: .3rem 1rem;
+    width: 8rem;
+    margin: 1rem 0.1rem;
+    border: 3px solid #59D400;
+    border-radius: 12px;
+    text-decoration: none;
+}
+.boton3{
+    background-color: #59D400;
+    color: white;
+    font-size: .8rem;
+    text-align: center;
+    padding: .3rem 1rem;
+    width: 8rem;
+    margin: 1rem 1rem;
+    border: 3px solid #59D400;
+    border-radius: 12px;
+    text-decoration: none;
+}
+.esta{
+    font-size: 1rem;
+}
+.esta2{
+    font-size: 1.5rem;
+}
 .boton:hover {
     background-color: #273C51;
     color: white;
@@ -243,4 +273,148 @@ div#centro .boton{
         width: 95%;
     }
 
+}
+
+
+/*Header*/
+@media (max-width: 779px) {
+    .boton2{
+        font-size: 13px;
+        padding: .3rem 0.5rem;
+    }
+    .esta2{
+        font-size: 1rem;
+    }
+}
+@media (max-width: 669px) {
+    .boton2{
+        font-size: 11px;
+        padding: .3rem 0.5rem;
+    }
+    .boton3{
+        font-size: 11px;
+        padding: .3rem 0.5rem;
+        margin: 1rem 0.5rem;
+    }
+    .esta{
+        font-size: 0.7rem;
+    }
+    .esta2{
+        font-size: 1rem;
+    }
+}
+@media (max-width: 506px) {
+    .boton2{
+        font-size: 9px;
+        padding: .3rem 0.5rem;
+    }
+    .boton3{
+        font-size: 9px;
+        padding: .3rem 0.5rem;
+        margin: 1rem 0.5rem;
+    }
+    .esta{
+        font-size: 0.7rem;
+    }
+    .esta2{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 454px) {
+    .boton2{
+        font-size: 7px;
+        padding: .3rem 0.5rem;
+    }
+    .boton3{
+        font-size: 7px;
+        padding: .3rem 0.5rem;
+        margin: 1rem 0.5rem;
+    }
+    .esta{
+        font-size: 0.5rem;
+    }
+    .esta2{
+        font-size: 0.6rem;
+    }
+}
+@media (max-width: 408px) {
+    .boton2{
+        font-size: 7px;
+        padding: .3rem 0.3rem;
+    }
+    .boton3{
+        font-size: 7px;
+        padding: .3rem 0.3rem;
+        margin: 1rem 0.5rem;
+    }
+}
+
+.brinco_especial{
+    margin-bottom: 1em;
+}
+
+@media (max-width: 383px) {
+    .boton2{
+        font-size: 7px;
+        padding: .3rem 0.1rem;
+    }
+    .boton3{
+        font-size: 7px;
+        padding: .3rem 0.1rem;
+        margin: 1rem 0.2rem;
+    }
+    .brinco_especial{
+        display:none;
+    }
+}
+            /*324*/
+
+@media (max-width: 324px) {
+    .boton2{
+        font-size: 6px;
+        padding: .15rem 0.05rem;
+    }
+    .boton3{
+        font-size: 6px;
+        padding: .3rem 0.05rem;
+        margin: 1rem 0.2rem;
+    }
+}
+
+.brinco_especial2{
+    margin-bottom: 1em;
+}
+@media (max-width: 315px) {
+    .boton2{
+        font-size: 6px;
+        padding: .15rem 0.05rem;
+    }
+    .boton3{
+        font-size: 6px;
+        padding: .3rem 0.05rem;
+        margin: 1rem 0.2rem;
+    }
+    .brinco_especial2{
+        display:none;
+    }
+}
+@media (max-width: 289px) {
+    .boton2{
+        font-size: 5px;
+        padding: .15rem 0.05rem;
+    }
+    .boton3{
+        font-size: 5px;
+        padding: .3rem 0.05rem;
+        margin: 1rem 0.2rem;
+    }
+    .esta{
+        font-size: 0.4rem;
+    }
+    .esta2{
+        font-size: 0.5rem;
+    }
+    .brinco_especial1{
+        display: block;
+    }
 }

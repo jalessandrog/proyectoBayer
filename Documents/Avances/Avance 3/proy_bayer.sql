@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2021 a las 07:27:29
+-- Tiempo de generación: 29-09-2021 a las 19:02:39
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alertas` (
   `idAlerta` tinyint(3) NOT NULL,
-  `Nombre` varchar(60) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `NombreAlerta` varchar(60) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Color` varchar(7) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Condición` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -38,7 +38,7 @@ CREATE TABLE `alertas` (
 -- Volcado de datos para la tabla `alertas`
 --
 
-INSERT INTO `alertas` (`idAlerta`, `Nombre`, `Color`, `Condición`) VALUES
+INSERT INTO `alertas` (`idAlerta`, `NombreAlerta`, `Color`, `Condición`) VALUES
 (1, 'Próxima a caducar (30 días)', 'ff0000', 30),
 (2, 'Próxima a caducar (60 días)', 'a8bf35', 60);
 
@@ -83,14 +83,14 @@ INSERT INTO `contenedores` (`idContenedor`, `NoContenedor`, `UsoMuestra`, `Clasi
 
 CREATE TABLE `estadomuestra` (
   `Status` tinyint(1) NOT NULL,
-  `Descripción` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL
+  `DescripcionStatus` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `estadomuestra`
 --
 
-INSERT INTO `estadomuestra` (`Status`, `Descripción`) VALUES
+INSERT INTO `estadomuestra` (`Status`, `DescripcionStatus`) VALUES
 (1, NULL);
 
 -- --------------------------------------------------------
@@ -131,6 +131,13 @@ CREATE TABLE `muestras` (
   `Status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `muestras`
+--
+
+INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `Lote`, `Concentracion`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `Codigo`, `Status`) VALUES
+(1, 'CLAVIS', NULL, 102000012345, 'https://github.com/jalessandrog/proyectoBayer.git', 123456, 48, 1000, '2021-08-19', '2021-01-01', '2023-01-01', 1, 'SC', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -146,20 +153,20 @@ CREATE TABLE `muestras_contenedores` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo de formulación`
+-- Estructura de tabla para la tabla `tipoformulacion`
 --
 
-CREATE TABLE `tipo de formulación` (
-  `Código` char(2) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `Formulación` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `Descripción` longtext COLLATE utf8mb4_spanish_ci DEFAULT NULL
+CREATE TABLE `tipoformulacion` (
+  `CodigoFormulacion` char(2) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Formulacion` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `DescripcionFormulacion` longtext COLLATE utf8mb4_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- Volcado de datos para la tabla `tipo de formulación`
+-- Volcado de datos para la tabla `tipoformulacion`
 --
 
-INSERT INTO `tipo de formulación` (`Código`, `Formulación`, `Descripción`) VALUES
+INSERT INTO `tipoformulacion` (`CodigoFormulacion`, `Formulacion`, `DescripcionFormulacion`) VALUES
 ('BR', 'BRIQUETAS', 'Bloques sólidos, diseñados para la liberación lenta del activo en el agua'),
 ('CL', 'LIQUIDO O GEL DE CONTACTO', 'Formulación rodenticida o insecticida en la forma de un líquido/gel, para aplicación directa o después de dilución en caso de gel.'),
 ('CS', 'SUSPENSION DE ENCAPSULADO', 'Suspensión estable de cápsulas conteniendo sustancia(s) activa(s), en \r\nlíquido, para aplicar diluida en agua.'),
@@ -190,19 +197,19 @@ INSERT INTO `tipo de formulación` (`Código`, `Formulación`, `Descripción`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo de muestra`
+-- Estructura de tabla para la tabla `tipomuestra`
 --
 
-CREATE TABLE `tipo de muestra` (
+CREATE TABLE `tipomuestra` (
   `idTipoDeMuestra` tinyint(3) NOT NULL,
   `Tipo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- Volcado de datos para la tabla `tipo de muestra`
+-- Volcado de datos para la tabla `tipomuestra`
 --
 
-INSERT INTO `tipo de muestra` (`idTipoDeMuestra`, `Tipo`) VALUES
+INSERT INTO `tipomuestra` (`idTipoDeMuestra`, `Tipo`) VALUES
 (1, 'Comercial'),
 (2, 'Experimental'),
 (3, 'Estándar comercial');
@@ -279,15 +286,15 @@ ALTER TABLE `muestras_contenedores`
   ADD KEY `idContenedor_index` (`idContenedor`);
 
 --
--- Indices de la tabla `tipo de formulación`
+-- Indices de la tabla `tipoformulacion`
 --
-ALTER TABLE `tipo de formulación`
-  ADD PRIMARY KEY (`Código`);
+ALTER TABLE `tipoformulacion`
+  ADD PRIMARY KEY (`CodigoFormulacion`);
 
 --
--- Indices de la tabla `tipo de muestra`
+-- Indices de la tabla `tipomuestra`
 --
-ALTER TABLE `tipo de muestra`
+ALTER TABLE `tipomuestra`
   ADD PRIMARY KEY (`idTipoDeMuestra`);
 
 --
@@ -322,7 +329,7 @@ ALTER TABLE `manipulan`
 -- AUTO_INCREMENT de la tabla `muestras`
 --
 ALTER TABLE `muestras`
-  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras_contenedores`
@@ -331,9 +338,9 @@ ALTER TABLE `muestras_contenedores`
   MODIFY `idMuestras_Contenedores` tinyint(3) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipo de muestra`
+-- AUTO_INCREMENT de la tabla `tipomuestra`
 --
-ALTER TABLE `tipo de muestra`
+ALTER TABLE `tipomuestra`
   MODIFY `idTipoDeMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -352,8 +359,8 @@ ALTER TABLE `manipulan`
 --
 ALTER TABLE `muestras`
   ADD CONSTRAINT `muestras_ibfk_1` FOREIGN KEY (`Status`) REFERENCES `estadomuestra` (`Status`),
-  ADD CONSTRAINT `muestras_ibfk_2` FOREIGN KEY (`idTipoDeMuestra`) REFERENCES `tipo de muestra` (`idTipoDeMuestra`),
-  ADD CONSTRAINT `muestras_ibfk_3` FOREIGN KEY (`Codigo`) REFERENCES `tipo de formulación` (`Código`);
+  ADD CONSTRAINT `muestras_ibfk_2` FOREIGN KEY (`idTipoDeMuestra`) REFERENCES `tipomuestra` (`idTipoDeMuestra`),
+  ADD CONSTRAINT `muestras_ibfk_3` FOREIGN KEY (`Codigo`) REFERENCES `tipoformulacion` (`CodigoFormulacion`);
 
 --
 -- Filtros para la tabla `muestras_contenedores`

@@ -2,14 +2,9 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    console.log("Ruta index")
-    res.render('Login');
-});
+const MainController = require('../controllers/MainController')
 
-router.get('/Inicio', (req, res, next) => {
-    console.log("Ruta index")
-    res.render('Index');
-});
+router.get('/', MainController.login);
+router.get('/Inicio', MainController.index);
 
 module.exports = router;

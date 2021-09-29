@@ -124,7 +124,7 @@ div#centro .boton{
     padding: 1rem!important;
     margin: 1rem 0;
 }
-.container p#configuration{
+td p#configuration{
     font-size: .95rem;
     color: rgb(255, 255, 255);
     text-decoration:none;
@@ -271,6 +271,10 @@ div#centro .boton{
     
     .container .row{
         width: 95%;
+    }
+
+    .col-6 div a{
+        margin: 0 1.5rem;
     }
 
 }

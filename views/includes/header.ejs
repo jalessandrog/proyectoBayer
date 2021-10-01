@@ -11,7 +11,11 @@
             </div> 
             <div class="col-6">
                 <br><br class="brinco_especial2">
+                <% if( isLoggedIn ) { %>
+                <p style="text-align: center;" class="text-white esta2" id="NombreUsuario"><%= email.split('@')[0] %></p>
+                <% } else { %>
                 <p style="text-align: center;" class="text-white esta2" id="NombreUsuario">Nombre de Usuario</p>
+                <% } %>
                 <br class="brinco_especial">
                 <div style="text-align: center;">
                     <a class="boton2" href="/Muestras" role="button">Muestra</a>
@@ -23,10 +27,10 @@
                 <table class="table-responsive">
                     <tr>
                         <!--<td><button type= "button3" class="boton">Cerrar sesión</button></td>-->
-                        <td><br><a class="boton3" href="" role="button">Cerrar sesión</a></td>
+                        <td><br><a class="boton3" href="/logout" role="button">Cerrar sesión</a></td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;"><p class="esta" id="Tiempo" >Fecha   :   Hora</p></td>
+                        <td style="text-align: center;"><p class="esta" id="Tiempo">Fecha   :   Hora</p></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;"><p class="esta" id="configuration"><a style="text-decoration:none; color:#FFFFFF" href="/AlertasRoles">Alertas y Roles</a></p></td>

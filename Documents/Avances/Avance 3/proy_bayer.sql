@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2021 a las 20:59:41
+-- Tiempo de generación: 06-10-2021 a las 21:29:34
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -149,7 +149,7 @@ INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `Ho
 (5, 'ALION\r\n', NULL, NULL, NULL, 'Fungicida', '3', 50, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
 (8, 'ANTRACOL', NULL, NULL, NULL, 'Fungicida', '4', 70, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'WP', 1),
 (9, 'BELT', NULL, NULL, NULL, 'Fungicida', '5', 48, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
-(12, 'CALYPSO', NULL, NULL, NULL, 'Fungicida', '6', 48, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(12, 'CALYPSO', NULL, NULL, NULL, 'Fungicida', '6', 48, 1000, '2021-10-06 19:25:13', '2021-01-10', '2021-10-22', 1, 'SC', 1),
 (13, 'CLAVIS', NULL, NULL, NULL, 'Fungicida', '7', 48, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
 (16, 'CONFIDOR', NULL, NULL, NULL, 'Fungicida', '8', 35, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
 (17, 'CONSIST MAX', NULL, NULL, NULL, 'Fungicida', '9', 52, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
@@ -206,6 +206,15 @@ CREATE TABLE `muestras_contenedores` (
   `idMuestra` tinyint(3) NOT NULL,
   `idContenedor` tinyint(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `muestras_contenedores`
+--
+
+INSERT INTO `muestras_contenedores` (`idMuestras_Contenedores`, `idMuestra`, `idContenedor`) VALUES
+(1, 12, 2),
+(2, 1, 2),
+(3, 58, 14);
 
 -- --------------------------------------------------------
 
@@ -392,7 +401,7 @@ ALTER TABLE `muestras`
 -- AUTO_INCREMENT de la tabla `muestras_contenedores`
 --
 ALTER TABLE `muestras_contenedores`
-  MODIFY `idMuestras_Contenedores` tinyint(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMuestras_Contenedores` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipomuestra`

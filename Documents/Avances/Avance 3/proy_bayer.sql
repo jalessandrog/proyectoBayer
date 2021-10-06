@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2021 a las 19:02:39
+-- Tiempo de generación: 06-10-2021 a las 20:59:41
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proy_bayer`
+-- Base de datos: `proyecto_bayer`
 --
 
 -- --------------------------------------------------------
@@ -51,7 +51,6 @@ INSERT INTO `alertas` (`idAlerta`, `NombreAlerta`, `Color`, `Condición`) VALUES
 CREATE TABLE `contenedores` (
   `idContenedor` tinyint(3) NOT NULL,
   `NoContenedor` tinyint(3) DEFAULT NULL,
-  `UsoMuestra` enum('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') COLLATE utf8mb4_spanish_ci NOT NULL,
   `Clasificacion` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -59,21 +58,21 @@ CREATE TABLE `contenedores` (
 -- Volcado de datos para la tabla `contenedores`
 --
 
-INSERT INTO `contenedores` (`idContenedor`, `NoContenedor`, `UsoMuestra`, `Clasificacion`) VALUES
-(1, 1, 'Fungicida', 'Estante'),
-(2, 3, 'Fungicida', 'Estante'),
-(3, 5, 'Fungicida', 'Estante'),
-(4, 1, 'Herbicida', 'Estante'),
-(5, 4, 'Herbicida', 'Estante'),
-(6, 5, 'Herbicida', 'Estante'),
-(7, 1, 'Insecticida', 'Estante'),
-(8, 3, 'Insecticida', 'Estante'),
-(9, 5, 'Insecticida', 'Estante'),
-(10, 3, 'Nematicida', 'Estante'),
-(11, 1, 'Tratamiento de Semilla', 'Estante'),
-(12, 2, 'Tratamiento de Semilla', 'Estante'),
-(13, 2, 'Biológico', 'Estante'),
-(14, 0, 'Biológico', 'Refrigerador');
+INSERT INTO `contenedores` (`idContenedor`, `NoContenedor`, `Clasificacion`) VALUES
+(1, 1, 'Estante'),
+(2, 3, 'Estante'),
+(3, 5, 'Estante'),
+(4, 1, 'Estante'),
+(5, 4, 'Estante'),
+(6, 5, 'Estante'),
+(7, 1, 'Estante'),
+(8, 3, 'Estante'),
+(9, 5, 'Estante'),
+(10, 3, 'Estante'),
+(11, 1, 'Estante'),
+(12, 2, 'Estante'),
+(13, 2, 'Estante'),
+(14, 0, 'Refrigerador');
 
 -- --------------------------------------------------------
 
@@ -108,6 +107,13 @@ CREATE TABLE `manipulan` (
   `FechaDeUso` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `manipulan`
+--
+
+INSERT INTO `manipulan` (`idMuestra`, `idEmpleado`, `idMuestras_usuarios`, `Sobrante`, `Descarga`, `FechaDeUso`) VALUES
+(12, 'MEAIM', 1, 20.5, 3, '2021-10-06');
+
 -- --------------------------------------------------------
 
 --
@@ -117,17 +123,18 @@ CREATE TABLE `manipulan` (
 CREATE TABLE `muestras` (
   `idMuestra` tinyint(3) NOT NULL,
   `NombreMuestra` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `CodigoMuestra` int(8) DEFAULT NULL,
+  `CodigoMuestra` tinytext COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `SP` bigint(12) DEFAULT NULL,
   `HojaSeguridad` varchar(800) COLLATE utf8mb4_spanish_ci DEFAULT NULL COMMENT 'url de donde estará guardado el archivo',
-  `Lote` mediumint(6) NOT NULL,
-  `Concentracion` tinyint(4) NOT NULL,
+  `UsoMuestra` enum('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Lote` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Concentracion` tinyint(3) NOT NULL,
   `Cantidad` float NOT NULL,
-  `FechaIngreso` date NOT NULL,
+  `FechaIngreso` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `FechaFabricacion` date NOT NULL,
   `FechaCaducidad` date NOT NULL,
   `idTipoDeMuestra` tinyint(3) NOT NULL,
-  `Codigo` char(2) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Codigo_Formulacion` char(2) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -135,8 +142,58 @@ CREATE TABLE `muestras` (
 -- Volcado de datos para la tabla `muestras`
 --
 
-INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `Lote`, `Concentracion`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `Codigo`, `Status`) VALUES
-(1, 'CLAVIS', NULL, 102000012345, 'https://github.com/jalessandrog/proyectoBayer.git', 123456, 48, 1000, '2021-08-19', '2021-01-01', '2023-01-01', 1, 'SC', 1);
+INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `UsoMuestra`, `Lote`, `Concentracion`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `Codigo_Formulacion`, `Status`) VALUES
+(1, 'CLAVIS', NULL, 102000012345, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '123456', 48, 1000, '2021-08-19 05:00:00', '2021-01-01', '2023-01-01', 1, 'SC', 1),
+(2, 'ADENGO\r\n', NULL, NULL, NULL, 'Herbicida', '1', 32, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(4, 'ALIETTE\r\n', NULL, NULL, NULL, 'Fungicida', '2', 80, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'WG', 1),
+(5, 'ALION\r\n', NULL, NULL, NULL, 'Fungicida', '3', 50, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(8, 'ANTRACOL', NULL, NULL, NULL, 'Fungicida', '4', 70, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'WP', 1),
+(9, 'BELT', NULL, NULL, NULL, 'Fungicida', '5', 48, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(12, 'CALYPSO', NULL, NULL, NULL, 'Fungicida', '6', 48, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(13, 'CLAVIS', NULL, NULL, NULL, 'Fungicida', '7', 48, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(16, 'CONFIDOR', NULL, NULL, NULL, 'Fungicida', '8', 35, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(17, 'CONSIST MAX', NULL, NULL, NULL, 'Fungicida', '9', 52, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(18, 'CUPRAVIT HYDRO', NULL, NULL, NULL, 'Fungicida', '10', 50, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'WP', 1),
+(19, 'CURBIX', NULL, NULL, NULL, 'Fungicida', '11', 20, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(20, 'DECIS FORTE', NULL, NULL, NULL, 'Fungicida', '12', 10, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SE', 1),
+(21, 'EMESTO PRIME', NULL, NULL, NULL, 'Tratamiento de Semilla', '13', 24, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SP', 1),
+(22, 'FLINT', NULL, NULL, NULL, 'Fungicida', '14', 50, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'WG', 1),
+(23, 'FOLICUR', NULL, NULL, NULL, 'Fungicida', '15', 25, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'EW', 1),
+(24, 'INFINITO', NULL, NULL, NULL, 'Fungicida', '16', 69, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(25, 'JADE', NULL, NULL, NULL, 'Fungicida', '17', 8, 1000, '2021-10-03 05:00:00', '2021-01-10', '2023-01-10', 1, 'SG', 1),
+(26, 'LAUDIS', NULL, NULL, NULL, 'Fungicida', '18', 42, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(27, 'LUNA EXPERIENCE', NULL, NULL, NULL, 'Fungicida', '19', 40, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(28, 'MOVENTO', NULL, NULL, NULL, 'Fungicida', '20', 15, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'DC', 1),
+(29, 'NEW LEVERAGE', NULL, NULL, NULL, 'Fungicida', '21', 9, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'DC', 1),
+(30, 'OBERON SPEED', NULL, NULL, NULL, 'Fungicida', '22', 24, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(31, 'OBERON', NULL, NULL, NULL, 'Fungicida', '23', 24, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(32, 'PREVICUR ENERGY', NULL, NULL, NULL, 'Fungicida', '24', 84, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(33, 'PUMA SUPER', NULL, NULL, NULL, 'Fungicida', '25', 7, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'EO', 1),
+(34, 'REQUIEM PRIME', NULL, NULL, NULL, 'Fungicida', '26', 16, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'DC', 1),
+(35, 'SCALA', NULL, NULL, NULL, 'Fungicida', '27', 60, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SE', 1),
+(36, 'SEMEVIN', NULL, NULL, NULL, 'Fungicida', '28', 35, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(37, 'SENCOR', NULL, NULL, NULL, 'Fungicida', '29', 48, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(38, 'SERENADE ASO', NULL, NULL, NULL, 'Fungicida', '30', 14, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(39, 'SERENADE OPTI', NULL, NULL, NULL, 'Fungicida', '31', 26, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'WG', 1),
+(40, 'SERENADE SOIL', NULL, NULL, NULL, 'Fungicida', '32', 14, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(41, 'SIGANEX 60 SC', NULL, NULL, NULL, 'Fungicida', '33', 60, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(42, 'SIGMA FORTE', NULL, NULL, NULL, 'Fungicida', '34', 1, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'EC', 1),
+(45, 'SIVANTO PRIME', NULL, NULL, NULL, 'Fungicida', '35', 24, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SL', 1),
+(46, 'TEGA', NULL, NULL, NULL, 'Fungicida', '36', 50, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(47, 'VERANGO PRIME', NULL, NULL, NULL, 'Nematicida', '37', 50, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+(48, 'Sample', '1', 102000012345, NULL, 'Fungicida', '38', 10, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SC', 1),
+(49, 'Sample ', '2', 102000012346, NULL, 'Fungicida', '39', 50, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SL', 1),
+(50, 'Sample 3', NULL, 102000012347, NULL, 'Fungicida', '40', 35, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SL', 1),
+(51, 'Sample 4', NULL, 102000012348, NULL, 'Fungicida', '41', 20, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'WG', 1),
+(52, 'Sample 5', NULL, 102000012349, NULL, 'Fungicida', '42', 20, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'WG', 1),
+(53, 'Sample 6', NULL, 102000012350, NULL, 'Fungicida', '43', 5, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'WG', 1),
+(54, 'Sample 7', NULL, 102000012351, NULL, 'Fungicida', '44', 15, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'CL', 1),
+(55, 'Sample 8', NULL, 102000012352, NULL, 'Fungicida', '45', 20, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'CL', 1),
+(56, 'Sample 9', NULL, 102000012353, NULL, 'Fungicida', '46', 50, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'EC', 1),
+(57, 'Sample 10', NULL, 102000012354, NULL, 'Fungicida', '47', 70, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'DC', 1),
+(58, 'Sample 11', NULL, 102000012355, NULL, 'Fungicida', '48', 25, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SC', 1),
+(59, 'Sample 12', NULL, 102000012356, NULL, 'Fungicida', '49', 20, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SC', 1),
+(60, 'Sample 13', NULL, 102000012357, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '246891', 10, 500, '2021-10-06 05:00:00', '2021-01-01', '2023-01-01', 2, 'SE', 1);
 
 -- --------------------------------------------------------
 
@@ -274,7 +331,7 @@ ALTER TABLE `manipulan`
 ALTER TABLE `muestras`
   ADD PRIMARY KEY (`idMuestra`),
   ADD KEY `idTipoDeMuestra_index` (`idTipoDeMuestra`),
-  ADD KEY `Codigo_index` (`Codigo`),
+  ADD KEY `Codigo_index` (`Codigo_Formulacion`),
   ADD KEY `Status_index` (`Status`);
 
 --
@@ -323,13 +380,13 @@ ALTER TABLE `contenedores`
 -- AUTO_INCREMENT de la tabla `manipulan`
 --
 ALTER TABLE `manipulan`
-  MODIFY `idMuestras_usuarios` tinyint(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMuestras_usuarios` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras`
 --
 ALTER TABLE `muestras`
-  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras_contenedores`
@@ -360,7 +417,7 @@ ALTER TABLE `manipulan`
 ALTER TABLE `muestras`
   ADD CONSTRAINT `muestras_ibfk_1` FOREIGN KEY (`Status`) REFERENCES `estadomuestra` (`Status`),
   ADD CONSTRAINT `muestras_ibfk_2` FOREIGN KEY (`idTipoDeMuestra`) REFERENCES `tipomuestra` (`idTipoDeMuestra`),
-  ADD CONSTRAINT `muestras_ibfk_3` FOREIGN KEY (`Codigo`) REFERENCES `tipoformulacion` (`CodigoFormulacion`);
+  ADD CONSTRAINT `muestras_ibfk_3` FOREIGN KEY (`Codigo_Formulacion`) REFERENCES `tipoformulacion` (`CodigoFormulacion`);
 
 --
 -- Filtros para la tabla `muestras_contenedores`

@@ -1,3 +1,5 @@
+const Movimientos = require('../models/movimientos');
+
 const controller = {
     ConsultarMuestras: (req, res, next) => {
         console.log("Ruta Consultar Muestras")
@@ -29,10 +31,21 @@ const controller = {
 
     ConsultarMovimientos:(req, res, next) => {
         console.log("Ruta Consultar Movimientos")
-        res.render('ConsultarMovimientos',{
-            isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+
+        Movimientos.ConsulMovements()
+        .then(([rows, fieldData]) => {
+            console.log(rows);
+            //Mober el response.render para acá
+            res.render('ConsultarMovimientos',{
+                isLoggedIn: req.session.isLoggedIn,
+                email: req.session.email,
+                ConsultarMovimientos: rows,
+            });
         })
+        .catch(err => {
+            console.log(err);
+            //response.status(302).redirect('/error');
+        });
     },
 
     RegistrarMuestra:(req, res, next) => {

@@ -51,6 +51,26 @@
           </thead>
           <tbody>
             <tr align="center">
+              <% for (let muestro of ConsultarMovimientos) { %>
+                <td><%= muestro.NombreUsuario %></td>
+                <td><%= muestro.FechaDeUso %></td>
+                <% if (muestro.NombreMuestra){ %>
+                  <td><%= muestro.NombreMuestra %></td>
+                <% } else { %>
+                  <td>-</td>
+                <% } %> 
+                <% if (muestro.SP){ %>
+                  <td><%= muestro.SP %></td>
+                <% } else { %>
+                  <td>-</td>
+                <% } %> 
+                <td><%= muestro.Descarga %></td>
+                <td><%= muestro.Sobrante %></td>
+              <% } %>
+            </tr>
+          </tbody>
+          <!--<tbody>
+            <tr align="center">
               <td>Juan Pérez</td>
               <td>13/09/2021</td>
               <td>CLAVIS</td>
@@ -66,7 +86,7 @@
               <td>100</td>
               <td>50</td>
             </tr>
-          </tbody>
+          </tbody>-->
       </table>
     </div>
 

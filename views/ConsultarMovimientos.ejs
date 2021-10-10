@@ -37,6 +37,7 @@
     <br>
     <br>
     <div class="table-responsive">
+      <% if (ConsultarMovimientos.length > 0) { %>
       <table class="table table-bordered caption-top align-middle">
         <thead class="table">
             <tr align="center">
@@ -69,25 +70,10 @@
               </tr>
             <% } %>
           </tbody>
-          <!--<tbody>
-            <tr align="center">
-              <td>Juan Pérez</td>
-              <td>13/09/2021</td>
-              <td>CLAVIS</td>
-              <td>102000012345</td>
-              <td>250</td>
-              <td>100</td>
-            </tr>
-            <tr align="center">
-              <td>Roberto Delgado</td>
-              <td>12/09/2021</td>
-              <td>HERBA</td>
-              <td>102000014516</td>
-              <td>100</td>
-              <td>50</td>
-            </tr>
-          </tbody>-->
       </table>
+      <% } else { %>
+        <h3>No hay movimientos registrados</h3>
+      <% } %>
     </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

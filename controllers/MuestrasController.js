@@ -3,12 +3,22 @@ const Movimientos = require('../models/movimientos');
 const controller = {
     ConsultarMuestras: (req, res, next) => {
         console.log("Ruta Consultar Muestras")
-        res.render('ConsultarMuestras', {
-            Titulo : ' Registrar Muestra',
-            isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
-            
+
+        Movimientos.ConsulMuestras()
+        .then(([rows, fieldData]) => {
+            console.log(rows);
+            //Mober el response.render para acá
+            res.render('ConsultarMuestras',{
+                Titulo : ' Registrar Muestra',
+                isLoggedIn: req.session.isLoggedIn,
+                email: req.session.email,
+                ConsultarMuestras: rows,
+            });
         })
+        .catch(err => {
+            console.log(err);
+            //response.status(302).redirect('/error');
+        });
     },
 
     VerMuestra:(req, res, next) => {

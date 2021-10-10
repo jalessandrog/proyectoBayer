@@ -45,57 +45,41 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Aplicar forEach o algo similar para mostrar todas las muestras registradas en la base de datos -->
-            <tr align="center"><!-- Inicia Una Muestra -->
-              <th scope="row">
-                <a class="btn green" href="/Muestras/muestra" role="button">Ver más</a>
-              </th>
-              <td>CLAVIS</td>
-              <td>480</td>
-              <td>SC</td>
-              <td>102000012345</td>
-              <td>
-                <div class="input-group input-group-sm ">
-                  <input type="number" class="form-control" aria-label="Amount">
-                  <div class="input-group-append">
-                    <button class="btn green btn-outline-secondary" type="button">Retirar</button>
+            <% for (let muestro of ConsultarMuestras) { %>
+              <% if (muestro.Status === 1){ %>
+              <tr align="center">
+              <% } else { %>
+              <tr align="center" style="background-color: #f7efef">
+              <% } %> 
+                <th scope="row">
+                  <a class="btn green" href="/Muestras/muestra" role="button">Ver más</a>
+                </th>
+                <td><%= muestro.NombreMuestra %></td>
+                <td><%= muestro.Concentracion %></td>
+                <td><%= muestro.Codigo_Formulacion %></td>
+                <td><%= muestro.SP %></td>
+                <td>
+                  <div class="input-group input-group-sm ">
+                    <input type="number" class="form-control" aria-label="Amount">
+                    <div class="input-group-append">
+                      <button class="btn green btn-outline-secondary" type="button">Retirar</button>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="input-group input-group-sm">
-                  <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
-                  <div class="input-group-append">
-                    <button class="btn green btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop-StatusMuestra">Modificar Status</button>
+                </td>
+                <td>
+                  <div class="input-group input-group-sm">
+                    <% if (muestro.Status === 1){ %>
+                      <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
+                    <% } else { %>
+                      <input style="background-color: #be3535" type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Inactiva" disabled>
+                    <% } %> 
+                    <div class="input-group-append">
+                      <button class="btn green btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop-StatusMuestra">Modificar Status</button>
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr><!-- Termina Una Muestra -->
-            <tr align="center"><!-- Inicia Una Muestra -->
-              <th scope="row">
-                <a class="btn green" href="/Muestras/muestra" role="button">Ver más</a>
-              </th>
-              <td>CLAVIS</td>
-              <td>480</td>
-              <td>SC</td>
-              <td>102000012345</td>
-              <td>
-                <div class="input-group input-group-sm ">
-                  <input type="number" class="form-control" aria-label="Amount">
-                  <div class="input-group-append">
-                    <button class="btn green btn-outline-secondary" type="button">Retirar</button>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="input-group input-group-sm">
-                  <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
-                  <div class="input-group-append">
-                    <button class="btn green btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop-StatusMuestra">Modificar Status</button>
-                  </div>
-                </div>
-              </td>
-            </tr><!-- Termina Una Muestra -->
+                </td>
+              </tr>
+            <% } %>
           </tbody>
       </table>
     </div>

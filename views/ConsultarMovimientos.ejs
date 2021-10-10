@@ -50,8 +50,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr align="center">
-              <% for (let muestro of ConsultarMovimientos) { %>
+            <% for (let muestro of ConsultarMovimientos) { %>
+              <tr align="center">
                 <td><%= muestro.NombreUsuario %></td>
                 <td><%= muestro.FechaDeUso %></td>
                 <% if (muestro.NombreMuestra){ %>
@@ -66,8 +66,8 @@
                 <% } %> 
                 <td><%= muestro.Descarga %></td>
                 <td><%= muestro.Sobrante %></td>
-              <% } %>
-            </tr>
+              </tr>
+            <% } %>
           </tbody>
           <!--<tbody>
             <tr align="center">

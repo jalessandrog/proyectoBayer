@@ -13,5 +13,6 @@ router.get('/editar', MuestrasController.EditarMuestra);
 router.get('/Movimientos', MuestrasController.ConsultarMovimientos);
 
 router.get('/agregar', MuestrasController.RegistrarMuestra);
+router.post('/agregar', MuestrasController.saveMuestra);
 
 module.exports = router;

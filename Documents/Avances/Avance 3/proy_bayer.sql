@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2021 a las 21:29:34
+-- Tiempo de generación: 11-10-2021 a las 18:45:26
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proyecto_bayer`
+-- Base de datos: `proy_bayer`
 --
 
 -- --------------------------------------------------------
@@ -290,7 +290,7 @@ CREATE TABLE `usuarios` (
   `idEmpleado` char(6) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Nombres` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Apellidos` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `Contraseña` varbinary(255) NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
   `CorreoElectronico` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Rol` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -299,10 +299,11 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `Contraseña`, `CorreoElectronico`, `Rol`) VALUES
-('GKXOK', 'Vianey', 'Urias', 0x4e46dc0969e6621f2d61d2228e3cd91b75cd9edc, 'Vianey.Urias@bayer.mx', 'Empleado Normal'),
-('MEAIM', 'Miguel', 'Reyes', 0x4e46dc0969e6621f2d61d2228e3cd91b75cd9edc, 'Miguel.Reyes@bayer.mx', 'Empleado Normal'),
-('MEZJI', 'Eduwigis', 'Jimenez', 0x4e46dc0969e6621f2d61d2228e3cd91b75cd9edc, 'Eduwigis.Jimenez@bayer.mx', 'Administrador');
+INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `CorreoElectronico`, `Rol`) VALUES
+('GKXOK', 'Vianey', 'Urias', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Vianey.Urias@bayer.mx', 'Empleado Normal'),
+('MEAIM', 'Miguel', 'Reyes', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Miguel.Reyes@bayer.mx', 'Empleado Normal'),
+('MEZJI', 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador'),
+('PRUEBA', 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador');
 
 --
 -- Índices para tablas volcadas
@@ -367,7 +368,8 @@ ALTER TABLE `tipomuestra`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`idEmpleado`);
+  ADD PRIMARY KEY (`idEmpleado`),
+  ADD UNIQUE KEY `password` (`password`,`CorreoElectronico`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -395,7 +397,7 @@ ALTER TABLE `manipulan`
 -- AUTO_INCREMENT de la tabla `muestras`
 --
 ALTER TABLE `muestras`
-  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras_contenedores`

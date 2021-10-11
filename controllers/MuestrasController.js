@@ -12,7 +12,7 @@ const controller = {
             res.render('ConsultarMuestras',{
                 Titulo : ' Registrar Muestra',
                 isLoggedIn: req.session.isLoggedIn,
-                email: req.session.email,
+                CorreoElectronico: req.session.CorreoElectronico,
                 ConsultarMuestras: rows,
             });
         })
@@ -27,7 +27,7 @@ const controller = {
         res.render('VerMuestra', {
             Titulo : 'Muestra',
             isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+            CorreoElectronico: req.session.CorreoElectronico,
         })
     },
 
@@ -36,7 +36,7 @@ const controller = {
         res.render('EditarMuestra', {
             Titulo : 'Editando Información de Muestra',
             isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+            CorreoElectronico: req.session.CorreoElectronico,
         })
     },
 
@@ -49,7 +49,7 @@ const controller = {
             //Mover el response.render para acá
             res.render('ConsultarMovimientos',{
                 isLoggedIn: req.session.isLoggedIn,
-                email: req.session.email,
+                CorreoElectronico: req.session.CorreoElectronico,
                 ConsultarMovimientos: rows,
             });
         })
@@ -65,7 +65,7 @@ const controller = {
             Titulo : ' Registrar Muestra',
             submit : 'Guardar Muestra',
             isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+            CorreoElectronico: req.session.CorreoElectronico,
         })
     },
 

@@ -2,12 +2,13 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
+const isAuth = require('../middlewares/is-Auth');
 const AlertasRolesController = require('../controllers/AlertasRolesController')
 
-router.get('/', AlertasRolesController.ConsultarAlertasRoles);
+router.get('/', isAuth, AlertasRolesController.ConsultarAlertasRoles);
 
-router.get('/agregarAlerta', AlertasRolesController.AgregarAlerta);
+router.get('/agregarAlerta', isAuth, AlertasRolesController.AgregarAlerta);
 
-router.get('/modificarAlerta', AlertasRolesController.ModificarAlerta );
+router.get('/modificarAlerta', isAuth, AlertasRolesController.ModificarAlerta );
 
 module.exports = router; 

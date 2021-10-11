@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const path = require('path');
 const PORT = 3030;
+const csrf = require('csurf');
+const csrfProtection = csrf();
 
 const mainRouter = require('./routes/Main');
 const muestrasRouter = require('./routes/Muestras');
@@ -27,6 +29,12 @@ app.use(session({
     resave: false, //La sesión no se guardará en cada petición, sino sólo se guardará si algo cambió 
     saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
 }));
+
+app.use(csrfProtection); 
+app.use((req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+    next();
+});
 
 app.use('/', mainRouter);
 app.use('/Muestras', muestrasRouter);

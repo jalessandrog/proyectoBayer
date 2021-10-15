@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2021 a las 18:45:26
+-- Tiempo de generación: 15-10-2021 a las 07:32:22
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -134,7 +134,7 @@ CREATE TABLE `muestras` (
   `FechaFabricacion` date NOT NULL,
   `FechaCaducidad` date NOT NULL,
   `idTipoDeMuestra` tinyint(3) NOT NULL,
-  `Codigo_Formulacion` char(2) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `CodigoFormulacion` char(2) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -142,9 +142,9 @@ CREATE TABLE `muestras` (
 -- Volcado de datos para la tabla `muestras`
 --
 
-INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `UsoMuestra`, `Lote`, `Concentracion`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `Codigo_Formulacion`, `Status`) VALUES
-(1, 'CLAVIS', NULL, 102000012345, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '123456', 48, 1000, '2021-08-19 05:00:00', '2021-01-01', '2023-01-01', 1, 'SC', 1),
-(2, 'ADENGO\r\n', NULL, NULL, NULL, 'Herbicida', '1', 32, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
+INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `UsoMuestra`, `Lote`, `Concentracion`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `CodigoFormulacion`, `Status`) VALUES
+(1, 'CLAVIS', NULL, 102000012345, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '123456', 48, 1000, '2021-10-15 03:03:19', '2021-01-01', '2023-01-01', 1, 'SC', 1),
+(2, 'ADENGO\r\n', NULL, NULL, NULL, 'Herbicida', '1', 32, 1000, '2021-10-15 04:27:23', '2021-01-10', '2023-01-10', 1, 'SC', 1),
 (4, 'ALIETTE\r\n', NULL, NULL, NULL, 'Fungicida', '2', 80, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'WG', 1),
 (5, 'ALION\r\n', NULL, NULL, NULL, 'Fungicida', '3', 50, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1),
 (8, 'ANTRACOL', NULL, NULL, NULL, 'Fungicida', '4', 70, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'WP', 1),
@@ -193,7 +193,8 @@ INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `Ho
 (57, 'Sample 10', NULL, 102000012354, NULL, 'Fungicida', '47', 70, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'DC', 1),
 (58, 'Sample 11', NULL, 102000012355, NULL, 'Fungicida', '48', 25, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SC', 1),
 (59, 'Sample 12', NULL, 102000012356, NULL, 'Fungicida', '49', 20, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SC', 1),
-(60, 'Sample 13', NULL, 102000012357, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '246891', 10, 500, '2021-10-06 05:00:00', '2021-01-01', '2023-01-01', 2, 'SE', 1);
+(60, 'Sample 13', NULL, 102000012357, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '246891', 10, 500, '2021-10-06 05:00:00', '2021-01-01', '2023-01-01', 2, 'SE', 1),
+(62, 'Prueba', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Nematicida', '555555', 33, 2, '2021-10-15 05:04:37', '2021-10-06', '2024-06-14', 2, 'SP', 1);
 
 -- --------------------------------------------------------
 
@@ -214,7 +215,8 @@ CREATE TABLE `muestras_contenedores` (
 INSERT INTO `muestras_contenedores` (`idMuestras_Contenedores`, `idMuestra`, `idContenedor`) VALUES
 (1, 12, 2),
 (2, 1, 2),
-(3, 58, 14);
+(3, 58, 14),
+(4, 62, 14);
 
 -- --------------------------------------------------------
 
@@ -341,7 +343,7 @@ ALTER TABLE `manipulan`
 ALTER TABLE `muestras`
   ADD PRIMARY KEY (`idMuestra`),
   ADD KEY `idTipoDeMuestra_index` (`idTipoDeMuestra`),
-  ADD KEY `Codigo_index` (`Codigo_Formulacion`),
+  ADD KEY `Codigo_index` (`CodigoFormulacion`),
   ADD KEY `Status_index` (`Status`);
 
 --
@@ -397,13 +399,13 @@ ALTER TABLE `manipulan`
 -- AUTO_INCREMENT de la tabla `muestras`
 --
 ALTER TABLE `muestras`
-  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras_contenedores`
 --
 ALTER TABLE `muestras_contenedores`
-  MODIFY `idMuestras_Contenedores` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idMuestras_Contenedores` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tipomuestra`
@@ -428,7 +430,7 @@ ALTER TABLE `manipulan`
 ALTER TABLE `muestras`
   ADD CONSTRAINT `muestras_ibfk_1` FOREIGN KEY (`Status`) REFERENCES `estadomuestra` (`Status`),
   ADD CONSTRAINT `muestras_ibfk_2` FOREIGN KEY (`idTipoDeMuestra`) REFERENCES `tipomuestra` (`idTipoDeMuestra`),
-  ADD CONSTRAINT `muestras_ibfk_3` FOREIGN KEY (`Codigo_Formulacion`) REFERENCES `tipoformulacion` (`CodigoFormulacion`);
+  ADD CONSTRAINT `muestras_ibfk_3` FOREIGN KEY (`CodigoFormulacion`) REFERENCES `tipoformulacion` (`CodigoFormulacion`);
 
 --
 -- Filtros para la tabla `muestras_contenedores`

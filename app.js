@@ -12,6 +12,7 @@ const csrfProtection = csrf();
 const mainRouter = require('./routes/Main');
 const muestrasRouter = require('./routes/Muestras');
 const usuariosRouter = require('./routes/Usuarios');
+const movimientosRouter = require('./routes/Movimientos');
 const alertasroles = require('./routes/AlertasRoles');
 
 
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
 app.use('/', mainRouter);
 app.use('/Muestras', muestrasRouter);
 app.use('/Usuarios', usuariosRouter);
+app.use('/Movimientos', movimientosRouter);
 app.use('/AlertasRoles', alertasroles);
 
 //Activando el servidor desde express

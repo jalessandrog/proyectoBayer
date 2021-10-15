@@ -5,6 +5,7 @@ const controller = {
         res.render('ConsultarAlertasRoles',{
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 
@@ -13,6 +14,7 @@ const controller = {
         res.render('AgregarAlerta',{
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 
@@ -21,6 +23,7 @@ const controller = {
         res.render('ModificarAlerta',{
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 }

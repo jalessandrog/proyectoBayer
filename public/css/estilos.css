@@ -188,6 +188,20 @@ td p#configuration{
     width: 12rem;
 }
 
+a.boton#HojaSeguridad{
+    background-color: #59D400;
+    color: white;
+    font-size: .8rem;
+    font-weight: bold;
+    text-align: center;
+    padding: .2rem 1rem;
+    width: 15rem;
+    margin: 1rem 0;
+    border: 3px solid #59D400;
+    border-radius: 12px;
+    text-decoration: none;
+}
+
 
 /* ----------------------
     FORM FLOATING 

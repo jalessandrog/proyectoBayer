@@ -8,18 +8,11 @@ const controller = {
         res.render('Login', {
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         });
     },
     
     processLoggin:(req, res, next) => {
-        // console.log("Procesando Login")
-        // req.session.email = req.body.email;
-        // console.log("Usuario logueado: "+req.body.email)
-        // console.log("Username: "+req.body.email.split('@')[0])
-        // req.session.isLoggedIn = true;
-        // console.log(req.session.email);
-        // res.status(302).redirect('/Inicio');
-
         Usuario.fetchOne(req.body.CorreoElectronico).then(([rows, fieldData]) => {
             console.log(rows)
             bcrypt.compare(req.body.password, rows[0].password)
@@ -27,6 +20,7 @@ const controller = {
                     if (doMatch) {
                         req.session.isLoggedIn = true;
                         req.session.CorreoElectronico = req.body.CorreoElectronico;
+                        req.session.NombreCompleto = rows[0].Nombres + ' ' + rows[0].Apellidos;
                         return req.session.save(err => {
                             res.redirect('/Inicio');
                         });
@@ -57,6 +51,7 @@ const controller = {
         res.render('Index',{
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         });
     },
     

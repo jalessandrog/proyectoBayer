@@ -47,22 +47,22 @@
             </tr>
           </thead>
           <tbody>
-            <% for (let muestro of ConsultarMuestras) { %>
-              <% if (muestro.Status === 1){ %>
+            <% for (let muestra of ConsultarMuestras) { %>
+              <% if (muestra.Status === 1){ %>
               <tr align="center">
               <% } else { %>
               <tr align="center" style="background-color: #f7efef">
               <% } %> 
                 <th scope="row">
-                  <a class="btn green" href="/Muestras/muestra" role="button">Ver más</a>
+                  <a class="btn green" href="/Muestras/<%= muestra.idMuestra %>" role="button">Ver más</a>
                 </th>
-                <td><%= muestro.NombreMuestra %></td>
-                <td><%= muestro.Concentracion %></td>
-                <td><%= muestro.Codigo_Formulacion %></td>
-                <td><%= muestro.SP %></td>
+                <td><%= muestra.NombreMuestra %></td>
+                <td><%= muestra.Concentracion %></td>
+                <td><%= muestra.CodigoFormulacion %></td>
+                <td><%= muestra.SP %></td>
                 <td>
                   <div class="input-group input-group-sm ">
-                    <input type="number" class="form-control" aria-label="Amount">
+                    <input type="number" class="form-control" aria-label="Amount" min="0" max="<%= muestra.Cantidad %>">
                     <div class="input-group-append">
                       <button class="btn green btn-outline-secondary" type="button">Retirar</button>
                     </div>
@@ -70,7 +70,7 @@
                 </td>
                 <td>
                   <div class="input-group input-group-sm">
-                    <% if (muestro.Status === 1){ %>
+                    <% if (muestra.Status === 1){ %>
                       <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
                     <% } else { %>
                       <input style="background-color: #be3535" type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Inactiva" disabled>

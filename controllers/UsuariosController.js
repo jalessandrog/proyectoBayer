@@ -7,6 +7,7 @@ const controller = {
         res.render('ConsultarUsuarios',{
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 
@@ -15,6 +16,7 @@ const controller = {
         res.render('AgregarUsuario',{
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 
@@ -25,6 +27,7 @@ const controller = {
         res.render('ModificarUsuario',{id:req.params.id, nombre: nombres[req.params.id],
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 }

@@ -1,12 +1,32 @@
 const Muestras = require('../Models/Muestras');
 const Contenedores = require('../Models/Contenedores');
 const Formulaciones = require('../Models/TipoFormulacion');
+const { request } = require('express');
 
 const controller = {
     ConsultarMuestras: (req, res, next) => {
         console.log("Ruta Consultar Muestras")
 
         Muestras.fetchAll()
+            .then(([rows, fieldData]) => {
+                res.render('ConsultarMuestras',{
+                    Titulo : ' Registrar Muestra',
+                    isLoggedIn: req.session.isLoggedIn,
+                    CorreoElectronico: req.session.CorreoElectronico,
+                    NombreCompleto: req.session.NombreCompleto,
+                    ConsultarMuestras: rows,
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                //response.status(302).redirect('/error');
+            });
+    },
+    BuscarMuestras: (req, res, next) => {
+        console.log("Ruta Consultar Muestras")
+        let query = req.body.query;
+        console.log(req.body)
+        Muestras.fetchAllbyTerm(query)
             .then(([rows, fieldData]) => {
                 res.render('ConsultarMuestras',{
                     Titulo : ' Registrar Muestra',

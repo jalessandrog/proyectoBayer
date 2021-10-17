@@ -12,5 +12,6 @@ router.post('/agregar', isAuth, MuestrasController.saveMuestra);
 
 router.get('/:id', isAuth, MuestrasController.VerMuestra);
 router.get('/', isAuth, MuestrasController.ConsultarMuestras);
+router.post('/', isAuth, MuestrasController.BuscarMuestras);
 
 module.exports = router;

@@ -61,12 +61,17 @@
                 <td><%= muestra.CodigoFormulacion %></td>
                 <td><%= muestra.SP %></td>
                 <td>
+                  <form method='post' action="/Movimientos">
                   <div class="input-group input-group-sm ">
-                    <input type="number" class="form-control" aria-label="Amount" min="0" max="<%= muestra.Cantidad %>">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                    <input type="hidden" name="idMuestra" value="<%=  muestra.idMuestra  %>" >
+
+                    <input type="number" name="descarga" class="form-control" aria-label="Amount" min="0" max="<%= muestra.Cantidad %>">
                     <div class="input-group-append">
-                      <button class="btn green btn-outline-secondary" type="button">Retirar</button>
+                      <button class="btn green btn-outline-secondary" type="submit">Retirar</button>
                     </div>
                   </div>
+                </form>
                 </td>
                 <td>
                   <div class="input-group input-group-sm">

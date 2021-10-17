@@ -19,6 +19,7 @@ const controller = {
                 .then(doMatch => {
                     if (doMatch) {
                         req.session.isLoggedIn = true;
+                        req.session.idEmpleado =  rows[0].idEmpleado;
                         req.session.CorreoElectronico = req.body.CorreoElectronico;
                         req.session.NombreCompleto = rows[0].Nombres + ' ' + rows[0].Apellidos;
                         return req.session.save(err => {

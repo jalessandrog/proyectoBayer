@@ -4,7 +4,8 @@ const controller = {
         console.log("Ruta Consultar Alertas y Roles")
         res.render('ConsultarAlertasRoles',{
             isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+            CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 
@@ -12,7 +13,8 @@ const controller = {
         console.log("Ruta Agregar Alertas y Roles")
         res.render('AgregarAlerta',{
             isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+            CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 
@@ -20,7 +22,8 @@ const controller = {
         console.log("Ruta Modificar Alertas y Roles")
         res.render('ModificarAlerta',{
             isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+            CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 }

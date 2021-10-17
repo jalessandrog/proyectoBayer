@@ -27,6 +27,7 @@
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <form class="col-12" action='/' method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                 <div class="col-sm-8 main-section">
                     <div class="col-12 logo-img">
                         <img src="../Images/Logo1.png">
@@ -35,7 +36,7 @@
                 <br><br>
                 <h2 class="sr-only">Login Form</h2>
                 <div class="form-group" id="user-group">
-                    <input type="email" class="form-control" name="email" placeholder="usuario@bayer.com"/>
+                    <input type="email" class="form-control" name="CorreoElectronico" placeholder="usuario@bayer.com"/>
                 </div>
                 <div class="form-group" id="contrasena-group">
                     <input type="password" class="form-control"  name="password" placeholder="Bayer@2021"/>

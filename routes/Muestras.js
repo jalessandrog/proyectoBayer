@@ -1,17 +1,15 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
 
+const isAuth = require('../middlewares/is-Auth');
 const MuestrasController = require('../controllers/MuestrasController')
 
-router.get('/', MuestrasController.ConsultarMuestras);
+router.get('/agregar', isAuth, MuestrasController.RegistrarMuestra);
+router.post('/agregar', isAuth, MuestrasController.saveMuestra);
 
-router.get('/muestra', MuestrasController.VerMuestra);
+// router.get('/editar', isAuth, MuestrasController.EditarMuestra);
 
-router.get('/editar', MuestrasController.EditarMuestra);
-
-router.get('/Movimientos', MuestrasController.ConsultarMovimientos);
-
-router.get('/agregar', MuestrasController.RegistrarMuestra);
+router.get('/:id', isAuth, MuestrasController.VerMuestra);
+router.get('/', isAuth, MuestrasController.ConsultarMuestras);
 
 module.exports = router;

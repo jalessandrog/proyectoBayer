@@ -14,6 +14,7 @@
       </div>
       <div class="col-9">
         <form class="form-inline">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
           <div class="input-group">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Buscar por Tipo de Muestra
@@ -32,6 +33,7 @@
     <br>
     <br>
     <div class="table-responsive">
+      <% if (ConsultarMuestras.length > 0) { %>
       <table class="table .table-borderless caption-top align-middle">
         <thead class="table">
             <tr align="center">
@@ -45,59 +47,46 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Aplicar forEach o algo similar para mostrar todas las muestras registradas en la base de datos -->
-            <tr align="center"><!-- Inicia Una Muestra -->
-              <th scope="row">
-                <a class="btn green" href="/Muestras/muestra" role="button">Ver más</a>
-              </th>
-              <td>CLAVIS</td>
-              <td>480</td>
-              <td>SC</td>
-              <td>102000012345</td>
-              <td>
-                <div class="input-group input-group-sm ">
-                  <input type="number" class="form-control" aria-label="Amount">
-                  <div class="input-group-append">
-                    <button class="btn green btn-outline-secondary" type="button">Retirar</button>
+            <% for (let muestra of ConsultarMuestras) { %>
+              <% if (muestra.Status === 1){ %>
+              <tr align="center">
+              <% } else { %>
+              <tr align="center" style="background-color: #f7efef">
+              <% } %> 
+                <th scope="row">
+                  <a class="btn green" href="/Muestras/<%= muestra.idMuestra %>" role="button">Ver más</a>
+                </th>
+                <td><%= muestra.NombreMuestra %></td>
+                <td><%= muestra.Concentracion %></td>
+                <td><%= muestra.CodigoFormulacion %></td>
+                <td><%= muestra.SP %></td>
+                <td>
+                  <div class="input-group input-group-sm ">
+                    <input type="number" class="form-control" aria-label="Amount" min="0" max="<%= muestra.Cantidad %>">
+                    <div class="input-group-append">
+                      <button class="btn green btn-outline-secondary" type="button">Retirar</button>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="input-group input-group-sm">
-                  <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
-                  <div class="input-group-append">
-                    <button class="btn green btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop-StatusMuestra">Modificar Status</button>
+                </td>
+                <td>
+                  <div class="input-group input-group-sm">
+                    <% if (muestra.Status === 1){ %>
+                      <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
+                    <% } else { %>
+                      <input style="background-color: #be3535" type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Inactiva" disabled>
+                    <% } %> 
+                    <div class="input-group-append">
+                      <button class="btn green btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop-StatusMuestra">Modificar Status</button>
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr><!-- Termina Una Muestra -->
-            <tr align="center"><!-- Inicia Una Muestra -->
-              <th scope="row">
-                <a class="btn green" href="/Muestras/muestra" role="button">Ver más</a>
-              </th>
-              <td>CLAVIS</td>
-              <td>480</td>
-              <td>SC</td>
-              <td>102000012345</td>
-              <td>
-                <div class="input-group input-group-sm ">
-                  <input type="number" class="form-control" aria-label="Amount">
-                  <div class="input-group-append">
-                    <button class="btn green btn-outline-secondary" type="button">Retirar</button>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="input-group input-group-sm">
-                  <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
-                  <div class="input-group-append">
-                    <button class="btn green btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop-StatusMuestra">Modificar Status</button>
-                  </div>
-                </div>
-              </td>
-            </tr><!-- Termina Una Muestra -->
+                </td>
+              </tr>
+            <% } %>
           </tbody>
       </table>
+      <% } else { %>
+        <h3>No hay muestras registrados</h3>
+      <% } %>
     </div>
   </div>
     <%- include('Modals/Modal_StatusMuestra.ejs') %>

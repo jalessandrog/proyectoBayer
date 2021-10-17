@@ -1,48 +1,49 @@
 
-
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="row">
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating">
                         <input type="text" name="CodigoMuestra" class="form-control" id="floatingInputGrid" placeholder="Código de Muestra">
                         <label for="floatingInputGrid">Código de Muestra</label>
                     </div>
                 </div>
 
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating">
                         <input type="text" name="SP" class="form-control" id="floatingInputGrid" placeholder="SP de Muestra">
                         <label for="floatingInputGrid">SP de Muestra</label>
                     </div>
                 </div>
 
-                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-6">
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating">
                         <input type="text" name="NombreMuestra" class="form-control" id="floatingInputGrid" placeholder="Nombre de Muestra">
                         <label for="floatingInputGrid">Nombre de Muestra</label>
                     </div>
                 </div>
-                <div class="col-lg-offset-0 col-lg-4 col-xs-12 col-sm-6">
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                    <select class="form-control" name="UnidadMedida" id="select">
+                        <option selected value="">Unidad de medida</option>
+                        <option value="Lt">Litros</option>
+                        <option value="Ml">Militros</option>
+                    </select>
+                </div>
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
                         <input type="number" name="Cantidad" class="form-control" id="floatingInputGrid" placeholder="Cantidad">
-                        <label for="floatingInputGrid">Cantidad (ml)</label>
+                        <label for="floatingInputGrid">Cantidad</label>
                     </div>
                 </div>
-                <div class="col-lg-offset-0 col-lg-4 col-xs-12 col-sm-6">
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
                         <input type="number" name="Concentracion" class="form-control" id="floatingInputGrid" placeholder="Concentracion (%)">
                         <label for="floatingInputGrid">Concentracion (%)</label>
                     </div>
                 </div>
-                <div class="col-lg-offset-0 col-lg-4 col-xs-12 col-sm-6">
-                    <div class="form-floating small">
-                        <input type="text"  class="form-control text-center" id="floatingInputGrid" value="Activa" disabled>
-                        <label for="floatingInputGrid">Status de Muestra</label>
-                        <!-- En el value deberá ir el Status de Muestra -->
-                    </div>
-                </div>
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                    <select class="form-control" id="select">
-                        <option selected value="">Seleccionar Tipo de Muestra</option>
+                
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                    <select class="form-control" name="idTipoDeMuestra" id="select" required>
+                        <option selected >Seleccionar Tipo de Muestra</option>
                         <!-- Posibilidad: Se agregará un forEach o algo similar para que muestre los tipos de contenedores registrados
                             en la base de datos -->
                             <!-- en el value debe estár idTipoDeMuestra -->
@@ -51,16 +52,10 @@
                         <option value="3">Estándar Comercial</option>
                     </select>
                 </div>
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                    <div class="form-floating small">
-                        <input type="text"  class="form-control" id="floatingInputGrid" value="Comercial" disabled>
-                        <label for="floatingInputGrid">Tipo de Muestra</label>
-                        <!-- En el value deberá ir el tipo de Muestra dependiendo el idTipoDeMuestra seleccionado Ejemplo: idTipoDeMuestra = 1 -> Comercial -->
-                    </div>
-                </div>
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                    <select class="form-control" id="select" name="CodigoFormulacion">
-                        <option selected value="">Seleccionar Tipo Formulación</option>
+                
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                    <select class="form-control" id="select" name="CodigoFormulacion" required>
+                        <option selected>Seleccionar Tipo Formulación</option>
                         <!-- en el value debe estár CódigoFormulación -->
                         <option value="TC">TC</option>
                         <option value="TK">TK</option>
@@ -76,84 +71,78 @@
                         <option value="SG">SG</option>
                     </select>
                 </div>
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                    <div class="form-floating small">
-                        <input type="text" class="form-control" id="floatingInputGrid" value="CONCENTRADO EMULSIONABLE" disabled>
-                        <label for="floatingInputGrid">Formulación</label>
-                        <!-- En el value deberá ir la Formulación dependiendo el código de Formulación seleccionado Ejemplo: EC -> CONCENTRADO EMULSIONABLE -->
-                    </div>
-                </div>
-                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-6">
-                    <div class="form-floating small">
+
+                <!-- <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                    <div class="form-floating small"> -->
                         <!-- En textarea deberá ir la descripción Formulación dependiendo el código de Formulación seleccionado Ejemplo: EC -> CONCENTRADO EMULSIONABLE -->
-                        <textarea class="form-control" placeholder="Descripción de la Formulación" id="floatingTextarea" style="height: auto" disabled>Líquido homogéneo para ser aplicado como emulsión, luego de ser diluido en agua.</textarea>
+                        <!-- <textarea class="form-control" placeholder="Descripción de la Formulación" id="floatingTextarea" style="height: auto" disabled>Líquido homogéneo para ser aplicado como emulsión, luego de ser diluido en agua.</textarea>
                         <label for="floatingTextarea">Descripción de la Formulación</label>
                     </div>
-                </div>
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
+                </div> -->
+
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating">
-                        <input type="text" name="LoteMuestra" class="form-control" id="floatingInputGrid" placeholder="Lote de Muestra">
+                        <input type="text" name="Lote" class="form-control" id="floatingInputGrid" placeholder="Lote de Muestra">
                         <label for="floatingInputGrid">Lote de Muestra</label>
                     </div>
                 </div>
-                <!-- <div class="col-lg-offset-0 col-lg-2 col-xs-12 col-sm-6">
-                    <div class="form-floating small">
-                        <input type="number" name="NoBodega" class="form-control text-center" id="floatingInputGrid" placeholder="Número de Bodega">
-                        <label for="floatingInputGrid">Número de Bodega</label>
-                    </div>
-                </div> -->
-
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                    <div class="form-floating small">
-                        <input type="text"  class="form-control" id="floatingInputGrid" value="Insecticida" disabled>
-                        <label for="floatingInputGrid">Uso de Muestra</label>
-                        <!-- En el value deberá ir el Uso de Muestra dependiendo el idContenedor seleccionado Ejemplo: idTipoDeMuestra = 1 -> Comercial -->
-                    </div>
+                
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                    <select class="form-control" id="select" name="UsoMuestra">
+                        <option selected>Seleccionar Uso de Muestra</option>
+                        <option value="Fungicida">Fungicida</option>
+                        <option value="Insecticida">Insecticida</option>
+                        <option value="Herbicida">Herbicida</option>
+                        <option value="Tratamiento de Semilla">Tratamiento de Semilla</option>
+                        <option value="Biológico">Biológico</option>
+                        <option value="Nematicida">Nematicida</option>
+                    </select>
                 </div>
                 
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                    <select class="form-control" id="select">
-                        <option selected value="">Seleccionar Tipo de Contenedor</option>
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                    <select class="form-control" id="select" name="Clasificacion">
+                        <option selected>Seleccionar Tipo de Contenedor</option>
                         <!-- Posibilidad: Se agregará un forEach o algo similar para que muestre los tipos de contenedores registrados
                             en la base de datos -->
                             <!-- en el value debe estár idContenedor -->
-                        <option value="1">Estante</option>
-                        <option value="2">Refrigerador</option>
+                        <option value="Estante">Estante</option>
+                        <option value="Refrigerador">Refrigerador</option>
                     </select>
                 </div>
 
-                <!-- <div class="col-lg-offset-0 col-lg-3 col-xs-12 col-sm-6">
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
-                        <input type="text" class="form-control" id="floatingInputGrid" value="Estante" disabled>
-                        <label for="floatingInputGrid">Tipo Contenedor</label> -->
-                        <!-- En el value deberá ir la clasificación del Contenedor dependiendo el idContenedor seleccionado Ejemplo: Estante -->
-                    <!-- </div>
-                </div> -->
-                
-                <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                    <div class="form-floating small">
-                        <!-- En el value deberá ir el número del Contenedor dependiendo el idContenedor seleccionado Ejemplo: Estante 1 -->
-                        <input type="number" class="form-control text-center" id="floatingInputGrid" placeholder="Número de Estante o Refrigerador">
-                        <!-- En el label deberá ir la el tipo de Contenedor dependiendo el idContenedor seleccionado Ejemplo: Estante -->
-                        <label for="floatingInputGrid">Número de Estante o Refrigerador</label>
+                        <input type="number" name="NoContenedor" class="form-control" id="floatingInputGrid" placeholder="Número de Contenedor">
+                        <label for="floatingInputGrid">Número de Contenedor</label>
                     </div>
                 </div>
-                <div class="col-lg-offset-0 col-lg-4 col-xs-12 col-sm-6">
+                
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
                         <input type="date" name="FechaFabricacion" class="form-control" id="floatingInputGrid" placeholder="Fecha de Fabricación">
                         <label for="floatingInputGrid">Fecha de Fabricación</label>
                     </div>
                 </div>
-                <div class="col-lg-offset-0 col-lg-4 col-xs-12 col-sm-6">
-                    <div class="form-floating small">
-                        <input type="date" name="FechaIngreso" class="form-control" id="floatingInputGrid" placeholder="Fecha de Ingreso">
-                        <label for="floatingInputGrid">Fecha de Ingreso</label>
-                    </div>
-                </div>
-                <div class="col-lg-offset-0 col-lg-4 col-xs-12 col-sm-6">
+                
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
                         <input type="date" name="FechaCaducidad" class="form-control" id="floatingInputGrid" placeholder="Fecha de Caducidad">
                         <label for="floatingInputGrid">Fecha de Caducidad</label>
+                    </div>
+                </div>
+
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                    <div class="form-floating small">
+                        <input type="text" class="form-control text-center" id="floatingInputGrid" value="Activa" disabled>
+                        <label for="floatingInputGrid">Status de Muestra</label>
+                        <!-- En el value deberá ir el Status de Muestra -->
+                    </div>
+                </div>
+
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 mt-2">
+                    <div>
+                        <label for="formFileSm" class="form-label">Hoja de Seguridad</label>
+                        <input class="form-control form-control-sm" type="file" name="HojaSeguridad" id="formFile">
                     </div>
                 </div>
         </div><!--/ Row-->

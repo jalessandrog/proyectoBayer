@@ -6,7 +6,8 @@ const controller = {
         console.log("Ruta Consultar Usuarios")
         res.render('ConsultarUsuarios',{
             isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+            CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 
@@ -14,7 +15,8 @@ const controller = {
         console.log("Ruta para editar Usuario")
         res.render('AgregarUsuario',{
             isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+            CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 
@@ -24,7 +26,8 @@ const controller = {
         let nombres = ["Jesus","Ivan","Arturo"]
         res.render('ModificarUsuario',{id:req.params.id, nombre: nombres[req.params.id],
             isLoggedIn: req.session.isLoggedIn,
-            email: req.session.email,
+            CorreoElectronico: req.session.CorreoElectronico,
+            NombreCompleto: req.session.NombreCompleto,
         })
     },
 }

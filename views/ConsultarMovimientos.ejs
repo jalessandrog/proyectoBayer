@@ -16,6 +16,7 @@
       </div>
       <div class="col-md-4">
         <form class="form-inline">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
           <div class="input-group">
               <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
               <span><input class="form-control" type="search" placeholder="Search" aria-label="Search"></span>
@@ -37,6 +38,7 @@
     <br>
     <br>
     <div class="table-responsive">
+      <% if (ConsultarMovimientos.length > 0) { %>
       <table class="table table-bordered caption-top align-middle">
         <thead class="table">
             <tr align="center">
@@ -50,24 +52,29 @@
             </tr>
           </thead>
           <tbody>
-            <tr align="center">
-              <td>Juan Pérez</td>
-              <td>13/09/2021</td>
-              <td>CLAVIS</td>
-              <td>102000012345</td>
-              <td>250</td>
-              <td>100</td>
-            </tr>
-            <tr align="center">
-              <td>Roberto Delgado</td>
-              <td>12/09/2021</td>
-              <td>HERBA</td>
-              <td>102000014516</td>
-              <td>100</td>
-              <td>50</td>
-            </tr>
+            <% for (let muestro of ConsultarMovimientos) { %>
+              <tr align="center">
+                <td><%= muestro.NombreUsuario %></td>
+                <td><%= muestro.FechaDeUso %></td>
+                <% if (muestro.NombreMuestra){ %>
+                  <td><%= muestro.NombreMuestra %></td>
+                <% } else { %>
+                  <td>-</td>
+                <% } %> 
+                <% if (muestro.SP){ %>
+                  <td><%= muestro.SP %></td>
+                <% } else { %>
+                  <td>-</td>
+                <% } %> 
+                <td><%= muestro.Descarga %></td>
+                <td><%= muestro.Sobrante %></td>
+              </tr>
+            <% } %>
           </tbody>
       </table>
+      <% } else { %>
+        <h3>No hay movimientos registrados</h3>
+      <% } %>
     </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

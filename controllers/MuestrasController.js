@@ -86,5 +86,15 @@ const controller = {
             });
     },
 
+    CambiarStatus:(req, res, next) => {
+        var id = parseInt(req.params.id);
+        let status = req.body.status;
+        Muestras.updateStatus(id, status).then(()=>{
+            res.json({})
+        })
+        },
+
 }
 module.exports = controller;
+
+

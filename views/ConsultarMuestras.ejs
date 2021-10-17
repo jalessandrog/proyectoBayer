@@ -14,7 +14,6 @@
       </div>
       <div class="col-9">
         <form class="form-inline">
-          <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
           <div class="input-group">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Buscar por Tipo de Muestra
@@ -48,7 +47,7 @@
           </thead>
           <tbody>
             <% for (let muestra of ConsultarMuestras) { %>
-              <% if (muestra.Status === 1){ %>
+              <% if (muestra.Activo === 1){ %>
               <tr align="center">
               <% } else { %>
               <tr align="center" style="background-color: #f7efef">
@@ -70,7 +69,7 @@
                 </td>
                 <td>
                   <div class="input-group input-group-sm">
-                    <% if (muestra.Status === 1){ %>
+                    <% if (muestra.Activo === 1){ %>
                       <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
                     <% } else { %>
                       <input style="background-color: #be3535" type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Inactiva" disabled>

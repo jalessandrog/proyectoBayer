@@ -25,14 +25,15 @@ module.exports = class Muestras {
             [this.NombreMuestra, this.CodigoMuestra, this.SP, this.HojaSeguridad, this.UsoMuestra, this.Lote, this.Concentracion, this.Cantidad,  this.FechaFabricacion,  this.FechaCaducidad, this.idTipoDeMuestra, this.CodigoFormulacion, this.Status ]);
     }
 
-    // static update(idMuestra, NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, Codigo_Formulacion, Status){
-    //     return db.execute('UPDATE muestras SET NombreMuestra = ?, CodigoMuestra = ?, HojaSeguridad = ?, UsoMuestra = ?, Lote = ?, Concentracion = ?, Cantidad = ?, FechaFabricacion = ?, FechaCaducidad = ?, idTipoDeMuestra = ?, Codigo_Formulacion = ?, Status = ?  WHERE idMuestra = ? ',
-    //         [idMuestra, NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, Codigo_Formulacion, Status]);
-    // }
+     static updateStatus(idMuestra, Status){
+         return db.execute('UPDATE muestras SET Activo = ?  WHERE idMuestra = ? ',
+             [ Status, idMuestra]);
+    }
 
     static fetchAll() {
         // return db.execute('SELECT * FROM muestras');
-        return db.execute('SELECT muestras.idMuestra, muestras.NombreMuestra, muestras.CodigoMuestra,  muestras.SP, muestras.HojaSeguridad, muestras.UsoMuestra, muestras.Lote, muestras.Concentracion, muestras.Cantidad, muestras.FechaIngreso, muestras.FechaFabricacion, muestras.FechaCaducidad, tipomuestra.Tipo, tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion, contenedores.NoContenedor, contenedores.Clasificacion, muestras.Status, estadomuestra.DescripcionStatus FROM muestras, contenedores, tipoformulacion, muestras_contenedores, tipomuestra, estadomuestra WHERE muestras.idMuestra = muestras_contenedores.idMuestra AND muestras.idTipoDeMuestra = tipomuestra.idTipoDeMuestra AND muestras.CodigoFormulacion = tipoformulacion.CodigoFormulacion AND contenedores.idContenedor = muestras_contenedores.idContenedor AND muestras.Status = estadomuestra.Status')
+        
+        return db.execute('SELECT muestras.idMuestra, muestras.NombreMuestra, muestras.Activo, muestras.CodigoMuestra,  muestras.SP, muestras.HojaSeguridad, muestras.UsoMuestra, muestras.Lote, muestras.Concentracion, muestras.Cantidad, muestras.FechaIngreso, muestras.FechaFabricacion, muestras.FechaCaducidad, tipomuestra.Tipo, tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion, contenedores.NoContenedor, contenedores.Clasificacion, muestras.Status, estadomuestra.DescripcionStatus FROM muestras, contenedores, tipoformulacion, muestras_contenedores, tipomuestra, estadomuestra WHERE muestras.idMuestra = muestras_contenedores.idMuestra AND muestras.idTipoDeMuestra = tipomuestra.idTipoDeMuestra AND muestras.CodigoFormulacion = tipoformulacion.CodigoFormulacion AND contenedores.idContenedor = muestras_contenedores.idContenedor AND muestras.Status = estadomuestra.Status')
     }
 
     static fetchOne(id){

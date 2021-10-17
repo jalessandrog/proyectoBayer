@@ -56,8 +56,11 @@
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <select class="form-control" id="select" name="CodigoFormulacion" required>
                         <option selected>Seleccionar Tipo Formulación</option>
-                        <!-- en el value debe estár CódigoFormulación -->
-                        <option value="TC">TC</option>
+                        <% if (lista_formulaciones.length > 0) { %>
+                            <% for (let TipoFormulacion of lista_formulaciones) { %>
+                                <option value="<%= TipoFormulacion.CodigoFormulacion %>"><%= TipoFormulacion.CodigoFormulacion %></option>
+                            <% } }%>   
+                        <!-- <option value="TC">TC</option>
                         <option value="TK">TK</option>
                         <option value="EC">EC</option>
                         <option value="EO">EO</option>
@@ -68,7 +71,7 @@
                         <option value="CS">CS</option>
                         <option value="SL">SL</option>
                         <option value="SP">SP</option>
-                        <option value="SG">SG</option>
+                        <option value="SG">SG</option> -->
                     </select>
                 </div>
 
@@ -100,22 +103,19 @@
                 </div>
                 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <select class="form-control" id="select" name="Clasificacion">
-                        <option selected>Seleccionar Tipo de Contenedor</option>
-                        <!-- Posibilidad: Se agregará un forEach o algo similar para que muestre los tipos de contenedores registrados
-                            en la base de datos -->
-                            <!-- en el value debe estár idContenedor -->
-                        <option value="Estante">Estante</option>
-                        <option value="Refrigerador">Refrigerador</option>
+                    <select class="form-control" id="select" name="idContenedor">
+                        <option selected>Seleccionar Contenedor</option>
+                        <% if (lista_contenedores.length > 0) { %>
+                            <% for (let Contenedor of lista_contenedores) { %>
+                                <% if (!Contenedor.NoContenedor) { %>
+                                    <option value="<%= Contenedor.idContenedor %>"><%= Contenedor.Clasificacion %></option>
+                                <% } else {%>
+                                <option value="<%= Contenedor.idContenedor %>"><%= Contenedor.Clasificacion %> - Número <%= Contenedor.NoContenedor %></option>
+                        <% } } }%>
                     </select>
                 </div>
 
-                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <div class="form-floating small">
-                        <input type="number" name="NoContenedor" class="form-control" id="floatingInputGrid" placeholder="Número de Contenedor">
-                        <label for="floatingInputGrid">Número de Contenedor</label>
-                    </div>
-                </div>
+                
                 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">

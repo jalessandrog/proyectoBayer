@@ -19,7 +19,7 @@
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
             <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
-                <form action="/Muestras/editar" method="POST">
+                <form>
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                     <div class="container position-relative">
                         <div class="container position-absolute start-50 bottom-50 translate-middle-y">
@@ -81,6 +81,20 @@
                                 <label for="floatingInputGrid">Codigo de Formulación</label>
                             </div>
                         </div>
+
+                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                            <div class="form-floating small">
+                                <input class="form-control" id="floatingInputGrid" placeholder="Formulación" value="<%= Muestra.Formulacion %>" disabled>
+                                <label for="floatingInputGrid">Formulación</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                            <div class="form-floating small">
+                                <textarea class="form-control text-center" id="floatingInputGrid" placeholder="Descripción de Formulación"   id="floatingTextarea" style="height:auto" disabled><%= Muestra.DescripcionFormulacion %></textarea>
+                                <label for="floatingInputGrid">Descripción de Formulación</label>
+                            </div>
+                        </div>
                         <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                             <div class="form-floating">
                                 <input type="text" name="Lote" class="form-control" id="floatingInputGrid" placeholder="Lote de Muestra" value="<%= Muestra.Lote %>" disabled>
@@ -100,11 +114,19 @@
                                 <label for="floatingInputGrid">Tipo de Contenedor</label>
                             </div>
                         </div>
-                        
+                        <% if (Muestra.NoContenedor) { %>
                         <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                             <div class="form-floating small">
                                 <input type="number" name="NoContenedor" class="form-control" id="floatingInputGrid" placeholder="Número de Contenedor" value="<%= Muestra.NoContenedor %>"disabled>
                                 <label for="floatingInputGrid">Número de Contenedor</label>
+                            </div>
+                        </div>
+                        <% }%>
+
+                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                            <div class="form-floating small">
+                                <input type="datetime"  class="form-control" id="floatingInputGrid" placeholder="Fecha de Ingreso" value="<%= Muestra.FechaIngreso %>" disabled>
+                                <label for="floatingInputGrid">Fecha de Ingreso</label>
                             </div>
                         </div>
                         
@@ -140,7 +162,7 @@
                 <hr>
                 <div class="btn-toolbar justify-content-around" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group" role="group" aria-label="First group">
-                        <a class="boton" id="Registrar-Actualizar" href="/Muestras/editar/<%= Muestra.idTipoDeMuestra %>" role="button">Modificar información</a>
+                        <a class="boton" id="Registrar-Actualizar" href="/Muestras/editar/<%= Muestra.idMuestra %>" role="button">Modificar información</a>
                     </div>
                     <div class="btn-group" role="group" aria-label="First group">
                         <button type="button" class="boton" id="Registrar-Actualizar">Borrar Muestra</button>

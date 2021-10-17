@@ -47,7 +47,9 @@ module.exports = class Muestras {
     }
     static retirar(idMuestra,idUsuario,descarga){
         return db.execute('UPDATE muestras SET Cantidad = Cantidad-? WHERE idMuestra = ?',[descarga,idMuestra] ).then(()=>{
-            return db.execute('INSERT INTO manipulan (idMuestra,idEmpleado,Sobrante,Descarga,FechaDeUso) VALUES (?,?,0,?,NOW())',[idMuestra,idUsuario,descarga])
+            return db.execute('SELECT * FROM muestras WHERE idMuestra = ?',[idMuestra]).then(            ([rows, fieldData]) => {
+            return db.execute('INSERT INTO manipulan (idMuestra,idEmpleado,Sobrante,Descarga,FechaDeUso) VALUES (?,?,?,?,NOW())',[idMuestra,idUsuario,rows[0].Cantidad,descarga])
+            })
         })
     }
 }

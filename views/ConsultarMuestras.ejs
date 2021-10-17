@@ -41,6 +41,7 @@
               <th scope="col">Nombre</th>
               <th scope="col">Concentración</th>
               <th scope="col">Formulación</th>
+              <th scope="col">Cantidad</th>
               <th scope="col">SP</th>
               <th scope="col" id="sin-color"></th>
               <th scope="col" id="StatusMuestra"></th>
@@ -59,19 +60,22 @@
                 <td><%= muestra.NombreMuestra %></td>
                 <td><%= muestra.Concentracion %></td>
                 <td><%= muestra.CodigoFormulacion %></td>
+                <td><%= muestra.Cantidad %></td>
                 <td><%= muestra.SP %></td>
                 <td>
+                  <% if (muestra.Cantidad> 0){ %>
                   <form method='post' action="/Movimientos">
                   <div class="input-group input-group-sm ">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                     <input type="hidden" name="idMuestra" value="<%=  muestra.idMuestra  %>" >
 
-                    <input type="number" name="descarga" class="form-control" aria-label="Amount" min="0" max="<%= muestra.Cantidad %>">
+                    <input type="number" name="descarga" class="form-control" aria-label="Amount" min="1" max="<%= muestra.Cantidad %>">
                     <div class="input-group-append">
                       <button class="btn green btn-outline-secondary" type="submit">Retirar</button>
                     </div>
                   </div>
                 </form>
+                   <% } %> 
                 </td>
                 <td>
                   <div class="input-group input-group-sm">

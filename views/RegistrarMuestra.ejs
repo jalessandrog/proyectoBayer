@@ -27,7 +27,7 @@
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
             <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
-                <form action="/Muestras/agregar" method="POST">
+                <form action="/Muestras/agregar" method="POST" class="RegistrarMuestraForm">
                     <%- include('includes/Form.ejs') %>
 
                     <div class="btn-toolbar justify-content-around" role="toolbar" aria-label="Toolbar with button groups">
@@ -42,5 +42,6 @@
     
     <%- include('Modals/Modal_Contenedor.ejs') %>
     <%- include('Modals/Modal_TipoDeFormulacion.ejs') %>
+    <script src="/js/ValidacionRegistrarMuestra.js"></script>
 </body>
 </html>

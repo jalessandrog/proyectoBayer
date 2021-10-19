@@ -3,26 +3,26 @@
             <div class="row">
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating">
-                        <input type="text" name="CodigoMuestra" class="form-control" id="floatingInputGrid" placeholder="Código de Muestra">
+                        <input type="text" name="CodigoMuestra" class="form-control" id="CodigoMuestra" placeholder="Código de Muestra">
                         <label for="floatingInputGrid">Código de Muestra</label>
                     </div>
                 </div>
 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating">
-                        <input type="text" name="SP" class="form-control" id="floatingInputGrid" placeholder="SP de Muestra">
+                        <input type="text" name="SP" class="form-control" id="SP" placeholder="SP de Muestra">
                         <label for="floatingInputGrid">SP de Muestra</label>
                     </div>
                 </div>
 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating">
-                        <input type="text" name="NombreMuestra" class="form-control" id="floatingInputGrid" placeholder="Nombre de Muestra">
+                        <input type="text" name="NombreMuestra" class="form-control" id="NombreMuestra" placeholder="Nombre de Muestra">
                         <label for="floatingInputGrid">Nombre de Muestra</label>
                     </div>
                 </div>
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <select class="form-control" name="UnidadMedida" id="select">
+                    <select class="form-select" name="UnidadMedida" id="UnidadMedida" required>
                         <option selected value="">Unidad de medida</option>
                         <option value="Lt">Litros</option>
                         <option value="Ml">Militros</option>
@@ -30,66 +30,46 @@
                 </div>
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
-                        <input type="number" name="Cantidad" class="form-control" id="floatingInputGrid" placeholder="Cantidad">
+                        <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad">
                         <label for="floatingInputGrid">Cantidad</label>
                     </div>
                 </div>
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
-                        <input type="number" name="Concentracion" class="form-control" id="floatingInputGrid" placeholder="Concentracion (%)">
+                        <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)">
                         <label for="floatingInputGrid">Concentracion (%)</label>
                     </div>
                 </div>
                 
-                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <select class="form-control" name="idTipoDeMuestra" id="select" required>
-                        <option selected >Seleccionar Tipo de Muestra</option>
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 ">
+                    <select class="form-select" name="idTipoDeMuestra" id="idTipoDeMuestra" required>
+                        <option selected value="" disabled>Seleccionar Tipo de Muestra</option>
                         <option value="1">Comercial</option>
                         <option value="2">Experimental</option>
                         <option value="3">Estándar Comercial</option>
                     </select>
                 </div>
                 
-                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <select class="form-control" id="select" name="CodigoFormulacion" required>
-                        <option selected>Seleccionar Tipo Formulación</option>
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 mt-2">
+                    <select class="form-select" id="CodigoFormulacion" name="CodigoFormulacion" required>
+                        <option selected value="">Seleccionar Tipo Formulación</option>
                         <% if (lista_formulaciones.length > 0) { %>
                             <% for (let TipoFormulacion of lista_formulaciones) { %>
                                 <option value="<%= TipoFormulacion.CodigoFormulacion %>"><%= TipoFormulacion.CodigoFormulacion %></option>
                             <% } }%>   
-                        <!-- <option value="TC">TC</option>
-                        <option value="TK">TK</option>
-                        <option value="EC">EC</option>
-                        <option value="EO">EO</option>
-                        <option value="EW">EW</option>
-                        <option value="EG">EG</option>
-                        <option value="ME">ME</option>
-                        <option value="SC">SC</option>
-                        <option value="CS">CS</option>
-                        <option value="SL">SL</option>
-                        <option value="SP">SP</option>
-                        <option value="SG">SG</option> -->
                     </select>
                 </div>
 
-                <!-- <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <div class="form-floating small"> -->
-                        <!-- En textarea deberá ir la descripción Formulación dependiendo el código de Formulación seleccionado Ejemplo: EC -> CONCENTRADO EMULSIONABLE -->
-                        <!-- <textarea class="form-control" placeholder="Descripción de la Formulación" id="floatingTextarea" style="height: auto" disabled>Líquido homogéneo para ser aplicado como emulsión, luego de ser diluido en agua.</textarea>
-                        <label for="floatingTextarea">Descripción de la Formulación</label>
-                    </div>
-                </div> -->
-
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating">
-                        <input type="text" name="Lote" class="form-control" id="floatingInputGrid" placeholder="Lote de Muestra">
+                        <input type="text" name="Lote" class="form-control" id="Lote" placeholder="Lote de Muestra" required>
                         <label for="floatingInputGrid">Lote de Muestra</label>
                     </div>
                 </div>
                 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <select class="form-control" id="select" name="UsoMuestra">
-                        <option selected>Seleccionar Uso de Muestra</option>
+                    <select class="form-select" id="UsoMuestra" name="UsoMuestra" required>
+                        <option selected value="">Seleccionar Uso de Muestra</option>
                         <option value="Fungicida">Fungicida</option>
                         <option value="Insecticida">Insecticida</option>
                         <option value="Herbicida">Herbicida</option>
@@ -99,9 +79,9 @@
                     </select>
                 </div>
                 
-                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <select class="form-control" id="select" name="idContenedor">
-                        <option selected>Seleccionar Contenedor</option>
+                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 mt-2">
+                    <select class="form-select" id="idContenedor" name="idContenedor" required>
+                        <option selected value="">Seleccionar Contenedor</option>
                         <% if (lista_contenedores.length > 0) { %>
                             <% for (let Contenedor of lista_contenedores) { %>
                                 <% if (!Contenedor.NoContenedor) { %>
@@ -116,20 +96,20 @@
                 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
-                        <input type="date" name="FechaFabricacion" class="form-control" id="floatingInputGrid" placeholder="Fecha de Fabricación">
+                        <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" required>
                         <label for="floatingInputGrid">Fecha de Fabricación</label>
                     </div>
                 </div>
                 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
-                        <input type="date" name="FechaCaducidad" class="form-control" id="floatingInputGrid" placeholder="Fecha de Caducidad">
+                        <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" required>
                         <label for="floatingInputGrid">Fecha de Caducidad</label>
                     </div>
                 </div>
 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <select class="form-control" name="Status" id="select" required>
+                    <select class="form-select" name="Status" id="Status" required>
                         <option value="1" selected>Activa</option>
                         <option value="0">Inactiva</option>
                     </select>

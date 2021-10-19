@@ -69,7 +69,7 @@
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                     <input type="hidden" name="idMuestra" value="<%=  muestra.idMuestra  %>" >
 
-                    <input type="number" name="descarga" class="form-control" aria-label="Amount" min="1" max="<%= muestra.Cantidad %>">
+                    <input type="number" name="descarga" class="form-control" aria-label="Amount" min="1" max="<%= muestra.Cantidad %>" placeholder="mililitros">
                     <div class="input-group-append">
                       <button class="btn green btn-outline-secondary" type="submit">Retirar</button>
                     </div>

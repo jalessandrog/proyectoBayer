@@ -1,6 +1,6 @@
 window.addEventListener('load', function(){
     let errors = {};
-    let forms = document.querySelector('.EditarMuestraForm');
+    let forms = document.querySelector('.RegistrarMuestraForm');
     // let  = document.querySelector('#');
     // let  CodigoDeMuestra= document.querySelector('#CodigoMuestra');
     let codigoSP= document.querySelector('#SP');
@@ -10,8 +10,9 @@ window.addEventListener('load', function(){
     let Concentracion = document.querySelector('#Concentracion');
     let Lote = document.querySelector('#Lote');
     let codigoFormulacion = document.querySelector('#CodigoFormulacion');
-    // let  = document.querySelector('#');
+    let tipoMuestra = document.querySelector('#idTipoDeMuestra');
     let Contenedor = document.querySelector('#idContenedor');
+    let usoDeMuestra = document.querySelector('#UsoMuestra');
     
     // Concentracion.focus();
 
@@ -19,6 +20,9 @@ window.addEventListener('load', function(){
         // (1020000)+\d{5}$
         let result = /(1020000)+\d{5}$/.test(input.value)
         // console.log(result)
+        if(input.value === 0 || input.value === null){
+            input.value === '';
+        }
         if(input.value !== ''){
             if(result == false){
                 input.placeholder = "SP invalido";
@@ -36,9 +40,14 @@ window.addEventListener('load', function(){
     }
 
     const validarCantidad = input => {
-        if(input.value<0){
-            input.placeholder = "No es posible esa cantidad";
-            errors[input.name] = `${input.name} tiene valores fuera del rango`
+        if(input.value === '' || input.value<0){
+            if(input.value<0){
+                input.placeholder = "No es posible esa cantidad";
+                errors[input.name] = `${input.name} tiene valores fuera del rango`
+            }else{
+                input.placeholder = "Este campo es obligatorio";
+                errors[input.name] = `${input.name} is required`
+            }
             input.style.color= "red";
             input.style.border= "solid red"
         }else{
@@ -135,6 +144,36 @@ window.addEventListener('load', function(){
         }
     }
 
+    const validarUsoDeMuestra = select => {
+        if(select.value === "" ){
+            select.placeholder = "Este campo es obligatorio";
+            errors[select.name] = `${select.name} is required`
+            select.style.color= "red";
+            select.style.border= "solid red"
+        }else{
+            select.style.backgroundColor = "white";
+            select.style.color= "green";
+            select.style.border= "";
+            select.style.fontWeight = "bold"
+            delete errors[select.name]
+        }
+    }
+
+    const validarTipoDeMuestra = select => {
+        if(select.value === ""){
+            select.placeholder = "Este campo es obligatorio";
+            errors[select.name] = `${select.name} is required`
+            select.style.color= "red";
+            select.style.border= "solid red"
+        }else{
+            select.style.backgroundColor = "white";
+            select.style.color= "green";
+            select.style.border= "";
+            select.style.fontWeight = "bold"
+            delete errors[select.name]
+        }
+    }
+
     
     Concentracion.addEventListener("blur", function(){ validarConcentracion(Concentracion); })
     Cantidad.addEventListener("blur", function(){ validarCantidad(Cantidad); })
@@ -143,6 +182,8 @@ window.addEventListener('load', function(){
     codigoSP.addEventListener("blur", function(){ validarSP(codigoSP); })
     codigoFormulacion.addEventListener("blur", function(){ validarCodigoFormulacion(codigoFormulacion); })
     Contenedor.addEventListener("blur", function(){ validarContenedor(Contenedor); })
+    tipoMuestra.addEventListener("blur", function(){ validarTipoDeMuestra(tipoMuestra); })
+    usoDeMuestra.addEventListener("blur", function(){ validarUsoDeMuestra(usoDeMuestra); })
 
     function validacionForm() {
         validarConcentracion();
@@ -152,6 +193,8 @@ window.addEventListener('load', function(){
         validarSP()
         validarCodigoFormulacion()
         validarContenedor()
+        validarTipoDeMuestra()
+        validarUsoDeMuestra()
     }
 
     forms.addEventListener("submit", function(event) {

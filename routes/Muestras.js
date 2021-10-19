@@ -7,8 +7,8 @@ const MuestrasController = require('../controllers/MuestrasController')
 router.get('/agregar', isAuth, MuestrasController.RegistrarMuestra);
 router.post('/agregar', isAuth, MuestrasController.saveMuestra);
 
-// router.get('/editar/:id', isAuth, MuestrasController.EditarMuestra);
-// router.post('/editar/:id', isAuth, MuestrasController.processUpdate);
+router.get('/editar/:id', MuestrasController.EditarMuestra);
+router.post('/editar/:id', MuestrasController.processUpdate);
 
 router.get('/:id', isAuth, MuestrasController.VerMuestra);
 router.get('/', isAuth, MuestrasController.ConsultarMuestras);

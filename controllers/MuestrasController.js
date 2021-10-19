@@ -44,6 +44,7 @@ const controller = {
 
     VerMuestra:(req, res, next) => {
         console.log("Ruta ver Muestra con ID: "+req.params.id)
+        console.log(req.body)
         Muestras.fetchOne(req.params.id)
             .then(([rows, fieldData]) => {
                 res.render('VerMuestra', {
@@ -81,7 +82,7 @@ const controller = {
 
     saveMuestra:(req, res, next) => {
         console.log("Ruta Guardar Muestra")
-        
+        console.log(req.body)
         res.setHeader('Set-Cookie', 'ultima_Muestra_Agregada='+req.body.NombreMuestra+'; HttpOnly');
         var cant = req.body.Cantidad;
         var UnidadDeMedida = req.body.UnidadDeMedida;
@@ -102,51 +103,54 @@ const controller = {
             });
     },
 
-    // EditarMuestra:(req, res, next) => {
-    //     console.log("Ruta Editar Muestra con ID "+req.params.id)
-    //     Muestras.fetchOne(req.params.id)
-    //         .then(([rows, fieldData]) => {
-    //             Contenedores.fetchAll()
-    //                 .then(([contenedores, fieldData]) => {
-    //                     Formulaciones.fetchAll()
-    //                         .then(([formulaciones, fieldData]) => {
-    //                             res.render('EditarMuestra', {
-    //                                 Titulo : 'Editar información de Muestra',
-    //                                 isLoggedIn: req.session.isLoggedIn,
-    //                                 CorreoElectronico: req.session.CorreoElectronico,
-    //                                 NombreCompleto: req.session.NombreCompleto,
-    //                                 lista_contenedores: contenedores,
-    //                                 lista_formulaciones: formulaciones,
-    //                                 Muestra: rows[0],
-    //                             });
-    //                         })
-    //                 })
-    //         })
-    //         .catch(err => {
-    //             res.status(302).redirect('/error');
-    //         });
-    // },
+    EditarMuestra:(req, res, next) => {
+        console.log("Ruta Editar Muestra con ID "+req.params.id)
+        Muestras.fetchOne(req.params.id)
+            .then(([rows, fieldData]) => {
+                Contenedores.fetchAll()
+                    .then(([contenedores, fieldData]) => {
+                        Formulaciones.fetchAll()
+                            .then(([formulaciones, fieldData]) => {
+                                res.render('EditarMuestra', {
+                                    Titulo : 'Editar información de Muestra',
+                                    isLoggedIn: req.session.isLoggedIn,
+                                    CorreoElectronico: req.session.CorreoElectronico,
+                                    NombreCompleto: req.session.NombreCompleto,
+                                    lista_contenedores: contenedores,
+                                    lista_formulaciones: formulaciones,
+                                    Muestra: rows[0],
+                                });
+                            })
+                    })
+            })
+            .catch(err => {
+                res.status(302).redirect('/error');
+            });
+    },
 
-    // processUpdate: (req, res, next) => {
-    //     console.log("Ruta Procesando Actualización de  Muestra")
-    //     console.log('actualizando Muestra...')
-    //     console.log('ID: '+req.params.id+' Correspondiente a: '+req.body.NombreMuestra)
-    //     cant = req.body.Cantidad;
-    //     UnidadDeMedida = req.body.UnidadDeMedida;
-    //     if(UnidadDeMedida == 'Lt'){
-    //         cant= parseInt(req.body.Cantidad, 10)*1000;
-    //     }
-    //     Muestras.updateMuestra(req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, req.body.Concentracion, cant, req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
-    //         .then( () => {
-    //             console.log('Actualización de muestra con exito!!')
-    //             res.status(302).redirect('/Muestras');
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //             console.log('Error al actualizar muestra')
-    //             res.status(302).redirect('/error');
-    //         });
-    // },
+    processUpdate: (req, res, next) => {
+        
+        console.log("Ruta Procesando Actualización de  Muestra")
+        console.log('actualizando Muestra...')
+        console.log('ID: '+req.params.id+' Correspondiente a: '+req.body.NombreMuestra)
+        
+        cant = req.body.Cantidad;
+        UnidadDeMedida = req.body.UnidadDeMedida;
+        if(UnidadDeMedida == 'Lt'){
+            cant= parseInt(req.body.Cantidad, 10)*1000;
+        }
+        console.log(req.body)
+        Muestras.updateMuestra(req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, req.body.Concentracion, cant, req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor, req.params.id)
+            .then( () => {
+                console.log('Actualización de muestra con exito!!')
+                res.status(302).redirect('/Muestras');
+            })
+            .catch(err => {
+                console.log(err);
+                console.log('Error al actualizar muestra')
+                res.status(302).redirect('/error');
+            });
+    },
 
 }
 module.exports = controller;

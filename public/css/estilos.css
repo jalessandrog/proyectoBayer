@@ -261,6 +261,17 @@ a.boton#HojaSeguridad{
     width: 230px;
     overflow: auto;
 }
+/* ----------------------
+        ERRORES
+    --------------------
+*/
+
+
+
+/* ----------------------
+        MEDIA - responsividad
+    --------------------
+*/
 
 @media (max-width: 815px) {
     .d-flex{

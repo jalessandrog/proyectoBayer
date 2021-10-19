@@ -3,7 +3,6 @@
     <%- include('includes/head.ejs') %>
     
 <body>
-
     <%- include('includes/header.ejs') %>
 
     <br>
@@ -19,95 +18,145 @@
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
             <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
-                <form action="/editar/<%= Muestra.id%>" method="post">
+                <form action="/Muestras/editar/<%= Muestra.idMuestra %>" method="POST" class="EditarMuestraForm">
                     
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                         <div class="row">
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating">
-                                    <input type="text" name="CodigoMuestra" class="form-control" id="floatingInputGrid" placeholder="Código de Muestra">
+                                    <input type="text" name="CodigoMuestra" class="form-control" id="CodigoMuestra" placeholder="Código de Muestra" value="<%= Muestra.CodigoMuestra %>">
                                     <label for="floatingInputGrid">Código de Muestra</label>
                                 </div>
                             </div>
 
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating">
-                                    <input type="text" name="SP" class="form-control" id="floatingInputGrid" placeholder="SP de Muestra">
+                                    <input type="text" name="SP" class="form-control" id="SP" placeholder="SP de Muestra" value="<%= Muestra.SP %>">
                                     <label for="floatingInputGrid">SP de Muestra</label>
                                 </div>
                             </div>
 
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating">
-                                    <input type="text" name="NombreMuestra" class="form-control" id="floatingInputGrid" placeholder="Nombre de Muestra">
+                                    <input type="text" name="NombreMuestra" class="form-control" id="NombreMuestra" placeholder="Nombre de Muestra" value="<%= Muestra.NombreMuestra %>">
                                     <label for="floatingInputGrid">Nombre de Muestra</label>
                                 </div>
                             </div>
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                                <select class="form-control" name="UnidadMedida" id="select">
-                                    <option selected value="">Unidad de medida</option>
+                                <select class="form-select" name="UnidadMedida" id="UnidadMedida" required>
+                                    <option value="" disabled selected> Seleccionar unidad de medida</option>
                                     <option value="Lt">Litros</option>
                                     <option value="Ml">Militros</option>
                                 </select>
                             </div>
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating small">
-                                    <input type="number" name="Cantidad" class="form-control" id="floatingInputGrid" placeholder="Cantidad">
+                                    <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad" value="<%= Muestra.Cantidad %>" minlength="0">
                                     <label for="floatingInputGrid">Cantidad</label>
                                 </div>
                             </div>
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating small">
-                                    <input type="number" name="Concentracion" class="form-control" id="floatingInputGrid" placeholder="Concentracion (%)">
+                                    <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)" value="<%= Muestra.Concentracion %>" minlength="0" maxlength="100">
                                     <label for="floatingInputGrid">Concentracion (%)</label>
                                 </div>
                             </div>
                             
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                                <select class="form-control" name="idTipoDeMuestra" id="select" required>
-                                    <option selected >Seleccionar Tipo de Muestra</option>
-                                    <!-- Posibilidad: Se agregará un forEach o algo similar para que muestre los tipos de contenedores registrados
-                                        en la base de datos -->
-                                        <!-- en el value debe estár idTipoDeMuestra -->
-                                    <option value="1">Comercial</option>
-                                    <option value="2">Experimental</option>
-                                    <option value="3">Estándar Comercial</option>
+                                <select class="form-select" name="idTipoDeMuestra" id="idTipoDeMuestra">
+                                    <% if ( Muestra.Tipo === "Comercial"){ %>
+                                        <option value="1" selected>Comercial</option>
+                                        <option value="2">Experimental</option>
+                                        <option value="3">Estándar Comercial</option>
+                                    <% } else if ( Muestra.Tipo === "Experimental"){ %>
+                                        <option value="1" >Comercial</option>
+                                        <option value="2" selected>Experimental</option>
+                                        <option value="3">Estándar Comercial</option>
+                                    <% } else { %>
+                                        <option value="1" >Comercial</option>
+                                        <option value="2">Experimental</option>
+                                        <option value="3" selected>Estándar Comercial</option>
+                                    <% } %>
+                                    
                                 </select>
                             </div>
-                            
-                            <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                                <select class="form-control" id="select" name="CodigoFormulacion" required>
-                                    <option selected>Seleccionar Tipo Formulación</option>
+                            <br>
+                            <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 mt-2">
+                                <select class="form-select" id="CodigoFormulacion" name="CodigoFormulacion" required >
+                                    <!-- CAMBIAR VALUE PREDETERMINADO, AGREGAR VALIDACIÓN -->
+                                    <option selected disabled value="">Seleccionar Codigo de Formulación</option>
                                     <% if (lista_formulaciones.length > 0) { %>
                                         <% for (let TipoFormulacion of lista_formulaciones) { %>
                                             <option value="<%= TipoFormulacion.CodigoFormulacion %>"><%= TipoFormulacion.CodigoFormulacion %></option>
                                         <% } }%>   
                                 </select>
+                                <!-- <span class="error" aria-live="polite"></span> -->
                             </div>
-
 
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating">
-                                    <input type="text" name="Lote" class="form-control" id="floatingInputGrid" placeholder="Lote de Muestra">
+                                    <input type="text" name="Lote" class="form-control" id="Lote" placeholder="Lote de Muestra" value="<%= Muestra.Lote %>">
                                     <label for="floatingInputGrid">Lote de Muestra</label>
                                 </div>
                             </div>
                             
-                            <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                                <select class="form-control" id="select" name="UsoMuestra">
-                                    <option selected>Seleccionar Uso de Muestra</option>
-                                    <option value="Fungicida">Fungicida</option>
+                            <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 mt-2">
+                                <select class="form-select" id="UsoMuestra" name="UsoMuestra">
+                                    <% if ( Muestra.UsoMuestra === "Fungicida"){ %>
+                                    <option value="Fungicida" selected>Fungicida</option>
                                     <option value="Insecticida">Insecticida</option>
                                     <option value="Herbicida">Herbicida</option>
                                     <option value="Tratamiento de Semilla">Tratamiento de Semilla</option>
                                     <option value="Biológico">Biológico</option>
                                     <option value="Nematicida">Nematicida</option>
+                                    <% } %>  
+                                    <% if ( Muestra.UsoMuestra === "Insecticida"){ %>
+                                    <option value="Fungicida" >Fungicida</option>
+                                    <option value="Insecticida" selected>Insecticida</option>
+                                    <option value="Herbicida">Herbicida</option>
+                                    <option value="Tratamiento de Semilla">Tratamiento de Semilla</option>
+                                    <option value="Biológico">Biológico</option>
+                                    <option value="Nematicida">Nematicida</option>
+                                    <% } %>  
+                                    <% if ( Muestra.UsoMuestra === "Herbicida"){ %>
+                                    <option value="Fungicida" >Fungicida</option>
+                                    <option value="Insecticida">Insecticida</option>
+                                    <option value="Herbicida" selected>Herbicida</option>
+                                    <option value="Tratamiento de Semilla">Tratamiento de Semilla</option>
+                                    <option value="Biológico">Biológico</option>
+                                    <option value="Nematicida">Nematicida</option>
+                                    <% } %>  
+                                    <% if ( Muestra.UsoMuestra === "Tratamiento de Semilla"){ %>
+                                    <option value="Fungicida" >Fungicida</option>
+                                    <option value="Insecticida">Insecticida</option>
+                                    <option value="Herbicida">Herbicida</option>
+                                    <option value="Tratamiento de Semilla" selected>Tratamiento de Semilla</option>
+                                    <option value="Biológico">Biológico</option>
+                                    <option value="Nematicida">Nematicida</option>
+                                    <% } %>  
+                                    <% if ( Muestra.UsoMuestra === "Biológico"){ %>
+                                    <option value="Fungicida" >Fungicida</option>
+                                    <option value="Insecticida">Insecticida</option>
+                                    <option value="Herbicida">Herbicida</option>
+                                    <option value="Tratamiento de Semilla">Tratamiento de Semilla</option>
+                                    <option value="Biológico" selected>Biológico</option>
+                                    <option value="Nematicida">Nematicida</option>
+                                    <% } %>  
+                                    <% if ( Muestra.UsoMuestra === "Nematicida"){ %>
+                                    <option value="Fungicida" >Fungicida</option>
+                                    <option value="Insecticida">Insecticida</option>
+                                    <option value="Herbicida">Herbicida</option>
+                                    <option value="Tratamiento de Semilla">Tratamiento de Semilla</option>
+                                    <option value="Biológico" >Biológico</option>
+                                    <option value="Nematicida" selected>Nematicida</option>
+                                    <% } %>  
                                 </select>
                             </div>
                             
-                            <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                                <select class="form-control" id="select" name="idContenedor">
-                                    <option selected>Seleccionar Contenedor</option>
+                            <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 mt-2">
+                                <select class="form-select" id="idContenedor" name="idContenedor" required>
+                                    <!-- CAMBIAR VALUE PREDETERMINADO, AGREGAR VALIDACIÓN -->
+                                    <option value="" disabled selected>Seleccionar Contenedor</option>
                                     <% if (lista_contenedores.length > 0) { %>
                                         <% for (let Contenedor of lista_contenedores) { %>
                                             <% if (!Contenedor.NoContenedor) { %>
@@ -117,29 +166,30 @@
                                     <% } } }%>
                                 </select>
                             </div>
-
-                            
                             
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating small">
-                                    <input type="date" name="FechaFabricacion" class="form-control" id="floatingInputGrid" placeholder="Fecha de Fabricación">
+                                    <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" value="<%= Muestra.FechaFabricacion %>">
                                     <label for="floatingInputGrid">Fecha de Fabricación</label>
                                 </div>
                             </div>
                             
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating small">
-                                    <input type="date" name="FechaCaducidad" class="form-control" id="floatingInputGrid" placeholder="Fecha de Caducidad">
+                                    <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" value="<%= Muestra.FechaCaducidad %>">
                                     <label for="floatingInputGrid">Fecha de Caducidad</label>
                                 </div>
                             </div>
-
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                                <div class="form-floating small">
-                                    <input type="text" class="form-control text-center" id="floatingInputGrid" value="Activa" disabled>
-                                    <label for="floatingInputGrid">Status de Muestra</label>
-                                    <!-- En el value deberá ir el Status de Muestra -->
-                                </div>
+                                <select class="form-select" name="Status" id="Status" required>
+                                    <% if ( Muestra.Status === 1 || Muestra.Status === "Activa" ) { %>
+                                    <option value="1" selected>Status de muestra : Activa</option>
+                                    <option value="0">Status de muestra : Inactiva</option>
+                                    <% } else {%>
+                                    <option value="1">Status de muestra : Activa</option>
+                                    <option value="0" selected>Status de muestra : Inactiva</option>
+                                    <% } %>
+                                </select>
                             </div>
 
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 mt-2">
@@ -163,5 +213,6 @@
     </div>
     <%- include('Modals/Modal_Contenedor.ejs') %>
     <%- include('Modals/Modal_TipoDeFormulacion.ejs') %>
+    <script src="/js/ValidacionEditarMuestra.js"></script>
 </body>
 </html>

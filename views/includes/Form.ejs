@@ -44,9 +44,6 @@
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <select class="form-control" name="idTipoDeMuestra" id="select" required>
                         <option selected >Seleccionar Tipo de Muestra</option>
-                        <!-- Posibilidad: Se agregará un forEach o algo similar para que muestre los tipos de contenedores registrados
-                            en la base de datos -->
-                            <!-- en el value debe estár idTipoDeMuestra -->
                         <option value="1">Comercial</option>
                         <option value="2">Experimental</option>
                         <option value="3">Estándar Comercial</option>
@@ -132,11 +129,10 @@
                 </div>
 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                    <div class="form-floating small">
-                        <input type="text" class="form-control text-center" id="floatingInputGrid" value="Activa" disabled>
-                        <label for="floatingInputGrid">Status de Muestra</label>
-                        <!-- En el value deberá ir el Status de Muestra -->
-                    </div>
+                    <select class="form-control" name="Status" id="select" required>
+                        <option value="1" selected>Activa</option>
+                        <option value="0">Inactiva</option>
+                    </select>
                 </div>
 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 mt-2">

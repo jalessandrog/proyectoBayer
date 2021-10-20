@@ -26,9 +26,10 @@ module.exports = class Muestras {
             [this.NombreMuestra, this.CodigoMuestra, this.SP, this.HojaSeguridad, this.UsoMuestra, this.Lote, this.Concentracion, this.Cantidad,  this.FechaFabricacion,  this.FechaCaducidad, this.idTipoDeMuestra, this.CodigoFormulacion, this.Status, this.idContenedor ]);
     }
 
-    static updateMuestra(id, NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor){
-        return db.execute('UPDATE muestras SET NombreMuestra = ?, CodigoMuestra = ?, SP = ?, HojaSeguridad = ?, UsoMuestra = ?, Lote = ?, Concentracion = ?, Cantidad = ?, FechaFabricacion = ?, FechaCaducidad = ?, idTipoDeMuestra = ?, CodigoFormulacion = ?, Status = ?, idContenedor = ?  WHERE idMuestra = ? ',
-            [id, NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor]);
+    static updateMuestra(idMuestra, NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor){
+        // return db.execute('UPDATE muestras SET NombreMuestra = ?, CodigoMuestra = ?, SP = ?, HojaSeguridad = ?, UsoMuestra = ?, Lote = ?, Concentracion = ?, Cantidad = ?, FechaFabricacion = ?, FechaCaducidad = ?, idTipoDeMuestra = ?, CodigoFormulacion = ?, Status = ?, idContenedor = ?  WHERE idMuestra = ? ',
+        return db.execute ('CALL updateMuestra (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [idMuestra, NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor]);
     }
 
 

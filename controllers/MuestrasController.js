@@ -140,7 +140,7 @@ const controller = {
             cant= parseInt(req.body.Cantidad, 10)*1000;
         }
         console.log(req.body)
-        Muestras.updateMuestra(req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, req.body.Concentracion, cant, req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor, req.params.id)
+        Muestras.updateMuestra(req.params.id, req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, req.body.Concentracion, cant, req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
             .then( () => {
                 console.log('Actualización de muestra con exito!!')
                 res.status(302).redirect('/Muestras');

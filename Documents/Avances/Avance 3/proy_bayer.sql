@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2021 a las 08:31:33
+-- Tiempo de generación: 20-10-2021 a las 08:01:14
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proy_bayer`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateMuestra` (IN `m_idMuestra` TINYINT(3), IN `m_NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `m_CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `m_SP` BIGINT(12), IN `m_HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `m_UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `m_Lote` VARCHAR(20) CHARSET utf8mb4, IN `m_Concentracion` TINYINT(3), IN `m_Cantidad` FLOAT, IN `m_FechaFabricacion` DATE, IN `m_FechaCaducidad` DATE, IN `m_idTipoDeMuestra` TINYINT(3), IN `m_CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `m_Status` TINYINT(1), IN `m_idContenedor` TINYINT(3))  BEGIN
+
+UPDATE muestras SET muestras.NombreMuestra = m_NombreMuestra, muestras.CodigoMuestra = m_CodigoMuestra, muestras.SP = m_SP, muestras.HojaSeguridad = m_HojaSeguridad, muestras.UsoMuestra = m_UsoMuestra, muestras.Lote = m_Lote, muestras.Concentracion = m_Concentracion, muestras.Cantidad = m_Cantidad, muestras.FechaFabricacion = m_FechaFabricacion, muestras.FechaCaducidad = m_FechaCaducidad, muestras.idTipoDeMuestra = m_idTipoDeMuestra, muestras.CodigoFormulacion = m_CodigoFormulacion, muestras.Status = m_Status, muestras.idContenedor = m_idContenedor WHERE muestras.idMuestra = m_idMuestra;
+
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -136,9 +148,9 @@ CREATE TABLE `muestras` (
 --
 
 INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `UsoMuestra`, `Lote`, `Concentracion`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `CodigoFormulacion`, `Status`, `idContenedor`) VALUES
-(1, 'CLAVIS', NULL, 102000012345, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '123456', 48, 1000, '2021-10-15 03:03:19', '2021-01-01', '2023-01-01', 1, 'SC', 1, 1),
+(1, 'CLAVIS', '', 102000012345, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '123456', 48, 2, '2021-10-19 03:48:03', '0000-00-00', '0000-00-00', 1, 'CL', 1, 2),
 (2, 'ADENGO\r\n', NULL, NULL, NULL, 'Herbicida', '1', 32, 1000, '2021-10-15 04:27:23', '2021-01-10', '2023-01-10', 1, 'SC', 1, 1),
-(4, 'ALIETTE\r\n', NULL, NULL, NULL, 'Fungicida', '2', 80, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'WG', 1, 1),
+(4, 'ALIETTE', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '2', 80, 1000, '2021-10-19 06:14:48', '0000-00-00', '0000-00-00', 1, 'WG', 1, 1),
 (5, 'ALION\r\n', NULL, NULL, NULL, 'Fungicida', '3', 50, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1, 1),
 (8, 'ANTRACOL', NULL, NULL, NULL, 'Fungicida', '4', 70, 1000, '2021-10-17 04:30:53', '2021-01-10', '2023-01-10', 1, 'WP', 1, 2),
 (9, 'BELT', NULL, NULL, NULL, 'Fungicida', '5', 48, 1000, '2021-09-30 05:00:00', '2021-01-10', '2023-01-10', 1, 'SC', 1, 1),
@@ -187,8 +199,8 @@ INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `Ho
 (58, 'Sample 11', NULL, 102000012355, NULL, 'Fungicida', '48', 25, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SC', 1, 1),
 (59, 'Sample 12', NULL, 102000012356, NULL, 'Fungicida', '49', 20, 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SC', 1, 1),
 (60, 'Sample 13', NULL, 102000012357, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '246891', 10, 500, '2021-10-06 05:00:00', '2021-01-01', '2023-01-01', 2, 'SE', 1, 1),
-(62, 'Prueba', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Nematicida', '555555', 33, 2, '2021-10-15 05:04:37', '2021-10-06', '2024-06-14', 2, 'SP', 1, 1),
-(66, 'Prueba 2 Octubre 17', '76158', 102000011111, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '555599', 23, 2222, '2021-10-17 05:27:34', '2005-10-14', '2030-05-31', 2, 'WG', 1, 6);
+(62, 'Prueba 19 oct store procedure', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '555555', 33, 1000, '2021-10-20 06:00:25', '0000-00-00', '0000-00-00', 2, 'CS', 1, 3),
+(66, 'Prueba 3 Octubre 19', '761587', 102000011111, 'https://github.com/jalessandrog/proyectoBayer.git', 'Tratamiento de Semilla', '555555', 10, 3, '2021-10-20 05:45:46', '2021-10-03', '2021-10-01', 3, 'CL', 1, 2);
 
 -- --------------------------------------------------------
 

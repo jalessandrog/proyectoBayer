@@ -44,20 +44,20 @@
                             </div>
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <select class="form-select" name="UnidadMedida" id="UnidadMedida" required>
-                                    <option value="" disabled selected> Seleccionar unidad de medida</option>
-                                    <option value="Lt">Litros</option>
-                                    <option value="Ml">Militros</option>
+                                    <option selected disabled value="">Unidad de medida</option>
+                                    <option value="Litros">Litros</option>
+                                    <option value="Kilogramos">Kilogramos</option>
                                 </select>
                             </div>
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating small">
-                                    <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad" value="<%= Muestra.Cantidad %>" minlength="0">
+                                    <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad"  step="any" value="<%= Muestra.Cantidad %>"" minlength="0">
                                     <label for="floatingInputGrid">Cantidad</label>
                                 </div>
                             </div>
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating small">
-                                    <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)" value="<%= Muestra.Concentracion %>" minlength="0" maxlength="100">
+                                    <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)"   step="any" value="<%= Muestra.Concentracion %>" minlength="0" maxlength="100">
                                     <label for="floatingInputGrid">Concentracion (%)</label>
                                 </div>
                             </div>

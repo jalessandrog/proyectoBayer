@@ -54,16 +54,24 @@
                             </div>
                         </div>
                         <% } %>
+
                         <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                             <div class="form-floating small">
-                                <input type="number" name="Cantidad" class="form-control" id="floatingInputGrid" placeholder="Cantidad" value="<%= Muestra.Cantidad %>" disabled>
-                                <label for="floatingInputGrid">Cantidad ( ml )</label>
+                                <input class="form-control" name="UnidadMedida" id="UnidadMedida" placeholder="floatingInputGrid" value="<%= Muestra.UnidadMedida %>" disabled>
+                                <label for="floatingInputGrid">Unidad De Medida</label>
+                            </div>    
+                        </div>
+
+                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                            <div class="form-floating small">
+                                <input type="number" name="Cantidad" class="form-control" id="floatingInputGrid" placeholder="Cantidad" value="<%= Muestra.Cantidad %>" step="0.1" disabled>
+                                <label for="floatingInputGrid">Cantidad (<%= Muestra.UnidadMedida %>)</label>
                             </div>
                         </div>
                         
                         <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                             <div class="form-floating small">
-                                <input type="number" name="Concentracion" class="form-control" id="floatingInputGrid" placeholder="Concentracion (%)" value="<%= Muestra.Concentracion %>" disabled>
+                                <input type="number" name="Concentracion" class="form-control" id="floatingInputGrid" placeholder="Concentracion (%)" value="<%= Muestra.Concentracion %>" step="0.1" disabled>
                                 <label for="floatingInputGrid">Concentracion (%)</label>
                             </div>
                         </div>

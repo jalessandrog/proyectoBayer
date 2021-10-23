@@ -8,28 +8,20 @@
   <br>
   <br>
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <a class="btn green" href="/Muestras/agregar" role="button">Agregar Muestra</a>
-      </div>
-      <div class="col-9">
+      <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="col-md-6 col-sm-2 col-lg-3">
+          <a class="btn green" href="/Muestras/agregar" role="button">Agregar Muestra</a>
+        </div>
         <form class="form-inline" method='POST' action='/Muestras'>
           <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-          <div class="input-group">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Buscar por Nombre o SP
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Comerciales</a>
-              <a class="dropdown-item" href="#">Experimentales</a>
-              <a class="dropdown-item" href="#">Otros</a>
-            </div>
-            <span><input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search"></span>
-            <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-          </div>
-        </form>
+        <div class="input-group col-7">
+          <span><input class="form-control px-2 mx-3" type="search" placeholder="Buscar por SP, Nombre o Uso" name="query" aria-label="Search" ></span>
+            <button class="btn btn-outline-success mx-3 "  type="submit"><i class="fas fa-search"></i></button>
+        </div>
+      </form>
       </div>
-    </div>
+
+
     <br>
     <br>
     <div class="table-responsive">
@@ -69,7 +61,7 @@
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                     <input type="hidden" name="idMuestra" value="<%=  muestra.idMuestra  %>" >
 
-                    <input type="number" name="descarga" class="form-control" aria-label="Amount" min="1" max="<%= muestra.Cantidad %>" placeholder="mililitros">
+                    <input type="number" name="descarga" class="form-control" aria-label="Amount" min="1" max="<%= muestra.Cantidad %>" placeholder="<%= muestra.UnidadMedida %>">
                     <div class="input-group-append">
                       <button class="btn green btn-outline-secondary" type="submit">Retirar</button>
                     </div>
@@ -94,7 +86,7 @@
           </tbody>
       </table>
       <% } else { %>
-        <h3>No hay muestras registrados</h3>
+        <h3>No hay muestras registradas</h3>
       <% } %>
     </div>
   </div>

@@ -261,6 +261,18 @@ a.boton#HojaSeguridad{
     width: 230px;
     overflow: auto;
 }
+
+
+
+/* VALIDACIONES */
+.ocultar {
+    display: none;
+}
+ 
+.mostrar {
+    display: block;
+}
+
 /* ----------------------
         ERRORES
     --------------------

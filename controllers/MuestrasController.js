@@ -1,6 +1,7 @@
 const Muestras = require('../Models/Muestras');
 const Contenedores = require('../Models/Contenedores');
 const Formulaciones = require('../Models/TipoFormulacion');
+const moment = require('moment');
 const { request } = require('express');
 
 const controller = {
@@ -84,12 +85,8 @@ const controller = {
         console.log("Ruta Guardar Muestra")
         console.log(req.body)
         res.setHeader('Set-Cookie', 'ultima_Muestra_Agregada='+req.body.NombreMuestra+'; HttpOnly');
-        var cant = req.body.Cantidad;
-        var UnidadDeMedida = req.body.UnidadDeMedida;
-        if(UnidadDeMedida == 'Lt'){
-            cant= parseInt(req.body.Cantidad, 10)*1000;
-        }
-        const muestra = new Muestras(req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, req.body.Concentracion, cant, req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
+
+        const muestra = new Muestras(req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, req.body.Concentracion, req.body.UnidadMedida, req.body.Cantidad,req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
         console.log(muestra)
         muestra.save()
             .then( () => {
@@ -134,13 +131,8 @@ const controller = {
         console.log('actualizando Muestra...')
         console.log('ID: '+req.params.id+' Correspondiente a: '+req.body.NombreMuestra)
         
-        cant = req.body.Cantidad;
-        UnidadDeMedida = req.body.UnidadDeMedida;
-        if(UnidadDeMedida == 'Lt'){
-            cant= parseInt(req.body.Cantidad, 10)*1000;
-        }
         console.log(req.body)
-        Muestras.updateMuestra(req.params.id, req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, req.body.Concentracion, cant, req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
+        Muestras.updateMuestra(req.params.id, req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, parseFloat(req.body.Concentracion), req.body.UnidadMedida, parseFloat(req.body.Cantidad),  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
             .then( () => {
                 console.log('Actualización de muestra con exito!!')
                 res.status(302).redirect('/Muestras');

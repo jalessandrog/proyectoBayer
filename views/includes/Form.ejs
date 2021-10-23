@@ -23,22 +23,28 @@
                 </div>
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <select class="form-select" name="UnidadMedida" id="UnidadMedida" required>
-                        <option selected value="">Unidad de medida</option>
-                        <option value="Lt">Litros</option>
-                        <option value="Ml">Militros</option>
+                        <option selected disabled value="">Unidad de medida</option>
+                        <option value="Litros">Litros</option>
+                        <option value="Kilogramos">Kilogramos</option>
                     </select>
+                    
                 </div>
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
-                        <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad">
+                        <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad"  min="0" step="any">
                         <label for="floatingInputGrid">Cantidad</label>
                     </div>
                 </div>
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
-                        <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)">
+                        <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)"  min="0" step="any">
                         <label for="floatingInputGrid">Concentracion (%)</label>
                     </div>
+                    <!-- Mensajes de Verificación -->
+                    <div id="errorConcentracion" class="alert alert-danger ocultar" role="alert">
+                        Debes ingresar la Concentracion de la muestra !
+                    </div>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12 ">
@@ -96,14 +102,14 @@
                 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
-                        <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" required>
+                        <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" min="2010-01-01" max="2050-12-31" required>
                         <label for="floatingInputGrid">Fecha de Fabricación</label>
                     </div>
                 </div>
                 
                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                     <div class="form-floating small">
-                        <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" required>
+                        <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" min="2010-01-01" max="2050-12-31" required>
                         <label for="floatingInputGrid">Fecha de Caducidad</label>
                     </div>
                 </div>

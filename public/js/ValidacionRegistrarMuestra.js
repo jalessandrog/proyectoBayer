@@ -13,17 +13,32 @@ window.addEventListener('load', function(){
     let tipoMuestra = document.querySelector('#idTipoDeMuestra');
     let Contenedor = document.querySelector('#idContenedor');
     let usoDeMuestra = document.querySelector('#UsoMuestra');
+    let fechaFabricacion = document.querySelector('#FechaFabricacion');
+    let fechaCaducidad = document.querySelector('#FechaCaducidad');
     
     // Concentracion.focus();
+
+    // const validarNombreSPCodigo = (nombre,SP,codigo) => {
+    //     if((nombre.value === '' || codigo.value === '') && SP.input === ''){
+    //         input.style.color= "red";
+    //         input.style.border= "solid red"
+    //     }else{
+    //         input.style.backgroundColor = "white";
+    //             input.style.color= "green";
+    //             input.style.border= "";
+    //             input.style.fontWeight = "bold"
+    //     }
+    // }
+
 
     const validarSP = input => {
         // (1020000)+\d{5}$
         let result = /(1020000)+\d{5}$/.test(input.value)
         // console.log(result)
-        if(input.value === 0 || input.value === null){
-            input.value === '';
+        if(input.value === '' || input.value === NULL   || input.value.length==0){
+            input.value === NULL;
         }
-        if(input.value !== ''){
+        if(input.value !== '' || input.value.length>0 ){
             if(result == false){
                 input.placeholder = "SP invalido";
                 errors[input.name] = `${input.name} es invalido`
@@ -60,13 +75,15 @@ window.addEventListener('load', function(){
     }
 
     const validarConcentracion = input => {
-        if(input.value === '' || input.value>100 || input.value<0){
+        if(input.value === '' || input.value>100 || input.value<0 ||  input.value.length==0){
             if(input.value>100 || input.value<0){
                 input.placeholder = "No es posible esa concentración";
                 errors[input.name] = `${input.name} tiene valores fuera del rango`
+                alert("Debe ingresar el valor de concentracion");
             }else{
                 input.placeholder = "Este campo es obligatorio";
                 errors[input.name] = `${input.name} is required`
+                document.getElementById("errorConcentracion").classList.add("mostrar");
             }
             input.style.color= "red";
             input.style.border= "solid red"
@@ -76,11 +93,13 @@ window.addEventListener('load', function(){
             input.style.border= "";
             input.style.fontWeight = "bold"
             delete errors[input.name]
+            document.getElementById("errorConcentracion").classList.remove("mostrar");
+            document.getElementById("errorConcentracion").classList.add("ocultar");
         }
     }
 
     const validarLote = input => {
-        if(input.value === '' || input.value<0){
+        if(input.value === '' || input.value<0 || input.value.length==0){
             if(input.value<0){
                 input.placeholder = "No es posible ese codigo de Lote";
                 errors[input.name] = `${input.name} invalido`
@@ -100,7 +119,7 @@ window.addEventListener('load', function(){
     }
 
     const validarUnidadMedida = select => {
-        if(select.value === "" ){
+        if(select.value === "" || this.screen.value.length==0 ){
             select.placeholder = "Este campo es obligatorio";
             errors[select.name] = `${select.name} is required`
             select.style.color= "red";
@@ -115,7 +134,7 @@ window.addEventListener('load', function(){
     }
 
     const validarCodigoFormulacion = select => {
-        if(select.value === "" ){
+        if(select.value === "" || input.value.length==0  ){
             select.placeholder = "Este campo es obligatorio";
             errors[select.name] = `${select.name} is required`
             select.style.color= "red";
@@ -130,7 +149,7 @@ window.addEventListener('load', function(){
     }
 
     const validarContenedor = select => {
-        if(select.value === "" ){
+        if(select.value === "" || select.value.length==0  ){
             select.placeholder = "Este campo es obligatorio";
             errors[select.name] = `${select.name} is required`
             select.style.color= "red";
@@ -145,7 +164,7 @@ window.addEventListener('load', function(){
     }
 
     const validarUsoDeMuestra = select => {
-        if(select.value === "" ){
+        if(select.value === "" || select.value.length==0  ){
             select.placeholder = "Este campo es obligatorio";
             errors[select.name] = `${select.name} is required`
             select.style.color= "red";
@@ -160,17 +179,38 @@ window.addEventListener('load', function(){
     }
 
     const validarTipoDeMuestra = select => {
-        if(select.value === ""){
+        if(select.value === "" || select.value.length==0 ){
             select.placeholder = "Este campo es obligatorio";
             errors[select.name] = `${select.name} is required`
             select.style.color= "red";
-            select.style.border= "solid red"
+            select.style.border= "solid red";
         }else{
             select.style.backgroundColor = "white";
             select.style.color= "green";
             select.style.border= "";
             select.style.fontWeight = "bold"
             delete errors[select.name]
+        }
+    }
+
+    const validarFabricacion = fecha => {
+        if(fecha.value === '' || fecha.value === NULL || fecha.value.length==0 ){
+            errors[select.name] = `${fecha.name} es obligatorio`
+            fecha.style.color= "red";
+            fecha.style.border= "solid red";
+        }else if(!moment(fecha.value).isValid()){
+            errors[fecha.name] = `${fecha.name} es invalido`
+            fecha.style.color= "red";
+            fecha.style.border= "solid red";
+        }else if(moment(fecha.value).isAfter('2018/08/10')){
+            errors[fecha.name] = `${fecha.name} es invalido`
+            fecha.style.color= "red";
+            fecha.style.border= "solid red";
+        }else{
+            fecha.style.color= "green";
+            fecha.style.border= "";
+            fecha.style.fontWeight = "bold"
+            delete errors[fecha.name]
         }
     }
 
@@ -184,6 +224,7 @@ window.addEventListener('load', function(){
     Contenedor.addEventListener("blur", function(){ validarContenedor(Contenedor); })
     tipoMuestra.addEventListener("blur", function(){ validarTipoDeMuestra(tipoMuestra); })
     usoDeMuestra.addEventListener("blur", function(){ validarUsoDeMuestra(usoDeMuestra); })
+    fechaFabricacion.addEventListener("blur", function(){ validarFabricacion(FechaFabricacion); })
 
     function validacionForm() {
         validarConcentracion();
@@ -195,6 +236,7 @@ window.addEventListener('load', function(){
         validarContenedor()
         validarTipoDeMuestra()
         validarUsoDeMuestra()
+        validarFabricacion()
     }
 
     forms.addEventListener("submit", function(event) {

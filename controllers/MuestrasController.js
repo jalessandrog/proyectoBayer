@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const Muestras = require('../Models/Muestras');
 const Contenedores = require('../Models/Contenedores');
 const Formulaciones = require('../Models/TipoFormulacion');
@@ -84,20 +85,43 @@ const controller = {
     saveMuestra:(req, res, next) => {
         console.log("Ruta Guardar Muestra")
         console.log(req.body)
-        res.setHeader('Set-Cookie', 'ultima_Muestra_Agregada='+req.body.NombreMuestra+'; HttpOnly');
-
+        
         const muestra = new Muestras(req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, req.body.Concentracion, req.body.UnidadMedida, req.body.Cantidad,req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
         console.log(muestra)
-        muestra.save()
-            .then( () => {
-                console.log('Muestra agregada con exito')
-                res.status(302).redirect('/Muestras');
-            })
-            .catch(err => {
-                console.log(err);
-                console.log('Error al agregar muestra')
-                res.status(302).redirect('/error');
-            });
+        let errors = validationResult(req);
+        console.log(errors)
+		if(errors.isEmpty()){
+            muestra.save()
+                .then( () => {
+                    console.log('Muestra agregada con exito')
+                    res.status(302).redirect('/Muestras');
+                    res.setHeader('Set-Cookie', 'ultima_Muestra_Agregada='+req.body.NombreMuestra+'; HttpOnly');
+                })
+                .catch(err => {
+                    console.log(err);
+                    console.log('Error al agregar muestra')
+                    res.status(302).redirect('/error');
+                });
+        }else{
+            console.log("Ruta Agregar Muestras")
+            Contenedores.fetchAll()
+                .then(([contenedores, fieldData]) => {
+                    Formulaciones.fetchAll()
+                        .then(([formulaciones, fieldData]) => {
+                            res.render('RegistrarMuestra', {
+                                Titulo : ' Registrar Muestra',
+                                submit : 'Guardar Muestra',
+                                isLoggedIn: req.session.isLoggedIn,
+                                CorreoElectronico: req.session.CorreoElectronico,
+                                NombreCompleto: req.session.NombreCompleto,
+                                lista_contenedores: contenedores,
+                                lista_formulaciones: formulaciones,
+                                errors: errors.mapped(), 
+                                old : req.body
+                            });
+                        })
+                })
+            } 
     },
 
     EditarMuestra:(req, res, next) => {

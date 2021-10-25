@@ -4,10 +4,13 @@ const router = express.Router();
 const isAuth = require('../middlewares/is-Auth');
 const MuestrasController = require('../controllers/MuestrasController')
 
+const validacionCrearMuestra = require('../middlewares/validacionRegistrarMuestra')
+
+
 router.post('/delete/:id', MuestrasController.borrarMuestra);
 
 router.get('/agregar',  MuestrasController.RegistrarMuestra);
-router.post('/agregar',  MuestrasController.saveMuestra);
+router.post('/agregar', validacionCrearMuestra,  MuestrasController.saveMuestra);
 
 router.get('/editar/:id', MuestrasController.EditarMuestra);
 router.post('/editar/:id', MuestrasController.processUpdate);

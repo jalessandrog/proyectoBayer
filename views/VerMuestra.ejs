@@ -19,8 +19,6 @@
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
             <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
-                <form>
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                     <div class="container position-relative">
                         <div class="container position-absolute start-50 bottom-50 translate-middle-y">
                             <a class="boton" id="HojaSeguridad" href="<%= Muestra.HojaSeguridad %>" role="button">Hoja de Seguridad</a>
@@ -172,11 +170,14 @@
                     <div class="btn-group" role="group" aria-label="First group">
                         <a class="boton" id="Registrar-Actualizar" href="/Muestras/editar/<%= Muestra.idMuestra %>" role="button">Modificar información</a>
                     </div>
+                    
                     <div class="btn-group" role="group" aria-label="First group">
-                        <button type="button" class="boton" id="Registrar-Actualizar">Borrar Muestra</button>
+                        <form action="/Muestras/delete/<%= Muestra.idMuestra %>" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                            <button type=""  class="boton" id="Registrar-Actualizar" href="/Muestras/delete/<%= Muestra.idMuestra %>">Borrar Muestra</button>
+                        </form>
                     </div>
                 </div>
-                </form>
             </div> <!-- /Main Content -->
         </div>
     </div>

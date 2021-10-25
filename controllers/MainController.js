@@ -29,7 +29,7 @@ const controller = {
                     console.log('Credenciales invalidas')
                     res.status(302).res.redirect('/');
                 }).catch(err => {
-                    console.log("Ocurrió un error en la comparación de los passwords");
+                    console.log("Credenciales invalidas");
                     res.status(302).res.redirect('/');
                 });
         })

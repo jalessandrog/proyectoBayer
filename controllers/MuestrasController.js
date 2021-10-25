@@ -144,5 +144,21 @@ const controller = {
             });
     },
 
+    borrarMuestra:(req, res, next) => {
+        console.log("Ruta Borrar  Muestra")
+        console.log('ID: '+req.params.id+' Correspondiente a: '+req.body.NombreMuestra)
+        console.log('Borrando Muestra...')
+        Muestras.deleteMuestra(req.params.id)
+            .then(() => {
+                console.log('Eliminacion de Muestra con exito!!')
+                res.status(302).redirect('/Muestras');
+            })
+            .catch(err => {
+                console.log(err);
+                console.log('Error al borrar muestra')
+                res.status(302).redirect('/error');
+            });
+    },
+
 }
 module.exports = controller;

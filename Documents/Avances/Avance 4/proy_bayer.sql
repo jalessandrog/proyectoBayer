@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2021 a las 22:21:02
+-- Tiempo de generación: 30-10-2021 a las 22:38:57
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -25,6 +25,8 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteMuestra` (IN `m_idMuestra` TINYINT(3))  DELETE FROM muestras WHERE muestras.idMuestra = m_idMuestra$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateMuestra` (IN `m_idMuestra` TINYINT(3), IN `m_NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `m_CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `m_SP` BIGINT(12), IN `m_HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `m_UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `m_Lote` VARCHAR(20) CHARSET utf8mb4, IN `m_Concentracion` FLOAT(2) UNSIGNED, IN `m_UnidadMedida` ENUM('Litros','Kilogramos') CHARSET utf8mb4, IN `m_Cantidad` FLOAT(2) UNSIGNED, IN `m_FechaFabricacion` DATE, IN `m_FechaCaducidad` DATE, IN `m_idTipoDeMuestra` TINYINT(3), IN `m_CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `m_Status` TINYINT(1), IN `m_idContenedor` TINYINT(3))  BEGIN
 
 UPDATE muestras SET muestras.NombreMuestra = m_NombreMuestra, muestras.CodigoMuestra = m_CodigoMuestra, muestras.SP = m_SP, muestras.HojaSeguridad = m_HojaSeguridad, muestras.UsoMuestra = m_UsoMuestra, muestras.Lote = m_Lote, muestras.Concentracion = m_Concentracion, muestras.UnidadMedida = m_UnidadMedida, muestras.Cantidad = m_Cantidad, muestras.FechaFabricacion = m_FechaFabricacion, muestras.FechaCaducidad = m_FechaCaducidad, muestras.idTipoDeMuestra = m_idTipoDeMuestra, muestras.CodigoFormulacion = m_CodigoFormulacion, muestras.Status = m_Status, muestras.idContenedor = m_idContenedor WHERE muestras.idMuestra = m_idMuestra;
@@ -204,14 +206,11 @@ INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `Ho
 (59, 'Sample 12', NULL, 102000012356, NULL, 'Fungicida', '49', 20, 'Litros', 1000, '2021-10-04 05:00:00', '2021-01-10', '2023-01-10', 2, 'SC', 1, 1),
 (60, 'Sample 13', NULL, 102000012357, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '246891', 10, 'Litros', 500, '2021-10-06 05:00:00', '2021-01-01', '2023-01-01', 2, 'SE', 1, 1),
 (62, 'Prueba 19 oct store procedure', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '555555', 33, 'Litros', 1000, '2021-10-20 06:00:25', '0000-00-00', '0000-00-00', 2, 'CS', 1, 3),
-(66, 'Prueba 3 Octubre 19', '761587', 102000011111, 'https://github.com/jalessandrog/proyectoBayer.git', 'Tratamiento de Semilla', '555555', 10, 'Litros', 3, '2021-10-20 05:45:46', '2021-10-03', '2021-10-01', 3, 'CL', 1, 2),
 (67, 'Prueba 21', '11111', 0, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '555555', 30, 'Litros', 1, '2021-10-21 19:32:19', '2015-01-01', '2030-11-11', 1, 'CS', 1, 5),
-(68, 'Pruebva', NULL, NULL, NULL, 'Biológico', '123456', 32, 'Litros', 2, '2021-10-23 16:28:08', '2021-01-01', '2023-10-03', 2, 'ST', 1, 6),
 (69, 'Prueba 23 oct', '', 0, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '124578', 12, 'Litros', 2, '2021-10-23 16:32:10', '2020-12-10', '2023-12-12', 2, 'EC', 1, 5),
 (70, 'Prueba 23 oct', '', 0, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '124578', 10, 'Kilogramos', 2, '2021-10-23 16:43:51', '2021-10-03', '2021-11-06', 2, 'TB', 1, 6),
 (71, 'lLl', '', 0, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '124578', 11, 'Kilogramos', 10.2, '2021-10-23 16:49:50', '2021-10-03', '2021-11-06', 2, 'CS', 1, 1),
-(72, 'help', '', 0, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '124578', 12, 'Kilogramos', 10.2, '2021-10-23 16:53:51', '2021-09-26', '2021-10-22', 2, 'SE', 1, 4),
-(73, 'aaa', '', 0, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '124578', 32.66, 'Litros', 11.33, '2021-10-23 19:30:27', '2021-10-05', '2021-10-20', 3, 'BR', 1, 1);
+(72, 'help', '', 0, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '124578', 12, 'Kilogramos', 10.2, '2021-10-23 16:53:51', '2021-09-26', '2021-10-22', 2, 'SE', 1, 4);
 
 -- --------------------------------------------------------
 

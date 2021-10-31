@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2021 a las 22:38:57
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.9
+-- Tiempo de generación: 31-10-2021 a las 02:31:07
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,6 +25,12 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addMuestra` (IN `NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `SP` BIGINT(12), IN `HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `Lote` VARCHAR(20) CHARSET utf8mb4, IN `Concentracion` FLOAT UNSIGNED, IN `UnidadMedida` ENUM('Litros','Kilogramos','','') CHARSET utf8mb4, IN `Cantidad` FLOAT UNSIGNED, IN `FechaFabricacion` DATE, IN `FechaCaducidad` DATE, IN `idTipoDeMuestra` TINYINT(3), IN `CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `Status` TINYINT(1), IN `idContenedor` TINYINT(3))  INSERT INTO muestras (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor) 
+VALUES (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addTipoMuestra` (IN `Tipo` VARCHAR(50) CHARSET utf8mb4)  INSERT INTO tipomuestra (Tipo)
+VALUES (Tipo)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteMuestra` (IN `m_idMuestra` TINYINT(3))  DELETE FROM muestras WHERE muestras.idMuestra = m_idMuestra$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateMuestra` (IN `m_idMuestra` TINYINT(3), IN `m_NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `m_CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `m_SP` BIGINT(12), IN `m_HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `m_UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `m_Lote` VARCHAR(20) CHARSET utf8mb4, IN `m_Concentracion` FLOAT(2) UNSIGNED, IN `m_UnidadMedida` ENUM('Litros','Kilogramos') CHARSET utf8mb4, IN `m_Cantidad` FLOAT(2) UNSIGNED, IN `m_FechaFabricacion` DATE, IN `m_FechaCaducidad` DATE, IN `m_idTipoDeMuestra` TINYINT(3), IN `m_CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `m_Status` TINYINT(1), IN `m_idContenedor` TINYINT(3))  BEGIN
@@ -386,13 +392,13 @@ ALTER TABLE `manipulan`
 -- AUTO_INCREMENT de la tabla `muestras`
 --
 ALTER TABLE `muestras`
-  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de la tabla `tipomuestra`
 --
 ALTER TABLE `tipomuestra`
-  MODIFY `idTipoDeMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idTipoDeMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

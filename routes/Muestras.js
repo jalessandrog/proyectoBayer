@@ -5,6 +5,7 @@ const isAuth = require('../middlewares/is-Auth');
 const MuestrasController = require('../controllers/MuestrasController')
 
 const validacionCrearMuestra = require('../middlewares/validacionRegistrarMuestra')
+const validacionEditarMuestra = require('../middlewares/validacionEditarMuestra')
 
 
 router.post('/delete/:id', MuestrasController.borrarMuestra);
@@ -13,7 +14,7 @@ router.get('/agregar',  MuestrasController.RegistrarMuestra);
 router.post('/agregar', validacionCrearMuestra,  MuestrasController.saveMuestra);
 
 router.get('/editar/:id', MuestrasController.EditarMuestra);
-router.post('/editar/:id', MuestrasController.processUpdate);
+router.post('/editar/:id', validacionEditarMuestra, MuestrasController.processUpdate);
 
 
 router.get('/:id', MuestrasController.VerMuestra);

@@ -24,41 +24,49 @@
         <div class="col-1"></div>
         <div class="col-10">
             <div class="table-responsive">
+                <% if (ConsultarAlertas.length > 0) { %>
                 <table class="table .table-borderless caption-top align-middle">
                 <thead class="table">
                     <tr style="text-align: center;">
                         <th scope="col"></th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Condición*</th>
+                        <th scope="col">Nombre Alerta</th>
+                        <th scope="col">Condición (Días)</th>
                         <th scope="col">Color</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr style="text-align: center;">
-                        <th scope="row">
-                        <p>1</p>
-                        </th>
-                        <td>30 Días</td>
-                        <td>30</td>
-                        <td style="background-color: rgb(255, 255, 0);">Amarillo</td>
-                        <td>
-                        <a class="btn green btn green btn-outline-secondary" href="/AlertasRoles/modificarAlerta" role="button">Modificar</a>
-                        </td>
-                    </tr>
-                    <tr style="text-align: center;">
-                        <th scope="row">
-                        <p>2</p>
-                        </th>
-                        <td>60 Días</td>
-                        <td>60</td>
-                        <td style="background-color: rgb(255, 0, 0);">Rojo</td>
-                        <td>
-                        <a class="btn green btn green btn-outline-secondary" href="/AlertasRoles/modificarAlerta" role="button">Modificar</a>
-                        </td>
-                    </tr>
+                        <% for (let alerta of ConsultarAlertas) { %>
+                        <tr style="text-align: center;">
+                            <th scope="row">
+                                <p><%= alerta.idAlerta %></p>
+                            </th>
+                            <td><%= alerta.NombreAlerta %></td>
+                            <td><%= alerta.Condicion %></td>
+                            <td>
+                                <% if ( alerta.Color === "Rojo"){ %>
+                                <input type="color" value="#890000" readonly disabled>
+                                <% } %>  
+                                <% if ( alerta.Color === "Naranja"){ %>
+                                <input type="color" value="#ff5733" readonly disabled>
+                                <% } %>  
+                                <% if ( alerta.Color === "Amarillo"){ %>
+                                <input type="color" value="#FFC300" readonly disabled>
+                                <% } %>  
+                                <% if ( alerta.Color === "Azul"){ %>
+                                <input type="color" value="#26929F" readonly disabled>
+                                <% } %> 
+                            </td>
+                            <td>
+                                <a class="btn green btn green btn-outline-secondary" href="/AlertasRoles/editar/<%= alerta.idAlerta %>" role="button">Modificar</a>
+                            </td>
+                        </tr>
+                        <% } %> 
                     </tbody>
                 </table>
+                <% } else { %>
+                    <h3>No hay Alertas registradas</h3>
+                <% } %>
                 <p style="font-size: 0.7em;">*Días previos a la fecha de caducidad</p>
             </div>
         </div>

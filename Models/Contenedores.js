@@ -16,7 +16,7 @@ module.exports = class Contenedores {
 
 
     static fetchAll() {
-        return db.execute('SELECT contenedores.idContenedor, contenedores.NoContenedor, contenedores.Clasificacion FROM contenedores')
+        return db.execute('SELECT contenedores.idContenedor, contenedores.NoContenedor, contenedores.Clasificacion FROM contenedores WHERE contenedores.Activa = "1"')
     }
     
 }

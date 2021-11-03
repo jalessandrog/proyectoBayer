@@ -5,10 +5,13 @@ const router = express.Router();
 const isAuth = require('../middlewares/is-Auth');
 const AlertasRolesController = require('../controllers/AlertasRolesController')
 
-router.get('/', isAuth, AlertasRolesController.ConsultarAlertasRoles);
+
 
 router.get('/agregarAlerta', isAuth, AlertasRolesController.AgregarAlerta);
 
-router.get('/modificarAlerta', isAuth, AlertasRolesController.ModificarAlerta );
+router.get('/editar/:id', isAuth, AlertasRolesController.ModificarAlerta );
+router.post('/editar/:id', isAuth, AlertasRolesController.processUpdate );
+
+router.get('/', isAuth, AlertasRolesController.ConsultarAlertasRoles);
 
 module.exports = router; 

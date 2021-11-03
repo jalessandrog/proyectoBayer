@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <%- include('includes/head.ejs') %>
     
     <body>
@@ -12,48 +12,59 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <div class="table-responsive">
-                        <table class="table .table-borderless caption-top align-middle">
-                            <thead class="table">
-                                <tr style="text-align: center;">
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Condición*</th>
-                                    <th scope="col">Color</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="text-align: center;">
-                                    <td><input class="form-control" id="nombre_alerta" placeholder="Alerta1"></td>
-                                    <td><input class="form-control" id="condition_alerta" placeholder="50"></td>
-                                    <td><input type="color" id="color_alerta" value="#563d7c" title="Choose your color"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style="font-size: 0.7em;">*Días previos a la fecha de caducidad</p>
+        <form action="/AlertasRoles/editar/<%= alerta.idAlerta %>" method="POST" class="EditarAlertasForm">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="table-responsive">
+                            <table class="table .table-borderless caption-top align-middle">
+                                <thead class="table">
+                                    <tr style="text-align: center;">
+                                        <th scope="col">Nombre Alera</th>
+                                        <th scope="col">Condición (días)*</th>
+                                        <th scope="col">Color</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="text-align: center;">
+                                        <td><input class="form-control" type="text" id="NombreAlerta" name="NombreAlerta" placeholder="<%= alerta.NombreAlerta %>"  value="<%= alerta.NombreAlerta %>"></td>
+                                        <td><input class="form-control" type="number" id="Condicion" name="Condicion" placeholder="<%= alerta.Condicion %> días" value="<%= alerta.Condicion %>"></td>
+                                        <td>
+                                            <select class="form-select" name="Color" id="Color" required>
+                                                <option selected disabled value="">Seleccione el color</option>
+                                                <option value="Rojo">Rojo</option>
+                                                <option value="Amarillo">Amarillo</option>
+                                                <option value="Naranja">Naranja</option>
+                                                <option value="Azul">Azul</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="font-size: 0.7em;">*Días previos a la fecha de caducidad</p>
+                        </div>
                     </div>
+                    <div class="col-2"></div>
                 </div>
-                <div class="col-2"></div>
+                <div class="row">
+                    <br>
+                    <div class="col-3"></div>
+                    <div class="col-3">
+                        <div style="text-align: right;">
+                            <button type="submit" class="boton" id="Registrar-Actualizar">Actualizar Infromación</button>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div style="text-align: left;">
+                            <a style="font-size: 1em;" class="btn green" href="/AlertasRoles" role="button">Eliminar Alarma</a>
+                        </div>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
             </div>
-            <div class="row">
-                <br>
-                <div class="col-3"></div>
-                <div class="col-3">
-                    <div style="text-align: right;">
-                        <a style="font-size: 1em;" class="btn green" href="/AlertasRoles" role="button">Guardar Modificación</a>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div style="text-align: left;">
-                        <a style="font-size: 1em;" class="btn green" href="/AlertasRoles" role="button">Eliminar Alarma</a>
-                    </div>
-                </div>
-                <div class="col-3"></div>
-            </div>
-        </div>
-        
+        </form>
     </body>
 </html>

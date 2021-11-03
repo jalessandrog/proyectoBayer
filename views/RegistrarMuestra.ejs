@@ -26,12 +26,25 @@
 
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
-            <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
+            <div class="offset-lg-2 offset-md-2 col-xs-12 col-lg-9 col-sm-12 col-md-10">
                 <form action="/Muestras/agregar" method="POST" class="RegistrarMuestraForm">
                     <%- include('includes/Form.ejs') %>
 
-                    <div class="btn-toolbar justify-content-around" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group" role="group" aria-label="First group">
+                    <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
+                        <hr>
+                        <br>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group me-auto"></div>
+                            <div class="btn-group me-auto" role="group" aria-label="First group">
+                                <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-Contenedor">Agregar Nuevo Contenedor</button>
+                            </div>
+                            <div class="btn-group me-auto" role="group" aria-label="Second group">
+                                <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-Formulacion">Agregar Nuevo Tipo de Formulación</button>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="btn-group me-auto" role="group" aria-label="Second group">
                             <button type="submit" class="boton" id="Registrar-Actualizar">Registrar Muestra</button>
                         </div>
                     </div>

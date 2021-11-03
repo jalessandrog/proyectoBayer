@@ -19,9 +19,9 @@ window.addEventListener('load', function(){
         // (1020000)+\d{5}$
         let result = /(1020000)+\d{5}$/.test(input.value)
         // console.log(result)
-        if(input.value === 0 || input.value === NULL || input.value === '0' || input.value === ''){
-            input.value = NULL; //VALIDAR PORQUE SE PONE EL 0 EN EL SP SI ESTÁ VACIO
-        }
+        // if(input.value === 0 || input.value === NULL || input.value === '0' || input.value === ''){
+        //     input.value = NULL; //VALIDAR PORQUE SE PONE EL 0 EN EL SP SI ESTÁ VACIO
+        // }
         if(input.value !== ''){
             if(result == false){
                 input.placeholder = "SP invalido";

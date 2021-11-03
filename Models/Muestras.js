@@ -23,7 +23,7 @@ module.exports = class Muestras {
 
     
     save() {
-        return db.execute('INSERT INTO muestras (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        return db.execute('INSERT INTO muestras (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor, Activa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)',
             [this.NombreMuestra, this.CodigoMuestra, this.SP, this.HojaSeguridad, this.UsoMuestra, this.Lote, this.Concentracion, this.UnidadMedida, this.Cantidad,  this.FechaFabricacion,  this.FechaCaducidad, this.idTipoDeMuestra, this.CodigoFormulacion, this.Status, this.idContenedor ]);
     }
 
@@ -36,7 +36,7 @@ module.exports = class Muestras {
 
     static fetchAll() {
         // return db.execute('SELECT * FROM muestras');
-        return db.execute('SELECT muestras.idMuestra, muestras.NombreMuestra, muestras.CodigoMuestra, muestras.SP, muestras.HojaSeguridad, muestras.UsoMuestra, muestras.Lote, muestras.Concentracion, muestras.UnidadMedida, muestras.Cantidad, muestras.FechaIngreso, muestras.FechaFabricacion, muestras.FechaCaducidad, tipomuestra.Tipo, tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion, contenedores.NoContenedor, contenedores.Clasificacion, muestras.Status, estadomuestra.DescripcionStatus FROM muestras, contenedores, tipoformulacion, tipomuestra, estadomuestra WHERE muestras.idTipoDeMuestra = tipomuestra.idTipoDeMuestra AND muestras.CodigoFormulacion = tipoformulacion.CodigoFormulacion AND contenedores.idContenedor = muestras.idContenedor AND muestras.Status = estadomuestra.Status ORDER BY muestras.NombreMuestra ASC')
+        return db.execute('SELECT muestras.idMuestra, muestras.NombreMuestra, muestras.CodigoMuestra, muestras.SP, muestras.HojaSeguridad, muestras.UsoMuestra, muestras.Lote, muestras.Concentracion, muestras.UnidadMedida, muestras.Cantidad, muestras.FechaIngreso, muestras.FechaFabricacion, muestras.FechaCaducidad, tipomuestra.Tipo, tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion, contenedores.NoContenedor, contenedores.Clasificacion, muestras.Status, estadomuestra.DescripcionStatus FROM muestras, contenedores, tipoformulacion, tipomuestra, estadomuestra WHERE muestras.idTipoDeMuestra = tipomuestra.idTipoDeMuestra AND muestras.CodigoFormulacion = tipoformulacion.CodigoFormulacion AND contenedores.idContenedor = muestras.idContenedor AND muestras.Status = estadomuestra.Status AND muestras.Activa = "1" ORDER BY muestras.NombreMuestra ASC')
     }
     static fetchAllbyTerm(query) {
         // return db.execute('SELECT * FROM muestras');

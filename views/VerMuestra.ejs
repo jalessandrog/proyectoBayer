@@ -15,19 +15,23 @@
             <h4><%= Titulo %> <%= Muestra.SP %></h4>
         <% } %>
         <br />
+        <br />
         
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
-            <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
-                    <div class="container position-relative">
-                        <div class="container position-absolute start-50 bottom-50 translate-middle-y">
-                            <a class="boton" id="HojaSeguridad" href="<%= Muestra.HojaSeguridad %>" role="button">Hoja de Seguridad</a>
+            <div class="offset-lg-2 offset-md-2 col-xs-12 col-lg-9 col-sm-12 col-md-10">
+                    <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group me-auto"></div>
+                            <div class="btn-group me-auto" role="group" aria-label="First group">
+                                <a class="boton" id="HojaSeguridad" href="<%= Muestra.HojaSeguridad %>" role="button">Hoja de Seguridad</a>
+                            </div>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <% if (Muestra.CodigoMuestra){ %>
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating">
                                 <input type="text" name="CodigoMuestra" class="form-control" id="floatingInputGrid" placeholder="Código de Muestra" value="<%= Muestra.CodigoMuestra %>" disabled>
                                 <label for="floatingInputGrid">Código de Muestra</label>
@@ -36,7 +40,7 @@
                         <% } %>
                         
                         <% if (Muestra.SP){ %>
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating">
                                 <input type="text" name="SP" class="form-control" id="floatingInputGrid" placeholder="SP de Muestra" value="<%= Muestra.SP %>" disabled>
                                 <label for="floatingInputGrid">SP de Muestra</label>
@@ -45,7 +49,7 @@
                         <% } %>
                         
                         <% if (Muestra.NombreMuestra){ %>
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating">
                                 <input type="text" name="NombreMuestra" class="form-control" id="floatingInputGrid" placeholder="Nombre de Muestra" value="<%= Muestra.NombreMuestra %>" disabled>
                                 <label for="floatingInputGrid">Nombre de Muestra</label>
@@ -53,75 +57,75 @@
                         </div>
                         <% } %>
 
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input class="form-control" name="UnidadMedida" id="UnidadMedida" placeholder="floatingInputGrid" value="<%= Muestra.UnidadMedida %>" disabled>
                                 <label for="floatingInputGrid">Unidad De Medida</label>
                             </div>    
                         </div>
 
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
-                                <input type="number" name="Cantidad" class="form-control" id="floatingInputGrid" placeholder="Cantidad" value="<%= Muestra.Cantidad %>" step="0.1" disabled>
+                                <input type="number" name="Cantidad" class="form-control" id="floatingInputGrid" placeholder="Cantidad" value="<%= Muestra.Cantidad %>"  disabled>
                                 <label for="floatingInputGrid">Cantidad (<%= Muestra.UnidadMedida %>)</label>
                             </div>
                         </div>
                         
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
-                                <input type="number" name="Concentracion" class="form-control" id="floatingInputGrid" placeholder="Concentracion (%)" value="<%= Muestra.Concentracion %>" step="0.1" disabled>
+                                <input type="number" name="Concentracion" class="form-control" id="floatingInputGrid" placeholder="Concentracion (%)" value="<%= Muestra.Concentracion %>"  disabled>
                                 <label for="floatingInputGrid">Concentracion (%)</label>
                             </div>
                         </div>
                         
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input class="form-control" name="idTipoDeMuestra" id="floatingInputGrid" placeholder="Tipo de Muestra" value="<%= Muestra.Tipo %>" disabled>
                                 <label for="floatingInputGrid">Tipo de Muestra</label>
                             </div>
                         </div>
                         
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input class="form-control" name="CodigoFormulacion" id="floatingInputGrid" placeholder="Codigo de Formulación" value="<%= Muestra.CodigoFormulacion %>" disabled>
                                 <label for="floatingInputGrid">Codigo de Formulación</label>
                             </div>
                         </div>
 
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input class="form-control" id="floatingInputGrid" placeholder="Formulación" value="<%= Muestra.Formulacion %>" disabled>
                                 <label for="floatingInputGrid">Formulación</label>
                             </div>
                         </div>
 
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <textarea class="form-control text-center" id="floatingInputGrid" placeholder="Descripción de Formulación"   id="floatingTextarea" style="height:auto" disabled><%= Muestra.DescripcionFormulacion %></textarea>
                                 <label for="floatingInputGrid">Descripción de Formulación</label>
                             </div>
                         </div>
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating">
                                 <input type="text" name="Lote" class="form-control" id="floatingInputGrid" placeholder="Lote de Muestra" value="<%= Muestra.Lote %>" disabled>
                                 <label for="floatingInputGrid">Lote de Muestra</label>
                             </div>
                         </div>
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input class="form-control" name="UsoMuestra" id="floatingInputGrid" placeholder="Uso de Muestra" value="<%= Muestra.UsoMuestra %>" disabled>
                                 <label for="floatingInputGrid">Uso de Muestra</label>
                             </div>
                         </div>
                         
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input class="form-control" name="Clasificacion" id="floatingInputGrid" placeholder="Tipo de Contenedor" value="<%= Muestra.Clasificacion %>" disabled>
                                 <label for="floatingInputGrid">Tipo de Contenedor</label>
                             </div>
                         </div>
                         <% if (Muestra.NoContenedor) { %>
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input type="number" name="NoContenedor" class="form-control" id="floatingInputGrid" placeholder="Número de Contenedor" value="<%= Muestra.NoContenedor %>"disabled>
                                 <label for="floatingInputGrid">Número de Contenedor</label>
@@ -129,28 +133,28 @@
                         </div>
                         <% }%>
 
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input type="datetime"  class="form-control" id="floatingInputGrid" placeholder="Fecha de Ingreso" value="<%= Muestra.FechaIngreso %>" disabled>
                                 <label for="floatingInputGrid">Fecha de Ingreso</label>
                             </div>
                         </div>
                         
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input type="datetime" name="FechaFabricacion" class="form-control" id="floatingInputGrid" placeholder="Fecha de Fabricación" value="<%= Muestra.FechaFabricacion %>" disabled>
                                 <label for="floatingInputGrid">Fecha de Fabricación</label>
                             </div>
                         </div>
                         
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <input type="datetime" name="FechaCaducidad" class="form-control" id="floatingInputGrid" placeholder="Fecha de Caducidad" value="<%= Muestra.FechaCaducidad %>" disabled>
                                 <label for="floatingInputGrid">Fecha de Caducidad</label>
                             </div>
                         </div>
 
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
                                 <% if (Muestra.Status === 1){ %>
                                 <input type="text" class="form-control text-center" id="floatingInputGrid" value="Activa" disabled>
@@ -165,18 +169,18 @@
 
                         
                 </div><!--/ Row-->
-                <hr>
-                <div class="btn-toolbar justify-content-around" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group" role="group" aria-label="First group">
-                        <a class="boton" id="Registrar-Actualizar" href="/Muestras/editar/<%= Muestra.idMuestra %>" role="button">Modificar información</a>
-                    </div>
-                    
-                    <div class="btn-group" role="group" aria-label="First group">
-                        <form action="/Muestras/delete/<%= Muestra.idMuestra %>" method="post">
-                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
+                    <hr>
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group me-auto"></div>
+                        <div class="btn-group me-auto" role="group" aria-label="First group">
+                            <a class="boton" id="Registrar-Actualizar" href="/Muestras/editar/<%= Muestra.idMuestra %>" role="button">Modificar información</a>
+                        </div>
+                        <div class="btn-group me-auto" role="group" aria-label="Second group">
                             <button type=""  class="boton" id="Registrar-Actualizar" href="/Muestras/delete/<%= Muestra.idMuestra %>">Borrar Muestra</button>
-                        </form>
+                        </div>
                     </div>
+                    <br>
                 </div>
             </div> <!-- /Main Content -->
         </div>

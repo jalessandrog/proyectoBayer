@@ -43,7 +43,20 @@
                             </th>
                             <td><%= alerta.NombreAlerta %></td>
                             <td><%= alerta.Condicion %></td>
-                            <td><input type="color" value="#<%= alerta.Color %>" readonly disabled></td>
+                            <td>
+                                <% if ( alerta.Color === "Rojo"){ %>
+                                <input type="color" value="#890000" readonly disabled>
+                                <% } %>  
+                                <% if ( alerta.Color === "Naranja"){ %>
+                                <input type="color" value="#ff5733" readonly disabled>
+                                <% } %>  
+                                <% if ( alerta.Color === "Amarillo"){ %>
+                                <input type="color" value="#FFC300" readonly disabled>
+                                <% } %>  
+                                <% if ( alerta.Color === "Azul"){ %>
+                                <input type="color" value="#26929F" readonly disabled>
+                                <% } %> 
+                            </td>
                             <td>
                                 <a class="btn green btn green btn-outline-secondary" href="/AlertasRoles/editar/<%= alerta.idAlerta %>" role="button">Modificar</a>
                             </td>

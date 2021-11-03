@@ -10,7 +10,7 @@ module.exports = class Alertas {
     }
 
     static fetchAll() {
-        return db.execute('SELECT alertas.idAlerta, alertas.NombreAlerta, alertas.Color, alertas.Condicion FROM alertas ORDER BY alertas.Condicion ASC')
+        return db.execute('SELECT alertas.idAlerta, alertas.NombreAlerta, alertas.Color, alertas.Condicion FROM alertas WHERE alertas.Activa = "1" ORDER BY alertas.Condicion ASC')
     }
     
     static fetchOne(id){
@@ -18,7 +18,8 @@ module.exports = class Alertas {
     }
 
     static updateAlerta(idAlerta, NombreAlerta, Color, Condicion){
-        return db.execute('UPDATE alertas SET NombreAlerta = ?, Color = ?, Condicion = ? WHERE idAlerta = ?',
+        return db.execute('CALL updateAlerta (?, ?, ?, ?)',
+        // return db.execute('UPDATE `alertas` SET `NombreAlerta` = ?, `Color` = ?, `Condicion` = ? WHERE `idAlerta` = ?',
             [idAlerta, NombreAlerta, Color, Condicion]);
     }
 }

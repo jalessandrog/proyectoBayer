@@ -86,7 +86,23 @@ const controller = {
         console.log("Ruta Guardar Muestra")
         console.log(req.body)
         
-        const muestra = new Muestras(req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, req.body.Concentracion, req.body.UnidadMedida, req.body.Cantidad,req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
+        let SP, CodigoMuestra
+        if(req.body.SP === '' || req.body.SP === '0'){
+            SP = null;
+        }else{
+            SP = req.body.SP;
+        }
+
+        if(req.body.CodigoMuestra === '' || req.body.CodigoMuestra === '0'){
+            CodigoMuestra = null;
+        }else{
+            CodigoMuestra = req.body.CodigoMuestra;
+        }
+
+        let Concentracion = req.body.Concentracion.toFixed(3);
+        let Cantidad =req.body.Cantidad.toFixed(3);
+
+        const muestra = new Muestras(req.body.NombreMuestra, CodigoMuestra, SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
         console.log(muestra)
         let errors = validationResult(req);
         console.log(errors)
@@ -125,6 +141,7 @@ const controller = {
     },
 
     EditarMuestra:(req, res, next) => {
+        
         console.log("Ruta Editar Muestra con ID "+req.params.id)
         Muestras.fetchOne(req.params.id)
             .then(([rows, fieldData]) => {
@@ -150,13 +167,31 @@ const controller = {
     },
 
     processUpdate: (req, res, next) => {
-        
+        let SP, CodigoMuestra
+        if(req.body.SP === '' || req.body.SP === '0'){
+            SP = null;
+        }else{
+            SP = req.body.SP;
+        }
+
+        if(req.body.CodigoMuestra === '' || req.body.CodigoMuestra === '0'){
+            CodigoMuestra = null;
+        }else{
+            CodigoMuestra = req.body.CodigoMuestra;
+        }
+
+        const Concentracion = Number(req.body.Concentracion).toFixed(2);
+        const Cantidad = Number(req.body.Cantidad).toFixed(2);
+
+        console.log(Concentracion)
+        console.log(Cantidad)
+
         console.log("Ruta Procesando Actualización de  Muestra")
         console.log('actualizando Muestra...')
         console.log('ID: '+req.params.id+' Correspondiente a: '+req.body.NombreMuestra)
         
         console.log(req.body)
-        Muestras.updateMuestra(req.params.id, req.body.NombreMuestra, req.body.CodigoMuestra, req.body.SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, parseFloat(req.body.Concentracion), req.body.UnidadMedida, parseFloat(req.body.Cantidad),  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
+        Muestras.updateMuestra(req.params.id, req.body.NombreMuestra, CodigoMuestra, SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
             .then( () => {
                 console.log('Actualización de muestra con exito!!')
                 res.status(302).redirect('/Muestras');

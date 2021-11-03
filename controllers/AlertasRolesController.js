@@ -56,6 +56,8 @@ const controller = {
         console.log('ID: '+req.params.id+' Correspondiente a: '+req.body.NombreAlerta)
         
         console.log(req.body)
+        
+
         Alertas.updateAlerta(req.params.id, req.body.NombreAlerta,  req.body.Color, req.body.Condicion)
             .then( () => {
                 console.log('Actualización de alerta con exito!!')

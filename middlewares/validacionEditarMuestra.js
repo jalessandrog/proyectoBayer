@@ -1,7 +1,7 @@
 const { body, matchedData, check } = require('express-validator');
 
 // Validaciones
-const validacionCrearMuestra = [
+const validacionEditarMuestra = [
     // body('CodigoMuestra').notEmpty().withMessage('Debes ingresar el Codigo de Muestra'),
     body('SP')
         .not().isEmpty().matches(/(1020000)+\d{5}$/,"i").withMessage('El código SP es invalido, reingrese el código'),
@@ -21,4 +21,4 @@ const validacionCrearMuestra = [
 ];
 
 
-module.exports = validacionCrearMuestra; 
+module.exports = validacionEditarMuestra; 

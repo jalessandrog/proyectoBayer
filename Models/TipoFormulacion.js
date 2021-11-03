@@ -17,7 +17,6 @@ module.exports = class Formulaciones {
 
 
     static fetchAll() {
-        return db.execute('SELECT tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion FROM tipoformulacion')
+        return db.execute('SELECT tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion FROM tipoformulacion WHERE tipoformulacion.Activa = "1" ')
     }
-    
 }

@@ -15,4 +15,4 @@ router.get('/:id', isAuth, UsuariosController.ModificarUsuario);
 
 
 
-module.exports = router;
+module.exports = router; 

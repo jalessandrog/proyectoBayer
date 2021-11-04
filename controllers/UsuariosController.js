@@ -1,14 +1,22 @@
+const Usuarios = require('../Models/Usuarios');
 
 const controller = {
-    
-
     ConsultarUsuarios:(req, res, next) => {
         console.log("Ruta Consultar Usuarios")
-        res.render('ConsultarUsuarios',{
-            isLoggedIn: req.session.isLoggedIn,
-            CorreoElectronico: req.session.CorreoElectronico,
-            NombreCompleto: req.session.NombreCompleto,
-        })
+
+        Usuarios.fetchAll()
+            .then(([rows, fieldData]) => {
+                res.render('ConsultarUsuarios',{
+                    isLoggedIn: req.session.isLoggedIn,
+                    CorreoElectronico: req.session.CorreoElectronico,
+                    NombreCompleto: req.session.NombreCompleto,
+                    ConsultarUsuarios: rows,
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                //response.status(302).redirect('/error');
+            });
     },
 
     AgregarUsuario: (req, res, next) => {

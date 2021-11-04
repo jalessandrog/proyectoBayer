@@ -3,8 +3,47 @@
     <%- include('includes/head.ejs') %>
 <body>
     <%- include('includes/header.ejs') %>
-
     <br>
+    <br>
+    <div class="container">
+        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="col-md-6 col-sm-2 col-lg-3">
+            <a class="btn green" href="/Usuarios/Nuevo" role="button">Agregar Usuario</a>
+          </div>
+        </div>
+      <br>
+      <br>
+      <div class="table-responsive">
+        <% if (ConsultarUsuarios.length > 0) { %>
+        <table class="table .table-borderless caption-top align-middle">
+          <thead class="table" style="background-color: rgb(194, 204, 204);">
+              <tr style="text-align:center;">
+                <th scope="col" id="verMas"></th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Rol</th>
+              </tr>
+          </thead>
+          <tbody text-align:center;>
+              <% for (let muestra of ConsultarUsuarios) { %>
+                <tr>
+                  <th scope="row">
+                    <a class="btn green" href="/Usuarios/<%= muestra.idEmpleado %>" role="button">Modificar Usuario</a>
+                  </th>
+                  <td style="text-align:center;"><%= muestra.NombreUsuario %></td>
+                  <td style="text-align:center;"><%= muestra.CorreoElectronico %></td>
+                  <td style="text-align:center;"><%= muestra.Rol %></td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+        <% } else { %>
+          <h3>No hay usuarios registradas</h3>
+        <% } %>
+      </div>
+    </div>
+
+    <!--<br>
     <br>
     <div class="container ">
       <div class="row">
@@ -95,6 +134,6 @@
                 <a class="btn green" href="/Usuarios/4" role="button">Modificar Usuario</a>
             </div>
           </div>
-      </div>
+      </div>-->
 </body>
 </html>

@@ -15,11 +15,11 @@
         
       </div>
       <div class="col-md-4">
-        <form class="form-inline">
-          <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-          <div class="input-group">
-              <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-              <span><input class="form-control" type="search" placeholder="Search" aria-label="Search"></span>
+        <form class="form-inline" method='POST' action='/Movimientos'>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+          <div class="input-group col-7">
+            <span><input class="form-control px-2 mx-3" type="search" placeholder="Buscar por Nombre de usuario" name="query" aria-label="Search" ></span>
+              <button class="btn btn-outline-success mx-3 "  type="submit"><i class="fas fa-search"></i></button>
           </div>
         </form>
       </div>

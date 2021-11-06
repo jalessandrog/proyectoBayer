@@ -26,7 +26,7 @@
 
     <div class="container">
         <div class="d-flex justify-content-center h-100">
-            <form class="col-12" action='/' method="POST">
+            <form class="col-12" action='/Recuperar' method="POST">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                 <div class="col-sm-8 main-section">
                     <div class="col-12 logo-img">
@@ -38,14 +38,8 @@
                 <div class="form-group" id="user-group">
                     <input type="email" class="form-control" name="CorreoElectronico" placeholder="usuario@bayer.com" required/>
                 </div>
-                <div class="form-group" id="contrasena-group">
-                    <input type="password" class="form-control"  name="password" placeholder="Bayer@2021" required/>
-                </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit" href="/Inicio">Iniciar Sesión</button>
-                </div>
-                <div class="col-12 forgot">
-                    <a href="/Recuperar">¿Olvidó su contraseña?</a>
+                    <button class="btn btn-primary btn-block" type="submit" href="/Inicio">Recuperar contraseña</button>
                 </div>
             </form>
         </div>

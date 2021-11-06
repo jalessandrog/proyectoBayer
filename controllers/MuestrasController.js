@@ -80,6 +80,10 @@ const controller = {
                         });
                     })
             })
+            .catch(err => {
+                console.log(err);
+                res.status(302).redirect('/error');
+            });
     },
 
     saveMuestra:(req, res, next) => {

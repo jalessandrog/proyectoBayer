@@ -1,5 +1,8 @@
 const Usuario = require('../models/Usuarios');
+const moment = require('moment');
 const bcrypt = require('bcryptjs');
+const Main = require('../Models/Main');
+const Alertas = require('../Models/Alertas');
 
 const controller = {
 
@@ -97,11 +100,35 @@ const controller = {
 
     index: (req, res, next) => {
         console.log("Ruta index")
-        res.render('Index',{
-            isLoggedIn: req.session.isLoggedIn,
-            CorreoElectronico: req.session.CorreoElectronico,
-            NombreCompleto: req.session.NombreCompleto,
-        });
+        Main.Alerta1()
+            .then(([alertaOne, fieldData]) => {
+                Main.Alerta2()
+                    .then(([alertaTwo, fieldData]) => {
+                        Main.Alerta3()
+                            .then(([alertaThree, fieldData]) => {
+                                res.render('Index',{
+                                    isLoggedIn: req.session.isLoggedIn,
+                                    CorreoElectronico: req.session.CorreoElectronico,
+                                    NombreCompleto: req.session.NombreCompleto,
+                                    alertaOne: alertaOne,
+                                    alertaTwo: alertaTwo,
+                                    alertaThree: alertaThree,
+                                });
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                res.status(302).redirect('/error');
+                            });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(302).redirect('/error');
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(302).redirect('/error');
+            });
     },
     
 }

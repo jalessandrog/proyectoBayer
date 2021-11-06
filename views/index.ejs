@@ -16,25 +16,74 @@
                 <table class="table table-bordered caption-top">
                     <thead class="table-light">
                       <tr style="text-align: center;">
-                        <th scope="col" colspan="3" style="background: #c0c1ce;">Alertas</th>
+                        <th scope="col" colspan="4" style="background: #c0c1ce;">Alertas</th>
+                        <tr scope="col" colspan="3" style="background: #c0c1ce; text-align: center; font-weight: bold;">
+                          <td></td>
+                          <td>Muestras</td>
+                          <td>Días para caducar</td>
+                          <td>Existencias</td>
+                        </tr>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="text-align: center;">
+                      <% for (let alerta1 of alertaOne) { %>
                       <tr>
-                        <th scope="row" style="background: #FF0000;">  </th>
-                        <td>Producto cercano a caducar</td>
-                        <td>Existencia del producto</td>
+                        <% if ( alerta1.Color === "Rojo"){ %>
+                        <th scope="row" style="background: #890000;">  </th>
+                        <% } %>  
+                        <% if ( alerta1.Color === "Naranja"){ %>
+                        <th scope="row" style="background: #ff5733;">  </th>
+                        <% } %>  
+                        <% if ( alerta1.Color === "Amarillo"){ %>
+                        <th scope="row" style="background: #FFC300;">  </th>
+                        <% } %>  
+                        <% if ( alerta1.Color === "Azul"){ %>
+                        <th scope="row" style="background: #26929F;">  </th>
+                        <% } %> 
+                        <td><%= alerta1.NombreMuestra %></td>
+                        <td><%= alerta1.DiasRestantes %> Días </td>
+                        <td><%= alerta1.Cantidad %> - <%= alerta1.UnidadMedida %></td>
+                        <!-- <td>Producto cercano a caducar</td> -->
                       </tr>
+                      <% } %> 
+                      <% for (let alerta2 of alertaTwo) { %>
                       <tr>
-                        <th scope="row" style="background: #f0b81e;">  </th>
-                        <td>Producto nivel medio a caducar</td>
-                        <td>Existencia del producto</td>
+                        <% if ( alerta2.Color === "Rojo"){ %>
+                        <th scope="row" style="background: #890000;">  </th>
+                        <% } %>  
+                        <% if ( alerta2.Color === "Naranja"){ %>
+                        <th scope="row" style="background: #ff5733;">  </th>
+                        <% } %>  
+                        <% if ( alerta2.Color === "Amarillo"){ %>
+                        <th scope="row" style="background: #FFC300;">  </th>
+                        <% } %>  
+                        <% if ( alerta2.Color === "Azul"){ %>
+                        <th scope="row" style="background: #26929F;">  </th>
+                        <% } %> 
+                          <td><%= alerta2.NombreMuestra %></td>
+                          <td><%= alerta2.DiasRestantes %> Días </td>
+                          <td><%= alerta2.Cantidad %> - <%= alerta2.UnidadMedida %></td>
                       </tr>
-                      <tr>
-                        <th scope="row" style="background: #f0ecec;">  </th>
-                        <td>Otro nivel de alerta</td>
-                        <td>Existencia del producto</td>
-                      </tr>
+                      <% } %> 
+                      <% for (let alerta3 of alertaThree) { %>
+                        <tr>
+                          <% if ( alerta3.Color === "Rojo"){ %>
+                          <th scope="row" style="background: #890000;">  </th>
+                          <% } %>  
+                          <% if ( alerta3.Color === "Naranja"){ %>
+                          <th scope="row" style="background: #ff5733;">  </th>
+                          <% } %>  
+                          <% if ( alerta3.Color === "Amarillo"){ %>
+                          <th scope="row" style="background: #FFC300;">  </th>
+                          <% } %>  
+                          <% if ( alerta3.Color === "Azul"){ %>
+                          <th scope="row" style="background: #26929F;">  </th>
+                          <% } %> 
+                            <td><%= alerta3.NombreMuestra %></td>
+                            <td><%= alerta3.DiasRestantes %> Días </td>
+                            <td><%= alerta3.Cantidad %> - <%= alerta3.UnidadMedida %></td>
+                        </tr>
+                        <% } %> 
                     </tbody>
                 </table>
               </div>

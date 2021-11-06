@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2021 a las 02:01:55
+-- Tiempo de generación: 06-11-2021 a las 06:40:28
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -46,6 +46,48 @@ UPDATE muestras SET muestras.NombreMuestra = m_NombreMuestra, muestras.CodigoMue
 END$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `alerta1`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `alerta1` (
+`NombreMuestra` varchar(100)
+,`Cantidad` float unsigned
+,`Color` enum('Rojo','Amarillo','Naranja','Azul')
+,`NombreAlerta` varchar(60)
+,`Dias_restantes` int(7)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `alerta2`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `alerta2` (
+`NombreMuestra` varchar(100)
+,`Cantidad` float unsigned
+,`Color` enum('Rojo','Amarillo','Naranja','Azul')
+,`NombreAlerta` varchar(60)
+,`Dias_restantes` int(7)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `alerta3`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `alerta3` (
+`NombreMuestra` varchar(100)
+,`Cantidad` float unsigned
+,`Color` enum('Rojo','Amarillo','Naranja','Azul')
+,`NombreAlerta` varchar(60)
+,`Dias_restantes` int(7)
+);
 
 -- --------------------------------------------------------
 
@@ -170,21 +212,21 @@ CREATE TABLE `muestras` (
 --
 
 INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `UsoMuestra`, `Lote`, `Concentracion`, `UnidadMedida`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `CodigoFormulacion`, `Status`, `idContenedor`, `Activa`) VALUES
-(1, 'CLAVISSSS', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Tratamiento de Semilla', '1111', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'DC', 1, 3, '1'),
-(2, 'ADENGO', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '1', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'CL', 1, 1, '0'),
-(4, 'ALIETTE', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '2', 11.5, 'Kilogramos', 1.5, '2021-11-03 20:50:38', '2021-10-31', '2021-12-09', 2, 'SG', 1, 2, '1'),
+(1, 'CLAVISSSS', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Tratamiento de Semilla', '1111', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-30', 1, 'DC', 1, 3, '0'),
+(2, 'ADENGO', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '1', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-09', 2, 'CL', 1, 1, '0'),
+(4, 'ALIETTE', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '2', 11.5, 'Kilogramos', 1.5, '2021-11-03 20:50:38', '2021-10-31', '2021-11-08', 2, 'SG', 1, 2, '1'),
 (5, 'ALION', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '3', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SL', 1, 2, '1'),
 (8, 'ANTRACOL', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '4', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2021-10-31', '2021-12-11', 1, 'CS', 1, 2, '1'),
 (9, 'BELT', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '5', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-10-04', '2021-12-11', 1, 'SE', 1, 1, '1'),
-(12, 'CALYPSO', NULL, NULL, NULL, 'Fungicida', '6', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
+(12, 'CALYPSO', NULL, NULL, NULL, 'Fungicida', '6', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-15', 1, 'SC', 1, 1, '1'),
 (13, 'CLAVIS', NULL, NULL, NULL, 'Fungicida', '7', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (16, 'CONFIDOR', NULL, NULL, NULL, 'Fungicida', '8', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (17, 'CONSIST MAX', NULL, NULL, NULL, 'Fungicida', '9', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(18, 'CUPRAVIT HYDRO', NULL, NULL, NULL, 'Fungicida', '10', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'WP', 1, 1, '1'),
+(18, 'CUPRAVIT HYDRO', NULL, NULL, NULL, 'Fungicida', '10', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-12-31', 1, 'WP', 1, 1, '1'),
 (19, 'CURBIX', NULL, NULL, NULL, 'Fungicida', '11', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (20, 'DECIS FORTE', NULL, NULL, NULL, 'Fungicida', '12', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SE', 1, 1, '1'),
 (21, 'EMESTO PRIME', NULL, NULL, NULL, 'Tratamiento de Semilla', '13', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SP', 1, 1, '1'),
-(22, 'FLINT', NULL, NULL, NULL, 'Fungicida', '14', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'WG', 1, 1, '1'),
+(22, 'FLINT', NULL, NULL, NULL, 'Fungicida', '14', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2022-01-06', 1, 'WG', 1, 1, '1'),
 (23, 'FOLICUR', NULL, NULL, NULL, 'Fungicida', '15', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'EW', 1, 1, '1'),
 (24, 'INFINITO', NULL, NULL, NULL, 'Fungicida', '16', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (25, 'JADE', NULL, NULL, NULL, 'Fungicida', '17', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SG', 1, 1, '1'),
@@ -192,7 +234,7 @@ INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `Ho
 (27, 'LUNA EXPERIENCE', NULL, NULL, NULL, 'Fungicida', '19', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (28, 'MOVENTO', NULL, NULL, NULL, 'Fungicida', '20', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'DC', 1, 1, '1'),
 (29, 'NEW LEVERAGE', NULL, NULL, NULL, 'Fungicida', '21', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'DC', 1, 4, '1'),
-(30, 'OBERON SPEED', NULL, NULL, NULL, 'Fungicida', '22', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
+(30, 'OBERON SPEED', NULL, NULL, NULL, 'Fungicida', '22', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-02-02', 1, 'SC', 1, 1, '1'),
 (31, 'OBERON', NULL, NULL, NULL, 'Fungicida', '23', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (32, 'PREVICUR ENERGY', NULL, NULL, NULL, 'Fungicida', '24', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (33, 'PUMA SUPER', NULL, NULL, NULL, 'Fungicida', '25', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'EO', 1, 1, '1'),
@@ -226,7 +268,7 @@ INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `Ho
 (69, 'Prueba 23 oct', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '124578', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'EC', 1, 5, '1'),
 (70, 'Prueba 23 oct', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '124578', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'TB', 1, 6, '1'),
 (71, 'lLl', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '124578', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'CS', 1, 1, '1'),
-(72, 'help', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '124578', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SE', 1, 4, '1'),
+(72, 'help', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '124578', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SE', 1, 4, '0'),
 (75, 'PRUEBA 03 NOVI', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '124578', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SE', 1, 2, '1');
 
 -- --------------------------------------------------------
@@ -319,6 +361,33 @@ INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `Corre
 ('MEAIM', 'Miguel', 'Reyes', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Miguel.Reyes@bayer.mx', 'Empleado Normal'),
 ('MEZJI', 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador'),
 ('PRUEBA', 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `alerta1`
+--
+DROP TABLE IF EXISTS `alerta1`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `alerta1`  AS SELECT `m`.`NombreMuestra` AS `NombreMuestra`, `m`.`Cantidad` AS `Cantidad`, `a`.`Color` AS `Color`, `a`.`NombreAlerta` AS `NombreAlerta`, to_days(`m`.`FechaCaducidad`) - to_days(current_timestamp()) AS `Dias_restantes` FROM (`muestras` `m` join `alertas` `a`) WHERE `a`.`Activa` = 1 AND to_days(`m`.`FechaCaducidad`) - to_days(current_timestamp()) between 0 and (select `alertas`.`Condicion` from `alertas` where `alertas`.`idAlerta` = 1) AND !(`a`.`idAlerta` in (select `alertas`.`idAlerta` from `alertas` where `alertas`.`idAlerta` = 2)) AND !(`a`.`idAlerta` in (select `alertas`.`idAlerta` from `alertas` where `alertas`.`idAlerta` = 3)) AND `m`.`NombreMuestra` in (select `muestras`.`NombreMuestra` from `muestras` where `muestras`.`Activa` = '1') ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `alerta2`
+--
+DROP TABLE IF EXISTS `alerta2`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `alerta2`  AS SELECT `m`.`NombreMuestra` AS `NombreMuestra`, `m`.`Cantidad` AS `Cantidad`, `a`.`Color` AS `Color`, `a`.`NombreAlerta` AS `NombreAlerta`, to_days(`m`.`FechaCaducidad`) - to_days(current_timestamp()) AS `Dias_restantes` FROM (`muestras` `m` join `alertas` `a`) WHERE `a`.`Activa` = 1 AND to_days(`m`.`FechaCaducidad`) - to_days(current_timestamp()) between (select `alertas`.`Condicion` from `alertas` where `alertas`.`idAlerta` = 1) and (select `alertas`.`Condicion` from `alertas` where `alertas`.`idAlerta` = 2) AND !(`a`.`idAlerta` in (select `alertas`.`idAlerta` from `alertas` where `alertas`.`idAlerta` = 1)) AND !(`a`.`idAlerta` in (select `alertas`.`idAlerta` from `alertas` where `alertas`.`idAlerta` = 3)) AND `m`.`NombreMuestra` in (select `muestras`.`NombreMuestra` from `muestras` where `muestras`.`Activa` = '1') ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `alerta3`
+--
+DROP TABLE IF EXISTS `alerta3`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `alerta3`  AS SELECT `m`.`NombreMuestra` AS `NombreMuestra`, `m`.`Cantidad` AS `Cantidad`, `a`.`Color` AS `Color`, `a`.`NombreAlerta` AS `NombreAlerta`, to_days(`m`.`FechaCaducidad`) - to_days(current_timestamp()) AS `Dias_restantes` FROM (`muestras` `m` join `alertas` `a`) WHERE `a`.`Activa` = 1 AND to_days(`m`.`FechaCaducidad`) - to_days(current_timestamp()) between (select `alertas`.`Condicion` from `alertas` where `alertas`.`idAlerta` = 2) and (select `alertas`.`Condicion` from `alertas` where `alertas`.`idAlerta` = 3) AND !(`a`.`idAlerta` in (select `alertas`.`idAlerta` from `alertas` where `alertas`.`idAlerta` = 1)) AND !(`a`.`idAlerta` in (select `alertas`.`idAlerta` from `alertas` where `alertas`.`idAlerta` = 2)) AND `m`.`NombreMuestra` in (select `muestras`.`NombreMuestra` from `muestras` where `muestras`.`Activa` = '1') ;
 
 --
 -- Índices para tablas volcadas

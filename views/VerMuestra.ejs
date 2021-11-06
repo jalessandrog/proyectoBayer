@@ -177,7 +177,10 @@
                             <a class="boton" id="Registrar-Actualizar" href="/Muestras/editar/<%= Muestra.idMuestra %>" role="button">Modificar información</a>
                         </div>
                         <div class="btn-group me-auto" role="group" aria-label="Second group">
-                            <button type=""  class="boton" id="Registrar-Actualizar" href="/Muestras/delete/<%= Muestra.idMuestra %>">Borrar Muestra</button>
+                            <form action="/Muestras/delete/<%= Muestra.idMuestra %>" method="post">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button type=""  class="boton" id="Registrar-Actualizar" href="/Muestras/delete/<%= Muestra.idMuestra %>">Borrar Muestra</button>
+                            </form>
                         </div>
                     </div>
                     <br>

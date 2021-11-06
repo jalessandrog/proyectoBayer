@@ -5,6 +5,7 @@ const validacionCrearMuestra = [
     // body('CodigoMuestra').notEmpty().withMessage('Debes ingresar el Codigo de Muestra'),
     body('SP')
         .not().isEmpty().matches(/(1020000)+\d{5}$/,"i").withMessage('El código SP es invalido, reingrese el código'),
+
         // .notEmpty().withMessage('Debes ingresar el SP de la Muestra').bail()
         // .matches(/(1020000)+\d{5}$/,"i").withMessage('El código SP es invalido, reingrese el código'),
     body('NombreMuestra').notEmpty().withMessage('Debes ingresar el Nombre de la Muestra'),

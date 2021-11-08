@@ -68,9 +68,9 @@ const controller = {
         let t= token()
         Usuario.UpdateToken( rows[0].idEmpleado,t)
         var mailOptions = {
-            from: 'mic@quantumelectric.com.mx',
+            from: 'michelltenaortega@gmail.com',
             to: req.body.CorreoElectronico,
-            subject: 'Recupera tu contraseña',
+            subject: 'BAYER: Recupera tu contraseña',
             html: '<a href="http://localhost:3030/NuevaContrasena/'+t+'"> Click para recuperar tu contraseña</a>'
           };
           transporter.sendMail(mailOptions, function(error, info){

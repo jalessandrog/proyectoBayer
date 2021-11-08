@@ -12,5 +12,7 @@ router.get('/logout', isAuth, MainController.logout);
 router.get('/Inicio', isAuth, MainController.index);
 router.get('/Recuperar', RecuperarController.SolicitudCambioContrasena);
 router.post('/Recuperar', RecuperarController.CambioContrasena);
+router.get('/NuevaContrasena/:token', RecuperarController.CambiarContrasena);
+router.post('/NuevaContrasena/:token', RecuperarController.CambiarContrasena);
 
 module.exports = router;

@@ -23,4 +23,11 @@ module.exports = class Usuario {
      static UpdateToken(idEmpleado, token){
         return db.execute('UPDATE usuarios SET token = ? WHERE idEmpleado = ? ', [token, idEmpleado])
     }
+
+    static fetchOneByToken(token){
+        return db.execute('SELECT * FROM usuarios WHERE token = ? ', [token])
+    }
+    static UpdatePassword(idEmpleado, password){
+        return db.execute('UPDATE usuarios SET password = ? WHERE idEmpleado = ? ', [password, idEmpleado])
+    }
 } 

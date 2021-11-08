@@ -38,6 +38,10 @@ module.exports = class Muestras {
         // return db.execute('SELECT * FROM muestras');
         return db.execute('SELECT muestras.idMuestra, muestras.NombreMuestra, muestras.CodigoMuestra, muestras.SP, muestras.HojaSeguridad, muestras.UsoMuestra, muestras.Lote, muestras.Concentracion, muestras.UnidadMedida, muestras.Cantidad, muestras.FechaIngreso, muestras.FechaFabricacion, muestras.FechaCaducidad, tipomuestra.Tipo, tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion, contenedores.NoContenedor, contenedores.Clasificacion, muestras.Status, estadomuestra.DescripcionStatus FROM muestras, contenedores, tipoformulacion, tipomuestra, estadomuestra WHERE muestras.idTipoDeMuestra = tipomuestra.idTipoDeMuestra AND muestras.CodigoFormulacion = tipoformulacion.CodigoFormulacion AND contenedores.idContenedor = muestras.idContenedor AND muestras.Status = estadomuestra.Status AND muestras.Activa = "1" ORDER BY muestras.NombreMuestra ASC')
     }
+    static fetchAllporcaducar() {
+        // return db.execute('SELECT * FROM muestras');
+        return db.execute('SELECT muestras.idMuestra, muestras.NombreMuestra, muestras.CodigoMuestra, muestras.SP, muestras.HojaSeguridad, muestras.UsoMuestra, muestras.Lote, muestras.Concentracion, muestras.UnidadMedida, muestras.Cantidad, muestras.FechaIngreso, muestras.FechaFabricacion, muestras.FechaCaducidad, tipomuestra.Tipo, tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion, contenedores.NoContenedor, contenedores.Clasificacion, muestras.Status, estadomuestra.DescripcionStatus FROM muestras, contenedores, tipoformulacion, tipomuestra, estadomuestra WHERE muestras.idTipoDeMuestra = tipomuestra.idTipoDeMuestra AND muestras.CodigoFormulacion = tipoformulacion.CodigoFormulacion AND contenedores.idContenedor = muestras.idContenedor AND muestras.Status = estadomuestra.Status AND muestras.Activa = "1"  ORDER BY muestras.NombreMuestra ASC')
+    }
     static fetchAllbyTerm(query) {
         // return db.execute('SELECT * FROM muestras');
         return db.execute('SELECT muestras.idMuestra, muestras.NombreMuestra, muestras.CodigoMuestra, muestras.SP, muestras.HojaSeguridad, muestras.UsoMuestra, muestras.Lote, muestras.Concentracion, muestras.UnidadMedida, muestras.Cantidad, muestras.FechaIngreso, muestras.FechaFabricacion, muestras.FechaCaducidad, tipomuestra.Tipo, tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion, contenedores.NoContenedor, contenedores.Clasificacion, muestras.Status, estadomuestra.DescripcionStatus FROM muestras, contenedores, tipoformulacion, tipomuestra, estadomuestra WHERE muestras.idTipoDeMuestra = tipomuestra.idTipoDeMuestra AND muestras.CodigoFormulacion = tipoformulacion.CodigoFormulacion AND contenedores.idContenedor = muestras.idContenedor AND muestras.Status = estadomuestra.Status AND (muestras.NombreMuestra LIKE ? OR muestras.SP LIKE ? OR muestras.UsoMuestra LIKE ?)',['%'+query+'%','%'+query+'%','%'+query+'%'])
@@ -53,10 +57,6 @@ module.exports = class Muestras {
 
 
     static retirar(idMuestra,idUsuario,descarga){
-        return db.execute('UPDATE muestras SET Cantidad = Cantidad-? WHERE idMuestra = ?',[descarga,idMuestra] ).then(()=>{
-            return db.execute('SELECT * FROM muestras WHERE idMuestra = ?',[idMuestra]).then(            ([rows, fieldData]) => {
-            return db.execute('INSERT INTO manipulan (idMuestra,idEmpleado,Sobrante,Descarga,FechaDeUso) VALUES (?,?,?,?,NOW())',[idMuestra,idUsuario,rows[0].Cantidad,descarga])
-            })
-        })
+        return db.execute('CALL retirar(?,?,?) ',[idMuestra,idUsuario,descarga,] )
     }
 }

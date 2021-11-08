@@ -71,7 +71,7 @@ const controller = {
             from: 'mic@quantumelectric.com.mx',
             to: req.body.CorreoElectronico,
             subject: 'Recupera tu contraseña',
-            html: '<a href="http://localhost:3030/NuevaContrasena/'+t+'"> CLick para recuperar tu contraseña</a>'
+            html: '<a href="http://localhost:3030/NuevaContrasena/'+t+'"> Click para recuperar tu contraseña</a>'
           };
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {

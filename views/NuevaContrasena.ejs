@@ -26,7 +26,7 @@
 
     <div class="container">
         <div class="d-flex justify-content-center h-100">
-            <form class="col-12" action='/' method="POST">
+            <form class="col-12" action='/NuevaContrasena/<%= token %>' method="POST">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                 <div class="col-sm-8 main-section">
                     <div class="col-12 logo-img">
@@ -34,20 +34,23 @@
                     </div>
                 </div>
                 <br><br>
-                <h2 class="sr-only">Login Form</h2>
-                <div class="form-group" id="user-group">
-                    <input type="email" class="form-control" name="CorreoElectronico" placeholder="usuario@bayer.com" required/>
+                <% if (error!=null) { %>
+                    <div class="alert alert-primary" role="alert">
+                        <%= error %> 
+                      </div>
+                    <% } %>
+                <h2 class="sr-only">Elige tu nueva contaseña</h2>
+                <div class="form-group" id="contrasena-group">
+                    <input type="password" class="form-control" name="password1" placeholder="Nueva contraseña" required/>
                 </div>
                 <div class="form-group" id="contrasena-group">
-                    <input type="password" class="form-control"  name="password" placeholder="Bayer@2021" required/>
+                    <input type="password" class="form-control"  name="password2" placeholder="Confirmar la contraseña" required/>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit" href="/Inicio">Iniciar Sesión</button>
                 </div>
-                <div class="col-12 forgot">
-                    <a href="/Recuperar">¿Olvidó su contraseña?</a>
-                </div>
             </form>
+
         </div>
     </div>
 

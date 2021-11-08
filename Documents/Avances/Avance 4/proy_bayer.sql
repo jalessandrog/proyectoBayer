@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2021 a las 06:40:28
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.9
+-- Tiempo de generación: 08-11-2021 a las 16:51:42
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,6 +32,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addTipoMuestra` (IN `Tipo` VARCHAR(
 VALUES (Tipo)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteMuestra` (IN `m_idMuestra` TINYINT(3))  DELETE FROM muestras WHERE muestras.idMuestra = m_idMuestra$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `retirar` (IN `idMuestra_i` INT(3), IN `idUsuario_i` CHAR(6), IN `descarga` FLOAT)  BEGIN
+DECLARE restante FLOAT DEFAULT 0.0;
+UPDATE muestras SET Cantidad = Cantidad-descarga WHERE idMuestra = idMuestra_i;
+SELECT Cantidad INTO restante FROM muestras WHERE idMuestra = idMuestra_i;
+INSERT INTO manipulan (idMuestra,idEmpleado,Sobrante,Descarga,FechaDeUso) VALUES (idMuestra_i,idUsuario_i,restante,descarga,NOW());
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAlerta` (IN `a_idAlerta` TINYINT(3), IN `a_NombreAlerta` VARCHAR(60) CHARSET utf8mb4, IN `a_Color` ENUM('Rojo','Amarillo','Naranja','Azul') CHARSET utf8mb4, IN `a_Condicion` INT(5))  BEGIN
 
@@ -178,7 +185,9 @@ INSERT INTO `manipulan` (`idMuestra`, `idEmpleado`, `idMuestras_usuarios`, `Sobr
 (12, 'MEAIM', 1, 20.5, 3, '2021-10-06'),
 (1, 'MEAIM', 2, 1900, 100, '2021-10-21'),
 (2, 'MEAIM', 3, 0, 1000, '2021-10-21'),
-(67, 'MEAIM', 4, 1, 1, '2021-10-21');
+(67, 'MEAIM', 4, 1, 1, '2021-10-21'),
+(4, 'MEAIM', 5, 0.5, 1, '2021-11-06'),
+(5, 'MEAIM', 6, 0.5, 1, '2021-11-06');
 
 -- --------------------------------------------------------
 
@@ -349,18 +358,19 @@ CREATE TABLE `usuarios` (
   `Apellidos` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
   `CorreoElectronico` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `Rol` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL
+  `Rol` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `CorreoElectronico`, `Rol`) VALUES
-('GKXOK', 'Vianey', 'Urias', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Vianey.Urias@bayer.mx', 'Empleado Normal'),
-('MEAIM', 'Miguel', 'Reyes', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Miguel.Reyes@bayer.mx', 'Empleado Normal'),
-('MEZJI', 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador'),
-('PRUEBA', 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador');
+INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `CorreoElectronico`, `Rol`, `token`) VALUES
+('GKXOK', 'Vianey', 'Urias', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Vianey.Urias@bayer.mx', 'Empleado Normal', '0dsadas'),
+('MEAIM', 'Miguel', 'Reyes', '$2a$12$GciAV7nWiBzA71lfIfgUTO4MfIErFxha0OX6OliEJ1XSzPC44/YYG', 'fernando.to2005@yahoo.com', 'Empleado Normal', 'g9fg1klrtv8bc78e1hku6'),
+('MEZJI', 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador', '0'),
+('PRUEBA', 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador', '0');
 
 -- --------------------------------------------------------
 
@@ -468,7 +478,7 @@ ALTER TABLE `contenedores`
 -- AUTO_INCREMENT de la tabla `manipulan`
 --
 ALTER TABLE `manipulan`
-  MODIFY `idMuestras_usuarios` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idMuestras_usuarios` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras`

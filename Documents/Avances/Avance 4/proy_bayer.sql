@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2021 a las 16:51:42
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.10
+-- Tiempo de generación: 10-11-2021 a las 06:15:03
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -63,7 +63,7 @@ DELIMITER ;
 CREATE TABLE `alerta1` (
 `NombreMuestra` varchar(100)
 ,`Cantidad` float unsigned
-,`Color` enum('Rojo','Amarillo','Naranja','Azul')
+,`Color` enum('Rojo','Amarillo','Naranja','Azul','Verde')
 ,`NombreAlerta` varchar(60)
 ,`Dias_restantes` int(7)
 );
@@ -77,7 +77,7 @@ CREATE TABLE `alerta1` (
 CREATE TABLE `alerta2` (
 `NombreMuestra` varchar(100)
 ,`Cantidad` float unsigned
-,`Color` enum('Rojo','Amarillo','Naranja','Azul')
+,`Color` enum('Rojo','Amarillo','Naranja','Azul','Verde')
 ,`NombreAlerta` varchar(60)
 ,`Dias_restantes` int(7)
 );
@@ -91,7 +91,7 @@ CREATE TABLE `alerta2` (
 CREATE TABLE `alerta3` (
 `NombreMuestra` varchar(100)
 ,`Cantidad` float unsigned
-,`Color` enum('Rojo','Amarillo','Naranja','Azul')
+,`Color` enum('Rojo','Amarillo','Naranja','Azul','Verde')
 ,`NombreAlerta` varchar(60)
 ,`Dias_restantes` int(7)
 );
@@ -105,7 +105,7 @@ CREATE TABLE `alerta3` (
 CREATE TABLE `alertas` (
   `idAlerta` tinyint(3) NOT NULL,
   `NombreAlerta` varchar(60) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `Color` enum('Rojo','Amarillo','Naranja','Azul') COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Color` enum('Rojo','Amarillo','Naranja','Azul','Verde') COLLATE utf8mb4_spanish_ci NOT NULL,
   `Condicion` int(5) NOT NULL,
   `Activa` enum('1','0') COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '1' COMMENT '''1'' = True, ''0''=False'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -116,8 +116,8 @@ CREATE TABLE `alertas` (
 
 INSERT INTO `alertas` (`idAlerta`, `NombreAlerta`, `Color`, `Condicion`, `Activa`) VALUES
 (1, 'Proxima a Caducar (30 días)', 'Rojo', 30, '1'),
-(2, 'Próxima a caducar (60 días)', 'Naranja', 60, '1'),
-(3, 'Alerta de prueba desactivada', 'Amarillo', 120, '0');
+(2, 'Próxima a caducar (60 días)', 'Amarillo', 60, '1'),
+(3, 'Alerta de prueba desactivada', 'Verde', 120, '1');
 
 -- --------------------------------------------------------
 
@@ -231,7 +231,7 @@ INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `Ho
 (13, 'CLAVIS', NULL, NULL, NULL, 'Fungicida', '7', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (16, 'CONFIDOR', NULL, NULL, NULL, 'Fungicida', '8', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (17, 'CONSIST MAX', NULL, NULL, NULL, 'Fungicida', '9', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(18, 'CUPRAVIT HYDRO', NULL, NULL, NULL, 'Fungicida', '10', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-12-31', 1, 'WP', 1, 1, '1'),
+(18, 'CUPRAVIT HYDRO', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '10', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-11-09', '2022-02-05', 1, 'SG', 1, 2, '1'),
 (19, 'CURBIX', NULL, NULL, NULL, 'Fungicida', '11', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (20, 'DECIS FORTE', NULL, NULL, NULL, 'Fungicida', '12', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SE', 1, 1, '1'),
 (21, 'EMESTO PRIME', NULL, NULL, NULL, 'Tratamiento de Semilla', '13', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SP', 1, 1, '1'),
@@ -368,6 +368,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `CorreoElectronico`, `Rol`, `token`) VALUES
 ('GKXOK', 'Vianey', 'Urias', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Vianey.Urias@bayer.mx', 'Empleado Normal', '0dsadas'),
+('JOEAGG', 'Joseph Alessandro', 'García García', '$2a$12$e816GzlyeH5rwA.xIUFzQ.yzQXRs.Zgk7tAyvep2TuxzxoZoxIOYa', 'a01701434@tec.mx', 'Administrador', '4nyxgwngphcgmpx2s35gv'),
 ('MEAIM', 'Miguel', 'Reyes', '$2a$12$GciAV7nWiBzA71lfIfgUTO4MfIErFxha0OX6OliEJ1XSzPC44/YYG', 'fernando.to2005@yahoo.com', 'Empleado Normal', 'g9fg1klrtv8bc78e1hku6'),
 ('MEZJI', 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador', '0'),
 ('PRUEBA', 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador', '0');

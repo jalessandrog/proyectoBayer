@@ -9,14 +9,15 @@
   <br>
   <div class="container-fluid">
     <div class="row">
-        <div class="col-1"></div>
+        <!-- <div class="col-1"></div>
         <div class="col-4">
-          <a class="btn green" href="/AlertasRoles/agregarAlerta" role="button">Crear Alerta</a>
-        </div>
-        <div class="col-2">
+            <a class="btn green" href="/AlertasRoles/agregarAlerta" role="button">Crear Alerta</a>
+        </div> -->
+        <p style="text-align: center; font-size: 1.5em;"><strong>Alertas</strong></p>
+        <!-- <div class="col-4">
             <p style="text-align: center; font-size: 1.5em;"><strong>Alertas</strong></p>
-        </div>
-        <div class="col-5"></div>
+        </div> -->
+        <!-- <div class="col-5"></div> -->
     </div>
   </div>
   <div class="container-fluid">
@@ -30,7 +31,7 @@
                     <tr style="text-align: center;">
                         <th scope="col"></th>
                         <th scope="col">Nombre Alerta</th>
-                        <th scope="col">Condición (Días)</th>
+                        <th scope="col">Condición* (Días)</th>
                         <th scope="col">Color</th>
                         <th scope="col"></th>
                     </tr>
@@ -55,6 +56,9 @@
                                 <% } %>  
                                 <% if ( alerta.Color === "Azul"){ %>
                                 <input type="color" value="#26929F" readonly disabled>
+                                <% } %> 
+                                <% if ( alerta.Color === "Verde"){ %>
+                                <input type="color" value="#00b347" readonly disabled>
                                 <% } %> 
                             </td>
                             <td>

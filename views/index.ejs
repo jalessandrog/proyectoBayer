@@ -79,6 +79,9 @@
                           <% if ( alerta3.Color === "Azul"){ %>
                           <th scope="row" style="background: #26929F;">  </th>
                           <% } %> 
+                          <% if ( alerta3.Color === "Verde"){ %>
+                          <th scope="row" style="background: #00b347;">  </th>
+                          <% } %> 
                             <td><%= alerta3.NombreMuestra %></td>
                             <td><%= alerta3.DiasRestantes %> Días </td>
                             <td><%= alerta3.Cantidad %> - <%= alerta3.UnidadMedida %></td>

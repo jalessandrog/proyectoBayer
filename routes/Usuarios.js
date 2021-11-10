@@ -8,11 +8,11 @@ const UsuariosController = require('../controllers/UsuariosController')
 const adminMiddleware = require('../middlewares/adminMiddleware')
 
 
-router.get('/', isAuth, UsuariosController.ConsultarUsuarios);
+router.get('/', adminMiddleware, isAuth, UsuariosController.ConsultarUsuarios);
 
-router.get('/Nuevo', isAuth,  UsuariosController.AgregarUsuario);
+router.get('/Nuevo', adminMiddleware, isAuth,  UsuariosController.AgregarUsuario);
 
-router.get('/:id', isAuth, UsuariosController.ModificarUsuario);
+router.get('/:id', adminMiddleware, isAuth, UsuariosController.ModificarUsuario); 
 
 
 

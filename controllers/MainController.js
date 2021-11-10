@@ -12,6 +12,7 @@ const controller = {
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
             NombreCompleto: req.session.NombreCompleto,
+            Permisos: req.session.rolEmpleado
         });
     },
     
@@ -23,6 +24,7 @@ const controller = {
                     if (doMatch) {
                         req.session.isLoggedIn = true;
                         req.session.idEmpleado =  rows[0].idEmpleado;
+                        req.session.rolEmpleado = rows[0].Rol;
                         req.session.CorreoElectronico = req.body.CorreoElectronico;
                         req.session.NombreCompleto = rows[0].Nombres + ' ' + rows[0].Apellidos;
                         return req.session.save(err => {
@@ -33,6 +35,7 @@ const controller = {
                         res.status(302),
                         res.render('Login', {
                             isLoggedIn: req.session.isLoggedIn,
+                            Permisos: req.session.rolEmpleado,
                             CorreoElectronico: req.session.CorreoElectronico,
                             NombreCompleto: req.session.NombreCompleto,
                             errors: {
@@ -52,6 +55,7 @@ const controller = {
                     isLoggedIn: req.session.isLoggedIn,
                     CorreoElectronico: req.session.CorreoElectronico,
                     NombreCompleto: req.session.NombreCompleto,
+                    Permisos: req.session.rolEmpleado,
                     errors: {
                         CorreoElectronico: {
                             msg: 'No se encuentra email'
@@ -110,6 +114,7 @@ const controller = {
                                     isLoggedIn: req.session.isLoggedIn,
                                     CorreoElectronico: req.session.CorreoElectronico,
                                     NombreCompleto: req.session.NombreCompleto,
+                                    Permisos: req.session.rolEmpleado,
                                     alertaOne: alertaOne,
                                     alertaTwo: alertaTwo,
                                     alertaThree: alertaThree,

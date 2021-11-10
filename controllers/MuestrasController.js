@@ -16,6 +16,7 @@ const controller = {
                     isLoggedIn: req.session.isLoggedIn,
                     CorreoElectronico: req.session.CorreoElectronico,
                     NombreCompleto: req.session.NombreCompleto,
+                    Permisos: req.session.rolEmpleado,
                     ConsultarMuestras: rows,
                 });
             })
@@ -35,6 +36,7 @@ const controller = {
                     isLoggedIn: req.session.isLoggedIn,
                     CorreoElectronico: req.session.CorreoElectronico,
                     NombreCompleto: req.session.NombreCompleto,
+                    Permisos: req.session.rolEmpleado,
                     ConsultarMuestras: rows,
                 });
             })
@@ -54,6 +56,7 @@ const controller = {
                     isLoggedIn: req.session.isLoggedIn,
                     CorreoElectronico: req.session.CorreoElectronico,
                     NombreCompleto: req.session.NombreCompleto,
+                    Permisos: req.session.rolEmpleado,
                     Muestra: rows[0],
                 });
             })
@@ -75,6 +78,7 @@ const controller = {
                             isLoggedIn: req.session.isLoggedIn,
                             CorreoElectronico: req.session.CorreoElectronico,
                             NombreCompleto: req.session.NombreCompleto,
+                            Permisos: req.session.rolEmpleado,
                             lista_contenedores: contenedores,
                             lista_formulaciones: formulaciones,
                         });
@@ -134,6 +138,7 @@ const controller = {
                                 isLoggedIn: req.session.isLoggedIn,
                                 CorreoElectronico: req.session.CorreoElectronico,
                                 NombreCompleto: req.session.NombreCompleto,
+                                Permisos: req.session.rolEmpleado,
                                 lista_contenedores: contenedores,
                                 lista_formulaciones: formulaciones,
                                 errors: errors.mapped(), 
@@ -158,6 +163,7 @@ const controller = {
                                     isLoggedIn: req.session.isLoggedIn,
                                     CorreoElectronico: req.session.CorreoElectronico,
                                     NombreCompleto: req.session.NombreCompleto,
+                                    Permisos: req.session.rolEmpleado,
                                     lista_contenedores: contenedores,
                                     lista_formulaciones: formulaciones,
                                     Muestra: rows[0],

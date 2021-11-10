@@ -13,6 +13,7 @@ const controller = {
                     isLoggedIn: req.session.isLoggedIn,
                     CorreoElectronico: req.session.CorreoElectronico,
                     NombreCompleto: req.session.NombreCompleto,
+                    Permisos: req.session.rolEmpleado,
                     ConsultarAlertas: rows,
                 })
             })
@@ -22,14 +23,14 @@ const controller = {
             });
     },   
 
-    AgregarAlerta:(req, res, next) => {
-        console.log("Ruta Agregar Alertas y Roles")
-        res.render('AgregarAlerta',{
-            isLoggedIn: req.session.isLoggedIn,
-            CorreoElectronico: req.session.CorreoElectronico,
-            NombreCompleto: req.session.NombreCompleto,
-        })
-    },
+    // AgregarAlerta:(req, res, next) => {
+    //     console.log("Ruta Agregar Alertas y Roles")
+    //     res.render('AgregarAlerta',{
+    //         isLoggedIn: req.session.isLoggedIn,
+    //         CorreoElectronico: req.session.CorreoElectronico,
+    //         NombreCompleto: req.session.NombreCompleto,
+    //     })
+    // },
 
     ModificarAlerta:(req, res, next) => {
         console.log("Ruta Modificar Alerta")
@@ -40,6 +41,7 @@ const controller = {
                     isLoggedIn: req.session.isLoggedIn,
                     CorreoElectronico: req.session.CorreoElectronico,
                     NombreCompleto: req.session.NombreCompleto,
+                    Permisos: req.session.rolEmpleado,
                     alerta: rows[0],
                 });
             })

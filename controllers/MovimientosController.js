@@ -14,6 +14,7 @@ const controller = {
                 isLoggedIn: req.session.isLoggedIn,
                 CorreoElectronico: req.session.CorreoElectronico,
                 NombreCompleto: req.session.NombreCompleto,
+                Permisos: req.session.rolEmpleado,
                 ConsultarMovimientos: rows,
             });
         })
@@ -35,6 +36,7 @@ const controller = {
                 isLoggedIn: req.session.isLoggedIn,
                 CorreoElectronico: req.session.CorreoElectronico,
                 NombreCompleto: req.session.NombreCompleto,
+                Permisos: req.session.rolEmpleado,
                 ConsultarMovimientos: rows,
             });
         })

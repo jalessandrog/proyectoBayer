@@ -10,6 +10,7 @@ const controller = {
                     isLoggedIn: req.session.isLoggedIn,
                     CorreoElectronico: req.session.CorreoElectronico,
                     NombreCompleto: req.session.NombreCompleto,
+                    Permisos: req.session.rolEmpleado,
                     ConsultarUsuarios: rows,
                 });
             })
@@ -25,6 +26,7 @@ const controller = {
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
             NombreCompleto: req.session.NombreCompleto,
+            Permisos: req.session.rolEmpleado
         })
     },
 
@@ -36,6 +38,7 @@ const controller = {
             isLoggedIn: req.session.isLoggedIn,
             CorreoElectronico: req.session.CorreoElectronico,
             NombreCompleto: req.session.NombreCompleto,
+            Permisos: req.session.rolEmpleado
         })
     },
 }

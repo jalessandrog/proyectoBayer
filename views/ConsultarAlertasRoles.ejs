@@ -33,7 +33,9 @@
                         <th scope="col">Nombre Alerta</th>
                         <th scope="col">Condición* (Días)</th>
                         <th scope="col">Color</th>
+                        <% if( Permisos === "Administrador" ) { %>
                         <th scope="col"></th>
+                        <% } %>  
                     </tr>
                     </thead>
                     <tbody>
@@ -61,9 +63,11 @@
                                 <input type="color" value="#00b347" readonly disabled>
                                 <% } %> 
                             </td>
+                            <% if( Permisos === "Administrador" ) { %>
                             <td>
                                 <a class="btn green btn green btn-outline-secondary" href="/AlertasRoles/editar/<%= alerta.idAlerta %>" role="button">Modificar</a>
                             </td>
+                            <% } %> 
                         </tr>
                         <% } %> 
                     </tbody>

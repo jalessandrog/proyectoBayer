@@ -13,14 +13,14 @@
                 <br><br class="brinco_especial2">
                 <% if( isLoggedIn ) { %>
                 <p style="text-align: center;" class="text-white esta2" id="NombreUsuario"><%= NombreCompleto  %></p>
-                <% } else { %>
-                <p style="text-align: center;" class="text-white esta2" id="NombreUsuario">Nombre de Usuario</p>
                 <% } %>
                 <br class="brinco_especial">
                 <div style="text-align: center;">
                     <a class="boton2" href="/Muestras" role="button">Muestra</a>
                     <a class="boton2" href="/Movimientos" role="button">Movimientos</a>
+                    <% if( Permisos === "Administrador" ) { %>
                     <a class="boton2" href="/Usuarios" role="button">Usuarios</a>
+                    <% } %>
                 </div>
             </div>
             <div class="col-3 small d-flex flex-row-reverse">

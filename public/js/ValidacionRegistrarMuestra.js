@@ -79,7 +79,7 @@ window.addEventListener('load', function(){
             if(input.value>100 || input.value<0){
                 input.placeholder = "No es posible esa concentración";
                 errors[input.name] = `${input.name} tiene valores fuera del rango`
-                alert("Debe ingresar el valor de concentracion");
+                alert("Debe ingresar un valor entre 0% y 100%");
             }else{
                 input.placeholder = "Este campo es obligatorio";
                 errors[input.name] = `${input.name} is required`

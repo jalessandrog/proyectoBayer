@@ -38,6 +38,9 @@
                 <div class="form-group" id="user-group">
                     <input type="email" class="form-control" name="CorreoElectronico" placeholder="usuario@bayer.com" required/>
                 </div>
+                <% if (locals.errors && errors.CorreoElectronico) { %>
+                    <p class="msg-errores"><%= errors.CorreoElectronico.msg %></p>
+                <% } %>
                 <div class="form-group" id="contrasena-group">
                     <input type="password" class="form-control"  name="password" placeholder="Bayer@2021" required/>
                 </div>

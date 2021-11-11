@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <% if (locals.errors && errors.CodigoMuestra) { %>
-                    <p class="text-danger small"><%= errors.CodigoMuestra.msg %></p>
+                    <p class="text-warning small text-start"><%= errors.CodigoMuestra.msg %></p>
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <% if (locals.errors && errors.SP) { %>
-                    <p class="text-danger small"><%= errors.SP.msg %></p>
+                    <p class="text-warning small text-start"><%= errors.SP.msg %></p>
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <% if (locals.errors && errors.NombreMuestra) { %>
-                    <p class="text-danger small"><%= errors.NombreMuestra.msg %></p>
+                    <p class="text-warning small text-start "><%= errors.NombreMuestra.msg %></p>
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
@@ -39,22 +39,22 @@
                     </select>
                 </div>
                 <% if (locals.errors && errors.UnidadMedida) { %>
-                    <p class="text-danger small"><%= errors.UnidadMedida.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.UnidadMedida.msg %></p>
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                     <div class="form-floating small">
-                        <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad"  min="0" step="any">
+                        <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad"  min="0" step="any" value="<%= locals.old && old.Cantidad %>">
                         <label for="floatingInputGrid">Cantidad</label>
                     </div>
                 </div>
                 <% if (locals.errors && errors.Cantidad) { %>
-                    <p class="text-danger small"><%= errors.Cantidad.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.Cantidad.msg %></p>
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                     <div class="form-floating small">
-                        <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)"  min="0" step="any">
+                        <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)"  min="0" step="any" value="<%= locals.old && old.Concentracion %>">
                         <label for="floatingInputGrid">Concentracion (%)</label>
                     </div>
                     <!-- Mensajes de Verificación -->
@@ -64,7 +64,7 @@
                     <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.Concentracion) { %>
-                    <p class="text-danger small"><%= errors.Concentracion.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.Concentracion.msg %></p>
                 <% } %>
                 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 ">
@@ -76,7 +76,7 @@
                     </select>
                 </div>
                 <% if (locals.errors && errors.idTipoDeMuestra) { %>
-                    <p class="text-danger small"><%= errors.idTipoDeMuestra.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.idTipoDeMuestra.msg %></p>
                 <% } %>
                 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
@@ -89,17 +89,17 @@
                     </select>
                 </div>
                 <% if (locals.errors && errors.CodigoFormulacion) { %>
-                    <p class="text-danger small"><%= errors.CodigoFormulacion.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.CodigoFormulacion.msg %></p>
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                     <div class="form-floating">
-                        <input type="text" name="Lote" class="form-control" id="Lote" placeholder="Lote de Muestra" required>
+                        <input type="text" name="Lote" class="form-control" id="Lote" placeholder="Lote de Muestra" required value="<%= locals.old && old.Lote %>">
                         <label for="floatingInputGrid">Lote de Muestra</label>
                     </div>
                 </div>
                 <% if (locals.errors && errors.Lote) { %>
-                    <p class="text-danger small"><%= errors.Lote.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.Lote.msg %></p>
                 <% } %>
                 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
@@ -114,7 +114,7 @@
                     </select>
                 </div>
                 <% if (locals.errors && errors.UsoMuestra) { %>
-                    <p class="text-danger small"><%= errors.UsoMuestra.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.UsoMuestra.msg %></p>
                 <% } %>
                 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
@@ -130,27 +130,27 @@
                     </select>
                 </div>
                 <% if (locals.errors && errors.idContenedor) { %>
-                    <p class="text-danger small"><%= errors.idContenedor.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.idContenedor.msg %></p>
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                     <div class="form-floating small">
-                        <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" min="2010-01-01" max="2050-12-31" required>
+                        <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" min="2010-01-01" max="2050-12-31" required vvalue="<%= locals.old && old.FechaFabricacion %>">
                         <label for="floatingInputGrid">Fecha de Fabricación</label>
                     </div>
                 </div>
                 <% if (locals.errors && errors.FechaFabricacion) { %>
-                    <p class="text-danger small"><%= errors.FechaFabricacion.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.FechaFabricacion.msg %></p>
                 <% } %>
                 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                     <div class="form-floating small">
-                        <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" min="2010-01-01" max="2050-12-31" required>
+                        <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" min="2010-01-01" max="2050-12-31" required value="<%= locals.old && old.Caducidad %>">
                         <label for="floatingInputGrid">Fecha de Caducidad</label>
                     </div>
                 </div>
                 <% if (locals.errors && errors.FechaCaducidad) { %>
-                    <p class="text-danger small"><%= errors.FechaCaducidad.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.FechaCaducidad.msg %></p>
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
@@ -160,7 +160,7 @@
                     </select>
                 </div>
                 <% if (locals.errors && errors.Status) { %>
-                    <p class="text-danger small"><%= errors.Status.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.Status.msg %></p>
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
@@ -170,7 +170,7 @@
                     </div>
                 </div>
                 <% if (locals.errors && errors.HojaSeguridad) { %>
-                    <p class="text-danger small"><%= errors.HojaSeguridad.msg %></p>
+                    <p class="text-danger small text-start "><%= errors.HojaSeguridad.msg %></p>
                 <% } %>
         
         </div><!--/ Row-->

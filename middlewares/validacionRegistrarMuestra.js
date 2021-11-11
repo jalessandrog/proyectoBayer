@@ -3,12 +3,12 @@ const { body, matchedData, check } = require('express-validator');
 // Validaciones
 const validacionCrearMuestra = [
     // body('CodigoMuestra').notEmpty().withMessage('Debes ingresar el Codigo de Muestra'),
-    body('SP')
-        .not().isEmpty().matches(/(1020000)+\d{5}$/,"i").withMessage('El código SP es invalido, reingrese el código'),
+    // body('SP')
+    //     .not().isEmpty().matches(/(1020000)+\d{5}$/,"i").withMessage('El código SP es invalido, reingrese el código'),
 
         // .notEmpty().withMessage('Debes ingresar el SP de la Muestra').bail()
         // .matches(/(1020000)+\d{5}$/,"i").withMessage('El código SP es invalido, reingrese el código'),
-    body('NombreMuestra').notEmpty().withMessage('Debes ingresar el Nombre de la Muestra'),
+    // body('NombreMuestra').notEmpty().withMessage('Debes ingresar el Nombre de la Muestra'),
     body('UnidadMedida').notEmpty().withMessage('Debes ingresar la unidad de medida correspondiente de la Muestra'),
     body('Cantidad').notEmpty().withMessage('Debes registrar la cantidad la Muestra'),
     body('Concentracion').notEmpty().withMessage('Debes registrar la concentración de la Muestra'),

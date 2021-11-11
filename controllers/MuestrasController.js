@@ -117,14 +117,13 @@ const controller = {
 
         const Concentracion = Number(req.body.Concentracion).toFixed(2);
         const Cantidad = Number(req.body.Cantidad).toFixed(2); 
- 
+
         const muestra = new Muestras(req.body.NombreMuestra, CodigoMuestra, SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
         console.log(muestra)
         let errors = validationResult(req); 
         console.log(errors) 
 		if(errors.isEmpty()){
-            if( ((req.body.NombreMuestra !== '') || (CodigoMuestra !== null)) || SP !== null ){
-                muestra.save()
+            muestra.save()
                 .then( () => {
                     console.log('Muestra agregada con exito')
                     res.status(302).redirect('/Muestras');
@@ -134,46 +133,13 @@ const controller = {
                     console.log(err);
                     console.log('Error al agregar muestra')
                     res.status(302).redirect('/error');
-                });
-            }else{
-                console.log("Ruta Agregar Muestras")
-                Contenedores.fetchAll() 
-                    .then(([contenedores, fieldData]) => {
-                        Formulaciones.fetchAll()
-                            .then(([formulaciones, fieldData]) => {
-                                res.render('RegistrarMuestra', {
-                                    Titulo : ' Registrar Muestra',
-                                    submit : 'Guardar Muestra',
-                                    isLoggedIn: req.session.isLoggedIn,
-                                    CorreoElectronico: req.session.CorreoElectronico,
-                                    NombreCompleto: req.session.NombreCompleto,
-                                    Permisos: req.session.rolEmpleado,
-                                    lista_contenedores: contenedores,
-                                    lista_formulaciones: formulaciones,
-                                    // errors: errors.mapped(), 
-                                    old : req.body,
-                                    errors: {
-                                        NombreMuestra: {
-                                                msg: 'Alguno de estos campos debe ser ingresado'
-                                        },
-                                        CodigoMuestra: {
-                                                msg: 'Alguno de estos campos debe ser ingresado'
-                                        },
-                                        SP: {
-                                                msg: 'Alguno de estos campos debe ser ingresado'
-                                        },
-                                        errors: errors.mapped()
-                                    }
-                                });
-                            })
-                    })
-                } 
-        }else{
+                }); 
+        }else{    
             console.log("Ruta Agregar Muestras")
             Contenedores.fetchAll()
                 .then(([contenedores, fieldData]) => {
                     Formulaciones.fetchAll()
-                        .then(([formulaciones, fieldData]) => {
+                        .then(([formulaciones, fieldData]) => { 
                             res.render('RegistrarMuestra', {
                                 Titulo : ' Registrar Muestra',
                                 submit : 'Guardar Muestra',

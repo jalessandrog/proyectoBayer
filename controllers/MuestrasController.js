@@ -117,18 +117,29 @@ const controller = {
 
         const Concentracion = Number(req.body.Concentracion).toFixed(2);
         const Cantidad = Number(req.body.Cantidad).toFixed(2); 
-
-        const muestra = new Muestras(req.body.NombreMuestra, CodigoMuestra, SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
-        console.log(muestra)
+        // res.setHeader('Set-Cookie', 'ultima_Muestra_Agregada='+req.body.NombreMuestra+'; HttpOnly');
+        
         let errors = validationResult(req); 
 		if(errors.isEmpty()){
-            muestra.save()
-                .then( () => {
-                    res.setHeader('Set-Cookie', 'ultima_Muestra_Agregada='+req.body.NombreMuestra+'; HttpOnly');
-                    console.log('Muestra agregada con exito')
-                    res.status(302).redirect('/Muestras');
-                    
-                })
+            if(req.file){
+                if(req.file.filename){
+                    const muestra = new Muestras(req.body.NombreMuestra, CodigoMuestra, SP, req.file.filename, req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
+                    console.log(muestra)
+                    muestra.save()
+                        .then( () => {
+                            console.log('Muestra agregada con exito')
+                            res.status(302).redirect('/Muestras');
+                        })
+                }
+            }else{
+                const muestra = new Muestras(req.body.NombreMuestra, CodigoMuestra, SP, '', req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
+                    console.log(muestra)
+                    muestra.save()
+                        .then( () => {
+                            console.log('Muestra sin hoja de seguridad agregada con exito')
+                            res.status(302).redirect('/Muestras');
+                        })
+            }
         }else{    
             console.log("Ruta Agregar Muestras")
             Contenedores.fetchAll()
@@ -208,16 +219,32 @@ const controller = {
         console.log('ID: '+req.params.id+' Correspondiente a: '+req.body.NombreMuestra)
         
         console.log(req.body)
-        Muestras.updateMuestra(req.params.id, req.body.NombreMuestra, CodigoMuestra, SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
-            .then( () => {
-                console.log('Actualización de muestra con exito!!')
-                res.status(302).redirect('/Muestras');
-            })
-            .catch(err => {
-                console.log(err);
-                console.log('Error al actualizar muestra')
-                res.status(302).redirect('/error');
-            });
+        if(req.file){
+            if(req.file.filename){
+                Muestras.updateMuestra(req.params.id, req.body.NombreMuestra, CodigoMuestra, SP, req.file.filename, req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
+                    .then( () => {
+                        console.log('Actualización de muestra con exito!!')
+                        res.status(302).redirect('/Muestras');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        console.log('Error al actualizar muestra')
+                        res.status(302).redirect('/error');
+                    });
+            }
+        }else{
+            Muestras.updateMuestraSinHoja(req.params.id, req.body.NombreMuestra, CodigoMuestra, SP, req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
+                    .then( () => {
+                        console.log('Actualización de muestra con exito!!')
+                        res.status(302).redirect('/Muestras');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        console.log('Error al actualizar muestra')
+                        res.status(302).redirect('/error');
+                    });
+        }
+        
     },
 
     borrarMuestra:(req, res, next) => {

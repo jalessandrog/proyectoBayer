@@ -18,7 +18,7 @@
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
             <div class="offset-lg-2 offset-md-2 col-xs-12 col-lg-9 col-sm-12 col-md-10">
-                <form action="/Muestras/editar/<%= Muestra.idMuestra %>" method="POST" class="EditarMuestraForm">
+                <form action="/Muestras/editar/<%= Muestra.idMuestra %>" method="POST" class="EditarMuestraForm"  enctype="multipart/form-data">
                     
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                         <div class="row">
@@ -195,7 +195,7 @@
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                                 <div>
                                     <label for="formFileSm" class="form-label">Hoja de Seguridad</label>
-                                    <input class="form-control form-control-sm" type="file" name="HojaSeguridad" id="formFile">
+                                    <input class="form-control form-control-sm" type="file" name="HojaSeguridad" id="HojaSeguridad">
                                 </div>
                             </div>
                     </div><!--/ Row-->

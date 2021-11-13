@@ -33,6 +33,12 @@ module.exports = class Muestras {
         return db.execute ('CALL updateMuestra (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [idMuestra, NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor]);
     }
+    static updateMuestraSinHoja(idMuestra, NombreMuestra, CodigoMuestra, SP, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor){
+        // return db.execute('UPDATE muestras SET NombreMuestra = ?, CodigoMuestra = ?, SP = ?, HojaSeguridad = ?, UsoMuestra = ?, Lote = ?, Concentracion = ?, UnidadMedida = ?, Cantidad = ?, FechaFabricacion = ?, FechaCaducidad = ?, idTipoDeMuestra = ?, CodigoFormulacion = ?, Status = ?, idContenedor = ?  WHERE idMuestra = ? ',
+        //     [idMuestra, NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor]);
+        return db.execute ('CALL updateMuestraSinHoja (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [idMuestra, NombreMuestra, CodigoMuestra, SP, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor]);
+    }
 
     static fetchAll() {
         // return db.execute('SELECT * FROM muestras');

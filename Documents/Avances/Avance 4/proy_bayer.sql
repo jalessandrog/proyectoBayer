@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2021 a las 06:15:03
+-- Tiempo de generación: 13-11-2021 a las 23:31:43
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -25,13 +25,13 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addMuestra` (IN `NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `SP` BIGINT(12), IN `HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `Lote` VARCHAR(20) CHARSET utf8mb4, IN `Concentracion` FLOAT UNSIGNED, IN `UnidadMedida` ENUM('Litros','Kilogramos','','') CHARSET utf8mb4, IN `Cantidad` FLOAT UNSIGNED, IN `FechaFabricacion` DATE, IN `FechaCaducidad` DATE, IN `idTipoDeMuestra` int(3), IN `CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `Status` TINYINT(1), IN `idContenedor` int(3))  INSERT INTO muestras (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor) 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addMuestra` (IN `NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `SP` BIGINT(12), IN `HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `Lote` VARCHAR(20) CHARSET utf8mb4, IN `Concentracion` FLOAT UNSIGNED, IN `UnidadMedida` ENUM('Litros','Kilogramos','','') CHARSET utf8mb4, IN `Cantidad` FLOAT UNSIGNED, IN `FechaFabricacion` DATE, IN `FechaCaducidad` DATE, IN `idTipoDeMuestra` INT(3), IN `CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `Status` TINYINT(1), IN `idContenedor` INT(3))  INSERT INTO muestras (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor) 
 VALUES (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addTipoMuestra` (IN `Tipo` VARCHAR(50) CHARSET utf8mb4)  INSERT INTO tipomuestra (Tipo)
 VALUES (Tipo)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteMuestra` (IN `m_idMuestra` int(3))  DELETE FROM muestras WHERE muestras.idMuestra = m_idMuestra$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteMuestra` (IN `m_idMuestra` INT(3))  DELETE FROM muestras WHERE muestras.idMuestra = m_idMuestra$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `retirar` (IN `idMuestra_i` INT(3), IN `idUsuario_i` CHAR(6), IN `descarga` FLOAT)  BEGIN
 DECLARE restante FLOAT DEFAULT 0.0;
@@ -40,15 +40,21 @@ SELECT Cantidad INTO restante FROM muestras WHERE idMuestra = idMuestra_i;
 INSERT INTO manipulan (idMuestra,idEmpleado,Sobrante,Descarga,FechaDeUso) VALUES (idMuestra_i,idUsuario_i,restante,descarga,NOW());
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAlerta` (IN `a_idAlerta` int(3), IN `a_NombreAlerta` VARCHAR(60) CHARSET utf8mb4, IN `a_Color` ENUM('Rojo','Amarillo','Naranja','Azul') CHARSET utf8mb4, IN `a_Condicion` INT(5))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAlerta` (IN `a_idAlerta` INT(3), IN `a_NombreAlerta` VARCHAR(60) CHARSET utf8mb4, IN `a_Color` ENUM('Rojo','Amarillo','Naranja','Azul') CHARSET utf8mb4, IN `a_Condicion` INT(5))  BEGIN
 
 UPDATE alertas SET alertas.NombreAlerta = a_NombreAlerta, alertas.Color = a_Color, alertas.Condicion = a_Condicion WHERE alertas.idAlerta = a_idAlerta;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateMuestra` (IN `m_idMuestra` int(3), IN `m_NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `m_CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `m_SP` BIGINT(12), IN `m_HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `m_UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `m_Lote` VARCHAR(20) CHARSET utf8mb4, IN `m_Concentracion` FLOAT(2) UNSIGNED, IN `m_UnidadMedida` ENUM('Litros','Kilogramos') CHARSET utf8mb4, IN `m_Cantidad` FLOAT(2) UNSIGNED, IN `m_FechaFabricacion` DATE, IN `m_FechaCaducidad` DATE, IN `m_idTipoDeMuestra` int(3), IN `m_CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `m_Status` TINYINT(1), IN `m_idContenedor` int(3))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateMuestra` (IN `m_idMuestra` INT(3), IN `m_NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `m_CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `m_SP` BIGINT(12), IN `m_HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `m_UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `m_Lote` VARCHAR(20) CHARSET utf8mb4, IN `m_Concentracion` FLOAT(2) UNSIGNED, IN `m_UnidadMedida` ENUM('Litros','Kilogramos') CHARSET utf8mb4, IN `m_Cantidad` FLOAT(2) UNSIGNED, IN `m_FechaFabricacion` DATE, IN `m_FechaCaducidad` DATE, IN `m_idTipoDeMuestra` INT(3), IN `m_CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `m_Status` TINYINT(1), IN `m_idContenedor` INT(3))  BEGIN
 
 UPDATE muestras SET muestras.NombreMuestra = m_NombreMuestra, muestras.CodigoMuestra = m_CodigoMuestra, muestras.SP = m_SP, muestras.HojaSeguridad = m_HojaSeguridad, muestras.UsoMuestra = m_UsoMuestra, muestras.Lote = m_Lote, muestras.Concentracion = m_Concentracion, muestras.UnidadMedida = m_UnidadMedida, muestras.Cantidad = m_Cantidad, muestras.FechaFabricacion = m_FechaFabricacion, muestras.FechaCaducidad = m_FechaCaducidad, muestras.idTipoDeMuestra = m_idTipoDeMuestra, muestras.CodigoFormulacion = m_CodigoFormulacion, muestras.Status = m_Status, muestras.idContenedor = m_idContenedor WHERE muestras.idMuestra = m_idMuestra;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateMuestraSinHoja` (IN `m_idMuestra` INT(3), IN `m_NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `m_CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `m_SP` BIGINT(12), IN `m_UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `m_Lote` VARCHAR(20) CHARSET utf8mb4, IN `m_Concentracion` FLOAT(2) UNSIGNED, IN `m_UnidadMedida` ENUM('Litros','Kilogramos') CHARSET utf8mb4, IN `m_Cantidad` FLOAT(2) UNSIGNED, IN `m_FechaFabricacion` DATE, IN `m_FechaCaducidad` DATE, IN `m_idTipoDeMuestra` INT(3), IN `m_CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `m_Status` TINYINT(1), IN `m_idContenedor` INT(3))  BEGIN
+
+UPDATE muestras SET muestras.NombreMuestra = m_NombreMuestra, muestras.CodigoMuestra = m_CodigoMuestra, muestras.SP = m_SP,  muestras.UsoMuestra = m_UsoMuestra, muestras.Lote = m_Lote, muestras.Concentracion = m_Concentracion, muestras.UnidadMedida = m_UnidadMedida, muestras.Cantidad = m_Cantidad, muestras.FechaFabricacion = m_FechaFabricacion, muestras.FechaCaducidad = m_FechaCaducidad, muestras.idTipoDeMuestra = m_idTipoDeMuestra, muestras.CodigoFormulacion = m_CodigoFormulacion, muestras.Status = m_Status, muestras.idContenedor = m_idContenedor WHERE muestras.idMuestra = m_idMuestra;
 
 END$$
 
@@ -228,7 +234,7 @@ INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `Ho
 (8, 'ANTRACOL', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '4', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2021-10-31', '2021-12-11', 1, 'CS', 1, 2, '1'),
 (9, 'BELT', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '5', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-10-04', '2021-12-11', 1, 'SE', 1, 1, '1'),
 (12, 'CALYPSO', NULL, NULL, NULL, 'Fungicida', '6', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-15', 1, 'SC', 1, 1, '1'),
-(13, 'CLAVIS', NULL, NULL, NULL, 'Fungicida', '7', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
+(13, 'CLAVIS', NULL, NULL, '906-Clavis.pdf', 'Fungicida', '7', 48, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-10-30', '2021-12-10', 1, 'SC', 1, 1, '1'),
 (16, 'CONFIDOR', NULL, NULL, NULL, 'Fungicida', '8', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (17, 'CONSIST MAX', NULL, NULL, NULL, 'Fungicida', '9', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (18, 'CUPRAVIT HYDRO', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '10', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-11-09', '2022-02-05', 1, 'SG', 1, 2, '1'),
@@ -271,14 +277,7 @@ INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `Ho
 (57, 'Sample 10', NULL, 102000012354, NULL, 'Fungicida', '47', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'DC', 1, 1, '1'),
 (58, 'Sample 11', NULL, 102000012355, NULL, 'Fungicida', '48', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SC', 1, 1, '1'),
 (59, 'Sample 12', NULL, 102000012356, NULL, 'Fungicida', '49', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SC', 1, 1, '1'),
-(60, 'Sample 13', NULL, 102000012357, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '246891', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SE', 1, 1, '1'),
-(62, 'Prueba 19 oct store procedure', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '555555', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'CS', 1, 3, '1'),
-(67, 'Prueba 21', '11111', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '555555', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'CS', 1, 5, '1'),
-(69, 'Prueba 23 oct', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '124578', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'EC', 1, 5, '1'),
-(70, 'Prueba 23 oct', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '124578', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'TB', 1, 6, '1'),
-(71, 'lLl', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '124578', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'CS', 1, 1, '1'),
-(72, 'help', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '124578', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SE', 1, 4, '0'),
-(75, 'PRUEBA 03 NOVI', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '124578', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SE', 1, 2, '1');
+(60, 'Sample 13', NULL, 102000012357, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '246891', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SE', 1, 1, '1');
 
 -- --------------------------------------------------------
 
@@ -485,7 +484,7 @@ ALTER TABLE `manipulan`
 -- AUTO_INCREMENT de la tabla `muestras`
 --
 ALTER TABLE `muestras`
-  MODIFY `idMuestra` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `idMuestra` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT de la tabla `tipomuestra`

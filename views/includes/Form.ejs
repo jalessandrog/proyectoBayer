@@ -6,6 +6,10 @@
                         <input type="text" name="CodigoMuestra" class="form-control" id="CodigoMuestra" placeholder="Código de Muestra" value="<%= locals.old && old.CodigoMuestra %>">
                         <label for="floatingInputGrid">Código de Muestra</label>
                     </div>
+                    <!-- Mensajes de Verificación -->
+                    <p id="errorCodigoMuestra" class="alert alert-danger small ocultar" role="alert">----
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.CodigoMuestra) { %>
                     <p class="text-warning small text-start"><%= errors.CodigoMuestra.msg %></p>
@@ -16,6 +20,10 @@
                         <input type="number" name="SP" class="form-control" id="SP" placeholder="SP de Muestra"  value="<%= locals.old && old.SP %>">
                         <label for="floatingInputGrid">SP de Muestra</label>
                     </div>
+                    <!-- Mensajes de Verificación -->
+                    <p id="errorSP" class="alert alert-danger small ocultar" role="alert">
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.SP) { %>
                     <p class="text-warning small text-start"><%= errors.SP.msg %></p>
@@ -26,6 +34,10 @@
                         <input type="text" name="NombreMuestra" class="form-control" id="NombreMuestra" placeholder="Nombre de Muestra"  value="<%= locals.old && old.NombreMuestra %>">
                         <label for="floatingInputGrid">Nombre de Muestra</label>
                     </div>
+                    <!-- Mensajes de Verificación -->
+                    <p id="errorNombreMuestra" class="alert alert-danger small ocultar" role="alert">
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.NombreMuestra) { %>
                     <p class="text-warning small text-start "><%= errors.NombreMuestra.msg %></p>
@@ -33,10 +45,15 @@
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                     <select class="form-select" name="UnidadMedida" id="UnidadMedida" required>
-                        <option selected disabled value="">Unidad de medida</option>
+                        <option selected value="" disabled>Unidad de medida</option>
                         <option value="Litros">Litros</option>
                         <option value="Kilogramos">Kilogramos</option>
                     </select>
+                    <!-- Mensajes de Verificación -->
+                    <p id="errorUnidadMedida" class="alert alert-danger small ocultar" role="alert">
+                        ----
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.UnidadMedida) { %>
                     <p class="text-danger small text-start "><%= errors.UnidadMedida.msg %></p>
@@ -47,6 +64,10 @@
                         <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad"  min="0" step="any" value="<%= locals.old && old.Cantidad %>">
                         <label for="floatingInputGrid">Cantidad</label>
                     </div>
+                    <!-- Mensajes de Verificación -->
+                    <p id="errorCantidad" class="alert alert-danger small ocultar" role="alert">
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.Cantidad) { %>
                     <p class="text-danger small text-start "><%= errors.Cantidad.msg %></p>
@@ -58,9 +79,8 @@
                         <label for="floatingInputGrid">Concentracion (%)</label>
                     </div>
                     <!-- Mensajes de Verificación -->
-                    <div id="errorConcentracion" class="alert alert-danger small ocultar" role="alert">
-                        Debes ingresar la Concentracion de la muestra !
-                    </div>
+                    <p id="errorConcentracion" class="alert alert-danger small ocultar" role="alert">
+                    </p>
                     <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.Concentracion) { %>
@@ -74,6 +94,10 @@
                         <option value="2">Experimental</option>
                         <option value="3">Estándar Comercial</option>
                     </select>
+                    <!-- Mensajes de Verificación -->
+                    <p id="erroridTipoDeMuestra" class="alert alert-danger small ocultar" role="alert">
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.idTipoDeMuestra) { %>
                     <p class="text-danger small text-start "><%= errors.idTipoDeMuestra.msg %></p>
@@ -81,12 +105,17 @@
                 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                     <select class="form-select" id="CodigoFormulacion" name="CodigoFormulacion" required>
-                        <option selected value="">Seleccionar Tipo Formulación</option>
+                        <option selected value="" disabled>Seleccionar Tipo Formulación</option>
                         <% if (lista_formulaciones.length > 0) { %>
                             <% for (let TipoFormulacion of lista_formulaciones) { %>
                                 <option value="<%= TipoFormulacion.CodigoFormulacion %>"><%= TipoFormulacion.CodigoFormulacion %></option>
                             <% } }%>   
                     </select>
+                    <!-- Mensajes de Verificación -->
+                    <div id="errorCodigoFormulacion" class="alert alert-danger small ocultar" role="alert">
+                        ----
+                    </div>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.CodigoFormulacion) { %>
                     <p class="text-danger small text-start "><%= errors.CodigoFormulacion.msg %></p>
@@ -97,6 +126,10 @@
                         <input type="text" name="Lote" class="form-control" id="Lote" placeholder="Lote de Muestra" required value="<%= locals.old && old.Lote %>">
                         <label for="floatingInputGrid">Lote de Muestra</label>
                     </div>
+                    <!-- Mensajes de Verificación -->
+                    <p id="errorLote" class="alert alert-danger small ocultar" role="alert">
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.Lote) { %>
                     <p class="text-danger small text-start "><%= errors.Lote.msg %></p>
@@ -104,7 +137,7 @@
                 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                     <select class="form-select" id="UsoMuestra" name="UsoMuestra" required>
-                        <option selected value="">Seleccionar Uso de Muestra</option>
+                        <option selected value="" disabled>Seleccionar Uso de Muestra</option>
                         <option value="Fungicida">Fungicida</option>
                         <option value="Insecticida">Insecticida</option>
                         <option value="Herbicida">Herbicida</option>
@@ -112,6 +145,10 @@
                         <option value="Biológico">Biológico</option>
                         <option value="Nematicida">Nematicida</option>
                     </select>
+                    <!-- Mensajes de Verificación -->
+                    <p id="errorUsoMuestra" class="alert alert-danger small ocultar" role="alert">
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.UsoMuestra) { %>
                     <p class="text-danger small text-start "><%= errors.UsoMuestra.msg %></p>
@@ -119,7 +156,7 @@
                 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                     <select class="form-select" id="idContenedor" name="idContenedor" required>
-                        <option selected value="">Seleccionar Contenedor</option>
+                        <option selected value="" disabled>Seleccionar Contenedor</option>
                         <% if (lista_contenedores.length > 0) { %>
                             <% for (let Contenedor of lista_contenedores) { %>
                                 <% if (!Contenedor.NoContenedor) { %>
@@ -128,6 +165,11 @@
                                 <option value="<%= Contenedor.idContenedor %>"><%= Contenedor.Clasificacion %> - Número <%= Contenedor.NoContenedor %></option>
                         <% } } }%>
                     </select>
+                    <!-- Mensajes de Verificación -->
+                    <div id="erroridContenedor" class="alert alert-danger small ocultar" role="alert">
+                        ----
+                    </div>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.idContenedor) { %>
                     <p class="text-danger small text-start "><%= errors.idContenedor.msg %></p>
@@ -138,6 +180,10 @@
                         <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" min="2010-01-01" max="2100-12-31" required vvalue="<%= locals.old && old.FechaFabricacion %>">
                         <label for="floatingInputGrid">Fecha de Fabricación</label>
                     </div>
+                    <!-- Mensajes de Verificación -->
+                    <p id="errorFechaFabricacion" class="alert alert-danger small ocultar" role="alert">
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.FechaFabricacion) { %>
                     <p class="text-danger small text-start "><%= errors.FechaFabricacion.msg %></p>
@@ -148,6 +194,11 @@
                         <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" min="2010-01-01" max="2100-12-31" required value="<%= locals.old && old.Caducidad %>">
                         <label for="floatingInputGrid">Fecha de Caducidad</label>
                     </div>
+                    <!-- Mensajes de Verificación -->
+                    <p id="errorFechaCaducidad" class="alert alert-danger small ocultar" role="alert">
+                        
+                    </p>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.FechaCaducidad) { %>
                     <p class="text-danger small text-start "><%= errors.FechaCaducidad.msg %></p>
@@ -158,6 +209,11 @@
                         <option value="1" selected>Activa</option>
                         <option value="0">Inactiva</option>
                     </select>
+                    <!-- Mensajes de Verificación -->
+                    <div id="errorStatus" class="alert alert-danger small ocultar" role="alert">
+                        Debes seleccionar el estado de la muestra
+                    </div>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.Status) { %>
                     <p class="text-danger small text-start "><%= errors.Status.msg %></p>
@@ -166,8 +222,12 @@
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                     <div>
                         <label for="formFileSm" class="form-label">Hoja de Seguridad</label>
-                        <input class="form-control form-control-sm" type="file" name="HojaSeguridad" id="HojaSeguridad">
+                        <input class="form-control form-control-sm" type="file" name="HojaSeguridad" id="HojaSeguridad" accept="application/pdf, application/PDF, .pdf, .PDF">
                     </div>
+                    <!-- Mensajes de Verificación -->
+                    <div id="errorHojaSeguridad" class="alert alert-danger small ocultar" role="alert">
+                    </div>
+                    <!-- Fin Mensajes de Verificación -->
                 </div>
                 <% if (locals.errors && errors.HojaSeguridad) { %>
                     <p class="text-danger small text-start "><%= errors.HojaSeguridad.msg %></p>

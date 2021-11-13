@@ -121,19 +121,14 @@ const controller = {
         const muestra = new Muestras(req.body.NombreMuestra, CodigoMuestra, SP, 'https://github.com/jalessandrog/proyectoBayer.git', req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor);
         console.log(muestra)
         let errors = validationResult(req); 
-        console.log(errors) 
 		if(errors.isEmpty()){
             muestra.save()
                 .then( () => {
+                    res.setHeader('Set-Cookie', 'ultima_Muestra_Agregada='+req.body.NombreMuestra+'; HttpOnly');
                     console.log('Muestra agregada con exito')
                     res.status(302).redirect('/Muestras');
-                    res.setHeader('Set-Cookie', 'ultima_Muestra_Agregada='+req.body.NombreMuestra+'; HttpOnly');
+                    
                 })
-                .catch(err => {
-                    console.log(err);
-                    console.log('Error al agregar muestra')
-                    res.status(302).redirect('/error');
-                }); 
         }else{    
             console.log("Ruta Agregar Muestras")
             Contenedores.fetchAll()
@@ -152,8 +147,12 @@ const controller = {
                                 errors: errors.mapped(), 
                                 old : req.body
                             });
-                        })
-                })
+                        }).catch(err => {
+                            res.status(302).redirect('/error');
+                        });
+                }).catch(err => {
+                    res.status(302).redirect('/error');
+                });
             } 
     },
 

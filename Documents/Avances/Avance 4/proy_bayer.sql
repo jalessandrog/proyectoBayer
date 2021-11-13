@@ -25,13 +25,13 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addMuestra` (IN `NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `SP` BIGINT(12), IN `HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `Lote` VARCHAR(20) CHARSET utf8mb4, IN `Concentracion` FLOAT UNSIGNED, IN `UnidadMedida` ENUM('Litros','Kilogramos','','') CHARSET utf8mb4, IN `Cantidad` FLOAT UNSIGNED, IN `FechaFabricacion` DATE, IN `FechaCaducidad` DATE, IN `idTipoDeMuestra` TINYINT(3), IN `CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `Status` TINYINT(1), IN `idContenedor` TINYINT(3))  INSERT INTO muestras (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor) 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addMuestra` (IN `NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `SP` BIGINT(12), IN `HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `Lote` VARCHAR(20) CHARSET utf8mb4, IN `Concentracion` FLOAT UNSIGNED, IN `UnidadMedida` ENUM('Litros','Kilogramos','','') CHARSET utf8mb4, IN `Cantidad` FLOAT UNSIGNED, IN `FechaFabricacion` DATE, IN `FechaCaducidad` DATE, IN `idTipoDeMuestra` int(3), IN `CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `Status` TINYINT(1), IN `idContenedor` int(3))  INSERT INTO muestras (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor) 
 VALUES (NombreMuestra, CodigoMuestra, SP, HojaSeguridad, UsoMuestra, Lote, Concentracion, UnidadMedida, Cantidad, FechaFabricacion, FechaCaducidad, idTipoDeMuestra, CodigoFormulacion, Status, idContenedor)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addTipoMuestra` (IN `Tipo` VARCHAR(50) CHARSET utf8mb4)  INSERT INTO tipomuestra (Tipo)
 VALUES (Tipo)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteMuestra` (IN `m_idMuestra` TINYINT(3))  DELETE FROM muestras WHERE muestras.idMuestra = m_idMuestra$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteMuestra` (IN `m_idMuestra` int(3))  DELETE FROM muestras WHERE muestras.idMuestra = m_idMuestra$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `retirar` (IN `idMuestra_i` INT(3), IN `idUsuario_i` CHAR(6), IN `descarga` FLOAT)  BEGIN
 DECLARE restante FLOAT DEFAULT 0.0;
@@ -40,13 +40,13 @@ SELECT Cantidad INTO restante FROM muestras WHERE idMuestra = idMuestra_i;
 INSERT INTO manipulan (idMuestra,idEmpleado,Sobrante,Descarga,FechaDeUso) VALUES (idMuestra_i,idUsuario_i,restante,descarga,NOW());
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAlerta` (IN `a_idAlerta` TINYINT(3), IN `a_NombreAlerta` VARCHAR(60) CHARSET utf8mb4, IN `a_Color` ENUM('Rojo','Amarillo','Naranja','Azul') CHARSET utf8mb4, IN `a_Condicion` INT(5))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAlerta` (IN `a_idAlerta` int(3), IN `a_NombreAlerta` VARCHAR(60) CHARSET utf8mb4, IN `a_Color` ENUM('Rojo','Amarillo','Naranja','Azul') CHARSET utf8mb4, IN `a_Condicion` INT(5))  BEGIN
 
 UPDATE alertas SET alertas.NombreAlerta = a_NombreAlerta, alertas.Color = a_Color, alertas.Condicion = a_Condicion WHERE alertas.idAlerta = a_idAlerta;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateMuestra` (IN `m_idMuestra` TINYINT(3), IN `m_NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `m_CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `m_SP` BIGINT(12), IN `m_HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `m_UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `m_Lote` VARCHAR(20) CHARSET utf8mb4, IN `m_Concentracion` FLOAT(2) UNSIGNED, IN `m_UnidadMedida` ENUM('Litros','Kilogramos') CHARSET utf8mb4, IN `m_Cantidad` FLOAT(2) UNSIGNED, IN `m_FechaFabricacion` DATE, IN `m_FechaCaducidad` DATE, IN `m_idTipoDeMuestra` TINYINT(3), IN `m_CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `m_Status` TINYINT(1), IN `m_idContenedor` TINYINT(3))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateMuestra` (IN `m_idMuestra` int(3), IN `m_NombreMuestra` VARCHAR(100) CHARSET utf8mb4, IN `m_CodigoMuestra` TINYTEXT CHARSET utf8mb4, IN `m_SP` BIGINT(12), IN `m_HojaSeguridad` VARCHAR(800) CHARSET utf8mb4, IN `m_UsoMuestra` ENUM('Fungicida','Insecticida','Herbicida','Tratamiento de Semilla','Biológico','Nematicida') CHARSET utf8mb4, IN `m_Lote` VARCHAR(20) CHARSET utf8mb4, IN `m_Concentracion` FLOAT(2) UNSIGNED, IN `m_UnidadMedida` ENUM('Litros','Kilogramos') CHARSET utf8mb4, IN `m_Cantidad` FLOAT(2) UNSIGNED, IN `m_FechaFabricacion` DATE, IN `m_FechaCaducidad` DATE, IN `m_idTipoDeMuestra` int(3), IN `m_CodigoFormulacion` CHAR(2) CHARSET utf8mb4, IN `m_Status` TINYINT(1), IN `m_idContenedor` int(3))  BEGIN
 
 UPDATE muestras SET muestras.NombreMuestra = m_NombreMuestra, muestras.CodigoMuestra = m_CodigoMuestra, muestras.SP = m_SP, muestras.HojaSeguridad = m_HojaSeguridad, muestras.UsoMuestra = m_UsoMuestra, muestras.Lote = m_Lote, muestras.Concentracion = m_Concentracion, muestras.UnidadMedida = m_UnidadMedida, muestras.Cantidad = m_Cantidad, muestras.FechaFabricacion = m_FechaFabricacion, muestras.FechaCaducidad = m_FechaCaducidad, muestras.idTipoDeMuestra = m_idTipoDeMuestra, muestras.CodigoFormulacion = m_CodigoFormulacion, muestras.Status = m_Status, muestras.idContenedor = m_idContenedor WHERE muestras.idMuestra = m_idMuestra;
 
@@ -103,7 +103,7 @@ CREATE TABLE `alerta3` (
 --
 
 CREATE TABLE `alertas` (
-  `idAlerta` tinyint(3) NOT NULL,
+  `idAlerta` int(3) NOT NULL,
   `NombreAlerta` varchar(60) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Color` enum('Rojo','Amarillo','Naranja','Azul','Verde') COLLATE utf8mb4_spanish_ci NOT NULL,
   `Condicion` int(5) NOT NULL,
@@ -126,8 +126,8 @@ INSERT INTO `alertas` (`idAlerta`, `NombreAlerta`, `Color`, `Condicion`, `Activa
 --
 
 CREATE TABLE `contenedores` (
-  `idContenedor` tinyint(3) NOT NULL,
-  `NoContenedor` tinyint(3) DEFAULT NULL,
+  `idContenedor` int(3) NOT NULL,
+  `NoContenedor` int(3) DEFAULT NULL,
   `Clasificacion` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Activa` enum('1','0') COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '1' COMMENT '''1'' = True, ''0''=False'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -169,9 +169,9 @@ INSERT INTO `estadomuestra` (`Status`, `DescripcionStatus`) VALUES
 --
 
 CREATE TABLE `manipulan` (
-  `idMuestra` tinyint(3) NOT NULL,
+  `idMuestra` int(3) NOT NULL,
   `idEmpleado` char(6) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `idMuestras_usuarios` tinyint(3) NOT NULL,
+  `idMuestras_usuarios` int(3) NOT NULL,
   `Sobrante` float NOT NULL,
   `Descarga` float NOT NULL,
   `FechaDeUso` date NOT NULL
@@ -196,7 +196,7 @@ INSERT INTO `manipulan` (`idMuestra`, `idEmpleado`, `idMuestras_usuarios`, `Sobr
 --
 
 CREATE TABLE `muestras` (
-  `idMuestra` tinyint(3) NOT NULL,
+  `idMuestra` int(3) NOT NULL,
   `NombreMuestra` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `CodigoMuestra` tinytext COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `SP` bigint(12) DEFAULT NULL,
@@ -209,10 +209,10 @@ CREATE TABLE `muestras` (
   `FechaIngreso` timestamp NOT NULL DEFAULT current_timestamp(),
   `FechaFabricacion` date NOT NULL,
   `FechaCaducidad` date NOT NULL,
-  `idTipoDeMuestra` tinyint(3) NOT NULL,
+  `idTipoDeMuestra` int(3) NOT NULL,
   `CodigoFormulacion` char(2) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Status` tinyint(1) NOT NULL,
-  `idContenedor` tinyint(3) NOT NULL,
+  `idContenedor` int(3) NOT NULL,
   `Activa` enum('1','0') COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '1' COMMENT '1 = True, 0 = False'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -332,7 +332,7 @@ INSERT INTO `tipoformulacion` (`CodigoFormulacion`, `Formulacion`, `DescripcionF
 --
 
 CREATE TABLE `tipomuestra` (
-  `idTipoDeMuestra` tinyint(3) NOT NULL,
+  `idTipoDeMuestra` int(3) NOT NULL,
   `Tipo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Activa` enum('1','0') COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '1' COMMENT '''1'' = True, ''0''=False'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -467,31 +467,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alertas`
 --
 ALTER TABLE `alertas`
-  MODIFY `idAlerta` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idAlerta` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `contenedores`
 --
 ALTER TABLE `contenedores`
-  MODIFY `idContenedor` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idContenedor` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `manipulan`
 --
 ALTER TABLE `manipulan`
-  MODIFY `idMuestras_usuarios` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idMuestras_usuarios` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras`
 --
 ALTER TABLE `muestras`
-  MODIFY `idMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `idMuestra` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `tipomuestra`
 --
 ALTER TABLE `tipomuestra`
-  MODIFY `idTipoDeMuestra` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idTipoDeMuestra` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

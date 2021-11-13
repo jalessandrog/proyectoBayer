@@ -13,15 +13,9 @@ const validacionCrearMuestra = [
         .matches(/(1020000)+\d{5}$/,"i").withMessage('El código SP es invalido, reingrese el código'),
     body('UnidadMedida').notEmpty().withMessage('Debes ingresar la unidad de medida correspondiente de la Muestra'),
     body('Cantidad')
-        .notEmpty().withMessage('Debes registrar la cantidad la Muestra').bail()
-        .toFloat({locale: 'es-ES'})
-        .isFloat({gt: 0}).withMessage('Debes ingresar una cantidad mayor a 0').bail()
-        .isDecimal({force_decimal: true, decimal_digits: '1,2'}),
+        .notEmpty().withMessage('Debes registrar la cantidad la Muestra'),
     body('Concentracion')
-        .notEmpty().withMessage('Debes registrar la concentración de la Muestra').bail()
-        .toFloat({locale: 'es-ES'})
-        .isFloat({min: 0, max: 100}).withMessage('No es posible ingresar una concentración mayor al 100%').bail()
-        .isDecimal({force_decimal: true, decimal_digits: '1,2'}),
+        .notEmpty().withMessage('Debes registrar la concentración de la Muestra'),
     body('idTipoDeMuestra').notEmpty().withMessage('Debes ingresar el Tipo de Muestra'),
     body('CodigoFormulacion').notEmpty().withMessage('Debes ingresar el Codigo de Formulación al que pertenece la Muestra').bail()
         .isLength({min: 2, max: 2}).withMessage('Código de formulación invalido'),

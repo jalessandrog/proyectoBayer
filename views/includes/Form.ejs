@@ -135,7 +135,7 @@
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                     <div class="form-floating small">
-                        <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" min="2010-01-01" max="2050-12-31" required vvalue="<%= locals.old && old.FechaFabricacion %>">
+                        <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" min="2010-01-01" max="2100-12-31" required vvalue="<%= locals.old && old.FechaFabricacion %>">
                         <label for="floatingInputGrid">Fecha de Fabricación</label>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                     <div class="form-floating small">
-                        <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" min="2010-01-01" max="2050-12-31" required value="<%= locals.old && old.Caducidad %>">
+                        <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" min="2010-01-01" max="2100-12-31" required value="<%= locals.old && old.Caducidad %>">
                         <label for="floatingInputGrid">Fecha de Caducidad</label>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                 <% } %>
 
                 <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
-                    <select class="form-select" name="Status" id="Status" required>
+                    <select class="form-select" name="Status" id="Status" disabled>
                         <option value="1" selected>Activa</option>
                         <option value="0">Inactiva</option>
                     </select>

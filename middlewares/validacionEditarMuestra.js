@@ -13,29 +13,23 @@ const validacionEditarMuestra = [
         .matches(/(1020000)+\d{5}$/,"i").withMessage('El código SP es invalido, reingrese el código'),
     body('UnidadMedida').notEmpty().withMessage('Debes ingresar la unidad de medida correspondiente de la Muestra'),
     body('Cantidad')
-        .notEmpty().withMessage('Debes registrar la cantidad la Muestra').bail()
-        .toFloat({locale: 'es-ES'})
-        .isDecimal({force_decimal: true, decimal_digits: '1,2'}),
+        .notEmpty().withMessage('Debes registrar la cantidad la Muestra'),
     body('Concentracion')
-        .notEmpty().withMessage('Debes registrar la concentración de la Muestra').bail()
-        .toFloat({locale: 'es-ES'})
-        .isDecimal({force_decimal: true, decimal_digits: '1,2'}),
+        .notEmpty().withMessage('Debes registrar la concentración de la Muestra'),
     body('idTipoDeMuestra').notEmpty().withMessage('Debes ingresar el Tipo de Muestra'),
     body('CodigoFormulacion').notEmpty().withMessage('Debes ingresar el Codigo de Formulación al que pertenece la Muestra').bail()
         .isLength({min: 2, max: 2}).withMessage('Código de formulación invalido'),
     body('Lote')
         .notEmpty().withMessage('Debes ingresar el Lote de la Muestra').bail()
-        .isLength({ min: 1}).withMessage('Lote de la muestra invalido'),
+        .isLength({ min: 1, max:20}).withMessage('Lote de la muestra invalido'),
     body('UsoMuestra').notEmpty().withMessage('Debes ingresar el uso de la Muestra'),
     body('idContenedor').notEmpty().withMessage('Debes ingresar el contenedor donde se almacenará la Muestra'),
     body('FechaFabricacion')
         .notEmpty().withMessage('Debes ingresar la Fecha de Fabricación la Muestra').bail()
-        .toDate({format: 'YYYY-MM-DD'})
-        .isISO8601({strict: true, strictSeparator: false}),
+        .toDate({format: 'YYYY-MM-DD'}),
     body('FechaCaducidad')
         .notEmpty().withMessage('Debes ingresar la Fecha de Caducidad la Muestra').bail()
-        .toDate({format: 'YYYY-MM-DD'})
-        .isISO8601({strict: true, strictSeparator: false}),
+        .toDate({format: 'YYYY-MM-DD'}),
 ];
 
 

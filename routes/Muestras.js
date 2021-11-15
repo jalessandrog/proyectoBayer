@@ -23,4 +23,4 @@ router.get('/:id', MuestrasController.VerMuestra);
 router.get('/', MuestrasController.ConsultarMuestras);
 router.post('/',  MuestrasController.BuscarMuestras);
 
-module.exports = router;
+module.exports = router; 

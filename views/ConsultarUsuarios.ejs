@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
     <%- include('includes/head.ejs') %>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="js/paging.js"></script>
+
 <body>
-    <%- include('includes/header.ejs') %>
+    <%- include('includes/header.ejs') %> 
     <br>
     <br>
     <div class="container">
@@ -13,7 +17,7 @@
         </div>
       <br>
       <br>
-      <div class="table-responsive">
+      <div class="table-responsive" id="tablaUsuarios">
         <% if (ConsultarUsuarios.length > 0) { %>
         <table class="table .table-borderless caption-top align-middle">
           <thead class="table" style="background-color: rgb(194, 204, 204);">
@@ -42,98 +46,39 @@
         <% } %>
       </div>
     </div>
-
-    <!--<br>
-    <br>
-    <div class="container ">
-      <div class="row">
-        <div class="col-sm">
-
-        <a class="btn green" href="/Usuarios/Nuevo" role="button">Agregar Usuario</a>
-          
-        </div>
-        <div class="col-md-4">
-          <form class="form-inline">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-            <div class="input-group">
-                <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-                <span><input class="form-control" type="search" placeholder="Search" aria-label="Search"></span>
-            </div>
-          </form>
-        </div>
-        <div class="col">
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtrar por
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Nombre</a>
-              <a class="dropdown-item" href="#">Correo</a>
-              <a class="dropdown-item" href="#">Rol</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <style type="text/css">
+        .paging-nav {
+          text-align: center;
+          padding-top: 2px;
+        }
+        
+        .paging-nav a {
+          margin: auto 1px;
+          text-decoration: none;
+          display: inline-block;
+          padding: 1px 7px;
+          background: #59D400;
+          color: white;
+          border-radius: 3px;
+        }
+        
+        .paging-nav .selected-page {
+          background: #429905;
+          font-weight: bold;
+        }
+        
+        .paging-nav,
+        #tableData {
+          width: 400px;
+          margin: 0 auto;
+          font-family: Arial, sans-serif;
+        }
+        </style>
+      <script type="text/javascript">
+        $(document).ready(function() {
+                $('#tablaUsuarios').paging({limit:10});
+            });
+      </script>
       <br>
-      <br>
-
-    <div class="container">
-        <div class="row border border-primary rounded">
-          <div class="col-sm">
-            Miguel Reyes
-          </div>
-          <div class="col-sm">
-            miguelr@hotmail.com
-          </div>
-          <div class="col-sm">
-            Administrador
-          </div>
-          <div class="col-sm">
-            <a class="btn green" href="/Usuarios/1" role="button">Modificar Usuario</a>
-        </div>
-
-        </div>
-        <div class="row border border-primary rounded mt-4">
-            <div class="col-sm">
-              Nombre
-            </div>
-            <div class="col-sm">
-              Correo
-            </div>
-            <div class="col-sm">
-              Rol
-            </div>
-            <div class="col-sm">
-              <a class="btn green" href="/Usuarios/2" role="button">Modificar Usuario</a>
-            </div>
-          </div>
-          <div class="row border border-primary rounded mt-4">
-            <div class="col-sm">
-                Nombre
-            </div>
-            <div class="col-sm">
-                Correo
-            </div>
-            <div class="col-sm">
-                Rol
-            </div>
-            <div class="col-sm">
-                <a class="btn green" href="/Usuarios/3" role="button">Modificar Usuario</a>
-            </div>
-          </div>
-          <div class="row border border-primary rounded mt-4">
-            <div class="col-sm">
-                Nombre
-            </div>
-            <div class="col-sm">
-                Correo
-            </div>
-            <div class="col-sm">
-                Rol
-            </div>
-            <div class="col-sm">
-                <a class="btn green" href="/Usuarios/4" role="button">Modificar Usuario</a>
-            </div>
-          </div>
-      </div>-->
 </body>
 </html>

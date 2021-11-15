@@ -56,7 +56,7 @@
                 <td><%= muestra.NombreMuestra %></td>
                 <td><%= muestra.Concentracion %></td>
                 <td><%= muestra.CodigoFormulacion %></td>
-                <td><%= muestra.Cantidad %></td>
+                <td><%= muestra.Cantidad.toPrecision(2) %></td>
                 <td><%= muestra.SP %></td>
                 <td>
                   <% if (muestra.Cantidad> 0){ %>

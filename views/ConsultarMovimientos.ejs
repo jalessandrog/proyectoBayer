@@ -63,8 +63,8 @@
                 <% } else { %>
                   <td>-</td>
                 <% } %> 
-                <td><%= muestro.Descarga %></td>
-                <td><%= muestro.Sobrante %></td>
+                <td><%= muestro.Descarga.toPrecision(2) %></td>
+                <td><%= muestro.Sobrante.toPrecision(2) %></td>
               </tr>
             <% } %>
           </tbody>

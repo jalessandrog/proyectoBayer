@@ -40,7 +40,7 @@ const controller = {
                             NombreCompleto: req.session.NombreCompleto,
                             errors: {
                                 CorreoElectronico: {
-                                    msg: 'Credenciales invalidas'
+                                    msg: 'Credenciales inválidas'
                                 }
                             }
                         });
@@ -58,7 +58,7 @@ const controller = {
                     Permisos: req.session.rolEmpleado,
                     errors: {
                         CorreoElectronico: {
-                            msg: 'No se encuentra email'
+                            msg: 'Credenciales inválidas'
                         }
                     }
                 });

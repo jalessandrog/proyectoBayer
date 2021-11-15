@@ -135,21 +135,21 @@
 
                         <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
-                                <input type="datetime"  class="form-control" id="floatingInputGrid" placeholder="Fecha de Ingreso" value="<%= Muestra.FechaIngreso %>" disabled>
+                                <input type="datetime"  class="form-control" id="floatingInputGrid" placeholder="Fecha de Ingreso" value="<%= new Date(Muestra.FechaIngreso).toLocaleString('Mx') %>" disabled>
                                 <label for="floatingInputGrid">Fecha de Ingreso</label>
                             </div>
                         </div>
                         
                         <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
-                                <input type="datetime" name="FechaFabricacion" class="form-control" id="floatingInputGrid" placeholder="Fecha de Fabricación" value="<%= Muestra.FechaFabricacion %>" disabled>
+                                <input type="datetime" name="FechaFabricacion" class="form-control" id="floatingInputGrid" placeholder="Fecha de Fabricación" value="<%= new Date(Muestra.FechaFabricacion).toLocaleString('Mx') %>" disabled>
                                 <label for="floatingInputGrid">Fecha de Fabricación</label>
                             </div>
                         </div>
                         
                         <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
-                                <input type="datetime" name="FechaCaducidad" class="form-control" id="floatingInputGrid" placeholder="Fecha de Caducidad" value="<%= Muestra.FechaCaducidad %>" disabled>
+                                <input type="datetime" name="FechaCaducidad" class="form-control" id="floatingInputGrid" placeholder="Fecha de Caducidad" value="<%= new Date(Muestra.FechaCaducidad).toLocaleString('Mx') %>" disabled>
                                 <label for="floatingInputGrid">Fecha de Caducidad</label>
                             </div>
                         </div>

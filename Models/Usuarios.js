@@ -12,8 +12,8 @@ module.exports = class Usuario {
         this.Rol = Rol;
     }
 
-    static createUser( Nombres, Apellidos, CorreoElectronico, Password, Rol){
-        return db.execute('INSERT into usuarios (Nombres, Apellidos, CorreoElectronico, Password, Rol) values (?,?,?,?,?)', [Nombres, Apellidos, CorreoElectronico, Password, Rol])
+    static createUser(idEmpleado, Nombres, Apellidos, CorreoElectronico, Password, Rol){
+        return db.execute('INSERT into usuarios (idEmpleado, Nombres, Apellidos, CorreoElectronico, Password, Rol) values (?,?,?,?,?,?)', [idEmpleado,Nombres, Apellidos, CorreoElectronico, Password, Rol])
     }
 
     static fetchOne(CorreoElectronico){

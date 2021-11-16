@@ -31,7 +31,7 @@ const controller = {
                 })
             }
             bcrypt.hash(req.body.password,12).then((hash)=> {
-                Usuarios.createUser(req.body.nombres,req.body.apellidos,req.body.correo,hash,req.body.rol).then(()=>{
+                Usuarios.createUser(req.body.idEmpleado, req.body.nombres,req.body.apellidos,req.body.correo,hash,req.body.rol).then(()=>{
                     res.status(201).send({
                         mensaje: "Se ha creado el usuario"
                     })

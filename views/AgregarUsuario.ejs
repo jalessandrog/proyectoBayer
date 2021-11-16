@@ -15,6 +15,7 @@
                     <th scope="col"><strong>Nombre Rol</strong> </th>
                 </tr>
                 <div class="row">
+                    <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>" >
                     <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="nombres" placeholder="Código de Muestra">
@@ -65,9 +66,10 @@
                     </tr>
                     <div class="row">
                         <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Administrador
-                              </button>
+                            <select class="btn btn-secondary dropdown-toggle" type="button" id="rol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <option value="Administrador">Administrador</option>
+                                <option value="Empleado Normal">Empleado Normal</option>
+                              </select>
                             <br>
                      </div>
                 </div>
@@ -77,9 +79,25 @@
     
             
             <div style="text-align: center;">
-                <a class="btn green"  role="button">Guardar usuario</a>
+                <a class="btn green"  role="button" id="submit">Agregar usuario</a>
             </div>
-    
+    <script>
+        $("#submit").click(function(){
+  $.post("/Usuarios/Nuevo",
+  {
+    "nombres":  $("#nombres").val(),
+    "apellidos": $("#apellidos").val(),
+    "correo": $("#correo").val(),
+    "password": $("#password").val(),
+    "rol": $("#rol").val(),
+    "_csrf": $("#_csrf").val(),
+  },
+  function(data, status){
+    alert("Registro exitoso");
+    window.location.href = '/Usuarios/'
+  });
+}); 
+    </script>
 </body>
 </html>
 

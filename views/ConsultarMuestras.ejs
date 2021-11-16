@@ -1,8 +1,13 @@
 <!doctype html>
 <html>
   <%- include('includes/head.ejs') %>
-  
-<body class="Muestras">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <script src="js/paging.js"></script>
+
+<body class="Muestras"> 
 
   <%- include('includes/header.ejs') %>
   <br>
@@ -28,9 +33,9 @@
 
     <br>
     <br>
-    <div class="table-responsive">
+    <div class="table-responsive" id="tablaMuestras">
       <% if (ConsultarMuestras.length > 0) { %>
-      <table class="table .table-borderless caption-top align-middle">
+      <table class="table .table-borderless caption-top align-middle" id="muestrasTable">
         <thead class="table">
             <tr align="center">
               <th scope="col" id="verMas"></th>
@@ -95,5 +100,39 @@
     </div>
   </div>
     <%- include('Modals/Modal_StatusMuestra.ejs') %>
+      <style type="text/css">
+        .paging-nav {
+          text-align: center;
+          padding-top: 2px;
+        }
+        
+        .paging-nav a {
+          margin: auto 1px;
+          text-decoration: none;
+          display: inline-block;
+          padding: 1px 7px;
+          background: #59D400;
+          color: white;
+          border-radius: 3px;
+        }
+        
+        .paging-nav .selected-page {
+          background: #429905;
+          font-weight: bold;
+        }
+        
+        .paging-nav,
+        #tableData {
+          width: 400px;
+          margin: 0 auto;
+          font-family: Arial, sans-serif;
+        }
+        </style>
+      <script type="text/javascript">
+        $(document).ready(function() {
+                $('#tablaMuestras').paging({limit:10});
+            });
+      </script>
+      <br>
   </body>
 </html>

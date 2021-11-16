@@ -22,7 +22,7 @@ const controller = {
             })
             .catch(err => {
                 console.log(err);
-                //response.status(302).redirect('/error');
+                //response.status(302).redirect('/error'); 
             });
     },
     BuscarMuestras: (req, res, next) => {

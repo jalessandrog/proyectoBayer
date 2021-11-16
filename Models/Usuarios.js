@@ -12,6 +12,10 @@ module.exports = class Usuario {
         this.Rol = Rol;
     }
 
+    static createUser( Nombres, Apellidos, CorreoElectronico, Password, Rol){
+        return db.execute('INSERT into usuarios (Nombres, Apellidos, CorreoElectronico, Password, Rol) values (?,?,?,?,?)', [Nombres, Apellidos, CorreoElectronico, Password, Rol])
+    }
+
     static fetchOne(CorreoElectronico){
         return db.execute('SELECT * FROM usuarios WHERE CorreoElectronico = ? ', [CorreoElectronico])
     }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2021 a las 23:31:43
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.9
+-- Tiempo de generación: 16-11-2021 a las 00:59:32
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -193,7 +193,12 @@ INSERT INTO `manipulan` (`idMuestra`, `idEmpleado`, `idMuestras_usuarios`, `Sobr
 (2, 'MEAIM', 3, 0, 1000, '2021-10-21'),
 (67, 'MEAIM', 4, 1, 1, '2021-10-21'),
 (4, 'MEAIM', 5, 0.5, 1, '2021-11-06'),
-(5, 'MEAIM', 6, 0.5, 1, '2021-11-06');
+(5, 'MEAIM', 6, 0.5, 1, '2021-11-06'),
+(4, 'MEAIM', 7, 1.4, 0.1, '2021-11-15'),
+(5, 'MEAIM', 8, 1.4, 0.1, '2021-11-15'),
+(8, 'MEAIM', 9, 0, 1.5, '2021-11-15'),
+(4, 'MEAIM', 10, 1.3, 0.1, '2021-11-15'),
+(13, 'MEAIM', 11, 1.3, 0.2, '2021-11-15');
 
 -- --------------------------------------------------------
 
@@ -229,12 +234,12 @@ CREATE TABLE `muestras` (
 INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `UsoMuestra`, `Lote`, `Concentracion`, `UnidadMedida`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `CodigoFormulacion`, `Status`, `idContenedor`, `Activa`) VALUES
 (1, 'CLAVISSSS', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Tratamiento de Semilla', '1111', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-30', 1, 'DC', 1, 3, '0'),
 (2, 'ADENGO', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '1', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-09', 2, 'CL', 1, 1, '0'),
-(4, 'ALIETTE', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '2', 11.5, 'Kilogramos', 1.5, '2021-11-03 20:50:38', '2021-10-31', '2021-11-08', 2, 'SG', 1, 2, '1'),
-(5, 'ALION', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '3', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SL', 1, 2, '1'),
-(8, 'ANTRACOL', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '4', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2021-10-31', '2021-12-11', 1, 'CS', 1, 2, '1'),
+(4, 'ALIETTE', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '2', 11.5, 'Kilogramos', 1.3, '2021-11-03 20:50:38', '2021-10-31', '2021-11-08', 2, 'SG', 1, 2, '1'),
+(5, 'ALION', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '3', 10, 'Kilogramos', 1.4, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SL', 1, 2, '1'),
+(8, 'ANTRACOL', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '4', 10, 'Kilogramos', 0, '2021-11-03 20:49:27', '2021-10-31', '2021-12-11', 1, 'CS', 1, 2, '1'),
 (9, 'BELT', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '5', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-10-04', '2021-12-11', 1, 'SE', 1, 1, '1'),
 (12, 'CALYPSO', NULL, NULL, NULL, 'Fungicida', '6', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-15', 1, 'SC', 1, 1, '1'),
-(13, 'CLAVIS', NULL, NULL, '906-Clavis.pdf', 'Fungicida', '7', 48, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-10-30', '2021-12-10', 1, 'SC', 1, 1, '1'),
+(13, 'CLAVIS', NULL, NULL, '906-Clavis.pdf', 'Fungicida', '7', 48, 'Litros', 1.3, '2021-11-03 20:49:27', '2021-10-30', '2021-12-10', 1, 'SC', 1, 1, '1'),
 (16, 'CONFIDOR', NULL, NULL, NULL, 'Fungicida', '8', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (17, 'CONSIST MAX', NULL, NULL, NULL, 'Fungicida', '9', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
 (18, 'CUPRAVIT HYDRO', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '10', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-11-09', '2022-02-05', 1, 'SG', 1, 2, '1'),
@@ -352,7 +357,7 @@ INSERT INTO `tipomuestra` (`idTipoDeMuestra`, `Tipo`, `Activa`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `idEmpleado` char(6) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `idEmpleado` int(11) NOT NULL,
   `Nombres` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Apellidos` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -366,11 +371,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `CorreoElectronico`, `Rol`, `token`) VALUES
-('GKXOK', 'Vianey', 'Urias', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Vianey.Urias@bayer.mx', 'Empleado Normal', '0dsadas'),
-('JOEAGG', 'Joseph Alessandro', 'García García', '$2a$12$e816GzlyeH5rwA.xIUFzQ.yzQXRs.Zgk7tAyvep2TuxzxoZoxIOYa', 'a01701434@tec.mx', 'Administrador', '4nyxgwngphcgmpx2s35gv'),
-('MEAIM', 'Miguel', 'Reyes', '$2a$12$GciAV7nWiBzA71lfIfgUTO4MfIErFxha0OX6OliEJ1XSzPC44/YYG', 'fernando.to2005@yahoo.com', 'Empleado Normal', 'g9fg1klrtv8bc78e1hku6'),
-('MEZJI', 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador', '0'),
-('PRUEBA', 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador', '0');
+(1, 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador', '0'),
+(2, 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador', '0'),
+(3, 'Vianey', 'Urias', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Vianey.Urias@bayer.mx', 'Empleado Normal', '0dsadas'),
+(4, 'Joseph Alessandro', 'García García', '$2a$12$e816GzlyeH5rwA.xIUFzQ.yzQXRs.Zgk7tAyvep2TuxzxoZoxIOYa', 'a01701434@tec.mx', 'Administrador', '4nyxgwngphcgmpx2s35gv'),
+(5, 'Miguel', 'Reyes', '$2a$12$Me/Yz4LXokqOc3NEqAOuh.wviaax2.hr6/SfdAiNMA8iDeYZWxRHW', 'fernando.to2005@yahoo.com', 'Administrador', 'aa9sg8hfs1a08owtervgz0i'),
+(6, 'test', 'asd', 'das', 'dsa', 'das', NULL),
+(8, 'test', 'asd', 'dazs', 'dsa', 'das', NULL);
 
 -- --------------------------------------------------------
 
@@ -478,7 +485,7 @@ ALTER TABLE `contenedores`
 -- AUTO_INCREMENT de la tabla `manipulan`
 --
 ALTER TABLE `manipulan`
-  MODIFY `idMuestras_usuarios` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idMuestras_usuarios` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras`
@@ -493,15 +500,14 @@ ALTER TABLE `tipomuestra`
   MODIFY `idTipoDeMuestra` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Restricciones para tablas volcadas
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
+ALTER TABLE `usuarios`
+  MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Filtros para la tabla `manipulan`
+-- Restricciones para tablas volcadas
 --
-ALTER TABLE `manipulan`
-  ADD CONSTRAINT `manipulan_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `usuarios` (`idEmpleado`),
-  ADD CONSTRAINT `manipulan_ibfk_2` FOREIGN KEY (`idMuestra`) REFERENCES `muestras` (`idMuestra`);
 
 --
 -- Filtros para la tabla `muestras`

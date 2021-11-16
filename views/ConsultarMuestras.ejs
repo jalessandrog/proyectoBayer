@@ -54,7 +54,7 @@
                   <a class="btn green" href="/Muestras/<%= muestra.idMuestra %>" role="button">Ver más</a>
                 </th>
                 <td><%= muestra.NombreMuestra %></td>
-                <td><%= muestra.Concentracion %></td>
+                <td><%= muestra.Concentracion.toPrecision(3) %></td>
                 <td><%= muestra.CodigoFormulacion %></td>
                 <td><%= muestra.Cantidad.toPrecision(2) %></td>
                 <td><%= muestra.SP %></td>

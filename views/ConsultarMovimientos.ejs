@@ -52,7 +52,7 @@
             <% for (let muestro of ConsultarMovimientos) { %>
               <tr align="center">
                 <td><%= muestro.NombreUsuario %></td>
-                <td><%= muestro.FechaDeUso %></td>
+                <td><%= new Date(muestro.FechaDeUso).toLocaleString('Mx') %></td>  
                 <% if (muestro.NombreMuestra){ %>
                   <td><%= muestro.NombreMuestra %></td>
                 <% } else { %>

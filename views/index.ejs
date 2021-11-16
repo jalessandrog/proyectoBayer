@@ -16,10 +16,12 @@
                 <table class="table table-bordered caption-top">
                     <thead class="table-light">
                       <tr style="text-align: center;">
-                        <th scope="col" colspan="4" style="background: #c0c1ce;">Alertas</th>
+                        <th scope="col" colspan="5" style="background: #c0c1ce;">Alertas</th>
                         <tr scope="col" colspan="3" style="background: #c0c1ce; text-align: center; font-weight: bold;">
                           <td></td>
-                          <td>Muestras</td>
+                          <td>Nombre/Codigo Muestra</td>
+                          <!-- <td>Codigo Muestra</td> -->
+                          <td>Código SP</td>
                           <td>Días para caducar</td>
                           <td>Existencias</td>
                         </tr>
@@ -40,7 +42,14 @@
                         <% if ( alerta1.Color === "Azul"){ %>
                         <th scope="row" style="background: #26929F;">  </th>
                         <% } %> 
+
+                        <% if ( alerta1.NombreMuestra === null || alerta1.NombreMuestra === ''  ){ %>
+                        <td><%= alerta1.CodigoMuestra %></td>
+                        <% } else { %>
                         <td><%= alerta1.NombreMuestra %></td>
+                        <% } %> 
+                        <!-- <td><%= alerta1.CodigoMuestra %></td> -->
+                        <td><%= alerta1.SP %></td>
                         <td><%= alerta1.DiasRestantes %> Días </td>
                         <td><%= alerta1.Cantidad %> - <%= alerta1.UnidadMedida %></td>
                         <!-- <td>Producto cercano a caducar</td> -->
@@ -60,7 +69,15 @@
                         <% if ( alerta2.Color === "Azul"){ %>
                         <th scope="row" style="background: #26929F;">  </th>
                         <% } %> 
+                          <!-- <td><%= alerta2.NombreMuestra %></td>
+                          <td><%= alerta2.CodigoMuestra %></td> -->
+                          <% if ( alerta2.NombreMuestra === null || alerta2.NombreMuestra === ''  ){ %>
+                          <td><%= alerta2.CodigoMuestra %></td>
+                          <% } else { %>
                           <td><%= alerta2.NombreMuestra %></td>
+                          <% } %> 
+
+                          <td><%= alerta2.SP %></td>
                           <td><%= alerta2.DiasRestantes %> Días </td>
                           <td><%= alerta2.Cantidad %> - <%= alerta2.UnidadMedida %></td>
                       </tr>
@@ -82,7 +99,15 @@
                           <% if ( alerta3.Color === "Verde"){ %>
                           <th scope="row" style="background: #00b347;">  </th>
                           <% } %> 
+                            <!-- <td><%= alerta3.NombreMuestra %></td>
+                            <td><%= alerta3.CodigoMuestra %></td> -->
+
+                            <% if ( alerta3.NombreMuestra === null || alerta3.NombreMuestra === ''  ){ %>
+                            <td><%= alerta3.CodigoMuestra %></td>
+                            <% } else { %>
                             <td><%= alerta3.NombreMuestra %></td>
+                            <% } %> 
+                            <td><%= alerta3.SP %></td>
                             <td><%= alerta3.DiasRestantes %> Días </td>
                             <td><%= alerta3.Cantidad %> - <%= alerta3.UnidadMedida %></td>
                         </tr>

@@ -36,14 +36,15 @@
     <div class="table-responsive" id="tablaMuestras">
       <% if (ConsultarMuestras.length > 0) { %>
       <table class="table .table-borderless caption-top align-middle" id="muestrasTable">
-        <thead class="table">
+        <thead class="table text-center align-middle">
             <tr align="center">
               <th scope="col" id="verMas"></th>
-              <th scope="col">Nombre</th>
+              <th scope="col">Nombre/Codigo de Muestra</th>
+              <!-- <th scope="col">Código de Muestra</th> -->
+              <th scope="col">Código SP</th>
               <th scope="col">Concentración</th>
               <th scope="col">Formulación</th>
               <th scope="col">Cantidad</th>
-              <th scope="col">SP</th>
               <th scope="col" id="sin-color"></th>
               <th scope="col" id="StatusMuestra"></th>
             </tr>
@@ -58,11 +59,34 @@
                 <th scope="row">
                   <a class="btn green" href="/Muestras/<%= muestra.idMuestra %>" role="button">Ver más</a>
                 </th>
+                
+                <!-- <% if (muestra.NombreMuestra === null || muestra.NombreMuestra === '' ){ %>
+                <td style="background-color: #ffffff"><%= muestra.NombreMuestra %></td>
+                <% } else { %>
                 <td><%= muestra.NombreMuestra %></td>
+                <% } %> 
+
+                <% if (muestra.CodigoMuestra === null || muestra.CodigoMuestra === '' ){ %>
+                <td style="background-color: #ffffff"><%= muestra.CodigoMuestra %></td>
+                <% } else { %>
+                <td><%= muestra.CodigoMuestra %></td>
+                <% } %>  -->
+
+                <% if (muestra.NombreMuestra === null || muestra.NombreMuestra === '' ){ %>
+                <td><%= muestra.CodigoMuestra %></td>
+                <% } else { %>
+                <td><%= muestra.NombreMuestra %></td>
+                <% } %> 
+
+                <% if (muestra.SP === null || muestra.SP === '' ){ %>
+                <td><%= muestra.SP %></td>
+                <% } else { %>
+                <td><%= muestra.SP %></td>
+                <% } %> 
+
                 <td><%= muestra.Concentracion.toPrecision(3) %></td>
                 <td><%= muestra.CodigoFormulacion %></td>
                 <td><%= muestra.Cantidad.toPrecision(2) %></td>
-                <td><%= muestra.SP %></td>
                 <td>
                   <% if (muestra.Cantidad> 0){ %>
                   <form method='post' action="/Movimientos/add">
@@ -76,7 +100,7 @@
                     </div>
                   </div>
                 </form>
-                   <% } %> 
+                  <% } %> 
                 </td>
                 <td>
                   <div class="input-group input-group-sm">

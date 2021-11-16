@@ -27,40 +27,82 @@
                                     <input type="text" name="CodigoMuestra" class="form-control" id="CodigoMuestra" placeholder="Código de Muestra" value="<%= Muestra.CodigoMuestra %>">
                                     <label for="floatingInputGrid">Código de Muestra</label>
                                 </div>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorCodigoMuestra" class="alert alert-danger small ocultar" role="alert"></p>
+                                <p id="alertaCodigoMuestra" class="alert alert-warning small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.CodigoMuestra) { %>
+                                <p class="text-warning small text-start"><%= errors.CodigoMuestra.msg %></p>
+                            <% } %>
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating">
                                     <input type="number" name="SP" class="form-control" id="SP" placeholder="SP de Muestra" value="<%= Muestra.SP %>">
                                     <label for="floatingInputGrid">SP de Muestra</label>
                                 </div>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorSP" class="alert alert-danger small ocultar" role="alert"></p>
+                                <p id="alertaSP" class="alert alert-warning small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.SP) { %>
+                                <p class="text-warning small text-start"><%= errors.SP.msg %></p>
+                            <% } %>
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating">
                                     <input type="text" name="NombreMuestra" class="form-control" id="NombreMuestra" placeholder="Nombre de Muestra" value="<%= Muestra.NombreMuestra %>">
                                     <label for="floatingInputGrid">Nombre de Muestra</label>
                                 </div>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorNombreMuestra" class="alert alert-danger small ocultar" role="alert"></p>
+                                <p id="alertaNombreMuestra" class="alert alert-warning small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.NombreMuestra) { %>
+                                <p class="text-warning small text-start "><%= errors.NombreMuestra.msg %></p>
+                            <% } %>
+
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <select class="form-select" name="UnidadMedida" id="UnidadMedida" required>
                                     <option selected disabled value="">Unidad de medida</option>
                                     <option value="Litros">Litros</option>
                                     <option value="Kilogramos">Kilogramos</option>
                                 </select>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorUnidadMedida" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.UnidadMedida) { %>
+                                <p class="text-danger small text-start "><%= errors.UnidadMedida.msg %></p>
+                            <% } %>
+                            
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating small">
                                     <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad"  step="any" value="<%= Muestra.Cantidad %>" minlength="0">
                                     <label for="floatingInputGrid">Cantidad</label>
                                 </div>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorCantidad" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.Cantidad) { %>
+                                <p class="text-danger small text-start "><%= errors.Cantidad.msg %></p>
+                            <% } %>
+
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating small">
                                     <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)"   step="any" value="<%= Muestra.Concentracion %>" minlength="0" maxlength="100">
                                     <label for="floatingInputGrid">Concentracion (%)</label>
                                 </div>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorConcentracion" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.Concentracion) { %>
+                                <p class="text-danger small text-start "><%= errors.Concentracion.msg %></p>
+                            <% } %>
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <select class="form-select" name="idTipoDeMuestra" id="idTipoDeMuestra">
@@ -79,7 +121,14 @@
                                     <% } %>
                                     
                                 </select>
+                                <!-- Mensajes de Verificación -->
+                                <p id="erroridTipoDeMuestra" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.idTipoDeMuestra) { %>
+                                <p class="text-danger small text-start "><%= errors.idTipoDeMuestra.msg %></p>
+                            <% } %>
+                
                             <br>
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                                 <select class="form-select" id="CodigoFormulacion" name="CodigoFormulacion" required >
@@ -90,15 +139,26 @@
                                             <option value="<%= TipoFormulacion.CodigoFormulacion %>"><%= TipoFormulacion.CodigoFormulacion %></option>
                                         <% } }%>   
                                 </select>
-                                <!-- <span class="error" aria-live="polite"></span> -->
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorCodigoFormulacion" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.CodigoFormulacion) { %>
+                                <p class="text-danger small text-start "><%= errors.CodigoFormulacion.msg %></p>
+                            <% } %>
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating">
                                     <input type="text" name="Lote" class="form-control" id="Lote" placeholder="Lote de Muestra" value="<%= Muestra.Lote %>">
                                     <label for="floatingInputGrid">Lote de Muestra</label>
                                 </div>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorLote" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.Lote) { %>
+                                <p class="text-danger small text-start "><%= errors.Lote.msg %></p>
+                            <% } %>
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                                 <select class="form-select" id="UsoMuestra" name="UsoMuestra">
@@ -151,7 +211,13 @@
                                     <option value="Nematicida" selected>Nematicida</option>
                                     <% } %>  
                                 </select>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorUsoMuestra" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.UsoMuestra) { %>
+                                <p class="text-danger small text-start "><%= errors.UsoMuestra.msg %></p>
+                            <% } %>
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                                 <select class="form-select" id="idContenedor" name="idContenedor" required>
@@ -165,21 +231,42 @@
                                             <option value="<%= Contenedor.idContenedor %>"><%= Contenedor.Clasificacion %> - Número <%= Contenedor.NoContenedor %></option>
                                     <% } } }%>
                                 </select>
+                                <!-- Mensajes de Verificación -->
+                                <p id="erroridContenedor" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.idContenedor) { %>
+                                <p class="text-danger small text-start "><%= errors.idContenedor.msg %></p>
+                            <% } %>
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating small">
                                     <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" value="<%= Muestra.FechaFabricacion %>">
                                     <label for="floatingInputGrid">Fecha de Fabricación</label>
                                 </div>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorFechaFabricacion" class="alert alert-danger small ocultar" role="alert">
+                                <p id="alertaFechaFabricacion" class="alert alert-warning small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.FechaFabricacion) { %>
+                                <p class="text-danger small text-start "><%= errors.FechaFabricacion.msg %></p>
+                            <% } %>
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating small">
                                     <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" value="<%= Muestra.FechaCaducidad %>">
                                     <label for="floatingInputGrid">Fecha de Caducidad</label>
                                 </div>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorFechaCaducidad" class="alert alert-danger small ocultar" role="alert">
+                                <p id="alertaFechaCaducidad" class="alert alert-warning small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.FechaCaducidad) { %>
+                                <p class="text-danger small text-start "><%= errors.FechaCaducidad.msg %></p>
+                            <% } %>
+
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <select class="form-select" name="Status" id="Status">
                                     <% if ( Muestra.Status === 1 || Muestra.Status === "Activa" ) { %>
@@ -190,14 +277,27 @@
                                     <option value="0" selected>Status de muestra : Inactiva</option>
                                     <% } %>
                                 </select>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorStatus" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.Status) { %>
+                                <p class="text-danger small text-start "><%= errors.Status.msg %></p>
+                            <% } %>
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                                 <div>
                                     <label for="formFileSm" class="form-label">Hoja de Seguridad</label>
                                     <input class="form-control form-control-sm" type="file" name="HojaSeguridad" id="HojaSeguridad"  accept="application/pdf, application/PDF, .pdf, .PDF">
                                 </div>
+                                <!-- Mensajes de Verificación -->
+                                <p id="errorHojaSeguridad" class="alert alert-danger small ocultar" role="alert"></p>
+                                <!-- Fin Mensajes de Verificación -->
                             </div>
+                            <% if (locals.errors && errors.HojaSeguridad) { %>
+                                <p class="text-danger small text-start "><%= errors.HojaSeguridad.msg %></p>
+                            <% } %>
+
                     </div><!--/ Row-->
 
                     <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">

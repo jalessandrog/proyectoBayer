@@ -34,12 +34,38 @@
                                         <td><input class="form-control" type="number" id="Condicion" name="Condicion" placeholder="<%= alerta.Condicion %> días" value="<%= alerta.Condicion %>"></td>
                                         <td>
                                             <select class="form-select" name="Color" id="Color" required>
-                                                <option selected disabled value="">Seleccione el color</option>
-                                                <option value="Rojo">Rojo</option>
+                                                <option disabled value="">Seleccione el color</option>
+                                                <% if ( alerta.Color === "Rojo"){ %>
+                                                <option value="Rojo" selected>Rojo</option>
                                                 <option value="Amarillo">Amarillo</option>
                                                 <option value="Naranja">Naranja</option>
                                                 <option value="Azul">Azul</option>
                                                 <option value="Verde">Verde</option>
+                                                <% } else if ( alerta.Color === "Amarillo"){ %>  
+                                                <option value="Rojo">Rojo</option>
+                                                <option value="Amarillo" selected>Amarillo</option>
+                                                <option value="Naranja">Naranja</option>
+                                                <option value="Azul">Azul</option>
+                                                <option value="Verde">Verde</option>
+                                                <% } else if ( alerta.Color === "Naranja"){ %>
+                                                <option value="Rojo">Rojo</option>
+                                                <option value="Amarillo">Amarillo</option>
+                                                <option value="Naranja" selected>Naranja</option>
+                                                <option value="Azul">Azul</option>
+                                                <option value="Verde">Verde</option>
+                                                <% } else if ( alerta.Color === "Azul"){ %>
+                                                <option value="Rojo">Rojo</option>
+                                                <option value="Amarillo">Amarillo</option>
+                                                <option value="Naranja">Naranja</option>
+                                                <option value="Azul" selected>Azul</option>
+                                                <option value="Verde">Verde</option>
+                                                <% } else { %>
+                                                <option value="Rojo">Rojo</option>
+                                                <option value="Amarillo">Amarillo</option>
+                                                <option value="Naranja">Naranja</option>
+                                                <option value="Azul">Azul</option>
+                                                <option value="Verde" selected>Verde</option>
+                                                <% } %>
                                             </select>
                                         </td>
                                     </tr>

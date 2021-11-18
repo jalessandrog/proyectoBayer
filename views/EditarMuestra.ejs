@@ -66,9 +66,14 @@
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <select class="form-select" name="UnidadMedida" id="UnidadMedida" required>
-                                    <option selected disabled value="">Unidad de medida</option>
-                                    <option value="Litros">Litros</option>
+                                    <option disabled value="">Unidad de medida</option>
+                                    <% if ( Muestra.UnidadMedida === "Litros"){ %>
+                                    <option value="Litros" selected>Litros</option>
                                     <option value="Kilogramos">Kilogramos</option>
+                                    <% } else { %>
+                                    <option value="Litros" >Litros</option>
+                                    <option value="Kilogramos" selected>Kilogramos</option>
+                                    <% } %>
                                 </select>
                                 <!-- Mensajes de Verificación -->
                                 <p id="errorUnidadMedida" class="alert alert-danger small ocultar" role="alert"></p>
@@ -132,11 +137,11 @@
                             <br>
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                                 <select class="form-select" id="CodigoFormulacion" name="CodigoFormulacion" required >
-                                    <!-- CAMBIAR VALUE PREDETERMINADO, AGREGAR VALIDACIÓN -->
-                                    <option selected disabled value="">Seleccionar Codigo de Formulación</option>
+                                    <option selected value="<%= Muestra.CodigoFormulacion %>" disabled><%= Muestra.CodigoFormulacion %></option>
                                     <% if (lista_formulaciones.length > 0) { %>
                                         <% for (let TipoFormulacion of lista_formulaciones) { %>
                                             <option value="<%= TipoFormulacion.CodigoFormulacion %>"><%= TipoFormulacion.CodigoFormulacion %></option>
+                                            <!-- <option value="<%= TipoFormulacion.CodigoFormulacion %> <% if (Muestra.CodigoFormulacion === TipoFormulacion.CodigoFormulacion ) { %> selected <% } else { %> ' ' <%  }  %>"><%= TipoFormulacion.CodigoFormulacion %></option> -->
                                         <% } }%>   
                                 </select>
                                 <!-- Mensajes de Verificación -->
@@ -162,6 +167,7 @@
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                                 <select class="form-select" id="UsoMuestra" name="UsoMuestra">
+                                    
                                     <% if ( Muestra.UsoMuestra === "Fungicida"){ %>
                                     <option value="Fungicida" selected>Fungicida</option>
                                     <option value="Insecticida">Insecticida</option>
@@ -221,15 +227,14 @@
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                                 <select class="form-select" id="idContenedor" name="idContenedor" required>
-                                    <!-- CAMBIAR VALUE PREDETERMINADO, AGREGAR VALIDACIÓN -->
-                                    <option value="" disabled selected>Seleccionar Contenedor</option>
+                                    <%(console.log(Muestra)) %>
+                                    <%(console.log(Muestra.idContenedor)) %>
+                                    <option selected value="<%= Muestra.idContenedor %>" disabled><%= Muestra.Clasificacion %> - <%= Muestra.NoContenedor %></option>
                                     <% if (lista_contenedores.length > 0) { %>
                                         <% for (let Contenedor of lista_contenedores) { %>
-                                            <% if (!Contenedor.NoContenedor) { %>
-                                                <option value="<%= Contenedor.idContenedor %>"><%= Contenedor.Clasificacion %></option>
-                                            <% } else {%>
-                                            <option value="<%= Contenedor.idContenedor %>"><%= Contenedor.Clasificacion %> - Número <%= Contenedor.NoContenedor %></option>
-                                    <% } } }%>
+                                            <option value="<%= Contenedor.idContenedor %> <% if (Muestra.idContenedor === Contenedor.idContenedor ) { %> selected <% } %>"><%= Contenedor.Clasificacion %> - <%= Contenedor.NoContenedor %></option>
+                                        <% } }%>   
+                                        
                                 </select>
                                 <!-- Mensajes de Verificación -->
                                 <p id="erroridContenedor" class="alert alert-danger small ocultar" role="alert"></p>
@@ -241,7 +246,15 @@
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating small">
-                                    <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" value="<%= Muestra.FechaFabricacion %>">
+                                    <% let fecha = Muestra.FechaFabricacion %>
+                                    <% let dia = fecha.getDate() %>
+                                    <% let mes = fecha.getMonth() %>
+                                    <% let anio = fecha.getFullYear() %>
+                                    <% let FechaFab = new Date(anio, mes, dia).toLocaleDateString('es-MX') %>
+                                    <% console.log(fecha) %>
+                                    <% console.log(FechaFab) %>
+                                    <% console.log("Día "+dia + " Mes "+ mes +" Año "+anio) %>
+                                    <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" value="<%= FechaFab %>">
                                     <label for="floatingInputGrid">Fecha de Fabricación</label>
                                 </div>
                                 <!-- Mensajes de Verificación -->
@@ -255,7 +268,7 @@
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating small">
-                                    <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" value="<%= Muestra.FechaCaducidad %>">
+                                    <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" value="<%- new Date(Muestra.FechaCaducidad).toLocaleDateString('es-MX') %>">
                                     <label for="floatingInputGrid">Fecha de Caducidad</label>
                                 </div>
                                 <!-- Mensajes de Verificación -->

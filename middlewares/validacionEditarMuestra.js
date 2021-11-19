@@ -1,4 +1,4 @@
-const { body, matchedData, check } = require('express-validator');
+const { body, param, matchedData, check } = require('express-validator');
 
 // Validaciones
 const validacionEditarMuestra = [
@@ -31,6 +31,5 @@ const validacionEditarMuestra = [
         .notEmpty().withMessage('Debes ingresar la Fecha de Caducidad la Muestra').bail()
         .toDate({format: 'YYYY-MM-DD'}),
 ];
-
 
 module.exports = validacionEditarMuestra; 

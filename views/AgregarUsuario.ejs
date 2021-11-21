@@ -21,8 +21,9 @@
                             <label for="floatingInputGrid">ID empleado</label>
                         </div>
                     </div>
-        
                 </div>
+                <br>
+
                 <tr style="text-align: center;">
                     <th scope="col"><strong>Nombre Rol</strong> </th>
                 </tr>
@@ -90,10 +91,12 @@
         </div>
     </div>
     
-            
-            <div style="text-align: center;">
-                <a class="btn green"  role="button" id="submit">Agregar usuario</a>
+    <div style="text-align:center;">
+            <div class="btn-group me-auto" role="group" aria-label="Second group">
+                <button type="submit" class="boton" id="submit">Registrar usuario</button>
             </div>
+    </div>
+    
     <script>
         $("#submit").click(function(){
   $.post("/Usuarios/Nuevo",

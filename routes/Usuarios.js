@@ -18,6 +18,7 @@ router.post('/Nuevo', jsonParser,UsuariosController.AgregarUsuario);
 
 router.get('/:id', adminMiddleware, isAuth, UsuariosController.ModificarUsuario); 
 
+router.post('/:id',jsonParser, UsuariosController.ModificarUsuario);
 
 
 module.exports = router; 

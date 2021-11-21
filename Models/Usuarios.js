@@ -19,6 +19,9 @@ module.exports = class Usuario {
     static fetchOne(CorreoElectronico){
         return db.execute('SELECT * FROM usuarios WHERE CorreoElectronico = ? ', [CorreoElectronico])
     }
+    static fetchOnebyId(idEmpleado){
+        return db.execute('SELECT * FROM usuarios WHERE idEmpleado = ? ', [idEmpleado])
+    }
 
     static fetchAll() {
         return db.execute("SELECT U.idEmpleado, CONCAT(U.Nombres,' ', U.Apellidos) 'NombreUsuario', U.CorreoElectronico, U.Rol FROM usuarios U ORDER BY U.Nombres ASC")
@@ -33,5 +36,9 @@ module.exports = class Usuario {
     }
     static UpdatePassword(idEmpleado, password){
         return db.execute('UPDATE usuarios SET password = ? WHERE idEmpleado = ? ', [password, idEmpleado])
+    }
+
+    static UpdateUser(idEmpleado, Nombres, Apellidos, CorreoElectronico, Rol){
+        return db.execute('UPDATE usuarios SET  Nombres = ?, Apellidos = ?, CorreoElectronico =?, Rol = ? WHERE idEmpleado = ? ', [Nombres, Apellidos, CorreoElectronico, Rol,idEmpleado])
     }
 } 

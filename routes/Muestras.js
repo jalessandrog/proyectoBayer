@@ -8,6 +8,9 @@ const validacionCrearMuestra = require('../middlewares/validacionRegistrarMuestr
 const validacionEditarMuestra = require('../middlewares/validacionEditarMuestra')
 const adminMiddleware = require('../middlewares/adminMiddleware')
 
+const bodyParser = require('body-parser')
+
+const jsonParser = bodyParser.json()
 
 router.post('/delete/:id',adminMiddleware, MuestrasController.borrarMuestra);
 
@@ -17,10 +20,12 @@ router.post('/agregar', adminMiddleware, validacionCrearMuestra,  MuestrasContro
 router.get('/editar/:id', adminMiddleware, MuestrasController.EditarMuestra);
 router.post('/editar/:id',adminMiddleware, validacionEditarMuestra, MuestrasController.processUpdate);
 
+router.post('/reportar/:id',jsonParser, MuestrasController.reportarMuestra);
 
 router.get('/:id', MuestrasController.VerMuestra);
 
 router.get('/', MuestrasController.ConsultarMuestras);
 router.post('/',  MuestrasController.BuscarMuestras);
+
 
 module.exports = router; 

@@ -263,5 +263,16 @@ const controller = {
             });
     },
 
+    reportarMuestra:(req, res, next) => {
+        console.log(req.params.id,req.body.status,req.body.reporte)
+       Muestras.reportarMuestra(req.params.id,req.body.status,req.body.reporte)
+        .then(()=>{
+            res.status(201).send({})
+        }).catch((e)=>{
+            console.log(e)
+            res.status(500)
+        })
+    },
+
 }
 module.exports = controller;

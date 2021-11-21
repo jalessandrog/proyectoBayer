@@ -88,7 +88,7 @@
                 <td><%= muestra.CodigoFormulacion %></td>
                 <td><%= muestra.Cantidad.toPrecision(2) %></td>
                 <td>
-                  <% if (muestra.Cantidad> 0){ %>
+                  <% if (muestra.Cantidad> 0 && muestra.Activa == 1){ %>
                   <form method='post' action="/Movimientos/add">
                   <div class="input-group input-group-sm ">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
@@ -104,13 +104,13 @@
                 </td>
                 <td>
                   <div class="input-group input-group-sm">
-                    <% if (muestra.Status === 1){ %>
+                    <% if (muestra.Activa == 1){ %>
                       <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
                     <% } else { %>
                       <input style="background-color: #be3535" type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Inactiva" disabled>
                     <% } %> 
                     <div class="input-group-append">
-                      <button class="btn green btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop-StatusMuestra">Modificar Status</button>
+                      <button onclick="loadModalData('<%= muestra.idMuestra%>','<%= muestra.Status%>','<%= muestra.Reporte %>')" class="btn green btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop-StatusMuestra">Modificar Status</button>
                     </div>
                   </div>
                 </td>
@@ -153,8 +153,28 @@
         }
         </style>
       <script type="text/javascript">
+         function loadModalData(idMuestra,Status,Reporte){
+                  $("#reporte").val(Reporte);
+                  $("#idMuestra").val(idMuestra);
+                  $("#status option").eq(Status).prop('selected', true);
+
+                }
         $(document).ready(function() {
                 $('#tablaMuestras').paging({limit:10});
+                $('#reportar').click(()=>{
+                  $.post("/Muestras/reportar/"+$("#idMuestra").val(),
+                          {
+                            "status":  $("#status").val(),
+                            "reporte": $("#reporte").val(),
+                            "_csrf": $("#_csrf_modal").val(),
+                          },
+                          function(data, status){
+                            alert("Reporte exitoso");
+                            window.location.reload()
+                          },
+                          
+                          );
+                })
             });
       </script>
       <br>

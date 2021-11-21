@@ -42,7 +42,7 @@ module.exports = class Muestras {
 
     static fetchAll() {
         // return db.execute('SELECT * FROM muestras');
-        return db.execute('SELECT muestras.idMuestra, muestras.NombreMuestra, muestras.CodigoMuestra, muestras.SP, muestras.HojaSeguridad, muestras.UsoMuestra, muestras.Lote, muestras.Concentracion, muestras.UnidadMedida, muestras.Cantidad, muestras.FechaIngreso, muestras.FechaFabricacion, muestras.FechaCaducidad, tipomuestra.Tipo, tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion, contenedores.idContenedor, contenedores.NoContenedor, contenedores.Clasificacion, muestras.Status, estadomuestra.DescripcionStatus FROM muestras, contenedores, tipoformulacion, tipomuestra, estadomuestra WHERE muestras.idTipoDeMuestra = tipomuestra.idTipoDeMuestra AND muestras.CodigoFormulacion = tipoformulacion.CodigoFormulacion AND contenedores.idContenedor = muestras.idContenedor AND muestras.Status = estadomuestra.Status AND muestras.Activa = "1" ORDER BY muestras.NombreMuestra ASC')
+        return db.execute('SELECT muestras.*, tipomuestra.Tipo, tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion, contenedores.idContenedor, contenedores.NoContenedor, contenedores.Clasificacion, muestras.Status, estadomuestra.DescripcionStatus FROM muestras, contenedores, tipoformulacion, tipomuestra, estadomuestra WHERE muestras.idTipoDeMuestra = tipomuestra.idTipoDeMuestra AND muestras.CodigoFormulacion = tipoformulacion.CodigoFormulacion AND contenedores.idContenedor = muestras.idContenedor AND muestras.Status = estadomuestra.Status ORDER BY muestras.NombreMuestra ASC')
     }
     static fetchAllporcaducar() {
         // return db.execute('SELECT * FROM muestras');
@@ -65,5 +65,9 @@ module.exports = class Muestras {
 
     static retirar(idMuestra,idUsuario,descarga){
         return db.execute('CALL retirar(?,?,?) ',[idMuestra,idUsuario,descarga,] )
+    }
+
+    static reportarMuestra(idMuestra, Status, Reporte){
+        return db.execute('UPDATE muestras SET Activa = ?, Reporte = ?  WHERE idMuestra = ? ', [Status,Reporte,idMuestra])
     }
 }

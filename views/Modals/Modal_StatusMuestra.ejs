@@ -13,17 +13,20 @@
             <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
                 <form>
                     <div class="row">
-        
+    
+                        <input id="idMuestra" type="hidden">
+                        <input type="hidden" id="_csrf_modal" value="<%= csrfToken %>" >
+
                         <div class="col-lg-offset-0 col-lg-8 col-md-8 col-xs-12 col-sm-12">
-                            <select class="form-control" name="StatusMuestra" id="select">
+                            <select class="form-control" name="StatusMuestra" id="status">
                                 <option value="1">Activo</option>
-                                <option value="0"  selected>Inactivo</option>
+                                <option value="0">Inactivo</option>
                             </select>
                         </div>
 
                         <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12 small">
                             <div class="form-floating small">
-                                <textarea class="form-control" name="ReporteSituacion" placeholder="Reporte de situación" id="floatingTextarea" style="height: auto">
+                                <textarea class="form-control" name="ReporteSituacion" placeholder="Reporte de situación" id="reporte" style="height: auto">
                                 </textarea>
                                 <label for="floatingTextarea">Reporte de situación</label>
                             </div>
@@ -37,7 +40,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn green">Reportar situación</button>
+            <button type="submit" id="reportar" class="btn green" >Reportar situación</button>
         </div>
     </div>
     </div>

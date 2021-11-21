@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2021 a las 22:22:04
+-- Tiempo de generación: 21-11-2021 a las 04:06:21
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.10
 
@@ -38,6 +38,9 @@ DECLARE restante FLOAT DEFAULT 0.0;
 UPDATE muestras SET Cantidad = Cantidad-descarga WHERE idMuestra = idMuestra_i;
 SELECT Cantidad INTO restante FROM muestras WHERE idMuestra = idMuestra_i;
 INSERT INTO manipulan (idMuestra,idEmpleado,Sobrante,Descarga,FechaDeUso) VALUES (idMuestra_i,idUsuario_i,restante,descarga,NOW());
+IF restante <= 0 THEN 
+UPDATE muestras SET Activa = 0 WHERE idMuestra = idMuestra_i;
+END IF;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAlerta` (IN `a_idAlerta` INT(3), IN `a_NombreAlerta` VARCHAR(60) CHARSET utf8mb4, IN `a_Color` ENUM('Rojo','Amarillo','Naranja','Azul') CHARSET utf8mb4, IN `a_Condicion` INT(5))  BEGIN
@@ -202,7 +205,12 @@ INSERT INTO `manipulan` (`idMuestra`, `idEmpleado`, `idMuestras_usuarios`, `Sobr
 (4, '5', 12, 0.0999999, 1.2, '2021-11-16'),
 (4, '5', 13, 0, 0.1, '2021-11-16'),
 (5, '5', 14, 0, 1.4, '2021-11-16'),
-(9, '5', 15, 0, 1.5, '2021-11-16');
+(9, '5', 15, 0, 1.5, '2021-11-16'),
+(12, '5', 16, 0, 1.5, '2021-11-20'),
+(13, '5', 17, 0, 1.3, '2021-11-20'),
+(16, '5', 18, 0, 1.5, '2021-11-20'),
+(17, '5', 19, 0, 1.5, '2021-11-20'),
+(2, '5', 20, 0, 1.5, '2021-11-20');
 
 -- --------------------------------------------------------
 
@@ -228,65 +236,66 @@ CREATE TABLE `muestras` (
   `CodigoFormulacion` char(2) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Status` tinyint(1) NOT NULL,
   `idContenedor` int(3) NOT NULL,
-  `Activa` enum('1','0') COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '1' COMMENT '1 = True, 0 = False'
+  `Activa` enum('1','0') COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '1' COMMENT '1 = True, 0 = False',
+  `Reporte` varchar(1024) COLLATE utf8mb4_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `muestras`
 --
 
-INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `UsoMuestra`, `Lote`, `Concentracion`, `UnidadMedida`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `CodigoFormulacion`, `Status`, `idContenedor`, `Activa`) VALUES
-(1, 'CLAVISSSS', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Tratamiento de Semilla', '1111', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-30', 1, 'DC', 1, 3, '0'),
-(2, 'ADENGO', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '1', 10, 'Kilogramos', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-09', 2, 'CL', 1, 1, '0'),
-(4, 'ALIETTE', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '2', 11.5, 'Kilogramos', 0, '2021-11-03 20:50:38', '2021-10-31', '2021-11-08', 2, 'SG', 1, 2, '1'),
-(5, 'ALION', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '3', 10, 'Kilogramos', 0, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SL', 1, 2, '1'),
-(8, 'ANTRACOL', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '4', 10, 'Kilogramos', 0, '2021-11-03 20:49:27', '2021-10-31', '2021-12-11', 1, 'CS', 1, 2, '1'),
-(9, 'BELT', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '5', 10, 'Litros', 0, '2021-11-03 20:49:27', '2021-10-04', '2021-12-11', 1, 'SE', 1, 1, '1'),
-(12, 'CALYPSO', NULL, NULL, NULL, 'Fungicida', '6', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-15', 1, 'SC', 1, 1, '1'),
-(13, 'CLAVIS', NULL, NULL, '906-Clavis.pdf', 'Fungicida', '7', 48, 'Litros', 1.3, '2021-11-03 20:49:27', '2021-10-30', '2021-12-10', 1, 'SC', 1, 1, '1'),
-(16, 'CONFIDOR', NULL, NULL, NULL, 'Fungicida', '8', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(17, 'CONSIST MAX', NULL, NULL, NULL, 'Fungicida', '9', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(18, 'CUPRAVIT HYDRO', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '10', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-11-09', '2022-02-05', 1, 'SG', 1, 2, '1'),
-(19, 'CURBIX', NULL, NULL, NULL, 'Fungicida', '11', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(20, 'DECIS FORTE', NULL, NULL, NULL, 'Fungicida', '12', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SE', 1, 1, '1'),
-(21, 'EMESTO PRIME', NULL, NULL, NULL, 'Tratamiento de Semilla', '13', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SP', 1, 1, '1'),
-(22, 'FLINT', NULL, NULL, NULL, 'Fungicida', '14', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2022-01-06', 1, 'WG', 1, 1, '1'),
-(23, 'FOLICUR', NULL, NULL, NULL, 'Fungicida', '15', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'EW', 1, 1, '1'),
-(24, 'INFINITO', NULL, NULL, NULL, 'Fungicida', '16', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(25, 'JADE', NULL, NULL, NULL, 'Fungicida', '17', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SG', 1, 1, '1'),
-(26, 'LAUDIS', NULL, NULL, NULL, 'Fungicida', '18', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(27, 'LUNA EXPERIENCE', NULL, NULL, NULL, 'Fungicida', '19', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(28, 'MOVENTO', NULL, NULL, NULL, 'Fungicida', '20', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'DC', 1, 1, '1'),
-(29, 'NEW LEVERAGE', NULL, NULL, NULL, 'Fungicida', '21', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'DC', 1, 4, '1'),
-(30, 'OBERON SPEED', NULL, NULL, NULL, 'Fungicida', '22', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-02-02', 1, 'SC', 1, 1, '1'),
-(31, 'OBERON', NULL, NULL, NULL, 'Fungicida', '23', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(32, 'PREVICUR ENERGY', NULL, NULL, NULL, 'Fungicida', '24', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(33, 'PUMA SUPER', NULL, NULL, NULL, 'Fungicida', '25', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'EO', 1, 1, '1'),
-(34, 'REQUIEM PRIME', NULL, NULL, NULL, 'Fungicida', '26', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'DC', 1, 1, '1'),
-(35, 'SCALA', NULL, NULL, NULL, 'Fungicida', '27', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SE', 1, 1, '1'),
-(36, 'SEMEVIN', NULL, NULL, NULL, 'Fungicida', '28', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(37, 'SENCOR', NULL, NULL, NULL, 'Fungicida', '29', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(38, 'SERENADE ASO', NULL, NULL, NULL, 'Fungicida', '30', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(39, 'SERENADE OPTI', NULL, NULL, NULL, 'Fungicida', '31', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'WG', 1, 1, '1'),
-(40, 'SERENADE SOIL', NULL, NULL, NULL, 'Fungicida', '32', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(41, 'SIGANEX 60 SC', NULL, NULL, NULL, 'Fungicida', '33', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(42, 'SIGMA FORTE', NULL, NULL, NULL, 'Fungicida', '34', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'EC', 1, 1, '1'),
-(45, 'SIVANTO PRIME', NULL, NULL, NULL, 'Fungicida', '35', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SL', 1, 1, '1'),
-(46, 'TEGA', NULL, NULL, NULL, 'Fungicida', '36', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(47, 'VERANGO PRIME', NULL, NULL, NULL, 'Nematicida', '37', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1'),
-(48, 'Sample', '1', 102000012345, NULL, 'Fungicida', '38', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SC', 1, 1, '1'),
-(49, 'Sample ', '2', 102000012346, NULL, 'Fungicida', '39', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SL', 1, 1, '1'),
-(50, 'Sample 3', NULL, 102000012347, NULL, 'Fungicida', '40', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SL', 1, 1, '1'),
-(51, 'Sample 4', NULL, 102000012348, NULL, 'Fungicida', '41', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'WG', 1, 1, '1'),
-(52, 'Sample 5', NULL, 102000012349, NULL, 'Fungicida', '42', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'WG', 1, 1, '1'),
-(53, 'Sample 6', NULL, 102000012350, NULL, 'Fungicida', '43', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'WG', 1, 1, '1'),
-(54, 'Sample 7', NULL, 102000012351, NULL, 'Fungicida', '44', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'CL', 1, 1, '1'),
-(55, 'Sample 8', NULL, 102000012352, NULL, 'Fungicida', '45', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'CL', 1, 1, '1'),
-(56, 'Sample 9', NULL, 102000012353, NULL, 'Fungicida', '46', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'EC', 1, 1, '1'),
-(57, 'Sample 10', NULL, 102000012354, NULL, 'Fungicida', '47', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'DC', 1, 1, '1'),
-(58, 'Sample 11', NULL, 102000012355, NULL, 'Fungicida', '48', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SC', 1, 1, '1'),
-(59, 'Sample 12', NULL, 102000012356, NULL, 'Fungicida', '49', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SC', 1, 1, '1'),
-(60, 'Sample 13', NULL, 102000012357, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '246891', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SE', 1, 1, '1');
+INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `UsoMuestra`, `Lote`, `Concentracion`, `UnidadMedida`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `CodigoFormulacion`, `Status`, `idContenedor`, `Activa`, `Reporte`) VALUES
+(1, 'CLAVISSSS', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Tratamiento de Semilla', '1111', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-30', 1, 'DC', 1, 3, '0', 'dasdasdas'),
+(2, 'ADENGO', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '1', 10, 'Kilogramos', 0, '2021-11-03 20:49:27', '2020-08-01', '2021-11-09', 2, 'CL', 1, 1, '0', 'dsadas'),
+(4, 'ALIETTE', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '2', 11.5, 'Kilogramos', 0, '2021-11-03 20:50:38', '2021-10-31', '2021-11-08', 2, 'SG', 1, 2, '0', 'Todo biengdfgfsdfdsfsddawdwadadaw'),
+(5, 'ALION', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '3', 10, 'Kilogramos', 0, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SL', 1, 2, '0', 'Como estas mal'),
+(8, 'ANTRACOL', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '4', 10, 'Kilogramos', 0, '2021-11-03 20:49:27', '2021-10-31', '2021-12-11', 1, 'CS', 1, 2, '0', 'das'),
+(9, 'BELT', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '5', 10, 'Litros', 0, '2021-11-03 20:49:27', '2021-10-04', '2021-12-11', 1, 'SE', 1, 1, '0', ''),
+(12, 'CALYPSO', NULL, NULL, NULL, 'Fungicida', '6', 10, 'Litros', 0, '2021-11-03 20:49:27', '2020-08-01', '2021-11-15', 1, 'SC', 1, 1, '', 'dawdwa'),
+(13, 'CLAVIS', NULL, NULL, '906-Clavis.pdf', 'Fungicida', '7', 48, 'Litros', 0, '2021-11-03 20:49:27', '2021-10-30', '2021-12-10', 1, 'SC', 1, 1, '', NULL),
+(16, 'CONFIDOR', NULL, NULL, NULL, 'Fungicida', '8', 10, 'Litros', 0, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '', NULL),
+(17, 'CONSIST MAX', NULL, NULL, NULL, 'Fungicida', '9', 10, 'Litros', 0, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '0', 'sadasdsa'),
+(18, 'CUPRAVIT HYDRO', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '10', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2021-11-09', '2022-02-05', 1, 'SG', 1, 2, '0', 'dasdas'),
+(19, 'CURBIX', NULL, NULL, NULL, 'Fungicida', '11', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(20, 'DECIS FORTE', NULL, NULL, NULL, 'Fungicida', '12', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SE', 1, 1, '1', NULL),
+(21, 'EMESTO PRIME', NULL, NULL, NULL, 'Tratamiento de Semilla', '13', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SP', 1, 1, '1', NULL),
+(22, 'FLINT', NULL, NULL, NULL, 'Fungicida', '14', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2022-01-06', 1, 'WG', 1, 1, '1', NULL),
+(23, 'FOLICUR', NULL, NULL, NULL, 'Fungicida', '15', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'EW', 1, 1, '1', NULL),
+(24, 'INFINITO', NULL, NULL, NULL, 'Fungicida', '16', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(25, 'JADE', NULL, NULL, NULL, 'Fungicida', '17', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SG', 1, 1, '1', NULL),
+(26, 'LAUDIS', NULL, NULL, NULL, 'Fungicida', '18', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(27, 'LUNA EXPERIENCE', NULL, NULL, NULL, 'Fungicida', '19', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(28, 'MOVENTO', NULL, NULL, NULL, 'Fungicida', '20', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'DC', 1, 1, '1', NULL),
+(29, 'NEW LEVERAGE', NULL, NULL, NULL, 'Fungicida', '21', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'DC', 1, 4, '1', NULL),
+(30, 'OBERON SPEED', NULL, NULL, NULL, 'Fungicida', '22', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-02-02', 1, 'SC', 1, 1, '1', NULL),
+(31, 'OBERON', NULL, NULL, NULL, 'Fungicida', '23', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(32, 'PREVICUR ENERGY', NULL, NULL, NULL, 'Fungicida', '24', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(33, 'PUMA SUPER', NULL, NULL, NULL, 'Fungicida', '25', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'EO', 1, 1, '1', NULL),
+(34, 'REQUIEM PRIME', NULL, NULL, NULL, 'Fungicida', '26', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'DC', 1, 1, '1', NULL),
+(35, 'SCALA', NULL, NULL, NULL, 'Fungicida', '27', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SE', 1, 1, '1', NULL),
+(36, 'SEMEVIN', NULL, NULL, NULL, 'Fungicida', '28', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(37, 'SENCOR', NULL, NULL, NULL, 'Fungicida', '29', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(38, 'SERENADE ASO', NULL, NULL, NULL, 'Fungicida', '30', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(39, 'SERENADE OPTI', NULL, NULL, NULL, 'Fungicida', '31', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'WG', 1, 1, '1', NULL),
+(40, 'SERENADE SOIL', NULL, NULL, NULL, 'Fungicida', '32', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(41, 'SIGANEX 60 SC', NULL, NULL, NULL, 'Fungicida', '33', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(42, 'SIGMA FORTE', NULL, NULL, NULL, 'Fungicida', '34', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'EC', 1, 1, '1', NULL),
+(45, 'SIVANTO PRIME', NULL, NULL, NULL, 'Fungicida', '35', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SL', 1, 1, '1', NULL),
+(46, 'TEGA', NULL, NULL, NULL, 'Fungicida', '36', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(47, 'VERANGO PRIME', NULL, NULL, NULL, 'Nematicida', '37', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 1, 'SC', 1, 1, '1', NULL),
+(48, 'Sample', '1', 102000012345, NULL, 'Fungicida', '38', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SC', 1, 1, '1', NULL),
+(49, 'Sample ', '2', 102000012346, NULL, 'Fungicida', '39', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SL', 1, 1, '1', NULL),
+(50, 'Sample 3', NULL, 102000012347, NULL, 'Fungicida', '40', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SL', 1, 1, '1', NULL),
+(51, 'Sample 4', NULL, 102000012348, NULL, 'Fungicida', '41', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'WG', 1, 1, '1', NULL),
+(52, 'Sample 5', NULL, 102000012349, NULL, 'Fungicida', '42', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'WG', 1, 1, '1', NULL),
+(53, 'Sample 6', NULL, 102000012350, NULL, 'Fungicida', '43', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'WG', 1, 1, '1', NULL),
+(54, 'Sample 7', NULL, 102000012351, NULL, 'Fungicida', '44', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'CL', 1, 1, '1', NULL),
+(55, 'Sample 8', NULL, 102000012352, NULL, 'Fungicida', '45', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'CL', 1, 1, '1', NULL),
+(56, 'Sample 9', NULL, 102000012353, NULL, 'Fungicida', '46', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'EC', 1, 1, '1', NULL),
+(57, 'Sample 10', NULL, 102000012354, NULL, 'Fungicida', '47', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'DC', 1, 1, '1', NULL),
+(58, 'Sample 11', NULL, 102000012355, NULL, 'Fungicida', '48', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SC', 1, 1, '1', NULL),
+(59, 'Sample 12', NULL, 102000012356, NULL, 'Fungicida', '49', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SC', 1, 1, '1', NULL),
+(60, 'Sample 13', NULL, 102000012357, 'https://github.com/jalessandrog/proyectoBayer.git', 'Biológico', '246891', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2023-11-01', 2, 'SE', 1, 1, '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -367,29 +376,30 @@ CREATE TABLE `usuarios` (
   `password` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
   `CorreoElectronico` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Rol` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL
+  `token` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `CorreoElectronico`, `Rol`, `token`) VALUES
-('1', 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador', '0'),
-('10', 'das', 'daw', '$2a$12$zzU08DplH1Bq89if7khloey5IfyflveVqRaNmk1xmk6Cfw5/k8AV2', 'dwa', 'Administrador', NULL),
-('11', 'das123', 'daw', '$2a$12$1ViK1wdXwvGacOtYvXup0eAKZTCnEj9cSZctb/KnvYeSFWbYlwQQO', 'dwa', 'Administrador', NULL),
-('12', 'Michell', 'Tena Ortega', '$2a$12$5jwLv8b61yGUAw5RsaETFOc1dyIgJP1GPz9QQqqKlob/zatNGdYNG', 'A01700396@bayer.com', 'Administrador', NULL),
-('13', 'Michell', 'Tena Ortega', '$2a$12$8qF5foeSztGyl7xHyRHaquY3ExIym8JJs6Cd.QX02.ax77IGn6fUC', 'A01700396@bayer.com', 'Administrador', NULL),
-('14', 'Michell', 'Tena Ortega', '$2a$12$qXrausq1hv4BHkGrUKrF4u1KGgtnGsJVfqlBGFgA7vofnqSmVnyYu', 'A01700396@bayer.com', 'Administrador', NULL),
-('15', 'Emmanuel', 'Kant', '$2a$12$1eGxJhvCYu4WolcAD23fuO5j3CrjimVRxaUQ1Xgj8pzCdJObZly4.', 'emmanuel@bayer.com', 'Empleado Normal', NULL),
-('2', 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador', '0'),
-('3', 'Vianey', 'Urias', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Vianey.Urias@bayer.mx', 'Empleado Normal', '0dsadas'),
-('4', 'Joseph Alessandro', 'García García', '$2a$12$e816GzlyeH5rwA.xIUFzQ.yzQXRs.Zgk7tAyvep2TuxzxoZoxIOYa', 'a01701434@tec.mx', 'Administrador', '4nyxgwngphcgmpx2s35gv'),
-('5', 'Miguel', 'Reyes', '$2a$12$Me/Yz4LXokqOc3NEqAOuh.wviaax2.hr6/SfdAiNMA8iDeYZWxRHW', 'fernando.to2005@yahoo.com', 'Administrador', 'aa9sg8hfs1a08owtervgz0i'),
-('6', 'test', 'asd', 'das', 'dsa', 'das', NULL),
-('8', 'test', 'asd', 'dazs', 'dsa', 'das', NULL),
-('dasdas', 'dawdawdaw', 'dwadaw', '$2a$12$FYlqmhiaMqxKupXbZ9y1m.Do1DjQhbXeZvaUd0wPcr6lScFQ1Fflm', 'daw@das.com', 'Administrador', NULL),
-('PRUEB3', 'PRUEB3', 'PRUEB3', '$2a$12$PRpH6QTV3ZXNCTIpBtgeGu/9rl0AZeuVrCQnOmdArR7yg2tycpKuq', 'PRUEB3@PRUEB3.com', 'Empleado Normal', NULL);
+INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `CorreoElectronico`, `Rol`, `token`, `Status`) VALUES
+('1', 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador', '0', 1),
+('10', 'Michelita<3', 'daw', '$2a$12$zzU08DplH1Bq89if7khloey5IfyflveVqRaNmk1xmk6Cfw5/k8AV2', 'dwa ', 'Administrador', NULL, 1),
+('11', 'das123', 'daw', '$2a$12$1ViK1wdXwvGacOtYvXup0eAKZTCnEj9cSZctb/KnvYeSFWbYlwQQO', 'dwa', 'Administrador', NULL, 1),
+('12', 'Michell', 'Tena Ortega', '$2a$12$5jwLv8b61yGUAw5RsaETFOc1dyIgJP1GPz9QQqqKlob/zatNGdYNG', 'A01700396@bayer.com', 'Administrador', NULL, 1),
+('13', 'Michell', 'Tena Ortega', '$2a$12$8qF5foeSztGyl7xHyRHaquY3ExIym8JJs6Cd.QX02.ax77IGn6fUC', 'A01700396@bayer.com', 'Administrador', NULL, 1),
+('14', 'Michell', 'Tena Ortega', '$2a$12$qXrausq1hv4BHkGrUKrF4u1KGgtnGsJVfqlBGFgA7vofnqSmVnyYu', 'A01700396@bayer.com', 'Administrador', NULL, 1),
+('15', 'Emmanuel', 'Kant', '$2a$12$1eGxJhvCYu4WolcAD23fuO5j3CrjimVRxaUQ1Xgj8pzCdJObZly4.', 'emmanuel@bayer.com', 'Empleado Normal', NULL, 1),
+('2', 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador', '0', 1),
+('3', 'Vianey', 'Urias', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Vianey.Urias@bayer.mx', 'Empleado Normal', '0dsadas', 1),
+('4', 'Joseph Alessandro', 'García García', '$2a$12$e816GzlyeH5rwA.xIUFzQ.yzQXRs.Zgk7tAyvep2TuxzxoZoxIOYa', 'a01701434@tec.mx', 'Administrador', '4nyxgwngphcgmpx2s35gv', 1),
+('5', 'Miguel', 'Reyes', '$2a$12$Me/Yz4LXokqOc3NEqAOuh.wviaax2.hr6/SfdAiNMA8iDeYZWxRHW', 'fernando.to2005@yahoo.com', 'Administrador', 'aa9sg8hfs1a08owtervgz0i', 1),
+('6', 'test', 'asd', 'das', 'dsa', 'das', NULL, 1),
+('8', 'test', 'asd', 'dazs', 'dsa', 'das', NULL, 1),
+('dasdas', 'dawdawdaw', 'dwadaw', '$2a$12$FYlqmhiaMqxKupXbZ9y1m.Do1DjQhbXeZvaUd0wPcr6lScFQ1Fflm', 'daw@das.com', 'Administrador', NULL, 1),
+('PRUEB3', 'PRUEB3', 'PRUEB3', '$2a$12$PRpH6QTV3ZXNCTIpBtgeGu/9rl0AZeuVrCQnOmdArR7yg2tycpKuq', 'PRUEB3@PRUEB3.com', 'Empleado Normal', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -497,7 +507,7 @@ ALTER TABLE `contenedores`
 -- AUTO_INCREMENT de la tabla `manipulan`
 --
 ALTER TABLE `manipulan`
-  MODIFY `idMuestras_usuarios` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idMuestras_usuarios` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras`

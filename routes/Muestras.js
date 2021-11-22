@@ -17,6 +17,7 @@ router.post('/agregar', adminMiddleware, validacionCrearMuestra,  MuestrasContro
 router.get('/editar/:id', adminMiddleware, MuestrasController.EditarMuestra);
 router.post('/editar/:id',adminMiddleware, validacionEditarMuestra, MuestrasController.processUpdate);
 
+router.get('/ExportarPDF',adminMiddleware, MuestrasController.ExportarPDF);
 
 router.get('/:id', MuestrasController.VerMuestra);
 

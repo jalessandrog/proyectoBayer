@@ -92,11 +92,6 @@ const controller = {
             });
     },
 
-    // errors: {
-    //     CorreoElectronico: {
-    //         msg: 'No se encuentra email'
-    //     }
-    // }
 
     saveMuestra:(req, res, next) => {
         console.log("Ruta Guardar Muestra")
@@ -260,6 +255,26 @@ const controller = {
                 console.log(err);
                 console.log('Error al borrar muestra')
                 res.status(302).redirect('/error');
+            });
+    },
+
+    ExportarPDF: (req, res, next) => {
+        console.log("Ruta ExportarMuestrasPDF")
+
+        Muestras.fetchAll()
+            .then(([rows, fieldData]) => {
+                res.render('ExportarMuestrasPDF',{
+                    Titulo : ' Exportar Muestras',
+                    isLoggedIn: req.session.isLoggedIn,
+                    CorreoElectronico: req.session.CorreoElectronico,
+                    NombreCompleto: req.session.NombreCompleto,
+                    Permisos: req.session.rolEmpleado,
+                    ConsultarMuestras: rows,
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                //response.status(302).redirect('/error'); 
             });
     },
 

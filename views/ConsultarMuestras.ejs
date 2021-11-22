@@ -42,8 +42,8 @@
               <th scope="col">Nombre/Codigo de Muestra</th>
               <!-- <th scope="col">Código de Muestra</th> -->
               <th scope="col">Código SP</th>
-              <th scope="col">Concentración</th>
               <th scope="col">Formulación</th>
+              <th scope="col">Concentración</th>
               <th scope="col">Cantidad</th>
               <th scope="col" id="sin-color"></th>
               <th scope="col" id="StatusMuestra"></th>
@@ -59,18 +59,6 @@
                 <th scope="row">
                   <a class="btn green" href="/Muestras/<%= muestra.idMuestra %>" role="button">Ver más</a>
                 </th>
-                
-                <!-- <% if (muestra.NombreMuestra === null || muestra.NombreMuestra === '' ){ %>
-                <td style="background-color: #ffffff"><%= muestra.NombreMuestra %></td>
-                <% } else { %>
-                <td><%= muestra.NombreMuestra %></td>
-                <% } %> 
-
-                <% if (muestra.CodigoMuestra === null || muestra.CodigoMuestra === '' ){ %>
-                <td style="background-color: #ffffff"><%= muestra.CodigoMuestra %></td>
-                <% } else { %>
-                <td><%= muestra.CodigoMuestra %></td>
-                <% } %>  -->
 
                 <% if (muestra.NombreMuestra === null || muestra.NombreMuestra === '' ){ %>
                 <td><%= muestra.CodigoMuestra %></td>
@@ -83,9 +71,8 @@
                 <% } else { %>
                 <td><%= muestra.SP %></td>
                 <% } %> 
-
-                <td><%= muestra.Concentracion.toPrecision(3) %></td>
                 <td><%= muestra.CodigoFormulacion %></td>
+                <td><%= muestra.Concentracion.toPrecision(3) %></td>
                 <td><%= muestra.Cantidad.toPrecision(2) %></td>
                 <td>
                   <% if (muestra.Cantidad> 0){ %>
@@ -122,6 +109,9 @@
         <h3>No hay muestras registradas</h3>
       <% } %>
     </div>
+    <% if( Permisos === "Administrador" ) { %>
+    <a class="btn green btn-outline-secondary" href="/Muestras/ExportarPDF">Exportar a PDF</a>
+    <% } %>
   </div>
     <%- include('Modals/Modal_StatusMuestra.ejs') %>
       <style type="text/css">

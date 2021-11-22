@@ -72,7 +72,6 @@ const controller = {
                 }).catch((e)=>{
                     console.log(e)
                 })
-        
     }
 
     

@@ -89,7 +89,7 @@
                 </form>
                   <% } %> 
                 </td>
-                <td>
+                <td> 
                   <div class="input-group input-group-sm">
                     <% if (muestra.Status === '1' ){ %>
                       <input type="text" class="form-control" name="StatusMuestra" aria-label="Amount" value="Activa" disabled>
@@ -152,17 +152,16 @@
                 $('#tablaMuestras').paging({limit:10});
                 $('#reportar').click(()=>{
                   $.post("/Muestras/reportar/"+$("#idMuestra").val(),
-                          {
-                            "status":  $("#status").val(),
-                            "reporte": $("#reporte").val(),
-                            "_csrf": $("#_csrf_modal").val(),
-                          },
-                          function(data, status){
-                            alert("Reporte exitoso");
-                            window.location.reload()
-                          },
-                          
-                          );
+                      {
+                        "status":  $("#status").val(),
+                        "reporte": $("#reporte").val(),
+                        "_csrf": $("#_csrf_modal").val(),
+                      },
+                      function(data, status){
+                        alert("Reporte exitoso");
+                        window.location.reload()
+                      },
+                  );
                 })
             });
       </script>

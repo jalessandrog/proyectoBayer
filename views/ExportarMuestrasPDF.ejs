@@ -63,7 +63,8 @@
         var pdf = new jsPDF('l', 'px', 'letter');
         let nombrePDF=  new Date().toLocaleDateString('es-MX') + ' ' +'Muestras.pdf';
         pdf.text("Lista de muestras", 250,20);
-        pdf.text('Fecha: '+new Date().toLocaleDateString('es-MX'), 250,35);
+        pdf.text('Fecha: '+new Date().toLocaleDateString('es-MX')+' -  Hora: '+ new Date().getHours()+' : '+new Date().getMinutes()+' : '+new Date().getSeconds(), 200,35);
+
 
         
         specialElementHandlers = {

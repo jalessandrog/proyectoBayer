@@ -48,7 +48,6 @@ const controller = {
 
     VerMuestra:(req, res, next) => {
         console.log("Ruta ver Muestra con ID: "+req.params.id)
-        console.log(req.body)
         Muestras.fetchOne(req.params.id)
             .then(([rows, fieldData]) => {
                 res.render('VerMuestra', {
@@ -216,20 +215,20 @@ const controller = {
         console.log(req.body)
         if(req.file){
             if(req.file.filename){
-                Muestras.updateMuestra(req.params.id, req.body.NombreMuestra, CodigoMuestra, SP, req.file.filename, req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
+                Muestras.updateMuestra(req.params.id, req.body.NombreMuestra, CodigoMuestra, SP, req.file.filename, req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, req.body.Status, req.body.idContenedor)
                     .then( () => {
                         console.log('Actualización de muestra con exito!!')
                         res.status(302).redirect('/Muestras');
                     })
                     .catch(err => {
-                        console.log(err);
-                        console.log('Error al actualizar muestra')
-                        res.status(302).redirect('/error');
+                        console.log(err); 
+                        console.log('Error al actualizar muestra');
+                        res.status(302).redirect('/error'); 
                     });
-            }
+            } 
         }else{
-            Muestras.updateMuestraSinHoja(req.params.id, req.body.NombreMuestra, CodigoMuestra, SP, req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, '1', req.body.idContenedor)
-                    .then( () => {
+            Muestras.updateMuestraSinHoja(req.params.id, req.body.NombreMuestra, CodigoMuestra, SP, req.body.UsoMuestra, req.body.Lote, Concentracion, req.body.UnidadMedida, Cantidad,  req.body.FechaFabricacion, req.body.FechaCaducidad,req.body.idTipoDeMuestra, req.body.CodigoFormulacion, req.body.Status, req.body.idContenedor)
+                    .then( () => { 
                         console.log('Actualización de muestra con exito!!')
                         res.status(302).redirect('/Muestras');
                     })
@@ -259,8 +258,11 @@ const controller = {
     },
 
     reportarMuestra:(req, res, next) => {
-        console.log(req.params.id,req.body.status,req.body.reporte)
-       Muestras.reportarMuestra(req.params.id,req.body.status,req.body.reporte)
+        console.log("Ruta Reportar  Muestra")
+        console.log('ID: '+req.params.id+ ' Cambia a Status '+req.body.StatusMuestra+' Con reporte '+req.body.reporte)
+        console.log('Reportando Muestra...')
+        console.log(req.body)
+        Muestras.reportarMuestra(req.params.id,req.body.status,req.body.reporte)
         .then(()=>{
             res.status(201).send({})
         }).catch((e)=>{

@@ -156,16 +156,25 @@
 
                         <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                             <div class="form-floating small">
-                                <% if (Muestra.Status === 1){ %>
+                                <% if (Muestra.Status === '1'){ %>
                                 <input type="text" class="form-control text-center" id="floatingInputGrid" value="Activa" disabled>
                                 <label for="floatingInputGrid">Status de Muestra</label>
                                 <% } else { %>
-                                <input type="text" class="form-control text-center" id="floatingInputGrid" value="No disponible" disabled>
+                                <input type="text" class="form-control text-center" id="floatingInputGrid" value="Muestra inactiva" disabled>
                                 <label for="floatingInputGrid">Status de Muestra</label>
                                 <% }%>
                                 <!-- En el value deberá ir el Status de Muestra -->
                             </div>
                         </div>
+
+                        <% if (Muestra.Status === '0'){ %>
+                        <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                            <div class="form-floating small">
+                                <textarea  class="form-control" name="ReporteSituacion" placeholder="Reporte de situación" id="reporte" style="height: auto" disabled>Reporte: 
+                                    <%= Muestra.Reporte %></textarea>
+                            </div>
+                        </div>
+                        <% }%>
 
                         
                 </div><!--/ Row-->

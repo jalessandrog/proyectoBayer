@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2021 a las 07:09:53
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.9
+-- Tiempo de generación: 22-11-2021 a las 21:36:29
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -165,7 +165,7 @@ CREATE TABLE `manipulan` (
   `idMuestras_usuarios` int(3) NOT NULL,
   `Sobrante` float NOT NULL,
   `Descarga` float NOT NULL,
-  `FechaDeUso` date NOT NULL
+  `FechaDeUso` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
@@ -173,26 +173,27 @@ CREATE TABLE `manipulan` (
 --
 
 INSERT INTO `manipulan` (`idMuestra`, `idEmpleado`, `idMuestras_usuarios`, `Sobrante`, `Descarga`, `FechaDeUso`) VALUES
-(12, 'MEAIM', 1, 20.5, 3, '2021-10-06'),
-(1, 'MEAIM', 2, 1900, 100, '2021-10-21'),
-(2, 'MEAIM', 3, 0, 1000, '2021-10-21'),
-(67, 'MEAIM', 4, 1, 1, '2021-10-21'),
-(4, 'MEAIM', 5, 0.5, 1, '2021-11-06'),
-(5, 'MEAIM', 6, 0.5, 1, '2021-11-06'),
-(4, 'MEAIM', 7, 1.4, 0.1, '2021-11-15'),
-(5, 'MEAIM', 8, 1.4, 0.1, '2021-11-15'),
-(8, 'MEAIM', 9, 0, 1.5, '2021-11-15'),
-(4, 'MEAIM', 10, 1.3, 0.1, '2021-11-15'),
-(13, 'MEAIM', 11, 1.3, 0.2, '2021-11-15'),
-(4, '5', 12, 0.0999999, 1.2, '2021-11-16'),
-(4, '5', 13, 0, 0.1, '2021-11-16'),
-(5, '5', 14, 0, 1.4, '2021-11-16'),
-(9, '5', 15, 0, 1.5, '2021-11-16'),
-(12, '5', 16, 0, 1.5, '2021-11-20'),
-(13, '5', 17, 0, 1.3, '2021-11-20'),
-(16, '5', 18, 0, 1.5, '2021-11-20'),
-(17, '5', 19, 0, 1.5, '2021-11-20'),
-(2, '5', 20, 0, 1.5, '2021-11-20');
+(12, 'MEAIM', 1, 20.5, 3, '2021-10-06 00:00:00'),
+(1, 'MEAIM', 2, 1900, 100, '2021-10-21 00:00:00'),
+(2, 'MEAIM', 3, 0, 1000, '2021-10-21 00:00:00'),
+(67, 'MEAIM', 4, 1, 1, '2021-10-21 00:00:00'),
+(4, 'MEAIM', 5, 0.5, 1, '2021-11-06 00:00:00'),
+(5, 'MEAIM', 6, 0.5, 1, '2021-11-06 00:00:00'),
+(4, 'MEAIM', 7, 1.4, 0.1, '2021-11-15 00:00:00'),
+(5, 'MEAIM', 8, 1.4, 0.1, '2021-11-15 00:00:00'),
+(8, 'MEAIM', 9, 0, 1.5, '2021-11-15 00:00:00'),
+(4, 'MEAIM', 10, 1.3, 0.1, '2021-11-15 00:00:00'),
+(13, 'MEAIM', 11, 1.3, 0.2, '2021-11-15 00:00:00'),
+(4, '5', 12, 0.0999999, 1.2, '2021-11-16 00:00:00'),
+(4, '5', 13, 0, 0.1, '2021-11-16 00:00:00'),
+(5, '5', 14, 0, 1.4, '2021-11-16 00:00:00'),
+(9, '5', 15, 0, 1.5, '2021-11-16 00:00:00'),
+(12, '5', 16, 0, 1.5, '2021-11-20 00:00:00'),
+(13, '5', 17, 0, 1.3, '2021-11-20 00:00:00'),
+(16, '5', 18, 0, 1.5, '2021-11-20 00:00:00'),
+(17, '5', 19, 0, 1.5, '2021-11-20 00:00:00'),
+(2, '5', 20, 0, 1.5, '2021-11-20 00:00:00'),
+(1, '5', 21, 0, 1.5, '2021-11-22 14:12:21');
 
 -- --------------------------------------------------------
 
@@ -227,9 +228,9 @@ CREATE TABLE `muestras` (
 --
 
 INSERT INTO `muestras` (`idMuestra`, `NombreMuestra`, `CodigoMuestra`, `SP`, `HojaSeguridad`, `UsoMuestra`, `Lote`, `Concentracion`, `UnidadMedida`, `Cantidad`, `FechaIngreso`, `FechaFabricacion`, `FechaCaducidad`, `idTipoDeMuestra`, `CodigoFormulacion`, `Status`, `idContenedor`, `Activa`, `Reporte`) VALUES
-(1, 'CLAVISSSS', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Tratamiento de Semilla', '1111', 10, 'Litros', 1.5, '2021-11-03 20:49:27', '2020-08-01', '2021-11-30', 1, 'DC', '1', 3, '1', 'dasdasdas'),
+(1, 'CLAVISSSS', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Tratamiento de Semilla', '1111', 10, 'Litros', 0, '2021-11-03 20:49:27', '2020-08-01', '2021-11-30', 1, 'DC', '', 3, '1', 'dasdasdas'),
 (2, 'ADENGO', '', NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '1', 10, 'Kilogramos', 0, '2021-11-03 20:49:27', '2020-08-01', '2021-11-09', 2, 'CL', '0', 1, '0', 'dsadas'),
-(4, 'ALIETTE', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '2', 11.5, 'Litros', 1, '2021-11-03 20:50:38', '2021-10-30', '2021-12-10', 2, 'SP', '1', 1, '1', 'Caida en gran cantidad'),
+(4, 'ALIETTE', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Insecticida', '2', 11.5, 'Litros', 1, '2021-11-03 20:50:38', '2021-10-30', '2021-12-10', 2, 'SP', '1', 1, '0', 'Caida en gran cantidad'),
 (5, 'ALIONNN', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Herbicida', '55555', 3, 'Litros', 2, '2021-11-03 20:49:27', '2021-10-30', '2021-12-10', 2, 'CL', '0', 3, '1', 'Como estas mal'),
 (8, 'ANTRACOL', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '4', 10, 'Kilogramos', 0, '2021-11-03 20:49:27', '2021-10-31', '2021-12-11', 1, 'CS', '1', 2, '1', 'das'),
 (9, 'BELT', NULL, NULL, 'https://github.com/jalessandrog/proyectoBayer.git', 'Fungicida', '5', 10, 'Litros', 0, '2021-11-03 20:49:27', '2021-10-04', '2021-12-11', 1, 'SE', '1', 1, '1', ''),
@@ -369,7 +370,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `CorreoElectronico`, `Rol`, `token`, `Status`) VALUES
 ('1', 'Eduwigis', 'Jimenez', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Eduwigis.Jimenez@bayer.mx', 'Administrador', '0', 1),
-('10', 'Michelita<3', 'daw', '$2a$12$zzU08DplH1Bq89if7khloey5IfyflveVqRaNmk1xmk6Cfw5/k8AV2', 'dwa ', 'Administrador', NULL, 1),
+('10', 'Michelita<3', 'daw', '$2a$12$zzU08DplH1Bq89if7khloey5IfyflveVqRaNmk1xmk6Cfw5/k8AV2', 'dwa  ', 'Administrador', NULL, 0),
 ('11', 'das123', 'daw', '$2a$12$1ViK1wdXwvGacOtYvXup0eAKZTCnEj9cSZctb/KnvYeSFWbYlwQQO', 'dwa', 'Administrador', NULL, 1),
 ('12', 'Michell', 'Tena Ortega', '$2a$12$5jwLv8b61yGUAw5RsaETFOc1dyIgJP1GPz9QQqqKlob/zatNGdYNG', 'A01700396@bayer.com', 'Administrador', NULL, 1),
 ('13', 'Michell', 'Tena Ortega', '$2a$12$8qF5foeSztGyl7xHyRHaquY3ExIym8JJs6Cd.QX02.ax77IGn6fUC', 'A01700396@bayer.com', 'Administrador', NULL, 1),
@@ -378,7 +379,7 @@ INSERT INTO `usuarios` (`idEmpleado`, `Nombres`, `Apellidos`, `password`, `Corre
 ('2', 'Pruebas', 'Bayer', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'pruebas@gmail.com', 'Administrador', '0', 1),
 ('3', 'Vianey', 'Urias', '$2a$12$sGqSRBC9Q.F2bEcq00Maz.5J6uq9UcVVEz8Lk8ISlVg3C8/wYXPP.', 'Vianey.Urias@bayer.mx', 'Empleado Normal', '0dsadas', 1),
 ('4', 'Joseph Alessandro', 'García García', '$2a$12$e816GzlyeH5rwA.xIUFzQ.yzQXRs.Zgk7tAyvep2TuxzxoZoxIOYa', 'a01701434@tec.mx', 'Administrador', '4nyxgwngphcgmpx2s35gv', 1),
-('5', 'Miguel', 'Reyes', '$2a$12$Me/Yz4LXokqOc3NEqAOuh.wviaax2.hr6/SfdAiNMA8iDeYZWxRHW', 'fernando.to2005@yahoo.com', 'Administrador', 'aa9sg8hfs1a08owtervgz0i', 1),
+('5', 'Miguel', 'Reyes', '$2a$12$Me/Yz4LXokqOc3NEqAOuh.wviaax2.hr6/SfdAiNMA8iDeYZWxRHW', 'fernando.to2005@yahoo.com ', 'Administrador', 'aa9sg8hfs1a08owtervgz0i', 1),
 ('6', 'test', 'asd', 'das', 'dsa', 'das', NULL, 1),
 ('8', 'test', 'asd', 'dazs', 'dsa', 'das', NULL, 1),
 ('dasdas', 'dawdawdaw', 'dwadaw', '$2a$12$FYlqmhiaMqxKupXbZ9y1m.Do1DjQhbXeZvaUd0wPcr6lScFQ1Fflm', 'daw@das.com', 'Administrador', NULL, 1),
@@ -483,7 +484,7 @@ ALTER TABLE `contenedores`
 -- AUTO_INCREMENT de la tabla `manipulan`
 --
 ALTER TABLE `manipulan`
-  MODIFY `idMuestras_usuarios` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idMuestras_usuarios` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `muestras`

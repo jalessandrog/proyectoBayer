@@ -75,7 +75,7 @@
                 <td><%= muestra.Concentracion.toPrecision(3) %></td>
                 <td><%= muestra.Cantidad.toPrecision(2) %></td>
                 <td>
-                  <% if (muestra.Cantidad> 0 && muestra.Status === 1){ %>
+                  <% if (muestra.Cantidad> 0 && muestra.Status == 1){ %>
                   <form method='post' action="/Movimientos/add">
                   <div class="input-group input-group-sm ">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >

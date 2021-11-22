@@ -18,13 +18,13 @@
                         <input type="hidden" id="_csrf_modal" value="<%= csrfToken %>" >
 
                         <div class="col-lg-offset-0 col-lg-8 col-md-8 col-xs-12 col-sm-12">
-                            <select class="form-control" name="StatusMuestra" id="status">
-                                <option value="1">Activo</option>
-                                <option value="0">Inactivo</option>
+                            <select class="form-control" name="StatusMuestra" id="status" onchange="showInp()">
+                                <option value='1'>Activo</option>
+                                <option value='0'>Inactivo</option>
                             </select>
                         </div>
-
-                        <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12 small">
+                       
+                        <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12 small" id="report">
                             <div class="form-floating small">
                                 <textarea class="form-control" name="ReporteSituacion" placeholder="Reporte de situación" id="reporte" style="height: auto">
                                 </textarea>
@@ -44,4 +44,17 @@
         </div>
     </div>
     </div>
+    <script>
+        function showInp(){
+            var getSelectValue = document.querySelector("#status").value;
+            if(getSelectValue == 0){
+              document.querySelector("#report").classList.add("mostrar");
+              document.querySelector("#report").classList.remove("ocultar");
+            }else{
+              document.querySelector("#report").classList.add("ocultar");
+              document.querySelector("#report").classList.remove("mostrar");
+            }
+      }
+      </script>
 </div><!-- End Modal -->
+

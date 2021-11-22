@@ -21,6 +21,7 @@ router.get('/editar/:id', adminMiddleware, MuestrasController.EditarMuestra);
 router.post('/editar/:id',adminMiddleware, validacionEditarMuestra, MuestrasController.processUpdate);
 
 router.post('/reportar/:id',jsonParser, MuestrasController.reportarMuestra);
+router.get('/ExportarPDF',adminMiddleware, MuestrasController.ExportarPDF);
 
 router.get('/:id', MuestrasController.VerMuestra);
 

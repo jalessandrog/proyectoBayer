@@ -10,6 +10,7 @@ const csrf = require('csurf');
 const csrfProtection = csrf();
 const moment = require('moment');
 const multer = require('multer');
+const { jsPDF } = require("jspdf");
 
 const mainRouter = require('./routes/Main');
 const muestrasRouter = require('./routes/Muestras');

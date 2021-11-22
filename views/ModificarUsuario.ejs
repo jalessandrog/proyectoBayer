@@ -69,9 +69,9 @@
                             </tr>
                             <div class="row">
                                 <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                                    <select class="btn btn-secondary dropdown-toggle" type="button" id="rol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <option value="Administrador">Activo</option>
-                                        <option value="Empleado Normal">Inactivo</option>
+                                    <select class="btn btn-secondary dropdown-toggle" type="button" id="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
                                       </select>
                                     <br>
                              </div>
@@ -87,10 +87,7 @@
                     <div class="btn-group me-auto" role="group" aria-label="First group">
                         <button type="submit" class="boton" id="submit">Actualizar Usuario</button>
                     </div>
-                    <div class="btn-group me-auto" role="group" aria-label="Second group">
-                        <button id="submit" class="boton"  role="button">Eliminar Usuario</button>
-                        </form>
-                    </div>
+                    
                 </div>
                 <br>
       
@@ -104,6 +101,7 @@
     "apellidos": $("#apellidos").val(),
     "correo": $("#correo").val(),
     "rol": $("#rol").val(),
+    "status": $("#status").val(),
     "_csrf": $("#_csrf").val(), 
   },
   function(data, status){

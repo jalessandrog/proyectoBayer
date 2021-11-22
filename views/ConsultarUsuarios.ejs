@@ -38,7 +38,12 @@
                   <td style="text-align:center;"><%= muestra.NombreUsuario %></td>
                   <td style="text-align:center;"><%= muestra.CorreoElectronico %></td>
                   <td style="text-align:center;"><%= muestra.Rol %></td>
-                  <td style="text-align:center;"><%= muestra.Status %></td>
+                  <td style="text-align:center;">
+                    <% if (muestra.Status == 1){ %>
+                      Activo
+                      <% } else { %>
+                        Inactivo
+                        <% } %>
                 </tr>
               <% } %>
           </tbody>

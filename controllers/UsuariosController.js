@@ -62,7 +62,7 @@ const controller = {
             }
             console.log(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol)
                 //Logica de edicion
-                Usuarios.UpdateUser(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol)
+                Usuarios.UpdateUser(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol,req.body.status)
                 .then(()=>{
                     console.log("se actualizó!")
 

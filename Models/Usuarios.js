@@ -17,7 +17,7 @@ module.exports = class Usuario {
     }
 
     static fetchOne(CorreoElectronico){
-        return db.execute('SELECT * FROM usuarios WHERE CorreoElectronico = ? ', [CorreoElectronico])
+        return db.execute('SELECT * FROM usuarios WHERE CorreoElectronico = ? AND STATUS = 1', [CorreoElectronico])
     }
     static fetchOnebyId(idEmpleado){
         return db.execute('SELECT * FROM usuarios WHERE idEmpleado = ? ', [idEmpleado])

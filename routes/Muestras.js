@@ -16,6 +16,7 @@ router.post('/delete/:id',adminMiddleware, MuestrasController.borrarMuestra);
 
 router.get('/agregar', adminMiddleware,  MuestrasController.RegistrarMuestra);
 router.post('/agregar', adminMiddleware, validacionCrearMuestra,  MuestrasController.saveMuestra);
+router.post('/agregarContenedor', adminMiddleware,  MuestrasController.saveContenedor);
 
 router.get('/editar/:id', adminMiddleware, MuestrasController.EditarMuestra);
 router.post('/editar/:id',adminMiddleware, validacionEditarMuestra, MuestrasController.processUpdate);

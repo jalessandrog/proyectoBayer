@@ -14,43 +14,20 @@
             <!-- Main Content -->
             <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
                 <form>
+                    <input type="hidden" id="_csrf_modal" value="<%= csrfToken %>" >
                     <div class="row">
                         <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="form-floating small">
                                 <!-- En el value deberá ir el número del Contenedor dependiendo el idContenedor seleccionado Ejemplo: Estante 1 -->
-                                <input type="number" name="NoBodega" class="form-control text-center" id="floatingInputGrid">
+                                <input type="number" name="NoContenedor" class="form-control text-center" id="NoContenedor">
                                 <!-- En el label deberá ir la el tipo de Contenedor dependiendo el idContenedor seleccionado Ejemplo: Estante -->
                                 <label for="floatingInputGrid">No Contenedor</label>
                             </div>
                         </div>
         
-                        <!-- <div class="col-lg-offset-0 col-lg-8 col-md-8 col-xs-12 col-sm-12">
-                            <select class="form-control" name="UsoMuestra" id="select">
-                                <option selected value="">Seleccionar Uso de Muestra</option>
-                                <option value="1">Fungicidas</option>
-                                <option value="2">Herbicidas</option>
-                                <option value="3">Insecticidas</option>
-                                <option value="4">Tratamiento de semilla</option>
-                                <option value="5">Biológicos</option>
-                                <option value="6">Nematicida</option>
-                            </select>
-                        </div> -->
-
-                        <!-- <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12 small">
-                            <select class="form-control" name="TipoMuestra" id="select">
-                                <option selected value="">Seleccionar Tipo de Muestra</option> -->
-                                <!-- Posibilidad: Se agregará un forEach o algo similar para que muestre los tipos de contenedores registrados
-                                    en la base de datos -->
-                                <!-- en el value debe estár idTipoDeMuestra -->
-                                <!-- <option value="1">Comercial</option>
-                                <option value="2">Experimental</option>
-                                <option value="3">Estándar Comercial</option>
-                            </select>
-                        </div> -->
-        
                         <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12 small">
                             <div class="form-floating small">
-                                <input type="text" name="TipoContenedor" class="form-control" id="floatingInputGrid">
+                                <input type="text" name="Clasificacion" class="form-control" id="Clasificacion" required>
                                 <label for="floatingInputGrid">Tipo de Contenedor</label>
                             </div>
                         </div>
@@ -62,7 +39,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn green">Registrar Contenedor</button>
+            <button type="submit" class="btn green" id="Registrar">Registrar Contenedor</button>
         </div>
     </div>
     </div>

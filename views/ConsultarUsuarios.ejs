@@ -22,7 +22,8 @@
         <table class="table .table-borderless caption-top align-middle">
           <thead class="table" style="background-color: rgb(194, 204, 204);">
               <tr style="text-align:center;">
-                <th scope="col" id="verMas"></th>
+                <th scope="col"></th>
+                <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Rol</th>
@@ -30,16 +31,17 @@
               </tr>
           </thead>
           <tbody text-align:center;>
-              <% for (let muestra of ConsultarUsuarios) { %>
+              <% for (let user of ConsultarUsuarios) { %>
                 <tr>
                   <th scope="row">
-                    <a class="btn green" href="/Usuarios/<%= muestra.idEmpleado %>" role="button">Modificar Usuario</a>
+                    <a class="btn green" href="/Usuarios/<%= user.idEmpleado %>" role="button">Modificar Usuario</a>
                   </th>
-                  <td style="text-align:center;"><%= muestra.NombreUsuario %></td>
-                  <td style="text-align:center;"><%= muestra.CorreoElectronico %></td>
-                  <td style="text-align:center;"><%= muestra.Rol %></td>
+                  <td style="text-align:center;"><%= user.idEmpleado %></td>
+                  <td style="text-align:center;"><%= user.NombreUsuario %></td>
+                  <td style="text-align:center;"><%= user.CorreoElectronico %></td>
+                  <td style="text-align:center;"><%= user.Rol %></td>
                   <td style="text-align:center;">
-                    <% if (muestra.Status == 1){ %>
+                    <% if (user.Status == 1){ %>
                       Activo
                       <% } else { %>
                         Inactivo

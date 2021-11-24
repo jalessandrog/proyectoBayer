@@ -3,10 +3,7 @@ const moment = require('moment');
 const bcrypt = require('bcryptjs');
 const Main = require('../Models/Main');
 const Alertas = require('../Models/Alertas');
-const CronJob = require('cron').CronJob;
-const nodeCron = require("node-cron");
-const cron = require('node-cron');
- 
+
 const controller = {
 
     login:(req, res, next) => {
@@ -71,6 +68,31 @@ const controller = {
             console.log('No existe el usuario')
             res.status(302).res.redirect('/');
         });
+        // Usuario.fetchOne(req.body.CorreoElectronico).then(([rows, fieldData]) => {
+        //     console.log(rows)
+        //     bcrypt.compare(req.body.password, rows[0].password)
+        //         .then(doMatch => {
+        //             if (doMatch) {
+        //                 req.session.isLoggedIn = true;
+        //                 req.session.idEmpleado =  rows[0].idEmpleado;
+        //                 req.session.CorreoElectronico = req.body.CorreoElectronico;
+        //                 req.session.NombreCompleto = rows[0].Nombres + ' ' + rows[0].Apellidos;
+        //                 return req.session.save(err => {
+        //                     res.redirect('/Inicio');
+        //                 });
+        //             }
+        //             console.log('Credenciales invalidas')
+        //             res.status(302).res.redirect('/');
+        //         }).catch(err => {
+        //             console.log("Credenciales invalidas");
+        //             res.status(302).res.redirect('/');
+        //         });
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        //     console.log('No existe el usuario')
+        //     res.status(302).res.redirect('/');
+        // });
     },
 
     logout:(req, res, next) => {
@@ -81,13 +103,6 @@ const controller = {
     },
 
     index: (req, res, next) => {
-
-        
-
-        cron.schedule('*/10 * * * * *', () => {
-            console.log('running a task every minute');
-        });
-
         console.log("Ruta index")
         Main.Alerta1()
             .then(([alertaOne, fieldData]) => {

@@ -306,9 +306,6 @@ const controller = {
                     res.status(500)
                 })
         } 
-        // else{
-        //     res.status(302).redirect('/Muestras');
-        // }
     },
 }
 module.exports = controller;

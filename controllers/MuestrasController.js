@@ -291,5 +291,21 @@ const controller = {
             });
     },
 
+    saveContenedor:(req, res, next) => {
+        console.log("Agregar nuevo Contenedor")
+        console.log('Agregando Contenedor...')
+        console.log(req.body)
+        if( req.body.Clasificacion !== ''){
+            const contenedor = new Contenedores(req.body.NoContenedor, req.body.Clasificacion)
+            contenedor.save()
+                .then( () => {
+                    console.log('Contenedor agregado con exito')
+                    res.status(201).send({})
+                }).catch((e)=>{
+                    console.log(e)
+                    res.status(500)
+                })
+        } 
+    },
 }
 module.exports = controller;

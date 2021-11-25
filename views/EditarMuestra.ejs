@@ -299,6 +299,18 @@
                     </div><!--/ Row-->
                     <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
                         <hr>
+                        <br>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group me-auto"></div>
+                            <div class="btn-group me-auto" role="group" aria-label="First group">
+                                <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-Contenedor" onclick="ModalContenedor()">Agregar Nuevo Contenedor</button>
+                            </div>
+                            <div class="btn-group me-auto" role="group" aria-label="Second group">
+                                <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-Formulacion">Agregar Nuevo Tipo de Formulación</button>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group me-auto"></div>
                             <div class="btn-group me-auto" role="group" aria-label="First group">
@@ -314,5 +326,26 @@
     <%- include('Modals/Modal_Contenedor.ejs') %>
     <%- include('Modals/Modal_TipoDeFormulacion.ejs') %>
     <script src="/js/ValidacionEditarMuestra.js"></script>
+    <script type="text/javascript">
+        function ModalContenedor(NoContenedor,Clasificacion){
+                $("#NoContenedor").val(Clasificacion);
+                $("#Clasificacion").val(Clasificacion);
+        }
+        $(document).ready(function() {
+                $('#Registrar').click(()=>{
+                    $.post("/Muestras/agregarContenedor",
+                        {
+                            "NoContenedor":  $("#NoContenedor").val(),
+                            "Clasificacion": $("#Clasificacion").val(),
+                            "_csrf": $("#_csrf_modal").val(),
+                        },
+                        function(data, status){
+                        alert("Registro de contenedor exitoso");
+                        window.location.reload()
+                        },
+                    );
+                })
+        });
+      </script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 const Usuario = require('../Models/Usuarios');
+const auth = require('../secret/secret');
 
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
@@ -7,7 +8,11 @@ const bcrypt = require('bcryptjs');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: auth,
+<<<<<<< HEAD
   });
+=======
+});
+>>>>>>> 2e5e26da1c70a23dd2ba45707ad29008c89d3fa5
 
 function random() {
     return Math.random().toString(36).substr(2); // Eliminar `0.`

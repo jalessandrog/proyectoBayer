@@ -22,35 +22,35 @@ const controller = {
             });
     },
 
-    AgregarUsuario: (req, res, next) => {
-        console.log("Ruta para editar Usuario")
-        if(req.method=="POST"){
-            if(!req.body){
-                res.status(400).send({
-                    error: "No se puede crear el usuario"
-                })
-            }
-            bcrypt.hash(req.body.password,12).then((hash)=> {
-                Usuarios.createUser(req.body.idEmpleado, req.body.nombres,req.body.apellidos,req.body.correo,hash,req.body.rol)
-                .then(()=>{
-                    res.status(201).send({
-                        mensaje: "Se ha creado el usuario"
-                    })
-                }).catch(()=>{
-                    res.status(400).send({
-                        error: "No se puede crear el usuario correo o contraseña repetida"
-                    }) 
-                })
-                })
-        }
-        else{
-        res.render('AgregarUsuario',{
-            isLoggedIn: req.session.isLoggedIn,
-            CorreoElectronico: req.session.CorreoElectronico,
-            NombreCompleto: req.session.NombreCompleto,
-            Permisos: req.session.rolEmpleado
-        })}
-    },
+    // AgregarUsuario: (req, res, next) => {
+    //     console.log("Ruta para editar Usuario")
+    //     if(req.method=="POST"){
+    //         if(!req.body){
+    //             res.status(400).send({
+    //                 error: "No se puede crear el usuario"
+    //             })
+    //         }
+    //         bcrypt.hash(req.body.password,12).then((hash)=> {
+    //             Usuarios.createUser(req.body.idEmpleado, req.body.nombres,req.body.apellidos,req.body.correo,hash,req.body.rol)
+    //             .then(()=>{
+    //                 res.status(201).send({
+    //                     mensaje: "Se ha creado el usuario"
+    //                 })
+    //             }).catch(()=>{
+    //                 res.status(400).send({
+    //                     error: "No se puede crear el usuario correo o contraseña repetida"
+    //                 }) 
+    //             })
+    //             })
+    //     }
+    //     else{
+    //     res.render('AgregarUsuario',{
+    //         isLoggedIn: req.session.isLoggedIn,
+    //         CorreoElectronico: req.session.CorreoElectronico,
+    //         NombreCompleto: req.session.NombreCompleto,
+    //         Permisos: req.session.rolEmpleado
+    //     })}
+    // },
 
     // ModificarUsuario:(req, res, next) => {
     //     if(req.method=="POST"){

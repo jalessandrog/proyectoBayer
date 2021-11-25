@@ -7,7 +7,7 @@ const MuestrasController = require('../controllers/MuestrasController')
 const validacionCrearMuestra = require('../middlewares/validacionRegistrarMuestra')
 const validacionEditarMuestra = require('../middlewares/validacionEditarMuestra')
 const adminMiddleware = require('../middlewares/adminMiddleware')
-app.use(express.json())
+// app.use(express.json())
 // const bodyParser = require('body-parser')
 
 // const jsonParser = bodyParser.json()

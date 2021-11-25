@@ -257,19 +257,19 @@ const controller = {
             });
     },
 
-    // reportarMuestra:(req, res, next) => {
-    //     console.log("Ruta Reportar  Muestra")
-    //     console.log('ID: '+req.params.id+ ' Cambia a Status '+req.body.StatusMuestra+' Con reporte '+req.body.reporte)
-    //     console.log('Reportando Muestra...')
-    //     console.log(req.body)
-    //     Muestras.reportarMuestra(req.params.id,req.body.status,req.body.reporte)
-    //     .then(()=>{
-    //         res.status(201).send({})
-    //     }).catch((e)=>{
-    //         console.log(e)
-    //         res.status(500)
-    //     })
-    // },
+    reportarMuestra:(req, res, next) => {
+        console.log("Ruta Reportar  Muestra")
+        console.log('ID: '+req.params.id+ ' Cambia a Status '+req.body.StatusMuestra+' Con reporte '+req.body.reporte)
+        console.log('Reportando Muestra...')
+        console.log(req.body)
+        Muestras.reportarMuestra(req.params.id,req.body.status,req.body.reporte)
+        .then(()=>{
+            res.status(201).send({})
+        }).catch((e)=>{
+            console.log(e)
+            res.status(500)
+        })
+    },
 
     ExportarPDF: (req, res, next) => {
         console.log("Ruta ExportarMuestrasPDF")

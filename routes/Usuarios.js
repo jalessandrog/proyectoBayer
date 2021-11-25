@@ -13,13 +13,13 @@ const adminMiddleware = require('../middlewares/adminMiddleware')
 
 router.get('/', adminMiddleware, isAuth, UsuariosController.ConsultarUsuarios);
 
-// router.get('/Nuevo', adminMiddleware, isAuth,  UsuariosController.AgregarUsuario);
-// router.post('/Nuevo', jsonParser,UsuariosController.AgregarUsuario);
+router.get('/Nuevo', adminMiddleware, isAuth,  UsuariosController.AgregarUsuario);
+router.post('/Nuevo', UsuariosController.AgregarUsuario);
 
 
-// router.get('/:id', adminMiddleware, isAuth, UsuariosController.ModificarUsuario); 
+router.get('/:id', adminMiddleware, isAuth, UsuariosController.ModificarUsuario); 
 
-// router.post('/:id',jsonParser, UsuariosController.ModificarUsuario);
+router.post('/:id', UsuariosController.ModificarUsuario);
 
 
 module.exports = router; 

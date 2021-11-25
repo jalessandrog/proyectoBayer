@@ -43,7 +43,7 @@ const controller = {
                                     msg: 'Credenciales inválidas'
                                 }
                             }
-                        });
+                        }); 
                     }
                 }).catch(err => {
                     console.log("Credenciales invalidas");

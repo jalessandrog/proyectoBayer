@@ -39,6 +39,6 @@ module.exports = class Usuario {
     }
 
     static UpdateUser(idEmpleado, Nombres, Apellidos, CorreoElectronico, Rol, Status){
-        return db.execute('UPDATE usuarios SET  Nombres = ?, Apellidos = ?, CorreoElectronico =?, Rol = ?, Status = ? WHERE idEmpleado = ? ', [Nombres, Apellidos, CorreoElectronico, Rol,Status,idEmpleado])
+        return db.execute('UPDATE usuarios SET  Nombres = ?, Apellidos = ?, CorreoElectronico =?, Rol = ?, Status = ? WHERE idEmpleado = ? ', [idEmpleado, Nombres, Apellidos, CorreoElectronico, Rol,Status])
     }
 } 

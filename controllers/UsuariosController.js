@@ -23,14 +23,17 @@ const controller = {
     },
 
     AgregarUsuario: (req, res, next) => {
-        console.log("Ruta para editar Usuario")
+        console.log("Ruta para agregar Usuario")
         if(req.method=="POST"){
+            console.log("Entramos a post")
             if(!req.body){
                 res.status(400).send({
                     error: "No se puede crear el usuario"
                 })
             }
             bcrypt.hash(req.body.password,12).then((hash)=> {
+                console.log("Creamos hash")
+
                 Usuarios.createUser(req.body.idEmpleado, req.body.nombres,req.body.apellidos,req.body.correo,hash,req.body.rol)
                 .then(()=>{
                     res.status(201).send({

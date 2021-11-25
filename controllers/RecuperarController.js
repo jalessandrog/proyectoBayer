@@ -8,7 +8,11 @@ const bcrypt = require('bcryptjs');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: auth,
+<<<<<<< HEAD
+  });
+=======
 });
+>>>>>>> 2e5e26da1c70a23dd2ba45707ad29008c89d3fa5
 
 function random() {
     return Math.random().toString(36).substr(2); // Eliminar `0.`
@@ -66,7 +70,7 @@ const controller = {
         let t= token()
         Usuario.UpdateToken( rows[0].idEmpleado,t)
         var mailOptions = {
-            from: 'michelltenaortega@gmail.com',
+            from: 'inventariobayer@gmail.com',
             to: req.body.CorreoElectronico,
             subject: 'BAYER: Recupera tu contraseña',
             html: '<a href="http://localhost:3030/NuevaContrasena/'+t+'"> Click para recuperar tu contraseña</a>'

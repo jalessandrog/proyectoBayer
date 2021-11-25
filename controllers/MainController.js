@@ -110,7 +110,7 @@ const controller = {
                     .then(([alertaTwo, fieldData]) => {
                         Main.Alerta3()
                             .then(([alertaThree, fieldData]) => {
-                                res.render('Index',{
+                                res.render('index',{
                                     isLoggedIn: req.session.isLoggedIn,
                                     CorreoElectronico: req.session.CorreoElectronico,
                                     NombreCompleto: req.session.NombreCompleto,

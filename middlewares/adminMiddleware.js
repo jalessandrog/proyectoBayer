@@ -1,4 +1,4 @@
-const Usuario = require('../models/Usuarios');
+const Usuario = require('../Models/Usuarios');
 
 function adminMiddleware (req, res, next) {
 

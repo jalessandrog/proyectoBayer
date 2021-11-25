@@ -1,4 +1,4 @@
-const Usuario = require('../models/Usuarios');
+const Usuario = require('../Models/Usuarios');
 const moment = require('moment');
 const bcrypt = require('bcryptjs');
 const Main = require('../Models/Main');
@@ -110,7 +110,7 @@ const controller = {
                     .then(([alertaTwo, fieldData]) => {
                         Main.Alerta3()
                             .then(([alertaThree, fieldData]) => {
-                                res.render('Index',{
+                                res.render('index',{
                                     isLoggedIn: req.session.isLoggedIn,
                                     CorreoElectronico: req.session.CorreoElectronico,
                                     NombreCompleto: req.session.NombreCompleto,

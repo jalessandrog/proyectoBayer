@@ -52,40 +52,40 @@ const controller = {
         })}
     },
 
-    ModificarUsuario:(req, res, next) => {
-        if(req.method=="POST"){
-            console.log("Actualizando Usuario")
-            if(!req.body){
-                res.status(400).send({
-                    error: "No se puede crear el usuario"
-                })
-            }
-            console.log(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol)
-                //Logica de edicion
-                Usuarios.UpdateUser(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol,req.body.status)
-                .then(()=>{
-                    console.log("se actualizó!")
+    // ModificarUsuario:(req, res, next) => {
+    //     if(req.method=="POST"){
+    //         console.log("Actualizando Usuario")
+    //         if(!req.body){
+    //             res.status(400).send({
+    //                 error: "No se puede crear el usuario"
+    //             })
+    //         }
+    //         console.log(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol)
+    //             //Logica de edicion
+    //             Usuarios.UpdateUser(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol,req.body.status)
+    //             .then(()=>{
+    //                 console.log("se actualizó!")
 
-                    res.status(201).send({
-                        mensaje: "Se ha actualizado el usuario"
-                    })
-                }).catch((e)=>{
-                    console.log(e)
-                })
-    }
+    //                 res.status(201).send({
+    //                     mensaje: "Se ha actualizado el usuario"
+    //                 })
+    //             }).catch((e)=>{
+    //                 console.log(e)
+    //             })
+    // }
 
     
-    else{
-        console.log("Modificar usuario:",req.params.id)
-        Usuarios.fetchOnebyId(req.params.id).then(([rows, fieldData])=>{ 
-            res.render('ModificarUsuario',{id:req.params.id,
-                isLoggedIn: req.session.isLoggedIn,
-                CorreoElectronico: req.session.CorreoElectronico,
-                NombreCompleto: req.session.NombreCompleto,
-                Permisos: req.session.rolEmpleado,
-                usuario:rows[0]
-            })
-    })
-    }},
+    // else{
+    //     console.log("Modificar usuario:",req.params.id)
+    //     Usuarios.fetchOnebyId(req.params.id).then(([rows, fieldData])=>{ 
+    //         res.render('ModificarUsuario',{id:req.params.id,
+    //             isLoggedIn: req.session.isLoggedIn,
+    //             CorreoElectronico: req.session.CorreoElectronico,
+    //             NombreCompleto: req.session.NombreCompleto,
+    //             Permisos: req.session.rolEmpleado,
+    //             usuario:rows[0]
+    //         })
+    // })
+    // }},
 }
 module.exports = controller;

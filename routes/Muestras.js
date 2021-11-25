@@ -7,10 +7,10 @@ const MuestrasController = require('../controllers/MuestrasController')
 const validacionCrearMuestra = require('../middlewares/validacionRegistrarMuestra')
 const validacionEditarMuestra = require('../middlewares/validacionEditarMuestra')
 const adminMiddleware = require('../middlewares/adminMiddleware')
+app.use(express.json())
+// const bodyParser = require('body-parser')
 
-const bodyParser = require('body-parser')
-
-const jsonParser = bodyParser.json()
+// const jsonParser = bodyParser.json()
 
 router.post('/delete/:id',adminMiddleware, MuestrasController.borrarMuestra);
 
@@ -21,7 +21,7 @@ router.post('/agregarContenedor', adminMiddleware,  MuestrasController.saveConte
 router.get('/editar/:id', adminMiddleware, MuestrasController.EditarMuestra);
 router.post('/editar/:id',adminMiddleware, validacionEditarMuestra, MuestrasController.processUpdate);
 
-router.post('/reportar/:id',jsonParser, MuestrasController.reportarMuestra);
+// router.post('/reportar/:id',jsonParser, MuestrasController.reportarMuestra);
 router.get('/ExportarPDF',adminMiddleware, MuestrasController.ExportarPDF);
 
 router.get('/:id', MuestrasController.VerMuestra);

@@ -1,7 +1,7 @@
 const auth = {
     
-    user: "michelltenaortega@gmail.com",
-    pass: "RKBRADGMTO",
+    user: "inventariobayer@gmail.com",
+    pass: "Ges76!*t!9O!n?S",
 
 }
 module.exports = auth;

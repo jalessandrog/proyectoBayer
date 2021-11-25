@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const path = require('path');
-const PORT = 3030;
+const PORT = 8080;
 const csrf = require('csurf');
 const csrfProtection = csrf();
 const moment = require('moment');
@@ -67,5 +67,6 @@ app.use((req, res, next) => {
 });
 
 //Activando el servidor desde express
-app.listen(PORT, () => console.log('Servidor corriendo en el puerto ' + PORT))
-
+http.listen((process.env.PORT || 3000), function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});

@@ -17,6 +17,7 @@ router.post('/delete/:id',isAuth, adminMiddleware, MuestrasController.borrarMues
 router.get('/agregar',isAuth, adminMiddleware,  MuestrasController.RegistrarMuestra);
 router.post('/agregar',isAuth, adminMiddleware, validacionCrearMuestra,  MuestrasController.saveMuestra);
 router.post('/agregarContenedor',isAuth, validacionAgregarContenedor, adminMiddleware,  MuestrasController.saveContenedor);
+router.post('/agregarFormulacion',isAuth, adminMiddleware,  MuestrasController.saveFormulacion);
 
 router.get('/editar/:id',isAuth, adminMiddleware, MuestrasController.EditarMuestra);
 router.post('/editar/:id',isAuth,adminMiddleware, validacionEditarMuestra, MuestrasController.processUpdate);

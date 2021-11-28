@@ -307,5 +307,22 @@ const controller = {
                 })
         } 
     },
+
+    saveFormulacion:(req, res, next) => {
+        console.log("Agregar nuevo tipo de Formulacion")
+        console.log('Agregando Formulacion...')
+        console.log(req.body)
+        if( req.body.Codigo !== '' && req.body.Formulacion !== '' ){
+            const formulacion = new Formulaciones(req.body.Codigo, req.body.Formulacion,req.body.DescripcionFormulacion )
+            formulacion.save()
+                .then( () => {
+                    console.log('Tipo de Formulacion agregado con exito')
+                    res.status(201).send({})
+                }).catch((e)=>{
+                    console.log(e)
+                    res.status(500)
+                })
+        } 
+    },
 }
 module.exports = controller;

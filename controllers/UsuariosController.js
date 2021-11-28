@@ -1,7 +1,7 @@
-
 const { createUser } = require('../Models/Usuarios');
 const Usuarios = require('../Models/Usuarios');
 const bcrypt = require('bcryptjs');
+
 const controller = {
     ConsultarUsuarios:(req, res, next) => {
         console.log("Ruta Consultar Usuarios")
@@ -53,6 +53,7 @@ const controller = {
             Permisos: req.session.rolEmpleado
         })}
     },
+
     ModificarUsuario:(req, res, next) => {
         if(req.method=="POST"){
             console.log("Actualizando Usuario")
@@ -72,9 +73,7 @@ const controller = {
                 }).catch((e)=>{
                     console.log(e)
                 })
-    }
-    
-    else{
+    }else{
         console.log("Modificar usuario:",req.params.id)
         Usuarios.fetchOnebyId(req.params.id).then(([rows, fieldData])=>{ 
             res.render('ModificarUsuario',{id:req.params.id,

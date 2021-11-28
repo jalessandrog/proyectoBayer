@@ -3,7 +3,7 @@ const db = require('../util/database');
 module.exports = class Formulaciones {
 
     //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
-    constructor(CodigoFormulacion , Formulacion,DescripcionFormulacion) {
+    constructor(CodigoFormulacion, Formulacion, DescripcionFormulacion) {
         this.CodigoFormulacion = CodigoFormulacion,
         this.Formulacion = Formulacion,
         this.DescripcionFormulacion = DescripcionFormulacion
@@ -11,7 +11,7 @@ module.exports = class Formulaciones {
 
 
     save() {
-        return db.execute('INSERT INTO tipoformulacion (CodigoFormulacion , Formulacion,DescripcionFormulacion) VALUES (?, ?, ?)',
+        return db.execute('INSERT INTO tipoformulacion (CodigoFormulacion , Formulacion,DescripcionFormulacion, Activa) VALUES (?, ?, ?, 1)',
             [this.CodigoFormulacion, this.Formulacion, this.DescripcionFormulacion]);
     }
 

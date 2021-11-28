@@ -309,14 +309,14 @@ const controller = {
     },
 
     saveFormulacion:(req, res, next) => {
-        console.log("Agregar nuevo Tipo de Formulacion")
-        console.log('Agregando Tipo de Formulacion...')
+        console.log("Agregar nuevo tipo de Formulacion")
+        console.log('Agregando Formulacion...')
         console.log(req.body)
-        if( req.body.CodigoFormulacion !== '' && req.body.Formulacion !== ''){
-            const formulacion = new Formulaciones(req.body.CodigoFormulacion, req.body.Formulacion, req.body.DescripcionFormulacion)
+        if( req.body.Codigo !== '' && req.body.Formulacion !== '' ){
+            const formulacion = new Formulaciones(req.body.Codigo, req.body.Formulacion,req.body.DescripcionFormulacion )
             formulacion.save()
                 .then( () => {
-                    console.log('Formulacion agregada con exito')
+                    console.log('Tipo de Formulacion agregado con exito')
                     res.status(201).send({})
                 }).catch((e)=>{
                     console.log(e)

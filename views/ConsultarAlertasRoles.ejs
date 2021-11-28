@@ -9,15 +9,7 @@
   <br>
   <div class="container-fluid">
     <div class="row">
-        <!-- <div class="col-1"></div>
-        <div class="col-4">
-            <a class="btn green" href="/AlertasRoles/agregarAlerta" role="button">Crear Alerta</a>
-        </div> -->
         <p style="text-align: center; font-size: 1.5em;"><strong>Alertas</strong></p>
-        <!-- <div class="col-4">
-            <p style="text-align: center; font-size: 1.5em;"><strong>Alertas</strong></p>
-        </div> -->
-        <!-- <div class="col-5"></div> -->
     </div>
   </div>
   <div class="container-fluid">
@@ -59,7 +51,7 @@
                                 <% if ( alerta.Color === "Azul"){ %>
                                 <input type="color" value="#26929F" readonly disabled>
                                 <% } %> 
-                                <% if ( alerta.Color === "Verde"){ %>
+                                <% if ( alerta.Color === "Verde" && ( alerta.Color !== "Azul" || alerta.Color !== "Rojo"|| alerta.Color !== "Amarillo" || alerta.Color !== "Naranja") ||  alerta.Color === "" ){ %>
                                 <input type="color" value="#00b347" readonly disabled>
                                 <% } %> 
                             </td>
@@ -99,7 +91,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- Aplicar forEach o algo similar para mostrar todas las muestras registradas en la base de datos -->
                     <tr style="text-align: center;"><!-- Inicia Una Muestra -->
                         <th scope="row">
                             <p>1</p>
@@ -110,7 +101,7 @@
                         <th scope="row">
                             <p>2</p>
                         </th>
-                        <td>Usuario</td>
+                        <td>Empleado Normal</td>
                     </tr>
                     </tbody>
                 </table>

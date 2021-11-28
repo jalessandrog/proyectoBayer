@@ -163,7 +163,6 @@
                                 <input type="text" class="form-control text-center" id="floatingInputGrid" value="Muestra inactiva" disabled>
                                 <label for="floatingInputGrid">Status de Muestra</label>
                                 <% }%>
-                                <!-- En el value deberá ir el Status de Muestra -->
                             </div>
                         </div>
 
@@ -187,9 +186,9 @@
                             <a class="boton" id="Registrar-Actualizar" href="/Muestras/editar/<%= Muestra.idMuestra %>" role="button">Actualizar información</a>
                         </div>
                         <div class="btn-group me-auto" role="group" aria-label="Second group">
-                            <form action="/Muestras/delete/<%= Muestra.idMuestra %>" method="post">
+                            <form action="/Muestras/delete/<%= Muestra.idMuestra %>" method="post" class="BorrarMuestra" id="BorrarMuestra"  onsubmit="return confirmation()">
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <button type=""  class="boton" id="Registrar-Actualizar" href="/Muestras/delete/<%= Muestra.idMuestra %>">Eliminar Muestra</button>
+                                <button type="" type="submit" class="boton" id="Registrar-Actualizar" href="/Muestras/delete/<%= Muestra.idMuestra %>">Eliminar Muestra</button>
                             </form>
                         </div>
                     </div>
@@ -199,5 +198,16 @@
             </div> <!-- /Main Content -->
         </div>
     </div>
+    <script language="JavaScript">
+        function confirmation() {
+            if(confirm("Cuidado! Esta seguro que desea eliminar una muestra con existencias?")){
+                if(true){
+                    alert("Muestra Borrada con exito")
+                }
+            }else{
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>

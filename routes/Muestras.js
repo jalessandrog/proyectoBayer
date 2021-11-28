@@ -6,28 +6,29 @@ const MuestrasController = require('../controllers/MuestrasController')
 
 const validacionCrearMuestra = require('../middlewares/validacionRegistrarMuestra')
 const validacionEditarMuestra = require('../middlewares/validacionEditarMuestra')
+const validacionAgregarContenedor = require('../middlewares/validacionAgregarContenedor')
 const adminMiddleware = require('../middlewares/adminMiddleware')
 
 const bodyParser = require('body-parser')
 
 const jsonParser = bodyParser.json()
 
-router.post('/delete/:id',adminMiddleware, MuestrasController.borrarMuestra);
+router.post('/delete/:id',isAuth, adminMiddleware, MuestrasController.borrarMuestra);
 
-router.get('/agregar', adminMiddleware,  MuestrasController.RegistrarMuestra);
-router.post('/agregar', adminMiddleware, validacionCrearMuestra,  MuestrasController.saveMuestra);
-router.post('/agregarContenedor', adminMiddleware,  MuestrasController.saveContenedor);
+router.get('/agregar',isAuth, adminMiddleware,  MuestrasController.RegistrarMuestra);
+router.post('/agregar',isAuth, adminMiddleware, validacionCrearMuestra,  MuestrasController.saveMuestra);
+router.post('/agregarContenedor',isAuth, validacionAgregarContenedor, adminMiddleware,  MuestrasController.saveContenedor);
 
-router.get('/editar/:id', adminMiddleware, MuestrasController.EditarMuestra);
-router.post('/editar/:id',adminMiddleware, validacionEditarMuestra, MuestrasController.processUpdate);
+router.get('/editar/:id',isAuth, adminMiddleware, MuestrasController.EditarMuestra);
+router.post('/editar/:id',isAuth,adminMiddleware, validacionEditarMuestra, MuestrasController.processUpdate);
 
-router.post('/reportar/:id',jsonParser, MuestrasController.reportarMuestra);
-router.get('/ExportarPDF',adminMiddleware, MuestrasController.ExportarPDF);
+router.post('/reportar/:id',jsonParser,isAuth, MuestrasController.reportarMuestra);
+router.get('/ExportarPDF',adminMiddleware,isAuth, MuestrasController.ExportarPDF);
 
-router.get('/:id', MuestrasController.VerMuestra);
+router.get('/:id',isAuth, MuestrasController.VerMuestra);
 
-router.get('/', MuestrasController.ConsultarMuestras);
-router.post('/',  MuestrasController.BuscarMuestras);
+router.get('/',isAuth, MuestrasController.ConsultarMuestras);
+router.post('/',isAuth,  MuestrasController.BuscarMuestras);
 
 
 module.exports = router; 

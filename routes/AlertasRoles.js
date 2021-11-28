@@ -7,9 +7,6 @@ const AlertasRolesController = require('../controllers/AlertasRolesController')
 const adminMiddleware = require('../middlewares/adminMiddleware')
 
 
-
-// router.get('/agregarAlerta', isAuth, AlertasRolesController.AgregarAlerta);
-
 router.get('/editar/:id', isAuth, adminMiddleware, AlertasRolesController.ModificarAlerta );
 router.post('/editar/:id', isAuth, adminMiddleware, AlertasRolesController.processUpdate );
 

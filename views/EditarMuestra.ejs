@@ -17,7 +17,7 @@
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
             <div class="offset-lg-2 offset-md-2 col-xs-12 col-lg-9 col-sm-12 col-md-10">
-                <form action="/Muestras/editar/<%= Muestra.idMuestra %>" method="POST" class="EditarMuestraForm"  enctype="multipart/form-data">
+                <form action="/Muestras/editar/<%= Muestra.idMuestra %>" method="POST" class="EditarMuestraForm"  enctype="multipart/form-data" onsubmit="mensaje()">
                     
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                         <div class="row">
@@ -240,7 +240,7 @@
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating small">
-                                    <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" value="<%= Muestra.FechaFabricacion %>">
+                                    <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" value="<%= Muestra.FechaFabricacion %>" required>
                                     <label for="floatingInputGrid">Fecha de Fabricación</label>
                                 </div>
                                 <!-- Mensajes de Verificación -->
@@ -256,7 +256,7 @@
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
                                 <div class="form-floating small">
-                                    <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" value="<%= Muestra.FechaCaducidad %>">
+                                    <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" value="<%= Muestra.FechaCaducidad %>" required>
                                     <label for="floatingInputGrid">Fecha de Caducidad</label>
                                 </div>
                                 <!-- Mensajes de Verificación -->
@@ -326,6 +326,7 @@
     <%- include('Modals/Modal_Contenedor.ejs') %>
     <%- include('Modals/Modal_TipoDeFormulacion.ejs') %>
     <script src="/js/ValidacionEditarMuestra.js"></script>
+    <script src="/js/validacionAgregarContenedor.js"></script>
     <script type="text/javascript">
         function ModalContenedor(NoContenedor,Clasificacion){
                 $("#NoContenedor").val(Clasificacion);
@@ -347,5 +348,10 @@
                 })
         });
       </script>
+      <script language="JavaScript">
+        function mensaje() {
+            alert("Actualización de muestra exitoso!")
+        }
+    </script>
 </body>
 </html>

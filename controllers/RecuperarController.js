@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: auth,
-  });
+});
 
 function random() {
     return Math.random().toString(36).substr(2); // Eliminar `0.`
@@ -69,7 +69,7 @@ const controller = {
             from: 'inventariobayer@gmail.com',
             to: req.body.CorreoElectronico,
             subject: 'BAYER: Recupera tu contraseña',
-            html: '<a href="http://localhost:3030/NuevaContrasena/'+t+'"> Click para recuperar tu contraseña</a>'
+            html: '<a href="https://test-bayer.herokuapp.com/NuevaContrasena/'+t+'"> Click para recuperar tu contraseña</a>'
           };
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {

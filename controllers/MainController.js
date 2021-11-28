@@ -27,7 +27,7 @@ const controller = {
                         req.session.rolEmpleado = rows[0].Rol;
                         req.session.CorreoElectronico = req.body.CorreoElectronico;
                         req.session.NombreCompleto = rows[0].Nombres + ' ' + rows[0].Apellidos;
-                        return req.session.save(err => {
+                        return req.session.save(() => {
                             res.redirect('/Inicio');
                         });
                     }else{
@@ -68,31 +68,6 @@ const controller = {
             console.log('No existe el usuario')
             res.status(302).res.redirect('/');
         });
-        // Usuario.fetchOne(req.body.CorreoElectronico).then(([rows, fieldData]) => {
-        //     console.log(rows)
-        //     bcrypt.compare(req.body.password, rows[0].password)
-        //         .then(doMatch => {
-        //             if (doMatch) {
-        //                 req.session.isLoggedIn = true;
-        //                 req.session.idEmpleado =  rows[0].idEmpleado;
-        //                 req.session.CorreoElectronico = req.body.CorreoElectronico;
-        //                 req.session.NombreCompleto = rows[0].Nombres + ' ' + rows[0].Apellidos;
-        //                 return req.session.save(err => {
-        //                     res.redirect('/Inicio');
-        //                 });
-        //             }
-        //             console.log('Credenciales invalidas')
-        //             res.status(302).res.redirect('/');
-        //         }).catch(err => {
-        //             console.log("Credenciales invalidas");
-        //             res.status(302).res.redirect('/');
-        //         });
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        //     console.log('No existe el usuario')
-        //     res.status(302).res.redirect('/');
-        // });
     },
 
     logout:(req, res, next) => {

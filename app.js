@@ -9,6 +9,7 @@ const PORT = 8080;
 const csrf = require('csurf');
 const csrfProtection = csrf();
 const moment = require('moment');
+const http = require('http');
 const multer = require('multer');
 const { jsPDF } = require("jspdf");
 
@@ -43,9 +44,15 @@ app.use(cookieParser());
 app.use(multer({ storage: fileStorage }).single('HojaSeguridad'));
 
 app.use(session({
-    secret: 'kJSDLKJshdflMOEKJHDKJAHSKJHksWCD03DIDAPI3WDPpoijp98jpjjkiojp0LKSD0knlnl', //mi string secreto que debe ser un string aleatorio muy largo', 
-    resave: false, //La sesión no se guardará en cada petición, sino sólo se guardará si algo cambió 
-    saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
+    secret: 'kJSDLKJshdflMOEKJHDKJAHSKJHksWCD03DIDAPI3WDPpoijp98jpjjkiojp0LKSD0knlnl', 
+    resave: false,  
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        secure: false,
+        maxAge: 30 * 60 * 1000
+    },
+    rolling: true
 }));
 
 app.use(csrfProtection); 
@@ -65,10 +72,9 @@ app.use('/error', (request, response, next) => {
 });
 
 app.use((req, res, next) => {
-    res.status(404).send('Recurso no encontrado'); //Manda error al no existir la ruta
+    res.status(404).send('Recurso no encontrado'); 
 });
 
-//Activando el servidor desde express
-app.listen((process.env.PORT || 3000), function(){
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+
+app.set('port', process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000)

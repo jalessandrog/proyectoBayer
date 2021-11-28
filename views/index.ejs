@@ -42,17 +42,18 @@
                         <% if ( alerta1.Color === "Azul"){ %>
                         <th scope="row" style="background: #26929F;">  </th>
                         <% } %> 
+                        <% if ( alerta1.Color === "Verde" && ( alerta1.Color !== "Azul" || alerta1.Color !== "Rojo"|| alerta1.Color !== "Amarillo" || alerta1.Color !== "Naranja") ||  alerta1.Color === "" ){ %>
+                        <th scope="row" style="background: #00b347;">  </th>
+                        <% } %> 
 
                         <% if ( alerta1.NombreMuestra === null || alerta1.NombreMuestra === ''  ){ %>
                         <td><%= alerta1.CodigoMuestra %></td>
                         <% } else { %>
                         <td><%= alerta1.NombreMuestra %></td>
                         <% } %> 
-                        <!-- <td><%= alerta1.CodigoMuestra %></td> -->
                         <td><%= alerta1.SP %></td>
                         <td><%= alerta1.DiasRestantes %> Días </td>
                         <td><%= alerta1.Cantidad.toPrecision(2) %> - <%= alerta1.UnidadMedida %></td>
-                        <!-- <td>Producto cercano a caducar</td> -->
                       </tr>
                       <% } %> 
                       <% for (let alerta2 of alertaTwo) { %>
@@ -69,8 +70,9 @@
                         <% if ( alerta2.Color === "Azul"){ %>
                         <th scope="row" style="background: #26929F;">  </th>
                         <% } %> 
-                          <!-- <td><%= alerta2.NombreMuestra %></td>
-                          <td><%= alerta2.CodigoMuestra %></td> -->
+                        <% if ( alerta2.Color === "Verde" && ( alerta2.Color !== "Azul" || alerta2.Color !== "Rojo"|| alerta2.Color !== "Amarillo" || alerta2.Color !== "Naranja") ||  alerta2.Color === "" ){ %>
+                        <th scope="row" style="background: #00b347;">  </th>
+                        <% } %> 
                           <% if ( alerta2.NombreMuestra === null || alerta2.NombreMuestra === ''  ){ %>
                           <td><%= alerta2.CodigoMuestra %></td>
                           <% } else { %>
@@ -96,11 +98,9 @@
                           <% if ( alerta3.Color === "Azul"){ %>
                           <th scope="row" style="background: #26929F;">  </th>
                           <% } %> 
-                          <% if ( alerta3.Color === "Verde"){ %>
+                          <% if (alerta3.Color === "Verde" && ( alerta3.Color !== "Azul" || alerta3.Color !== "Rojo"|| alerta3.Color !== "Amarillo" || alerta3.Color !== "Naranja") ||  alerta3.Color === "" ){ %>
                           <th scope="row" style="background: #00b347;">  </th>
                           <% } %> 
-                            <!-- <td><%= alerta3.NombreMuestra %></td>
-                            <td><%= alerta3.CodigoMuestra %></td> -->
 
                             <% if ( alerta3.NombreMuestra === null || alerta3.NombreMuestra === ''  ){ %>
                             <td><%= alerta3.CodigoMuestra %></td>

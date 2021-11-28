@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <form action="/AlertasRoles/editar/<%= alerta.idAlerta %>" method="POST" class="EditarAlertasForm">
+        <form action="/AlertasRoles/editar/<%= alerta.idAlerta %>" method="POST" class="EditarAlertasForm"  onsubmit="mensaje()">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="container-fluid">
                 <div class="row">
@@ -59,7 +59,13 @@
                                                 <option value="Naranja">Naranja</option>
                                                 <option value="Azul" selected>Azul</option>
                                                 <option value="Verde">Verde</option>
-                                                <% } else { %>
+                                                <% } else if ( alerta.Color === "Verde"){ %>
+                                                <option value="Rojo">Rojo</option>
+                                                <option value="Amarillo">Amarillo</option>
+                                                <option value="Naranja">Naranja</option>
+                                                <option value="Azul">Azul</option>
+                                                <option value="Verde" selected>Verde</option>
+                                                <% } else{ %>
                                                 <option value="Rojo">Rojo</option>
                                                 <option value="Amarillo">Amarillo</option>
                                                 <option value="Naranja">Naranja</option>
@@ -86,5 +92,10 @@
                 </div>
             </div>
         </form>
+        <script language="JavaScript">
+            function mensaje() {
+                alert("Actualización de alerta exitoso!")
+            }
+        </script>
     </body>
 </html>

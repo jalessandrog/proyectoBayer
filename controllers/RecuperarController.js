@@ -69,7 +69,7 @@ const controller = {
             from: 'inventariobayer@gmail.com',
             to: req.body.CorreoElectronico,
             subject: 'BAYER: Recupera tu contraseña',
-            html: '<a href="https://inventario-bayer.herokuapp.com/'+t+'"> Click para recuperar tu contraseña</a>'
+            html: '<a href="https://inventario-bayer.herokuapp.com/NuevaContrasena/'+t+'"> Click para recuperar tu contraseña</a>'
           };
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {

@@ -73,5 +73,28 @@
             alert("Registro de muestra exitoso!")
         }
     </script>
+    <script type="text/javascript">
+        function ModalFormulacion(CodigoFormulacion,Formulacion,DescripcionFormulacion){
+                $("#CodigoFormulacion").val(CodigoFormulacion);
+                $("#Formulacion").val(Formulacion);
+                $("#DescripcionFormulacion").val(DescripcionFormulacion);
+        }
+        $(document).ready(function() {
+                $('#RegistrarFormulacion').click(()=>{
+                    $.post("/Muestras/agregarTipoFormulacion",
+                        {
+                            "CodigoFormulacion":  $("#CodigoFormulacion").val(),
+                            "Formulacion": $("#Formulacion").val(),
+                            "DescripcionFormulacion": $("#DescripcionFormulacion").val(),
+                            "_csrf": $("#_csrf_modal").val(),
+                        },
+                        function(data, status){
+                        alert("Registro de tipo de formulación exitoso");
+                        window.location.reload()
+                        },
+                    );
+                })
+        });
+    </script>
 </body>
 </html>

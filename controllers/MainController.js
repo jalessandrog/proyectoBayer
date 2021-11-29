@@ -3,6 +3,14 @@ const moment = require('moment');
 const bcrypt = require('bcryptjs');
 const Main = require('../Models/Main');
 const Alertas = require('../Models/Alertas');
+const cron = require('node-cron');
+const nodemailer = require("nodemailer"); 
+const auth = require('../secret/secret');
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: auth,
+});
 
 const controller = {
 
@@ -79,6 +87,41 @@ const controller = {
 
     index: (req, res, next) => {
         console.log("Ruta index")
+        //-----------------------------------------
+        cron.schedule('* * 8 * * *', (req, res, next) => {
+        //cron.schedule('1 * * * * *', (req, res, next) => {
+            console.log('Enviar correo de alertas');
+            Main.Alerta1()
+            .then(([alertaOne, fieldData]) => { 
+                let data = alertaOne.rows;
+                let contenido = "";
+                if (alertaOne.length > 0) {
+                    for (let muestro of alertaOne) {
+                        contenido += '<div class="col s12 m6 l4">'
+                        contenido += '<p><strong>Nombre: </strong>'+ muestro.NombreMuestra + ', <strong>Código: </strong>'+ muestro.CodigoMuestra +', <strong>SP: </strong>'+ muestro.SP +', <strong>Días para caducar: </strong>'+ muestro.DiasRestantes +', <strong>Existencias: </strong>'+ (muestro.Cantidad).toFixed(2)+'</p><hr><hr>'
+                        contenido += '</div>'  
+                    }
+                }
+                var mailOptions = {
+                    from: 'inventariobayer@gmail.com',
+                    to: 'inventariobayer@gmail.com',
+                    subject: 'Muestras a 30 días de CADUCAR',
+                    html: contenido
+                    };
+                    transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                    }
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(302).redirect('/error');
+            });
+        });
+        //-----------------------------------------
         Main.Alerta1()
             .then(([alertaOne, fieldData]) => {
                 Main.Alerta2()

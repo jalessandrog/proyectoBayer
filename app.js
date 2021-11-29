@@ -12,6 +12,8 @@ const moment = require('moment');
 const http = require('http');
 const multer = require('multer');
 const { jsPDF } = require("jspdf");
+const cron = require('node-cron');
+const nodemailer = require("nodemailer"); 
 
 const mainRouter = require('./routes/Main');
 const muestrasRouter = require('./routes/Muestras');
@@ -30,6 +32,59 @@ const fileStorage = multer.diskStorage({
         callback(null, new Date().getMilliseconds() + '-' + file.originalname);
     },
 });
+
+
+//cron.schedule('* * 8 * * *', () => {
+/*cron.schedule('* * * * * *', (req, res, next) => {
+    console.log('Hola Joe');
+    res.redirect('/Inicio');*/
+    /*app.post("/send-email", (req, res) => {
+        var mailOptions = {
+            from: 'inventariobayer@gmail.com',
+            to: req.body.CorreoElectronico,
+            subject: 'BAYER: Recupera tu contraseña',
+            html: '<a href="https://inventario-bayer.herokuapp.com/NuevaContrasena/'+t+'"> Click para recuperar tu contraseña</a>'
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+    });
+
+    var mailOptions = {
+        from: "Remitente",
+        to: "a01173130@tec.mx",
+        subject: "prueba correo alertas",
+        text: "HolaMundo",
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if(error){
+            res.status(500).send(error,message);
+        }else{
+            console.log("Email enviado");
+            res.status(200).jsonp(req.body);
+        }
+    });*/
+    /*app.post("/send-email", (req, res) => {
+        var mailOptions = {
+            from: 'inventariobayer@gmail.com',
+            to: 'inventariobayer@gmail.com',
+            subject: 'BAYER: Recupera tu contraseña',
+            html: '<p> Click para recuperar tu contraseña</p>'
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+    });*/ 
+//});
 
 // ************ Template Engine ************
 app.set('view engine', 'ejs');

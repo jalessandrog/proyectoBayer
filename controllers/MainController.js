@@ -89,6 +89,7 @@ const controller = {
         console.log("Ruta index")
         //-----------------------------------------
         cron.schedule('* * 8 * * *', (req, res, next) => {
+        //cron.schedule('1 * * * * *', (req, res, next) => {
             console.log('Enviar correo de alertas');
             Main.Alerta1()
             .then(([alertaOne, fieldData]) => { 
@@ -97,13 +98,13 @@ const controller = {
                 if (alertaOne.length > 0) {
                     for (let muestro of alertaOne) {
                         contenido += '<div class="col s12 m6 l4">'
-                        contenido += '<li><strong>Nombre: </strong>'+ muestro.NombreMuestra + ', <strong>Código: </strong>'+ muestro.CodigoMuestra +', <strong>SP: </strong>'+ muestro.SP +', <strong>Días para caducar: </strong>'+ muestro.DiasRestantes +', <strong>Existencias: </strong>'+ muestro.Cantidad+'</li>'
+                        contenido += '<p><strong>Nombre: </strong>'+ muestro.NombreMuestra + ', <strong>Código: </strong>'+ muestro.CodigoMuestra +', <strong>SP: </strong>'+ muestro.SP +', <strong>Días para caducar: </strong>'+ muestro.DiasRestantes +', <strong>Existencias: </strong>'+ (muestro.Cantidad).toFixed(2)+'</p><hr><hr>'
                         contenido += '</div>'  
                     }
                 }
                 var mailOptions = {
                     from: 'inventariobayer@gmail.com',
-                    to: 'a01173130@tec.mx',
+                    to: 'inventariobayer@gmail.com',
                     subject: 'Muestras a 30 días de CADUCAR',
                     html: contenido
                     };

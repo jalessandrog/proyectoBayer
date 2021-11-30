@@ -72,8 +72,8 @@
                 <td><%= muestra.SP %></td>
                 <% } %> 
                 <td><%= muestra.CodigoFormulacion %></td>
-                <td><%= muestra.Concentracion.toPrecision(3) %></td>
-                <td><%= muestra.Cantidad.toPrecision(3) %></td>
+                <td><%= muestra.Concentracion) %></td>
+                <td><%= muestra.Cantidad) %></td>
                 <td>
                   <% if (muestra.Cantidad> 0 && muestra.Status == 1){ %>
                   <form method='post' action="/Movimientos/add">
@@ -81,7 +81,7 @@
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                     <input type="hidden" name="idMuestra" value="<%=  muestra.idMuestra  %>" >
 
-                    <input type="number" step="0.01" name="descarga" class="form-control" aria-label="Amount" min="0.01" max="<%= muestra.Cantidad +0.1 %>" placeholder="<%= muestra.UnidadMedida %>">
+                    <input type="number" step="0.001" name="descarga" class="form-control" aria-label="Amount" min="0.001" max="<%= muestra.Cantidad +0.1 %>" placeholder="<%= muestra.UnidadMedida %>">
                     <div class="input-group-append">
                       <button class="btn green btn-outline-secondary" type="submit">Retirar</button>
                     </div>

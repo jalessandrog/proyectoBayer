@@ -108,20 +108,21 @@
 
     <script>
         $("#submit").click(function(){
-        $.post(window.location.href,
-        {
-            "nombres":  $("#nombres").val(),
-            "apellidos": $("#apellidos").val(),
-            "correo": $("#correo").val(),
-            "rol": $("#rol").val(),
-            "status": $("#status").val(),
-            "_csrf": $("#_csrf").val(),
-        },
-            function(data, status){
-                alert("Se actualizo el Usuario de manera exitosa");
-                window.location.href = '/Usuarios/'
-            });
-        }); 
+
+  $.post(window.location.href,
+  {
+    "nombres":  $("#nombres").val(),
+    "apellidos": $("#apellidos").val(),
+    "correo": $("#correo").val(),
+    "rol": $("#rol").val(),
+    "status": $("#status").val(),
+    "_csrf": $("#_csrf").val(), 
+  },
+  function(data, status){
+    alert("¡Acualización de usuario exitoso!");
+    window.location.href = '/Usuarios/'
+  });
+}); 
     </script>
 </body>
 </html>

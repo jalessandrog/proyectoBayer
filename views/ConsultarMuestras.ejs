@@ -73,7 +73,7 @@
                 <% } %> 
                 <td><%= muestra.CodigoFormulacion %></td>
                 <td><%= muestra.Concentracion.toPrecision(3) %></td>
-                <td><%= muestra.Cantidad.toPrecision(2) %></td>
+                <td><%= muestra.Cantidad.toPrecision(3) %></td>
                 <td>
                   <% if (muestra.Cantidad> 0 && muestra.Status == 1){ %>
                   <form method='post' action="/Movimientos/add">

@@ -14,20 +14,10 @@
         <h4><%= Titulo %></h4>
         <br />
 
-        <!-- <div class="container">
-            <div class="row justify-content-md-end offset-0">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 small">
-                    <label for="formFileSm" class="form-label">Hoja de Seguridad</label>
-                    <input class="form-control form-control-sm" type="file" name="HojaSeguridad" id="formFile">
-                </div>
-            </div>
-        </div>
-        <br> -->
-
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
             <div class="offset-lg-2 offset-md-2 col-xs-12 col-lg-9 col-sm-12 col-md-10">
-                <form action="/Muestras/agregar" method="POST" class="RegistrarMuestraForm" enctype="multipart/form-data">
+                <form action="/Muestras/agregar" method="POST" class="RegistrarMuestraForm" enctype="multipart/form-data" onsubmit="mensaje()">
                     <%- include('includes/Form.ejs') %>
 
                     <div class="col-xs-12 col-lg-9 col-sm-12 col-md-9">
@@ -39,7 +29,7 @@
                                 <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-Contenedor" onclick="ModalContenedor()">Agregar Nuevo Contenedor</button>
                             </div>
                             <div class="btn-group me-auto" role="group" aria-label="Second group">
-                                <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-Formulacion">Agregar Nuevo Tipo de Formulación</button>
+                                <button type="button" class="btn green" data-bs-toggle="modal" data-bs-target="#staticBackdrop-Formulacion" onclick="ModalFormulacion()">Agregar Nuevo Tipo de Formulación</button>
                             </div>
                         </div>
                         <br>
@@ -56,9 +46,10 @@
     <%- include('Modals/Modal_Contenedor.ejs') %>
     <%- include('Modals/Modal_TipoDeFormulacion.ejs') %>
     <script src="/js/ValidacionRegistrarMuestra.js"></script>
+    <script src="/js/validacionAgregarContenedor.js"></script>
     <script type="text/javascript">
         function ModalContenedor(NoContenedor,Clasificacion){
-                $("#NoContenedor").val(Clasificacion);
+                $("#NoContenedor").val(NoContenedor);
                 $("#Clasificacion").val(Clasificacion);
         }
         $(document).ready(function() {
@@ -70,8 +61,36 @@
                             "_csrf": $("#_csrf_modal").val(),
                         },
                         function(data, status){
-                        alert("Registro de contenedor exitoso");
-                        window.location.reload()
+                            alert("Registro de contenedor exitoso");
+                            window.location.reload()
+                        },
+                    );
+                })
+        });
+      </script>
+      <script language="JavaScript">
+        function mensaje() {
+            alert("Registro de muestra exitoso!")
+        }
+    </script>
+    <script type="text/javascript">
+        function ModalFormulacion(Codigo,Formulacion,DescripcionFormulacion ){
+                $("#Codigo").val(Codigo);
+                $("#Formulacion").val(Formulacion);
+                $("#DescripcionFormulacion").val(DescripcionFormulacion);
+        }
+        $(document).ready(function() {
+                $('#RegistrarFormulacion').click(()=>{
+                    $.post("/Muestras/agregarFormulacion",
+                        {
+                            "Codigo":  $("#Codigo").val(),
+                            "Formulacion": $("#Formulacion").val(),
+                            "DescripcionFormulacion": $("#DescripcionFormulacion").val(),
+                            "_csrf": $("#_csrf_modal").val(),
+                        },
+                        function(data, status){
+                            alert("Registro de formulación exitoso");
+                            window.location.reload()
                         },
                     );
                 })

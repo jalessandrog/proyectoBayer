@@ -61,7 +61,7 @@ const controller = {
             })
             .catch(err => {
                 console.log(err);
-                res.status(302).redirect('/error');
+                res.status(500).redirect('/error');
             });
     },
 
@@ -87,7 +87,7 @@ const controller = {
             })
             .catch(err => {
                 console.log(err);
-                res.status(302).redirect('/error');
+                res.status(500).redirect('/error');
             });
     },
 
@@ -153,10 +153,10 @@ const controller = {
                                 old : req.body
                             });
                         }).catch(err => {
-                            res.status(302).redirect('/error');
+                            res.status(500).redirect('/error');
                         });
                 }).catch(err => {
-                    res.status(302).redirect('/error');
+                    res.status(500).redirect('/error');
                 });
             } 
     },
@@ -184,7 +184,7 @@ const controller = {
                     })
             })
             .catch(err => {
-                res.status(302).redirect('/error');
+                res.status(500).redirect('/error');
             });
     },
 
@@ -223,7 +223,7 @@ const controller = {
                     .catch(err => {
                         console.log(err); 
                         console.log('Error al actualizar muestra');
-                        res.status(302).redirect('/error'); 
+                        res.status(500).redirect('/error'); 
                     });
             } 
         }else{
@@ -235,7 +235,7 @@ const controller = {
                     .catch(err => {
                         console.log(err);
                         console.log('Error al actualizar muestra')
-                        res.status(302).redirect('/error');
+                        res.status(500).redirect('/error');
                     });
         }
         
@@ -253,7 +253,7 @@ const controller = {
             .catch(err => {
                 console.log(err);
                 console.log('Error al borrar muestra')
-                res.status(302).redirect('/error');
+                res.status(500).redirect('/error');
             });
     },
 
@@ -300,6 +300,23 @@ const controller = {
             contenedor.save()
                 .then( () => {
                     console.log('Contenedor agregado con exito')
+                    res.status(201).send({})
+                }).catch((e)=>{
+                    console.log(e)
+                    res.status(500)
+                })
+        } 
+    },
+
+    saveFormulacion:(req, res, next) => {
+        console.log("Agregar nuevo tipo de Formulacion")
+        console.log('Agregando Formulacion...')
+        console.log(req.body)
+        if( req.body.Codigo !== '' && req.body.Formulacion !== '' ){
+            const formulacion = new Formulaciones(req.body.Codigo, req.body.Formulacion,req.body.DescripcionFormulacion )
+            formulacion.save()
+                .then( () => {
+                    console.log('Tipo de Formulacion agregado con exito')
                     res.status(201).send({})
                 }).catch((e)=>{
                     console.log(e)

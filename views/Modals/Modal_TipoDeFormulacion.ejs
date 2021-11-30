@@ -13,25 +13,25 @@
             <!-- Main Content -->
             <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
                 <form>
+                    <input type="hidden" id="_csrf_modal" value="<%= csrfToken %>" >
                     <div class="row">
-        
                         <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="form-floating small">
-                                <input type="text" name="Codigo" class="form-control" id="floatingInputGrid">
+                                <input type="text" name="Codigo" class="form-control" id="Codigo" required>
                                 <label for="floatingInputGrid">Código</label>
                             </div>
                         </div>
 
                         <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12 small">
                             <div class="form-floating small">
-                                <input type="text" name="Formulacion" class="form-control" id="floatingInputGrid">
+                                <input type="text" name="Formulacion" class="form-control" id="Formulacion" required>
                                 <label for="floatingInputGrid">Formulación</label>
                             </div>
                         </div>
         
                         <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12 small">
                             <div class="form-floating small">
-                                <textarea class="form-control" name="DescripcionFormulacion" placeholder="Descripción de la Formulación" id="floatingTextarea" style="height: auto">
+                                <textarea class="form-control" name="DescripcionFormulacion" placeholder="Descripción de la Formulación" id="DescripcionFormulacion" style="height: auto">
                                 </textarea>
                                 <label for="floatingTextarea">Descripción de la Formulación</label>
                             </div>
@@ -45,7 +45,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn green">Registrar Nuevo Tipo de Formulación</button>
+            <button type="submit" class="btn green" id="RegistrarFormulacion">Registrar Nuevo Tipo de Formulación</button>
         </div>
     </div>
     </div>

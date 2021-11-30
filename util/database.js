@@ -1,9 +1,9 @@
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({
-    host: 'mysql-inventariobayer.alwaysdata.net', //ip de la instancia
-    user: '250337', 
-    database: 'inventariobayer_2021',
+    host: 'mysql-inventario-bayer.alwaysdata.net', 
+    user: '250640', 
+    database: 'inventario-bayer_21',
     password: 'Ges76!*t!9O!n?S'
 });
 

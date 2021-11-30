@@ -3,9 +3,8 @@
     <%- include('includes/head.ejs') %>
 <body>
     <%- include('includes/header.ejs') %>
-    <%if (Usuario.idEmpleado) { %>
-        <form action="/Usuarios/<%= Usuario.idEmpleado %>" method="POST" class="RegistrarUsuarioForm">
-            <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>" >
+    <%if (id) { %>
+            
             <br><br>
             <p style="text-align: center; font-size: 1.5em;"><strong>Modificar Usuario</strong></p>
             <br>
@@ -13,26 +12,14 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-8">
-                        
-                        <tr style="text-align: center;">
-                            <th scope="col"><strong>ID Empleado</strong> </th>
-                        </tr>
-                        <div class="row">
-                            <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                                <div class="form-floating">
-                                    <input type="text" name="idEmpleado" class="form-control" id="idEmpleado" value="<%= Usuario.idEmpleado %>" placeholder="ID Empleado">
-                                    <label for="floatingInputGrid">ID Empleado</label>
-                                </div>
-                            </div>
-                        </div>
-                            <br>
+                        <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>" >
                         <tr style="text-align: center;">
                             <th scope="col"><strong>Nombre(s)</strong> </th>
                         </tr>
                         <div class="row">
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating">
-                                    <input type="text" name="nombres" class="form-control" id="nombres" value="<%= Usuario.Nombres %>" placeholder="Nombre completo">
+                                    <input type="text" name="nombres" class="form-control" id="nombres" value="<%= usuario.Nombres %>" placeholder="Nombre completo">
                                     <label for="floatingInputGrid">Nombre o Nombres</label>
                                 </div>
                             </div>
@@ -44,7 +31,7 @@
                             <div class="row">
                                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                     <div class="form-floating">
-                                        <input type="text" name="apellidos" class="form-control" id="apellidos" value="<%= Usuario.Apellidos %>" placeholder="Apellidos">
+                                        <input type="text" name="apellidos" class="form-control" id="apellidos" value="<%= usuario.Apellidos %>" placeholder="Apellidos">
                                         <label for="floatingInputGrid">Apellidos</label>
                                     </div>
                                 </div>
@@ -57,7 +44,7 @@
                                 <div class="row">
                                     <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                         <div class="form-floating">
-                                            <input type="text" name="correo" class="form-control" id="correo" value="<%= Usuario.CorreoElectronico %> " placeholder="Correo Electronico del trabajo">
+                                            <input type="text" name="correo" class="form-control" id="correo" value="<%= usuario.CorreoElectronico %> " placeholder="Correo Electronico del trabajo">
                                             <label for="floatingInputGrid">...@bayer.com</label>
                                         </div>
                                     </div>
@@ -75,7 +62,6 @@
                                     <br>
                              </div>
                         </div>
-
                         <br>
                             <tr>
                                 <th scope="col"><strong>Status de empleado</strong></th>
@@ -103,12 +89,11 @@
                     
                 </div>
                 <br>
-            </form>
+      
     <% } %>
 
     <script>
         $("#submit").click(function(){
-
   $.post(window.location.href,
   {
     "nombres":  $("#nombres").val(),

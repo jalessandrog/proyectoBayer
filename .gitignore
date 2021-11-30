@@ -8,6 +8,7 @@ node_modules/
 dist/
 secret/
 util/
+util/database
 
 # Compiled Java class files
 *.class

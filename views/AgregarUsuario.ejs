@@ -8,116 +8,112 @@
     <p style="text-align: center; font-size: 1.5em;"><strong>Agregar Usuario</strong></p>
     <br>
     <div class= "container-fluid"> 
-        <form action="/Usuarios/Nuevo" method="POST" class="RegistrarUsuarioForm">
-            <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>" >
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <div>
-                        <th scope="col"><strong>ID empleado</strong></th>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" name="idEmpleado" id="idEmpleado" placeholder="ID Empleado">
-                                <label for="floatingInputGrid">ID empleado</label>
-                            </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div>
+                    <th scope="col"><strong>ID empleado</strong></th>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="idEmpleado" placeholder="ID Empleado">
+                            <label for="floatingInputGrid">ID empleado</label>
                         </div>
                     </div>
+                </div>
+                <br>
+
+                <tr style="text-align: center;">
+                    <th scope="col"><strong>Nombre(s)</strong> </th>
+                </tr>
+               
+                <div class="row">
+                    <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>" >
+                    <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="nombres"  id="nombres"  placeholder="Nombre completo">
+                            <label for="floatingInputGrid">Nombre o nombres</label>
+                        </div>
+                    </div>
+                </div>
                     <br>
-    
-                    <tr style="text-align: center;">
-                        <th scope="col"><strong>Nombre(s)</strong> </th>
-                    </tr>
-                   
-                    <div class="row">
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" name="nombres"  id="nombres"  placeholder="Nombre completo">
-                                <label for="floatingInputGrid">Nombre o nombres</label>
-                            </div>
-                        </div>
+                    <div>
+                        <th scope="col"><strong>Apellidos</strong></th>
                     </div>
-                        <br>
-                        <div>
-                            <th scope="col"><strong>Apellidos</strong></th>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos">
-                                    <label for="floatingInputGrid">Apellidos</label>
-                                </div>
-                            </div>
-                
-                        </div>
-                            <br>
-                            <tr>
-                                <th scope="col"><strong>Correo electrónico</strong></th>
-                            </tr>
-                            <div class="row">
-                                <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" name="correo" id="correo" placeholder="Correo Electronico del trabajo">
-                                        <label for="floatingInputGrid">...@bayer.com</label>
-                                    </div>
-                                </div>
-                            </div>
-                         <br>
-                    <tr>
-                        <th scope="col"><strong>Contraseña</strong></th>
-                    </tr>
                     <div class="row">
                         <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                             <div class="form-floating">
-                                <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
-                                <label for="floatingInputGrid">********</label>
+                                <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos">
+                                <label for="floatingInputGrid">Apellidos</label>
                             </div>
                         </div>
+            
                     </div>
                         <br>
                         <tr>
-                            <th scope="col"><strong>Rol</strong></th>
+                            <th scope="col"><strong>Correo electrónico</strong></th>
                         </tr>
                         <div class="row">
-                            <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                                <select class="btn btn-secondary dropdown-toggle" name="rol" id="rol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Empleado Normal">Empleado Normal</option>
-                                  </select>
-                                <br>
-                         </div>
+                            <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="correo" id="correo" placeholder="Correo Electronico del trabajo">
+                                    <label for="floatingInputGrid">...@bayer.com</label>
+                                </div>
+                            </div>
+                        </div>
+                     <br>
+                <tr>
+                    <th scope="col"><strong>Contraseña</strong></th>
+                </tr>
+                <div class="row">
+                    <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="form-floating">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
+                            <label for="floatingInputGrid">********</label>
+                        </div>
                     </div>
-                <div class="col-2"></div>
+                </div>
+                    <br>
+                    <tr>
+                        <th scope="col"><strong>Rol</strong></th>
+                    </tr>
+                    <div class="row">
+                        <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
+                            <select class="btn btn-secondary dropdown-toggle" name="rol" id="rol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <option value="Administrador">Administrador</option>
+                                <option value="Empleado Normal">Empleado Normal</option>
+                              </select>
+                            <br>
+                     </div>
+                </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+    
+    <div style="text-align:center;">
+            <div class="btn-group me-auto" role="group" aria-label="Second group">
+                <button type="submit" class="boton" id="submit">Registrar usuario</button>
             </div>
-        
-            <div style="text-align:center;">
-                    <div class="btn-group me-auto" role="group" aria-label="Second group">
-                        <button type="submit" class="boton" id="submit">Registrar usuario</button>
-                    </div>
-            </div>
-        </form>
     </div>
     
     <script>
         $("#submit").click(function(){
-        $.post("/Usuarios/Nuevo",
-        {
-            "idEmpleado":  $("#idEmpleado").val(),
-            "nombres":  $("#nombres").val(),
-            "apellidos": $("#apellidos").val(),
-            "correo": $("#correo").val(),
-            "password": $("#password").val(),
-            "rol": $("#rol").val(),
-            "_csrf": $("#_csrf").val(),
-        },
-            function(data, status){
-                alert("Registro exitoso");
-                window.location.href = '/Usuarios/'
-            });
-        }); 
+  $.post("/Usuarios/Nuevo",
+  {
+    "idEmpleado":  $("#idEmpleado").val(),
+    "nombres":  $("#nombres").val(),
+    "apellidos": $("#apellidos").val(),
+    "correo": $("#correo").val(),
+    "password": $("#password").val(),
+    "rol": $("#rol").val(),
+    "_csrf": $("#_csrf").val(),
+  },
+  function(data, status){
+    alert("Registro exitoso");
+    window.location.href = '/Usuarios/'
+  });
+}); 
     </script>
 </body>
 </html>
-
-

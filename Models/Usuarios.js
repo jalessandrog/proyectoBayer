@@ -37,8 +37,8 @@ module.exports = class Usuario {
     static UpdatePassword(idEmpleado, password){
         return db.execute('UPDATE usuarios SET password = ? WHERE idEmpleado = ? ', [password, idEmpleado])
     }
-
+    
     static UpdateUser(idEmpleado, Nombres, Apellidos, CorreoElectronico, Rol, Status){
-        return db.execute('UPDATE usuarios SET  Nombres = ?, Apellidos = ?, CorreoElectronico =?, Rol = ?, Status = ? WHERE idEmpleado = ? ', [idEmpleado, Nombres, Apellidos, CorreoElectronico, Rol,Status])
+        return db.execute('UPDATE usuarios SET  Nombres = ?, Apellidos = ?, CorreoElectronico =?, Rol = ?, Status = ? WHERE idEmpleado = ? ', [Nombres, Apellidos, CorreoElectronico, Rol,Status,idEmpleado])
     }
-} 
+}  

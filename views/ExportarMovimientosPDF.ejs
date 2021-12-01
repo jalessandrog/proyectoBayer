@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <%- include('includes/head.ejs') %> 
+  
+  <body> 
+    <%- include('includes/header.ejs') %>
+
+    <div class="container" id="tablaMovimientosPDF">
+        <br>
+        <div  class="" style="text-align: center;">
+            <h2 style="text-align: center;">Lista de movimientos</h2 >
+            <p>Fecha: <%- new Date().toLocaleDateString('es-MX') %></p>
+        <br>
+
+        <div class="table-responsive"  style="font-size: 13px;">
+            <% if (ConsultarMovimientos.length > 0) { %>
+            <table class="table .table-borderless caption-top align-middle" id="movimientosTable" width="100%" style="font-size:9px;">
+                <thead class="table text-center align-middle" style="background-color: rgb(194, 204, 204);">
+                    <tr align="center">
+                        <th scope="col" >Nombre de usuario</th>
+                        <th scope="col">Fecha de uso</th>
+                        <th scope="col">Nombre muestra</th>
+                        <th scope="col">SP de muestra</th>
+                        <th scope="col">Cantidad retirada</th>
+                        <th scope="col">Cantidad sobrante</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <pagebreak/>
+                    <% for (let muestro of ConsultarMovimientos) { %>
+                        <tr align="center">
+                          <td><%= muestro.NombreUsuario %></td>
+                          <td><%= new Date(muestro.FechaDeUso).toLocaleString('Mx') %></td>  
+                          <% if (muestro.NombreMuestra){ %>
+                            <td><%= muestro.NombreMuestra %></td>
+                          <% } else { %>
+                            <td>-</td>
+                          <% } %> 
+                          <% if (muestro.SP){ %>
+                            <td><%= muestro.SP %></td>
+                          <% } else { %>
+                            <td>-</td>
+                          <% } %> 
+                          <td><%= muestro.Descarga %></td>
+                          <td><%= muestro.Sobrante %></td>
+                        </tr>
+                      <% } %>
+                </tbody>
+            </table>
+            <% } %>
+            </div>
+    </div>
+
+    </div>
+        <script >
+
+        var pdf = new jsPDF('l', 'px', 'letter');
+        let nombrePDF=  new Date().toLocaleDateString('es-MX') + ' ' +'Movimientos.pdf';
+        pdf.setFont("Times-Roman");
+        pdf.text("Lista de movimientos", 250,20);
+        pdf.text('Fecha: '+new Date().toLocaleDateString('es-MX')+' -  Hora: '+ new Date().getHours()+' : '+new Date().getMinutes()+' : '+new Date().getSeconds(), 215,35);
+        specialElementHandlers = {
+            '#bypassme': function (element, renderer) {
+                return true
+            }
+        };
+
+        margins = {
+            top: 1,
+            bottom: 1,
+            left: 40,
+            width: 500
+        };
+        
+
+        pdf.fromHTML(
+            $('#tablaMovimientosPDF')[0], 
+            margins.left, // x coord
+            margins.top, { // y coord
+                'width': margins.width, 
+                'elementHandlers': specialElementHandlers
+            },
+            
+
+            function (dispose) {
+                pdf.save(nombrePDF);
+            }, margins
+        );
+        </script>
+        <br>
+    </body>
+</html>

@@ -12,6 +12,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-8">
+                        <form id="basic-form">
                         <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>" >
                         <tr style="text-align: center;">
                             <th scope="col"><strong>Nombre(s)</strong> </th>
@@ -20,7 +21,7 @@
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating">
                                     <input type="text" name="nombres" class="form-control" id="nombres" value="<%= usuario.Nombres %>" placeholder="Nombre completo">
-                                    <label for="floatingInputGrid">Nombre o Nombres</label>
+                                    <label for="nombres"></label>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +33,7 @@
                                 <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                     <div class="form-floating">
                                         <input type="text" name="apellidos" class="form-control" id="apellidos" value="<%= usuario.Apellidos %>" placeholder="Apellidos">
-                                        <label for="floatingInputGrid">Apellidos</label>
+                                        <label for="apellidos"></label>
                                     </div>
                                 </div>
                     
@@ -45,7 +46,7 @@
                                     <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                         <div class="form-floating">
                                             <input type="text" name="correo" class="form-control" id="correo" value="<%= usuario.CorreoElectronico %> " placeholder="Correo Electronico del trabajo">
-                                            <label for="floatingInputGrid">...@bayer.com</label>
+                                            <label for="correo"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -74,6 +75,7 @@
                                       </select>
                                     <br>
                              </div>
+                            </form>
                         </div>
                     <div class="col-2"></div>
                 </div>
@@ -84,7 +86,7 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group me-auto"></div>
                     <div class="btn-group me-auto" role="group" aria-label="First group">
-                        <button type="submit" class="boton" id="submit">Actualizar Usuario</button>
+                        <button type="submit" class="boton" id="submit" disabled>Actualizar Usuario</button>
                     </div>
                     
                 </div>
@@ -93,6 +95,50 @@
     <% } %>
 
     <script>
+        function validate(){
+            return $("#basic-form").validate({
+                rules:{
+                    correo:{
+                        required: true,
+                        email: true,
+                    },
+                    nombres: {
+                        required: true,
+                    },
+                    apellidos: {
+                        required: true,
+                    },
+                  
+                },
+                messages: {
+                    correo:{
+                        required: "El correo es obligatorio",
+                        email: "Este campo debe ser un correo electrónico"
+                    },
+                    nombres:{
+                        required: "El nombre es obligatorio"
+                    },
+                    apellidos:{
+                        required: "Los apellidos son obligatorios"
+                    },
+                   
+                }
+            });
+        }
+        $(document).ready(function() {
+        
+            validate();
+            $('input').on('blur', (elemento) =>{
+                validate().element(elemento.target);
+              //  console.log( $("#basic-form").valid())
+            })
+        });
+        $("#submit").hover((ele)=>{
+           if($("#basic-form").valid()){
+            $("#submit").prop("disabled",false);
+           }
+        },)
+
         $("#submit").click(function(){
   $.post(window.location.href,
   {

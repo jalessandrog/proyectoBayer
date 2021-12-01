@@ -459,3 +459,8 @@ a.boton#HojaSeguridad{
         display: block;
     }
 }
+
+.error{
+    color: red;
+}
+

@@ -98,7 +98,7 @@ const controller = {
                 if (alertaOne.length > 0) {
                     for (let muestro of alertaOne) {
                         contenido += '<div class="col s12 m6 l4">'
-                        contenido += '<p><strong>Nombre: </strong>'+ muestro.NombreMuestra + ', <strong>Código: </strong>'+ muestro.CodigoMuestra +', <strong>SP: </strong>'+ muestro.SP +', <strong>Días para caducar: </strong>'+ muestro.DiasRestantes +', <strong>Existencias: </strong>'+ (muestro.Cantidad).toFixed(2)+'</p><hr><hr>'
+                        contenido += '<p><strong>Nombre: </strong>'+ muestro.NombreMuestra + ', <strong>Código: </strong>'+ muestro.CodigoMuestra +', <strong>SP: </strong>'+ muestro.SP +', <strong>Días para caducar: </strong>'+ muestro.DiasRestantes +', <strong>Existencias: </strong>'+ (muestro.Cantidad)+'</p><hr><hr>'
                         contenido += '</div>'  
                     }
                 }

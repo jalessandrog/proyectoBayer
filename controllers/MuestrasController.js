@@ -109,8 +109,8 @@ const controller = {
             CodigoMuestra = req.body.CodigoMuestra;
         }
 
-        const Concentracion = Number(req.body.Concentracion).toFixed(2);
-        const Cantidad = Number(req.body.Cantidad).toFixed(2); 
+        const Concentracion = Number(req.body.Concentracion);
+        const Cantidad = Number(req.body.Cantidad); 
         // res.setHeader('Set-Cookie', 'ultima_Muestra_Agregada='+req.body.NombreMuestra+'; HttpOnly');
         
         let errors = validationResult(req); 
@@ -202,8 +202,8 @@ const controller = {
             CodigoMuestra = req.body.CodigoMuestra;
         }
 
-        const Concentracion = Number(req.body.Concentracion).toFixed(2);
-        const Cantidad = Number(req.body.Cantidad).toFixed(2);
+        const Concentracion = Number(req.body.Concentracion);
+        const Cantidad = Number(req.body.Cantidad);
 
         console.log(Concentracion)
         console.log(Cantidad)

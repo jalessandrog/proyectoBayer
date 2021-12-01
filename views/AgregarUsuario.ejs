@@ -9,16 +9,22 @@
     <br>
     <div class= "container-fluid"> 
         <div class="row">
+            
             <div class="col-2"></div>
-            <div class="col-8">
+           <div class="col-8"> <form id="basic-form"> 
+                <div class="row">
+                    <div class="alert alert-danger d-none" role="alert" id="error">
+                        
+                      </div>
+                </div>
                 <div>
                     <th scope="col"><strong>ID empleado</strong></th>
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="idEmpleado" placeholder="ID Empleado">
-                            <label for="floatingInputGrid">ID empleado</label>
+                            <input type="text" class="form-control" name="idEmpleado" id="idEmpleado" placeholder="ID Empleado">
+                            <label for="idEmpleado"></label>
                         </div>
                     </div>
                 </div>
@@ -32,8 +38,8 @@
                     <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>" >
                     <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" name="nombres"  id="nombres"  placeholder="Nombre completo">
-                            <label for="floatingInputGrid">Nombre o nombres</label>
+                            <input type="text" class="form-control" name="nombres"  id="nombres"  placeholder="Nombre completo" required>
+                            <label for="nombres"></label>
                         </div>
                     </div>
                 </div>
@@ -44,8 +50,8 @@
                     <div class="row">
                         <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos">
-                                <label for="floatingInputGrid">Apellidos</label>
+                                <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" required>
+                                <label for="apellidos"></label>
                             </div>
                         </div>
             
@@ -57,8 +63,8 @@
                         <div class="row">
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="correo" id="correo" placeholder="Correo Electronico del trabajo">
-                                    <label for="floatingInputGrid">...@bayer.com</label>
+                                    <input type="text" class="form-control" name="correo" id="correo" placeholder="Correo Electronico del trabajo" required>
+                                    <label for="correo"></label>
                                 </div>
                             </div>
                         </div>
@@ -69,8 +75,8 @@
                 <div class="row">
                     <div class="col-lg-offset-0 col-lg-12 col-xs-12 col-sm-12">
                         <div class="form-floating">
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
-                            <label for="floatingInputGrid">********</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required>
+                            <label for="password"></label>
                         </div>
                     </div>
                 </div>
@@ -80,12 +86,13 @@
                     </tr>
                     <div class="row">
                         <div class="col-lg-offset-0 col-lg-6 col-xs-12 col-sm-6">
-                            <select class="btn btn-secondary dropdown-toggle" name="rol" id="rol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <select class="btn btn-secondary dropdown-toggle" name="rol" id="rol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" required>
                                 <option value="Administrador">Administrador</option>
                                 <option value="Empleado Normal">Empleado Normal</option>
                               </select>
                             <br>
                      </div>
+                     </form>
                 </div>
             <div class="col-2"></div>
         </div>
@@ -93,11 +100,69 @@
     
     <div style="text-align:center;">
             <div class="btn-group me-auto" role="group" aria-label="Second group">
-                <button type="submit" class="boton" id="submit">Registrar usuario</button>
+                <button type="submit" class="boton" id="submit" disabled>Registrar usuario</button>
             </div>
     </div>
     
     <script>
+        function validate(){
+            return $("#basic-form").validate({
+                rules:{
+                    idEmpleado: {
+                        required: true,
+                        minlength: 6,
+                    }, 
+                    correo:{
+                        required: true,
+                        email: true,
+                    },
+                    nombres: {
+                        required: true,
+                    },
+                    apellidos: {
+                        required: true,
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6,
+                    
+                    }
+                },
+                messages: {
+                    idEmpleado: {
+                        required: "El id del usuario es obligatorio",
+                        minlength:  "La longitud del id debe ser 6 carácteres",
+                    },
+                    correo:{
+                        required: "El correo es obligatorio",
+                        email: "Este campo debe ser un correo electrónico"
+                    },
+                    nombres:{
+                        required: "El nombre es obligatorio"
+                    },
+                    apellidos:{
+                        required: "Los apellidos son obligatorios"
+                    },
+                    password:{
+                        required: "El password es obligatorio",
+                        minlength: "La longitud mínima debe ser de 6 carácteres"
+                    },
+                }
+            });
+        }
+        $(document).ready(function() {
+        
+            validate();
+            $('input').on('blur', (elemento) =>{
+                validate().element(elemento.target);
+              //  console.log( $("#basic-form").valid())
+            })
+        });
+        $("#submit").hover((ele)=>{
+           if($("#basic-form").valid()){
+            $("#submit").prop("disabled",false);
+           }
+        },)
         $("#submit").click(function(){
   $.post("/Usuarios/Nuevo",
   {
@@ -112,6 +177,11 @@
   function(data, status){
     alert("Registro exitoso");
     window.location.href = '/Usuarios/'
+  },
+  ).fail((data)=>{
+     //alert(data.responseJSON.error)
+     $("#error").removeClass("d-none")
+     $("#error").text(data.responseJSON.error)
   });
 }); 
     </script>

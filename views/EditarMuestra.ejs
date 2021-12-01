@@ -17,11 +17,16 @@
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
             <div class="offset-lg-2 offset-md-2 col-xs-12 col-lg-9 col-sm-12 col-md-10">
-                <form action="/Muestras/editar/<%= Muestra.idMuestra %>" method="POST" class="EditarMuestraForm"  enctype="multipart/form-data">
+                <form action="/Muestras/editar/<%= Muestra.idMuestra %>" method="POST" class="EditarMuestraForm"  enctype="multipart/form-data" onsubmit="mensaje()">
                     
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                         <div class="row">
+
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <% if ( Muestra.CodigoMuestra ) { %>
+                                <p class="text-muted small text-start fst-italic pt-2">Código actual de la muestra: <%= Muestra.CodigoMuestra %></p>
+                                <% } %>
+                                
                                 <div class="form-floating">
                                     <input type="text" name="CodigoMuestra" class="form-control" id="CodigoMuestra" placeholder="Código de Muestra" value="<%= Muestra.CodigoMuestra %>">
                                     <label for="floatingInputGrid">Código de Muestra</label>
@@ -34,7 +39,11 @@
                             <% if (locals.errors && errors.CodigoMuestra) { %>
                                 <p class="text-warning small text-start"><%= errors.CodigoMuestra.msg %></p>
                             <% } %>
+
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <% if ( Muestra.SP ) { %>
+                                    <p class="text-muted small text-start fst-italic pt-2">SP actual de la muestra : <%= Muestra.SP %></p>
+                                    <% } %>
                                 <div class="form-floating">
                                     <input type="number" name="SP" class="form-control" id="SP" placeholder="SP de Muestra" value="<%= Muestra.SP %>">
                                     <label for="floatingInputGrid">SP de Muestra</label>
@@ -47,7 +56,11 @@
                             <% if (locals.errors && errors.SP) { %>
                                 <p class="text-warning small text-start"><%= errors.SP.msg %></p>
                             <% } %>
+
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <% if ( Muestra.NombreMuestra ) { %>
+                                <p class="text-muted small text-start fst-italic pt-2">Nombre actual de la muestra : <%= Muestra.NombreMuestra %></p>
+                                <% } %>
                                 <div class="form-floating">
                                     <input type="text" name="NombreMuestra" class="form-control" id="NombreMuestra" placeholder="Nombre de Muestra" value="<%= Muestra.NombreMuestra %>">
                                     <label for="floatingInputGrid">Nombre de Muestra</label>
@@ -62,6 +75,7 @@
                             <% } %>
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <p class="text-muted small text-start fst-italic pt-2">Unidad de medida actual de la muestra : <%= Muestra.UnidadMedida %></p>
                                 <select class="form-select" name="UnidadMedida" id="UnidadMedida" required>
                                     <option selected disabled value="">Unidad de medida</option>
                                     <option value="Litros">Litros</option>
@@ -76,6 +90,7 @@
                             <% } %>
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <p class="text-muted small text-start fst-italic pt-2">Cantidad actual de la muestra : <%= (Muestra.Cantidad).toFixed(2) %></p>
                                 <div class="form-floating small">
                                     <input type="number" name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad"  step="any" value="<%= Muestra.Cantidad %>" minlength="0">
                                     <label for="floatingInputGrid">Cantidad</label>
@@ -87,7 +102,9 @@
                             <% if (locals.errors && errors.Cantidad) { %>
                                 <p class="text-danger small text-start "><%= errors.Cantidad.msg %></p>
                             <% } %>
+
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <p class="text-muted small text-start fst-italic pt-2">Concentración actual de la muestra : <%= (Muestra.Concentracion).toFixed(2) %></p>
                                 <div class="form-floating small">
                                     <input type="number" name="Concentracion" class="form-control" id="Concentracion" placeholder="Concentracion (%)"   step="any" value="<%= Muestra.Concentracion %>" minlength="0" maxlength="100">
                                     <label for="floatingInputGrid">Concentracion (%)</label>
@@ -101,6 +118,7 @@
                             <% } %>
                             
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <p class="text-muted small text-start fst-italic pt-2">Tipo actual de la muestra : <%= Muestra.Tipo %></p>
                                 <select class="form-select" name="idTipoDeMuestra" id="idTipoDeMuestra">
                                     <% if ( Muestra.Tipo === "Comercial"){ %>
                                         <option value="1" selected>Comercial</option>
@@ -125,10 +143,9 @@
                                 <p class="text-danger small text-start "><%= errors.idTipoDeMuestra.msg %></p>
                             <% } %>
                 
-                            <br>
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
+                                <p class="text-muted small text-start fst-italic pt-2">Código de formulación actual de la muestra : <%= Muestra.CodigoFormulacion %></p>
                                 <select class="form-select" id="CodigoFormulacion" name="CodigoFormulacion" required >
-                                    <!-- CAMBIAR VALUE PREDETERMINADO, AGREGAR VALIDACIÓN -->
                                     <option selected disabled value="">Seleccionar Codigo de Formulación</option>
                                     <% if (lista_formulaciones.length > 0) { %>
                                         <% for (let TipoFormulacion of lista_formulaciones) { %>
@@ -136,14 +153,15 @@
                                         <% } }%>   
                                 </select>
                                 <!-- Mensajes de Verificación -->
-  
                                 <p id="errorCodigoFormulacion" class="alert alert-danger small ocultar" role="alert"></p>
                                 <!-- Fin Mensajes de Verificación -->
                             </div>
                             <% if (locals.errors && errors.CodigoFormulacion) { %>
                                 <p class="text-danger small text-start "><%= errors.CodigoFormulacion.msg %></p>
                             <% } %>
+
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <p class="text-muted small text-start fst-italic pt-2">Lote actual de la muestra : <%= Muestra.Lote %></p>
                                 <div class="form-floating">
                                     <input type="text" name="Lote" class="form-control" id="Lote" placeholder="Lote de Muestra" value="<%= Muestra.Lote %>">
                                     <label for="floatingInputGrid">Lote de Muestra</label>
@@ -157,12 +175,11 @@
                             <% } %>
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
+                                <p class="text-muted small text-start fst-italic pt-2">Uso actual de la muestra : <%= Muestra.UsoMuestra %></p>
                                 <select class="form-select" id="UsoMuestra" name="UsoMuestra">
                                     <% if ( Muestra.UsoMuestra === "Fungicida"){ %>
                                     <option value="Fungicida" selected>Fungicida</option>
                                     <option value="Insecticida">Insecticida</option>
-
-  
                                     <option value="Herbicida">Herbicida</option>
                                     <option value="Tratamiento de Semilla">Tratamiento de Semilla</option>
                                     <option value="Biológico">Biológico</option>
@@ -218,8 +235,12 @@
                             <% } %>
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
+                                <% if (!Muestra.NoContenedor) { %>
+                                <p class="text-muted small text-start fst-italic pt-2">Contenedor actual de la muestra : <%= Muestra.Clasificacion %></p>
+                                <% } else {%>
+                                <p class="text-muted small text-start fst-italic pt-2">Contenedor actual de la muestra : <%= Muestra.Clasificacion %> - <%= Muestra.NoContenedor %></p>
+                                <% } %>
                                 <select class="form-select" id="idContenedor" name="idContenedor" required>
-                                    <!-- CAMBIAR VALUE PREDETERMINADO, AGREGAR VALIDACIÓN -->
                                     <option value="" disabled selected>Seleccionar Contenedor</option>
                                     <% if (lista_contenedores.length > 0) { %>
                                         <% for (let Contenedor of lista_contenedores) { %>
@@ -231,21 +252,19 @@
                                 </select>
                                 <!-- Mensajes de Verificación -->
                                 <p id="erroridContenedor" class="alert alert-danger small ocultar" role="alert"></p>
-
                                 <!-- Fin Mensajes de Verificación -->
                             </div>
                             <% if (locals.errors && errors.idContenedor) { %>
                                 <p class="text-danger small text-start "><%= errors.idContenedor.msg %></p>
                             <% } %>
 
-                            <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">    
+                            <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <p class="text-muted small text-start fst-italic pt-2">Fecha de Fabricación actual de la muestra : <%= new Date(Muestra.FechaFabricacion).toLocaleDateString("es-Mx") %></p>
                                 <div class="form-floating small">
-                                    <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" value="<%= Muestra.FechaFabricacion %>">
+                                    <input type="date" name="FechaFabricacion" class="form-control" id="FechaFabricacion" placeholder="Fecha de Fabricación" value="<%= Muestra.FechaFabricacion %>" required>
                                     <label for="floatingInputGrid">Fecha de Fabricación</label>
                                 </div>
                                 <!-- Mensajes de Verificación -->
-
-  
                                 <p id="errorFechaFabricacion" class="alert alert-danger small ocultar" role="alert">
                                 <p id="alertaFechaFabricacion" class="alert alert-warning small ocultar" role="alert"></p>
                                 <!-- Fin Mensajes de Verificación -->
@@ -255,8 +274,9 @@
                             <% } %>
 
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <p class="text-muted small text-start fst-italic pt-2">Fecha de Caducidad actual de la muestra : <%= new Date(Muestra.FechaCaducidad).toLocaleDateString("es-Mx") %></p>
                                 <div class="form-floating small">
-                                    <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" value="<%= Muestra.FechaCaducidad %>">
+                                    <input type="date" name="FechaCaducidad" class="form-control" id="FechaCaducidad" placeholder="Fecha de Caducidad" value="<%= Muestra.FechaCaducidad %>" required>
                                     <label for="floatingInputGrid">Fecha de Caducidad</label>
                                 </div>
                                 <!-- Mensajes de Verificación -->
@@ -267,7 +287,13 @@
                             <% if (locals.errors && errors.FechaCaducidad) { %>
                                 <p class="text-danger small text-start "><%= errors.FechaCaducidad.msg %></p>
                             <% } %>
+                            
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9">
+                                <% if ( Muestra.Status === '1' || Muestra.Status === "Activa" ) { %>
+                                <p class="text-muted small text-start fst-italic pt-2">Status actual de la muestra : Activa</p>
+                                <% } else {%>
+                                <p class="text-muted small text-start fst-italic pt-2">Status actual de la muestra : Inactiva</p>
+                                <% } %>
                                 <select class="form-select" name="Status" id="Status">
                                     <% if ( Muestra.Status === '1' || Muestra.Status === "Activa" ) { %>
                                     <option value="1" selected>Status de muestra : Activa</option>
@@ -284,6 +310,7 @@
                             <% if (locals.errors && errors.Status) { %>
                                 <p class="text-danger small text-start "><%= errors.Status.msg %></p>
                             <% } %>
+
                             <div class="col-lg-offset-0 col-lg-9 col-xs-9 col-sm-9 mt-2">
                                 <div>
                                     <label for="formFileSm" class="form-label">Hoja de Seguridad</label>
@@ -326,6 +353,7 @@
     <%- include('Modals/Modal_Contenedor.ejs') %>
     <%- include('Modals/Modal_TipoDeFormulacion.ejs') %>
     <script src="/js/ValidacionEditarMuestra.js"></script>
+    <script src="/js/validacionAgregarContenedor.js"></script>
     <script type="text/javascript">
         function ModalContenedor(NoContenedor,Clasificacion){
                 $("#NoContenedor").val(Clasificacion);
@@ -347,5 +375,10 @@
                 })
         });
       </script>
+      <script language="JavaScript">
+        function mensaje() {
+            alert("Actualización de muestra exitoso!")
+        }
+    </script>
 </body>
 </html>

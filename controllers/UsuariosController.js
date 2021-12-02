@@ -29,9 +29,10 @@ const controller = {
                     error: "No se puede crear el usuario"
                 })
             }
+            if(req.body.status==1)
             Usuarios.fetchOnebyCorreo(req.body.correo).then(([rows, fieldData]) => {
                 console.log("ya existe")
-                if(rows.length>0)
+                if(rows.length>1)
                 res.status(400).send({
                     error: "No se puede modificar el usuario por que el correo del usuario ya existe"
                 })

@@ -29,8 +29,13 @@ const controller = {
                     error: "No se puede crear el usuario"
                 })
             }
-            console.log(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol)
-                //Logica de edicion
+            Usuarios.fetchOnebyCorreo(req.body.correo).then(([rows, fieldData]) => {
+                console.log("ya existe")
+                if(rows.length>0)
+                res.status(400).send({
+                    error: "No se puede modificar el usuario por que el correo del usuario ya existe"
+                })
+            })                //Logica de edicion
                 Usuarios.UpdateUser(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol,req.body.status)
                 .then(()=>{
                     console.log("se actualizó!")
@@ -74,15 +79,22 @@ const controller = {
                     error: "No se puede crear el usuario por que el id del usuario ya existe"
                 })
             })
+            Usuarios.fetchOnebyCorreo(req.body.correo).then(([rows, fieldData]) => {
+                console.log("ya existe")
+                if(rows.length>0)
+                res.status(400).send({
+                    error: "No se puede crear el usuario por que el correo del usuario ya existe"
+                })
+            })
          bcrypt.hash(req.body.password,12).then((hash)=> {
                 Usuarios.createUser(req.body.idEmpleado, req.body.nombres,req.body.apellidos,req.body.correo,hash,req.body.rol)
                 .then(()=>{
                  res.status(201).send({
                      mensaje: "Se ha creado el usuario"
                     })
-                }).catch(()=>{
+                }).catch((e)=>{
                  res.status(400).send({
-                         error: "No se puede crear el usuario correo o contraseña repetida"
+                         error: "No se puede crear el usuario " +e
                     }) 
              })
              })
@@ -96,40 +108,6 @@ const controller = {
          })}
      },
 
-    // ModificarUsuario:(req, res, next) => {
-    //     if(req.method=="POST"){
-    //         console.log("Actualizando Usuario")
-    //         if(!req.body){
-    //             res.status(400).send({
-    //                 error: "No se puede crear el usuario"
-    //             })
-    //         }
-    //         console.log(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol)
-    //             //Logica de edicion
-    //             Usuarios.UpdateUser(req.params.id, req.body.nombres,req.body.apellidos,req.body.correo,req.body.rol,req.body.status)
-    //             .then(()=>{
-    //                 console.log("se actualizó!")
 
-    //                 res.status(201).send({
-    //                     mensaje: "Se ha actualizado el usuario"
-    //                 })
-    //             }).catch((e)=>{
-    //                 console.log(e)
-    //             })
-    // }
-
-    
-    // else{
-    //     console.log("Modificar usuario:",req.params.id)
-    //     Usuarios.fetchOnebyId(req.params.id).then(([rows, fieldData])=>{ 
-    //         res.render('ModificarUsuario',{id:req.params.id,
-    //             isLoggedIn: req.session.isLoggedIn,
-    //             CorreoElectronico: req.session.CorreoElectronico,
-    //             NombreCompleto: req.session.NombreCompleto,
-    //             Permisos: req.session.rolEmpleado,
-    //             usuario:rows[0]
-    //         })
-    // })
-    // }},
 }
 module.exports = controller;

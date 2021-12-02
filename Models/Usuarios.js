@@ -23,6 +23,10 @@ module.exports = class Usuario {
         return db.execute('SELECT * FROM usuarios WHERE idEmpleado = ? ', [idEmpleado])
     }
 
+    static fetchOnebyCorreo(CorreoElectronico){
+        return db.execute('SELECT * FROM usuarios WHERE correoElectronico = ? ', [CorreoElectronico])
+    }
+
     static fetchAll() {
         return db.execute("SELECT U.idEmpleado, CONCAT(U.Nombres,' ', U.Apellidos) 'NombreUsuario', U.CorreoElectronico, U.Rol, U.Status  FROM usuarios  U WHERE STATUS = 1 ORDER BY U.Nombres ASC")
     }

@@ -12,6 +12,11 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-8">
+                        <div class="row">
+                            <div class="alert alert-danger d-none" role="alert" id="error">
+                                
+                              </div>
+                        </div>
                         <form id="basic-form">
                         <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>" >
                         <tr style="text-align: center;">
@@ -152,7 +157,11 @@
   function(data, status){
     alert("¡Actualización de usuario exitoso!");
     window.location.href = '/Usuarios/'
-  });
+  }).fail((data)=>{
+     //alert(data.responseJSON.error)
+     $("#error").removeClass("d-none")
+     $("#error").text(data.responseJSON.error)
+  });;
 }); 
     </script>
 </body>

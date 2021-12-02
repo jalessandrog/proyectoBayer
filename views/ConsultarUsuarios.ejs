@@ -27,7 +27,6 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Rol</th>
-                <th scope="col">Status</th>
               </tr>
           </thead>
           <tbody text-align:center;>
@@ -40,13 +39,7 @@
                   <td style="text-align:center;"><%= user.NombreUsuario %></td>
                   <td style="text-align:center;"><%= user.CorreoElectronico %></td>
                   <td style="text-align:center;"><%= user.Rol %></td>
-                  <td style="text-align:center;">
-                    <% if (user.Status == 1){ %>
-                      Activo
-                      <% } else { %>
-                        Inactivo
-                        <% } %>
-                </tr>
+        
               <% } %>
           </tbody>
         </table>

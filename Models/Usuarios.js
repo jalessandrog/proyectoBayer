@@ -24,7 +24,7 @@ module.exports = class Usuario {
     }
 
     static fetchAll() {
-        return db.execute("SELECT U.idEmpleado, CONCAT(U.Nombres,' ', U.Apellidos) 'NombreUsuario', U.CorreoElectronico, U.Rol, U.Status FROM usuarios U ORDER BY U.Nombres ASC")
+        return db.execute("SELECT U.idEmpleado, CONCAT(U.Nombres,' ', U.Apellidos) 'NombreUsuario', U.CorreoElectronico, U.Rol, U.Status  FROM usuarios  U WHERE STATUS = 1 ORDER BY U.Nombres ASC")
     }
 
      static UpdateToken(idEmpleado, token){

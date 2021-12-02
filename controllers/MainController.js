@@ -88,7 +88,7 @@ const controller = {
     index: (req, res, next) => {
         console.log("Ruta index")
         //-----------------------------------------
-        cron.schedule('* * 8 * * *', (req, res, next) => {
+        cron.schedule('1 1 17 * * *', (req, res, next) => {
         //cron.schedule('1 * * * * *', (req, res, next) => {
             console.log('Enviar correo de alertas');
             Main.Alerta1()

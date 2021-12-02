@@ -7,6 +7,7 @@ const MuestrasController = require('../controllers/MuestrasController')
 const validacionCrearMuestra = require('../middlewares/validacionRegistrarMuestra')
 const validacionEditarMuestra = require('../middlewares/validacionEditarMuestra')
 const validacionAgregarContenedor = require('../middlewares/validacionAgregarContenedor')
+const validacionAgregarFormulacion = require('../middlewares/validacionAgregarFormulacion')
 const adminMiddleware = require('../middlewares/adminMiddleware')
 const bodyParser = require('body-parser')
 
@@ -17,7 +18,7 @@ router.post('/delete/:id',isAuth, adminMiddleware, MuestrasController.borrarMues
 router.get('/agregar',isAuth, adminMiddleware,  MuestrasController.RegistrarMuestra);
 router.post('/agregar',isAuth, adminMiddleware, validacionCrearMuestra,  MuestrasController.saveMuestra);
 router.post('/agregarContenedor',isAuth, validacionAgregarContenedor, adminMiddleware,  MuestrasController.saveContenedor);
-router.post('/agregarFormulacion',isAuth, adminMiddleware,  MuestrasController.saveFormulacion);
+router.post('/agregarFormulacion',isAuth, adminMiddleware, validacionAgregarFormulacion,  MuestrasController.saveFormulacion);
 
 router.get('/editar/:id',isAuth, adminMiddleware, MuestrasController.EditarMuestra);
 router.post('/editar/:id',isAuth,adminMiddleware, validacionEditarMuestra, MuestrasController.processUpdate);

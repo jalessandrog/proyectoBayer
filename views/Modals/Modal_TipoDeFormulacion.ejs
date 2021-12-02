@@ -12,6 +12,7 @@
         <div class="d-flex justify-content-center h-100">
             <!-- Main Content -->
             <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
+                <p class="text-warning small text-start ">IMPORTANTE: Si una formulación ya se agregó anteriormente, no se podrá registrar de nuevo. Verificar que el código de formulación no exista</p>
                 <form>
                     <input type="hidden" id="_csrf_modal" value="<%= csrfToken %>" >
                     <div class="row">
@@ -20,14 +21,26 @@
                                 <input type="text" name="Codigo" class="form-control" id="Codigo" required>
                                 <label for="floatingInputGrid">Código</label>
                             </div>
+                            <!-- Mensajes de Verificación -->
+                            <p id="errorCodigo" class="alert alert-danger small ocultar" role="alert"></p>
+                            <!-- Fin Mensajes de Verificación -->
                         </div>
+                        <% if (locals.errors && errors.Codigo) { %>
+                            <p class="text-danger small text-start "><%= errors.Codigo.msg %></p>
+                        <% } %>
 
                         <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12 small">
                             <div class="form-floating small">
                                 <input type="text" name="Formulacion" class="form-control" id="Formulacion" required>
                                 <label for="floatingInputGrid">Formulación</label>
                             </div>
+                            <!-- Mensajes de Verificación -->
+                            <p id="errorFormulacion" class="alert alert-danger small ocultar" role="alert"></p>
+                            <!-- Fin Mensajes de Verificación -->
                         </div>
+                        <% if (locals.errors && errors.Formulacion) { %>
+                            <p class="text-danger small text-start "><%= errors.Formulacion.msg %></p>
+                        <% } %>
         
                         <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12 small">
                             <div class="form-floating small">

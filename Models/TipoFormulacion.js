@@ -19,4 +19,9 @@ module.exports = class Formulaciones {
     static fetchAll() {
         return db.execute('SELECT tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion FROM tipoformulacion WHERE tipoformulacion.Activa = "1" ')
     }
+
+    static fetchOne(CodigoFormulacion){
+        // return db.execute('SELECT * FROM muestras WHERE idMuestra = ?', [id]);
+        return db.execute('SELECT tipoformulacion.CodigoFormulacion, tipoformulacion.Formulacion, tipoformulacion.DescripcionFormulacion FROM tipoformulacion WHERE tipoformulacion.Activa = "1" AND tipoformulacion.CodigoFormulacion = ?', [CodigoFormulacion])
+    }
 }
